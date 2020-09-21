@@ -9,7 +9,7 @@ import {
 
 function Line (props) {
     return(
-        <View >
+        <View style={styles.viwer} >
             <View style={{ borderBottomWidth: 1, borderBottomColor: 'gray' }}></View>
             <View style={styles.container}>
             {props.children}
@@ -23,8 +23,12 @@ export default Line;
 
 const styles = StyleSheet.create({
     container: {
-        margin:15,
+        padding:10,
+        backgroundColor:'rgb(125, 26, 7)'
      
     },
+    viwer:{
+        backgroundColor:'rgb(125, 35, 7)'
+    }
 
 })

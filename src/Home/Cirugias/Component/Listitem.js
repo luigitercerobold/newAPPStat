@@ -34,17 +34,20 @@ export default Listitem;
 const styles = StyleSheet.create(
    {
       
+      
       activated:{
-         margin:10,
-         flex:1,
+         
+        
          backgroundColor:color.blue,
       },
       container:{
-         margin:10,
-         flex:1,
+         backgroundColor:'rgb(255, 0, 255)',
+         
       },
       containerItem:{
-         alignItems:'center'
+         alignItems:'center',
+         
+         backgroundColor:'rgb(255, 125, 255)'
       }
    }
 )

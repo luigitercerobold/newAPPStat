@@ -35,7 +35,7 @@ class Body extends Component {
       const proveedor = await http.instance.get(urlStat.getBoddy, http.instance.getToken())
       this.setState({ products: proveedor.data, loading: false })
       console.log(this.state.products)
-      return proveedproductsor
+      return proveedor
    }
 
    render(){

@@ -50,6 +50,7 @@ import VerificarToken from './src/Login/Container/VerificarToken'
 import Procedimiento from './src/Home/Cirugias/Views/Procedimiento'
 const Stack = createStackNavigator();
 function NavStack() {
+
   const ImageHeader = props => (
     <View style={{backgroundColor: '#2185fb'}}>
       <Image
@@ -58,6 +59,8 @@ function NavStack() {
       />
     </View>
   );
+
+  
   return (
     <Stack.Navigator
       initialRouteName="Loading"
@@ -74,13 +77,18 @@ function NavStack() {
         }
       }}
       >
-      <Stack.Screen
-        name="Loading"
-        component={Animacion}
-        options={{title: 'Loading'}}
-      />
+      
+      
+      <Stack.Screen name="Loading" component={Animacion} options={{title: 'Loading'}}/>
       <Stack.Screen options={{title: 'Login'}}  name="Auth" component={AuthSc} options={{title: 'Login',headerShown: false,}} />
       <Stack.Screen options={{title: 'Welcome'}} name="Welcome" component={Welcome} />
+      <Stack.Screen options={{title: 'Nuevo Usuario'}} name="DatosNuevoUsuario" component={DatosNuevoUsuario}/>
+      <Stack.Screen options={{title: 'Perfil de Doctor'}} name="PerfilNuevoUsuario" component={PerfilNuevoUsuario}/>
+      <Stack.Screen options={{title: 'Verificar Token'}} name="VerificarToken" component={VerificarToken}/>
+      <Stack.Screen options={{title: 'Procedimiento'}} name="Procedimiento" component={Procedimiento}/>
+      <Stack.Screen options={{title: 'Asistente Administrativo'}} name="AsistenteAdministrativo" component={AsistenteAdministrativo}/>
+      
+
       <Stack.Screen options={{title: 'Menú'}} name="Menu" component={Menu} options={{title: 'Menu'}} />
       <Stack.Screen options={{title: 'Cirugías'}} name="Cirugias" component={Cirugias} />
       <Stack.Screen options={{title: 'Agendar Cirugía'}} name="AgendarCirugia" component={AgendarCirugia}/>
@@ -95,15 +103,15 @@ function NavStack() {
       <Stack.Screen options={{title: 'Agregar Producto'}} name="AddProductos" component={AddProductos}/>
       <Stack.Screen options={{title: 'Estado Cirugía'}} name="EstadoCirugia" component={EstadoCirugia}/>
       <Stack.Screen options={{title: 'Ver Cirugía'}} name="VerCirugia" component={VerCirugia}/>
-      <Stack.Screen options={{title: 'Asistente Administrativo'}} name="AsistenteAdministrativo" component={AsistenteAdministrativo}/>
-      <Stack.Screen options={{title: 'Nuevo Usuario'}} name="DatosNuevoUsuario" component={DatosNuevoUsuario}/>
-      <Stack.Screen options={{title: 'Perfil de Doctor'}} name="PerfilNuevoUsuario" component={PerfilNuevoUsuario}/>
-      <Stack.Screen options={{title: 'Verificar Token'}} name="VerificarToken" component={VerificarToken}/>
-      <Stack.Screen options={{title: 'Procedimiento'}} name="Procedimiento" component={Procedimiento}/>
+
+      
       
     </Stack.Navigator>
   );
 }
+
+
+
 const App: () => React$Node = () => {
   return (
     <>
