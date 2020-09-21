@@ -6,9 +6,9 @@
 import { Component } from 'react';
 import {View,FlatList, Button,Text,ScrollView,StyleSheet} from 'react-native';
 
-import Title from '../Component/Title'
+import Title from '../../Component/Title'
 import bodyPart from  'newAPPStat/src/Lib/bodyParts'
-import ListItem from '../Component/Listitem'
+import ListItem from '../../Component/Listitem'
 import http from 'newAPPStat/src/Lib/http'
 import urlStat from 'newAPPStat/src/Lib/url'
 import color from 'newAPPStat/src/Lib/Colors'

@@ -4,15 +4,15 @@
 
 import React, { Component } from 'react'
 import { Text, View, Pressable, FlatList, ActivityIndicator } from 'react-native'
-import Title from '../Component/Title'
-import Navigate from '../Component/NavigateCirugia'
+import Title from '../../Component/Title'
+import Navigate from '../../Component/NavigateCirugia'
 import http from 'newAPPStat/src/Lib/http'
 import urlStat from 'newAPPStat/src/Lib/url'
 import color from 'newAPPStat/src/Lib/Colors'
-import HospitalItem from '../Component/Listitem'
+import HospitalItem from '../../Component/Listitem'
 
 
-class AgendarCirugia extends Component {
+class Asitente extends Component {
    state = {
       fontLoaded: false,
       hospital: '',
@@ -55,5 +55,5 @@ class AgendarCirugia extends Component {
    }
 
 }
-export default AgendarCirugia;
+export default Asitente;
 

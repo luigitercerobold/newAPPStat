@@ -19,6 +19,7 @@ import Icon from 'react-native-vector-icons';
 //import * as Font from 'expo-font';
 import http from 'newAPPStat/src/Lib/http'
 import urlStat from 'newAPPStat/src/Lib/url'
+import {connect} from 'react-redux'
 class AuthSc extends Component {
 
     state = {
@@ -97,6 +98,7 @@ class AuthSc extends Component {
   }
  
   render() {
+    console.log( 'los props ',this.props)
     return (
       <View style={styles.container}>
         <View
@@ -273,7 +275,11 @@ class AuthSc extends Component {
     );
   }
 }
-export default AuthSc;
+const mapStateToProps = (reducers) => {
+  return reducers.usuariosReducer;
+}
+export default connect(mapStateToProps,{/*actions*/ }) (AuthSc);
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

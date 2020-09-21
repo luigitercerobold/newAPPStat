@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Text, View, Pressable,StyleSheet,TextInput } from 'react-native';
 import Http from 'newAPPStat/src/Lib/http'
-import Title from '../Component/Title'
+import Title from '../../Component/Title'
 import { Picker } from '@react-native-community/picker';
 import RNPickerSelect from 'react-native-picker-select';
-import Line from '../Component/Line'
+import Line from '../../Component/Line'
 import color from 'newAPPStat/src/Lib/Colors'
 import bodyPart from  'newAPPStat/src/Lib/bodyParts'
-import ListButton from '../Component/ListButton'
+import ListButton from '../../Component/ListButton'
 import url from 'newAPPStat/src/Lib/url'
 import { min } from 'react-native-reanimated';
 class Cuerpo extends Component {
