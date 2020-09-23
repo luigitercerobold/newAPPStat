@@ -33,21 +33,13 @@ class AuthSc extends Component {
 
   loadFonts = async () => {
     // load the font 
-    await Font.loadAsync({
-      'Montserrat-Bold': require('../../../assets/fonts/Montserrat-Bold.otf'),
-      'Questrial-Regular': require('../../../assets/fonts/Questrial-Regular.ttf'),
-    });
+    // await Font.loadAsync({
+    //   'Montserrat-Bold': require('../../../assets/fonts/Montserrat-Bold.otf'),
+    //   'Questrial-Regular': require('../../../assets/fonts/Questrial-Regular.ttf'),
+    // });
     this.setState({fontLoaded: true})
   }
-  // closeSpinner() {
-  //   setTimeout(
-  //     this.setState({
-  //       animating: false,
-  //     }),
-  //     2000,
-  //   );
-  // }
-
+  
   constructor(props) {
     super(props);
     global.fechita='';
@@ -105,7 +97,7 @@ class AuthSc extends Component {
           style={[
             styles.header,
             {
-              marginTop: 20,
+              marginTop: "10%",
             },
           ]}>
           <Image
@@ -123,7 +115,7 @@ class AuthSc extends Component {
               style={[
                 styles.text_input,
                 {
-                  marginEnd: 27,
+                  marginEnd: "10%",
                   borderBottomWidth: 1,
                   borderBottomColor: '#2185fb',
                 },
@@ -135,7 +127,7 @@ class AuthSc extends Component {
             style={[
               styles.action,
               {
-                marginTop: 50,
+                marginTop: '10%',
               },
             ]}>
             {this.state.secureTextEntry ? (
@@ -288,7 +280,7 @@ const styles = StyleSheet.create({
   header: {
     flex: 1,
     alignItems: 'center',
-    paddingHorizontal: 20,
+    
   },
   absoluteFilled: {
     position: 'absolute',
@@ -300,7 +292,7 @@ const styles = StyleSheet.create({
   footer: {
     flex: 3,
     paddingHorizontal: 30,
-    paddingTop: 20,
+    paddingTop: '5%',
   },
   action: {
     paddingLeft: 30,
@@ -326,6 +318,7 @@ const styles = StyleSheet.create({
     fontSize: 32,
     color: 'gray',
     fontFamily: 'Questrial-Regular',
+    textAlign: 'center'
   },
   text_login: {
     fontFamily: 'Questrial-Regular',

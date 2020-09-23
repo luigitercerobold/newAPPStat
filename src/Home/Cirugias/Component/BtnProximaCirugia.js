@@ -25,10 +25,10 @@ const style = StyleSheet.create({
    container: {
       alignItems:"center",
       justifyContent:"center",
-      marginTop:20
+     
    }, 
    myButton: {
-      padding: 5,
+      
       height: 45,
       width: 45,  //The Width must be the same as the height
       borderRadius: 400, //Then Make the Border Radius twice the size of width or Height   
@@ -39,7 +39,7 @@ const style = StyleSheet.create({
    img:{
       width:45,
       height:45,
-      marginVertical:20
+     
       
    },
    text:{

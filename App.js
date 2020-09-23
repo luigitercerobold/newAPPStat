@@ -32,9 +32,9 @@ import Animacion from './src/Login/Component/Animacion';
 import AuthSc from './src/Login/Container/Auth';
 import Welcome from './src/Login/Component/Welcome';
 import Menu from './src/Home/src/Container/Menu';
-import Cirugias from './src/Home/Cirugias/Cirugias'
+import Cirugias from './src/Home/Cirugias/Views/Cirugias'
 import AgendarCirugia from './src/Home/Cirugias/Views/AgendarCirugia'
-import FechaYHora from './src/Home/Cirugias/Views/FechaYHora'
+import FechaYHora from './src/Home/Cirugias/Views/AgendarCirugia/FechaYHora'
 import Cuerpo from './src/Home/Cirugias/Views/AddCirugia/Cuerpo'
 import color from 'newAPPStat/src/Lib/Colors'
 import Hospital from './src/Home/Cirugias/Views/Hospital/Hospital'
@@ -51,6 +51,7 @@ import DatosNuevoUsuario from './src/Login/Container/DatosNuevoUsuario'
 import PerfilNuevoUsuario from './src/Login/Container/PerfilNuevoUsuario'
 import VerificarToken from './src/Login/Container/VerificarToken'
 import Procedimiento from './src/Home/Cirugias/Views/AddCirugia/Procedimiento'
+import Login from './src/Login/Container/Login'
 const Stack = createStackNavigator();
 const store = createStore(
   reducers, //Todos los reducers
@@ -71,7 +72,7 @@ function NavStack() {
 
   return (
     <Stack.Navigator
-      initialRouteName="Loading"
+      initialRouteName="Login"
       screenOptions={{
         headerShown: true,
         headerTintColor: '#fff',
@@ -87,7 +88,7 @@ function NavStack() {
     >
 
 
-      <Stack.Screen name="Loading" component={Animacion} options={{ title: 'Loading' }} />
+      <Stack.Screen name="Loading" component={Animacion} options={{ title: 'Loading',headerShown: false }} />
       <Stack.Screen /*options={{ title: 'Login' }}                    */name="Auth" component={AuthSc} options={{ title: 'Login', headerShown: false, }} />
       <Stack.Screen /*options={{ title: 'Welcome' }}                  */name="Welcome" component={Welcome} />
       <Stack.Screen /*options={{ title: 'Nuevo Usuario' }}            */name="DatosNuevoUsuario" component={DatosNuevoUsuario} />
@@ -95,8 +96,8 @@ function NavStack() {
       <Stack.Screen /*options={{ title: 'Verificar Token' }}          */name="VerificarToken" component={VerificarToken} />
       <Stack.Screen /*options={{ title: 'Procedimiento' }}            */name="Procedimiento" component={Procedimiento} />
       <Stack.Screen /*options={{ title: 'Asistente Administrativo' }} */name="AsistenteAdministrativo" component={AsistenteAdministrativo} />
-
-
+      <Stack.Screen /*options={{ title: 'Login' }}                    */name="Login" component={Login} options={{ title: 'Menu',headerShown: false }}/>
+      
       <Stack.Screen /**options={{ title: 'Menú' }}               */name="Menu" component={Menu} options={{ title: 'Menu' }} />
       <Stack.Screen /**options={{ title: 'Cirugías' }}           */name="Cirugias" component={Cirugias} />
       <Stack.Screen /**options={{ title: 'Agendar Cirugía' }}    */name="AgendarCirugia" component={AgendarCirugia} />

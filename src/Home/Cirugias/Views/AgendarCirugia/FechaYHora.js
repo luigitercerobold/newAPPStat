@@ -14,13 +14,13 @@ import { NavigationActions } from 'react-navigation';
 import RNPickerSelect, { defaultStyles } from 'react-native-picker-select';
 const DateTimePicker = require('@react-native-community/datetimepicker');
 
-import FechaHora from '../Component/FehaHora';
+import FechaHora from '../../Component/FehaHora';
 
-import Title from '../Component/Title'
-import SubTitle from '../Component/SubTitle'
+import Title from '../../Component/Title'
+import SubTitle from '../../Component/SubTitle'
 
-import Time from '../Component/Time';
-import ListButton from '../Component/ListButton'
+import Time from '../../Component/Time';
+import ListButton from '../../Component/ListButton'
 
 
 class FachaYHora extends React.Component {
