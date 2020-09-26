@@ -3,7 +3,7 @@ import { Component } from 'react';
 import { View, FlatList, Button, Text, ScrollView, StyleSheet, ActivityIndicator, Image } from 'react-native';
 import ButtonAddProduct from './Component/ButtonAddProduct'
 import ListButton from '../../Component/ListButton'
-import Title from '../../Component/Title'
+import Title from '../../../../Lib/Title'
 import bodyPart from 'newAPPStat/src/Lib/bodyParts'
 import ListItem from '../../Component/Listitem'
 import http from 'newAPPStat/src/Lib/http'

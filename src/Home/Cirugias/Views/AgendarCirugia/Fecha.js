@@ -16,7 +16,7 @@ import { NavigationActions } from 'react-navigation';
 //import {Actions} from 'react-native-router-flux';
 
 
-import Title from '../../Component/Title'
+import Title from '../../../../Lib/Title'
 class Fecha extends Component {
   constructor(props) {
     super(props);

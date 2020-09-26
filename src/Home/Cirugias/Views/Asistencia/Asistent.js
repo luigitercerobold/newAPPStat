@@ -4,7 +4,7 @@
 
 import React, { Component } from 'react'
 import { Text, View, Pressable, FlatList, ActivityIndicator } from 'react-native'
-import Title from '../../Component/Title'
+import Title from '../../../../Lib/Title'
 import Navigate from '../../Component/NavigateCirugia'
 import http from 'newAPPStat/src/Lib/http'
 import urlStat from 'newAPPStat/src/Lib/url'

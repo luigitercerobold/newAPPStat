@@ -28,19 +28,12 @@ class WelcomeSc extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          {/* <LinearGradient
-            colors={['#2185fb', '#0c71e8']}
-            style={{
-              width: 70,
-              height: 70,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}> */}
+      
             <Image
               style={{width: 145, height: 35, resizeMode: 'contain'}}
               source={LogoS}
             />
-          {/* //</LinearGradient> */}
+      
 
           <Text
             style={[

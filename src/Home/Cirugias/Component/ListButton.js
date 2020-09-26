@@ -1,25 +1,22 @@
 import React, { Component, useEffect, useState, useRef } from 'react';
 import { Button, View, StyleSheet } from "react-native";
-
-class ListButton extends Component {
-   onPress=()=>{
-      
-    this.props.onPress()
-   }
- 
-   render(){
+import Padding from '../../../Login/Component/PaddingVertical'
+import BtnSimple from '../../../Login/Component/BtnSimple'
+const ListButton =({onPress,title})=> {
       return(
          <View style={styles.buttonContainer}>
             {/* <View style={styles.button} >
               <Button title="Cancelar"></Button>
             </View> */}
-            <View style={styles.button}>
-             <Button onPress={this.onPress} title="Aceptar"></Button>
-            </View>
-          
+           
+            <Padding vertical={3}>
+            <BtnSimple
+              title={title}
+              onPress={onPress}
+            />
+          </Padding>
           </View>
-      );
-   }
+      );  
 }
 export default ListButton;
 const styles = StyleSheet.create({

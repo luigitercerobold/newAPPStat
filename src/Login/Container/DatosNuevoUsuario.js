@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
 import { Alert, Text } from 'react-native'
-import Title from "../../Home/Cirugias/Component/Title";
+import Title from "../../Lib/Title";
 import TextBox from '../Component/TextBox'
 import Http from '../../Lib/http'
 import Url from '../../Lib/url'
@@ -62,7 +62,7 @@ class DatosNuevoUsuario extends Component {
    render() {
       return (
          <ScrollCenter>
-            <PaddingVertical vertical={1} />
+           
             <Title title="Tus Datos" />
             <Container>
                <TextBox

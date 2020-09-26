@@ -19,7 +19,7 @@ const styles = StyleSheet.create(
    {
       Btn:{
          
-         padding:20,
+         padding:50,
          paddingHorizontal:40
       },
       Text:{

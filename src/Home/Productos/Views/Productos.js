@@ -1,15 +1,14 @@
 import React from 'react';
 import { Component } from 'react';
 import {View,FlatList, Button,Text,ScrollView,StyleSheet,ActivityIndicator} from 'react-native';
-import ButtonAddProduct from './Component/ButtonAddProduct'
-import ListButton from '../../Component/ListButton'
-import Title from '../../../../Lib/Title'
+
+import Title from '../../../Lib/Title'
 import bodyPart from  'newAPPStat/src/Lib/bodyParts'
-import ListItem from '../../Component/Listitem'
+import ListItem from '../../../Lib/Component/ListItem'
 import http from 'newAPPStat/src/Lib/http'
 import urlStat from 'newAPPStat/src/Lib/url'
 import color from 'newAPPStat/src/Lib/Colors'
-import { cos } from 'react-native-reanimated';
+
 
 
 class Productos extends Component {
@@ -40,17 +39,17 @@ class Productos extends Component {
    handlePress=(item)=>{
       console.log("seleccionado", item)
       this.setState({selectProduct:item})
-      this.props.navigation.navigate('AddProductos',{
+      this.props.navigation.navigate('DetalleProducto',{
          producto: item
       })
    }
    render(){
       const {products,proveedor,loading} = this.state
       return (
-                  <View>{ loading ?
+            <View>{ loading ?
             <ActivityIndicator color={color.blue} size="large" /> : null
          }
-            <Title title="Productos"/>
+            <Title title="Proveedor Productos"/>
             <FlatList
                data={proveedor}
                style={styles.flatList}

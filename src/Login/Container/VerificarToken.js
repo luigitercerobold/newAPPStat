@@ -1,7 +1,7 @@
 import react from "react";
 import React, { Component } from 'react'
 import { View, TextInput, Button, Text } from 'react-native'
-import Title from "../../Home/Cirugias/Component/Title";
+import Title from "../../Lib/Title";
 import TextBox from '../Component/TextBox'
 import Http from '../../Lib/http'
 import Url from '../../Lib/url'
@@ -39,7 +39,7 @@ class VerificarToken extends Component {
          , body)
       console.log(validar)
       if (validar.message === "Su correo ha sido validado correctamente.") {
-         this.props.navigation.navigate('Auth')
+         this.props.navigation.navigate('Login')
 
       } else {
 
@@ -55,7 +55,7 @@ class VerificarToken extends Component {
       return (
 
          <ScrollCenter>
-            <PaddingVertical vertical={1} />
+            
             <Title title="Verifica tus datos" />
             <Container>
                <Text>Se envió un código a tu correo electrónico</Text>

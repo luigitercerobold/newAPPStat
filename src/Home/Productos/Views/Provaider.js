@@ -1,11 +1,10 @@
 import React from 'react';
 import { Component } from 'react';
 import { View, FlatList, Button, Text, ScrollView, StyleSheet, ActivityIndicator } from 'react-native';
-import ButtonAddProduct from './Component/ButtonAddProduct'
-import ListButton from '../../Component/ListButton'
-import Title from '../../../../Lib/Title'
+
+import Title from '../../../Lib/Title'
 import bodyPart from 'newAPPStat/src/Lib/bodyParts'
-import ListItem from '../../Component/Listitem'
+import ListItem from '../../../Lib/Component/ListItem'
 import http from 'newAPPStat/src/Lib/http'
 import urlStat from 'newAPPStat/src/Lib/url'
 import color from 'newAPPStat/src/Lib/Colors'
@@ -30,8 +29,9 @@ class Proveedor extends Component {
 
    handlePress = (item) => {
       console.log(item.id)
-      this.props.navigation.navigate('Productos',{
-         body:this.props.route.params?.body,
+      this.props.navigation.navigate('ProductosProveedor',{
+         
+         body:{id:null},
          proveedor:item,
          providerId:item.id
       })
@@ -57,8 +57,7 @@ export default Proveedor;
 
 const styles = StyleSheet.create({
    flatList: {
-      height: 300,
-
+      marginTop:20,
       flexGrow: 0
    }
 })

@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
 import { View, TextInput, Button } from 'react-native'
-import Title from "../../Home/Cirugias/Component/Title";
+import Title from "../../Lib/Title";
 import TextBox from '../Component/TextBox'
 import Container from '../Component/LoginComponent/ContainerCenter'
 import BtnSimple from '../Component/BtnSimple'
@@ -38,7 +38,7 @@ class AsistenteAdministrativo extends Component {
 
       return (
          <ScrollCenter>
-            <PaddingVertical vertical={1} />
+            
             <Title title="Tu perfil como doctor" />
             <Container>
                <TextBox

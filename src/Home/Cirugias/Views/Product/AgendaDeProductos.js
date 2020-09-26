@@ -3,7 +3,7 @@ import { Component,useEffect} from 'react';
 import {View,FlatList, Button,Text,StyleSheet} from 'react-native';
 import ButtonAddProduct from './Component/ButtonAddProduct'
 import ListButton from '../../Component/ListButton'
-import Title from '../../Component/Title'
+import Title from '../../../../Lib/Title'
 import BtnProximaCirugia from '../../Component/BtnProximaCirugia'
 import Line from '../../Component/Line';
 

@@ -4,11 +4,13 @@ import {
   Text,
   StyleSheet
 } from 'react-native';
+import PaddingVertical from '../../Login/Component/PaddingVertical'
 
 
 function Title(props) {
   return (
 <View style ={styles.container}>
+<PaddingVertical vertical={1} />
     <Text
       style={[
         styles.text_login,
@@ -36,7 +38,7 @@ const styles = StyleSheet.create({
 
     letterSpacing: 2,
     
-    fontSize: 32,
+    fontSize: 16,
   },container:{
     paddingHorizontal:20
   }

@@ -1,7 +1,8 @@
 import React, { Component, useState } from "react";
-import { Button, View, StyleSheet } from "react-native";
+import { Button, View, StyleSheet, Pressable, Text } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import Line from './Line'
+import Colors from 'newAPPStat/src/Lib/Colors'
 
 class FechaHora extends Component {
   state = {
@@ -18,23 +19,28 @@ class FechaHora extends Component {
     this.props.onChageDateHour(date);
     this.hideDatePicker();
   };
-  
+
   render() {
     return (
-
       <View>
-        <View>
-          <Line>
-           <Button title={this.props.title} onPress={this.showDatePicker} />
-            <DateTimePickerModal
-              isVisible={this.state.isDatePickerVisible}
-              mode="datetime"
-              onConfirm={this.handleConfirm}
-              onCancel={this.hideDatePicker}
-            />
-          </Line>
-        </View>
-
+        <Pressable
+          onPress={this.showDatePicker}
+        >
+          <View style={styles.container}>
+            <Text style={styles.text}>
+              {this.props.title}
+            </Text>
+            <Line>
+              {this.props.children}
+              <DateTimePickerModal
+                isVisible={this.state.isDatePickerVisible}
+                mode="datetime"
+                onConfirm={this.handleConfirm}
+                onCancel={this.hideDatePicker}
+              />
+            </Line>
+          </View>
+        </Pressable>
       </View>
     )
   }
@@ -42,5 +48,10 @@ class FechaHora extends Component {
 }
 export default FechaHora;
 const styles = StyleSheet.create({
-
+  text: {
+    fontSize: 20,
+    color: Colors.grayLetter,
+    paddingBottom: 20,
+    padding: 20
+  },
 })

@@ -3,12 +3,13 @@ import { Component } from 'react';
 import {View,FlatList, Button,Text,ScrollView,StyleSheet} from 'react-native';
 import ButtonAddProduct from './Component/ButtonAddProduct'
 import ListButton from '../../Component/ListButton'
-import Title from '../../Component/Title'
+import Title from '../../../../Lib/Title'
 import bodyPart from  'newAPPStat/src/Lib/bodyParts'
 import ListItem from '../../Component/Listitem'
 import http from 'newAPPStat/src/Lib/http'
 import urlStat from 'newAPPStat/src/Lib/url'
 import color from 'newAPPStat/src/Lib/Colors'
+import BodyParts from '../../../../Lib/BodyParts'
 
 
 class Body extends Component {
@@ -42,11 +43,10 @@ class Body extends Component {
       const {products} = this.state
       return (
          <View>
-            <Title title="Elige la parte del cuerpo"/>
-            <FlatList
-               data={products}
-               style={styles.flatList}
-               renderItem={({ item }) => <ListItem onPress={()=>this.handlePress(item)} item={item.name} />}
+         
+            <BodyParts
+               products= {products}
+               handlePress={this.handlePress}
             />
          </View>
       )

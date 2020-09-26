@@ -25,12 +25,10 @@ const styles = StyleSheet.create({
     container: {
         padding:10,
         backgroundColor:'rgb(256, 256, 256)'
-     
     },
     viwer:{
         backgroundColor:'rgb(256, 256, 256)',
-        
-            paddingHorizontal:20
+         paddingHorizontal:20
           
     }
 

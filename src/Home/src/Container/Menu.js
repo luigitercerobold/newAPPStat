@@ -22,6 +22,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 //import { LinearGradient } from 'expo-linear-gradient';
 //import {Actions} from 'react-native-router-flux';
 import { DrawerActions } from 'react-navigation';
+import Card from '../Component/Card'
 class MenuSc extends Component {
   constructor(props) {
     super(props);
@@ -56,7 +57,7 @@ toggleDrawer = () => {
           </View>
 
           
-          <Image style={styles.imgContainer ,styles.imgalingrigtg} source={require('newAPPStat/assets/icon.png')} />
+          <Image style={styles.imgContainer ,styles.imgalingrigtg} source={require('newAPPStat/assets/img/avatar.png')} />
        
           <Text
             style={{
@@ -72,26 +73,26 @@ toggleDrawer = () => {
           </Text>
         </View>
         <View style={styles.footer}>
+          
           <TouchableOpacity
             style={{
               paddingHorizontal: 13,
-              justifyContent: 'center',
-              alignContent: 'center',
-              textAlignVertical: 'top',
             }}
             onPress={() => this.props.navigation.navigate('EstadoCirugia')}>
             <View style={[styles.reactItem, {flexDirection: 'row'}]}>
-              <Text style={styles.text_input}>Cirugías</Text>
-              {/*<TouchableOpacity style={{marginTop:'-7%'}} onPress={() => this.props.navigation.navigate('Products')}>*/}
-              <View
-                style={styles.iconFrame}
-                // onStartShouldSetResponder={() => this.props.navigation.navigate('Products')}
-              >
-
-                <View style={styles.imgCenter}>
-                  <Image style={styles.imgContainer} source={require('newAPPStat/assets/Icon/1x/menu-cirugas.png')} />
-                </View>
-              </View>
+              <Text
+                style={[
+                  styles.text_input,
+                  {
+                    height: 80,
+                    marginTop: 55,
+                  },
+                ]}>
+                {"Cirugías    "}
+              </Text>
+              <Card
+                img={require('newAPPStat/assets/Icon/1x/menu-cirugas.png')}
+              />
             </View>
           </TouchableOpacity>
 
@@ -111,19 +112,16 @@ toggleDrawer = () => {
                 ]}>
                 Asistencia
               </Text>
-              <View style={[styles.iconFrame, {marginLeft: 3, marginTop: 10}]}>
-
-                <View style={styles.imgCenter}>
-                  <Image style={styles.imgContainer} source={require('newAPPStat/assets/Icon/1x/menu-asistencias.png')} />
-                </View>
-              </View>
+              <Card
+                img={require('newAPPStat/assets/Icon/1x/menu-asistencias.png')}
+              />
             </View>
           </TouchableOpacity>
           <TouchableOpacity
             style={{
               paddingHorizontal: 13,
             }}
-            onPress={() => this.props.navigation.navigate('ProIni')}>
+            onPress={() => this.props.navigation.navigate('IndexProduct')}>
             <View style={[styles.reactItem, {flexDirection: 'row'}]}>
               <Text
                 style={[
@@ -136,12 +134,10 @@ toggleDrawer = () => {
                 ]}>
                 Productos
               </Text>
-              <View style={[styles.iconFrame, {marginLeft: 3, marginTop: 10}]}>
-              
-                <View style={styles.imgCenter}>
-                  <Image style={styles.imgContainer} source={require('newAPPStat/assets/Icon/1x/menu-productos.png')} />
-                </View>
-              </View>
+              <Card
+                img={require('newAPPStat/assets/Icon/1x/menu-productos.png')}
+              />
+            
             </View>
           </TouchableOpacity>
         </View>

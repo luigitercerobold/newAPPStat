@@ -16,7 +16,7 @@ import LogoWhite from '../../../../assets/img/logo.png';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Pendiente from '../Component/Pendiente'
 import NavigateCirugia from '../Component/NavigateCirugia'
-import Title from '../Component/Title'
+import Title from '../../../Lib/Title'
 import BtnProximaCirugia from '../Component/BtnProximaCirugia'
 import http from 'newAPPStat/src/Lib/http'
 import urlStat from 'newAPPStat/src/Lib/url'
@@ -59,27 +59,22 @@ class Cirugias extends Component {
     render() {
 
         return (
-            
-                <View style={styles.container}>
-                    <PaddingVertical vertical={1} />
-                    <Title title="Próxima cirugía" />
-                    <Container>
-                        
-                            <BtnProximaCirugia onPress={this.goToVerCirugia} text="Ver cirugía" img={require("newAPPStat/assets/Icon/1x/cirugias-ver_cirgias.png")} />
-                            <BtnProximaCirugia onPress={this.goToAgendarCirugia} text="Agendar cirugía" img={require("newAPPStat/assets/Icon/1x/cirugias-agregar_cirugias.png")} />
-                       
-                    </Container>
-                    <PaddingVertical vertical={1} />
-                </View>
-            
+
+            <View style={styles.container}>
+                <Title title="Próxima cirugía" />
+                <Container>
+                    <BtnProximaCirugia onPress={this.goToVerCirugia} text="Ver cirugía" img={require("newAPPStat/assets/Icon/1x/cirugias-ver_cirgias.png")} />
+                    <BtnProximaCirugia onPress={this.goToAgendarCirugia} text="Agendar cirugía" img={require("newAPPStat/assets/Icon/1x/cirugias-agregar_cirugias.png")} />
+                </Container>
+                <PaddingVertical vertical={1} />
+            </View>
+
         );
     }
 }
 export default Cirugias;
 const styles = StyleSheet.create({
     container: {
-        flex:1,
-   
-
+        flex: 1,
     }
 });

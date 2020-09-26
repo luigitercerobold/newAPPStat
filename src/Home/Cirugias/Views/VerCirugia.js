@@ -1,7 +1,7 @@
 import React from 'react';
 import { Component,useEffect} from 'react';
 import {View,FlatList, Button,Text,StyleSheet,ScrollView} from 'react-native';
-import Title from '../Component/Title'
+import Title from '../../../Lib/Title'
 import BtnProximaCirugia from '../Component/BtnProximaCirugia'
 import Line from '../Component/Line';
 import http from 'newAPPStat/src/Lib/http'

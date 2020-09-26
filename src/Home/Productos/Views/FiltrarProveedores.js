@@ -1,19 +1,19 @@
 import React from 'react';
 import { Component } from 'react';
 import { View, FlatList, Button, Text, ScrollView, StyleSheet, ActivityIndicator } from 'react-native';
-import ButtonAddProduct from './Component/ButtonAddProduct'
-import ListButton from '../../Component/ListButton'
-import Title from '../../../../Lib/Title'
-import bodyPart from 'newAPPStat/src/Lib/bodyParts'
-import ListItem from '../../Component/Listitem'
+
+
+import Title from '../../../Lib/Title'
+
 import http from 'newAPPStat/src/Lib/http'
 import urlStat from 'newAPPStat/src/Lib/url'
 import color from 'newAPPStat/src/Lib/Colors'
+import ListItem from '../../../Lib/Component/ListItem'
 
 
-class Proveedor extends Component {
+class FiltrarProveedor extends Component {
    state = {
-      products: bodyPart,
+      products: '',
       proveedor: [],
       loading: false
    }
@@ -22,15 +22,18 @@ class Proveedor extends Component {
    }
    getProvider = async () => {
       this.setState({ loading: true })
-      const proveedor = await http.instance.get(urlStat.getProveedor, http.instance.getToken())
+      const body = JSON.stringify({
+         bodyPartId:this.props.route.params?.body.id+""
+      })
+      const proveedor = await http.instance.post(urlStat.getByBodypart,body,http.instance.getToken())
       this.setState({ proveedor: proveedor.data, loading: false })
-      console.log(this.state.proveedor)
+      console.log('provvedores',this.state.proveedor)
       return proveedor
    }
 
    handlePress = (item) => {
       console.log(item.id)
-      this.props.navigation.navigate('Productos',{
+      this.props.navigation.navigate('ProductosProveedor',{
          body:this.props.route.params?.body,
          proveedor:item,
          providerId:item.id
@@ -42,18 +45,19 @@ class Proveedor extends Component {
          <View>{loading ?
             <ActivityIndicator color={color.blue} size="large" /> : null
          }
-            <Title title="Proveedor" />
+            <Title title="Proveedores" />
             <FlatList
                data={proveedor}
                style={styles.flatList}
                renderItem={({ item }) => <ListItem onPress={() => this.handlePress(item)} item={ item.id+" " +  item.name} />}
             />
+         
          </View>
       )
    }
 
 }
-export default Proveedor;
+export default FiltrarProveedor;
 
 const styles = StyleSheet.create({
    flatList: {

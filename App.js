@@ -52,6 +52,14 @@ import PerfilNuevoUsuario from './src/Login/Container/PerfilNuevoUsuario'
 import VerificarToken from './src/Login/Container/VerificarToken'
 import Procedimiento from './src/Home/Cirugias/Views/AddCirugia/Procedimiento'
 import Login from './src/Login/Container/Login'
+import IndexProduct from './src/Home/Productos/Views/IndexProduct'
+import BodyProducto from './src/Home/Productos/Views/BodyPart'
+import FiltrarProveedores from './src/Home/Productos/Views/FiltrarProveedores'
+import ProductoProveedor from './src/Home/Productos/Views/ProductosDeProveedores'
+import ProductosProductos from'./src/Home/Productos/Views/Productos'
+import DetalleProducto from'./src/Home/Productos/Views/DetalleProducto'
+import Providers from './src/Home/Productos/Views/Provaider'
+
 const Stack = createStackNavigator();
 const store = createStore(
   reducers, //Todos los reducers
@@ -60,14 +68,7 @@ const store = createStore(
 
 function NavStack() {
 
-  const ImageHeader = props => (
-    <View style={{ backgroundColor: '#2185fb' }}>
-      <Image
-        style={{ width: 95, height: 25, resizeMode: 'contain' }}
-        source={LogoWhite}
-      />
-    </View>
-  );
+
 
 
   return (
@@ -89,32 +90,37 @@ function NavStack() {
 
 
       <Stack.Screen name="Loading" component={Animacion} options={{ title: 'Loading',headerShown: false }} />
-      <Stack.Screen /*options={{ title: 'Login' }}                    */name="Auth" component={AuthSc} options={{ title: 'Login', headerShown: false, }} />
-      <Stack.Screen /*options={{ title: 'Welcome' }}                  */name="Welcome" component={Welcome} />
-      <Stack.Screen /*options={{ title: 'Nuevo Usuario' }}            */name="DatosNuevoUsuario" component={DatosNuevoUsuario} />
-      <Stack.Screen /*options={{ title: 'Perfil de Doctor' }}         */name="PerfilNuevoUsuario" component={PerfilNuevoUsuario} />
-      <Stack.Screen /*options={{ title: 'Verificar Token' }}          */name="VerificarToken" component={VerificarToken} />
-      <Stack.Screen /*options={{ title: 'Procedimiento' }}            */name="Procedimiento" component={Procedimiento} />
-      <Stack.Screen /*options={{ title: 'Asistente Administrativo' }} */name="AsistenteAdministrativo" component={AsistenteAdministrativo} />
-      <Stack.Screen /*options={{ title: 'Login' }}                    */name="Login" component={Login} options={{ title: 'Menu',headerShown: false }}/>
+      <Stack.Screen options={{ title: 'Login' }}                    name="Auth" component={AuthSc} options={{ title: 'Login', headerShown: false, }} />
+      <Stack.Screen options={{ title: 'Welcome' }}                  name="Welcome" component={Welcome} />
+      <Stack.Screen options={{ title: 'Nuevo Usuario' }}            name="DatosNuevoUsuario" component={DatosNuevoUsuario} />
+      <Stack.Screen options={{ title: 'Perfil de Doctor' }}         name="PerfilNuevoUsuario" component={PerfilNuevoUsuario} />
+      <Stack.Screen options={{ title: 'Verificar Token' }}          name="VerificarToken" component={VerificarToken} />
+      <Stack.Screen options={{ title: 'Procedimiento' }}            name="Procedimiento" component={Procedimiento} />
+      <Stack.Screen options={{ title: 'Asistente Administrativo' }} name="AsistenteAdministrativo" component={AsistenteAdministrativo} />
+      <Stack.Screen options={{ title: 'Login' }}                    name="Login" component={Login} options={{ title: 'Menu',headerShown: false }}/>
+  
+      <Stack.Screen options={{ title: 'Menú' }}               name="Menu" component={Menu} options={{ title: 'Menu' }} />
+      <Stack.Screen options={{ title: 'Cirugías' }}           name="Cirugias" component={Cirugias} />
+      <Stack.Screen options={{ title: 'Agendar Cirugía' }}    name="AgendarCirugia" component={AgendarCirugia} />
+      <Stack.Screen options={{ title: 'Fecha y Hora' }}       name="FechaYHora" component={FechaYHora} />
+      <Stack.Screen options={{ title: 'Cuerpo' }}             name="Cuerpo" component={Cuerpo} />
+      <Stack.Screen options={{ title: 'Hospital' }}           name="Hospital" component={Hospital} />
+      <Stack.Screen options={{ title: 'Asistente' }}          name="Asistente" component={Asistente} />
+      <Stack.Screen options={{ title: 'Agendar Producto' }}   name="AgendarProducto" component={AgendarProducto} />
+      <Stack.Screen options={{ title: 'Parte del Cuerpo' }}   name="ElegirBody" component={ElegirBody} />
+      <Stack.Screen options={{ title: 'Proveedor' }}          name="Proveedor" component={Proveedor} />
+      <Stack.Screen options={{ title: 'Productos' }}          name="Productos" component={Productos} />
+      <Stack.Screen options={{ title: 'Agregar Producto' }}   name="AddProductos" component={AddProductos} />
+      <Stack.Screen options={{ title: 'Estado Cirugía' }}     name="EstadoCirugia" component={EstadoCirugia} />
+      <Stack.Screen options={{ title: 'Ver Cirugía' }}        name="VerCirugia" component={VerCirugia} />
+      <Stack.Screen name="IndexProduct" component ={IndexProduct}/>
+      <Stack.Screen name="BodyProducto" component ={BodyProducto}/>
+      <Stack.Screen name="FiltrarProveedores" component ={FiltrarProveedores}/>
+      <Stack.Screen name="ProductosProveedor" component ={ProductoProveedor}/>
+      <Stack.Screen name="ProductosProductos" component ={ProductosProductos}/>
+      <Stack.Screen name="DetalleProducto" component ={DetalleProducto}/>
+      <Stack.Screen name="Provider" component ={Providers}/>
       
-      <Stack.Screen /**options={{ title: 'Menú' }}               */name="Menu" component={Menu} options={{ title: 'Menu' }} />
-      <Stack.Screen /**options={{ title: 'Cirugías' }}           */name="Cirugias" component={Cirugias} />
-      <Stack.Screen /**options={{ title: 'Agendar Cirugía' }}    */name="AgendarCirugia" component={AgendarCirugia} />
-      <Stack.Screen /**options={{ title: 'Fecha y Hora' }}       */name="FechaYHora" component={FechaYHora} />
-      <Stack.Screen /**options={{ title: 'Cuerpo' }}             */name="Cuerpo" component={Cuerpo} />
-      <Stack.Screen /**options={{ title: 'Hospital' }}           */name="Hospital" component={Hospital} />
-      <Stack.Screen /**options={{ title: 'Asistente' }}          */name="Asistente" component={Asistente} />
-      <Stack.Screen /**options={{ title: 'Agendar Producto' }}   */name="AgendarProducto" component={AgendarProducto} />
-      <Stack.Screen /**options={{ title: 'Parte del Cuerpo' }}   */name="ElegirBody" component={ElegirBody} />
-      <Stack.Screen /**options={{ title: 'Proveedor' }}          */name="Proveedor" component={Proveedor} />
-      <Stack.Screen /**options={{ title: 'Productos' }}          */name="Productos" component={Productos} />
-      <Stack.Screen /**options={{ title: 'Agregar Producto' }}   */name="AddProductos" component={AddProductos} />
-      <Stack.Screen /**options={{ title: 'Estado Cirugía' }}     */name="EstadoCirugia" component={EstadoCirugia} />
-      <Stack.Screen /**options={{ title: 'Ver Cirugía' }}        */name="VerCirugia" component={VerCirugia} />
-
-
-
     </Stack.Navigator>
   );
 }

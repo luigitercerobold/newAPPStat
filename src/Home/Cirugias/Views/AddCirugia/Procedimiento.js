@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, Pressable,StyleSheet,TextInput } from 'react-native';
 import Http from 'newAPPStat/src/Lib/http'
-import Title from '../../Component/Title'
+import Title from '../../../../Lib/Title'
 import { Picker } from '@react-native-community/picker';
 import RNPickerSelect from 'react-native-picker-select';
 import Line from '../../Component/Line'
