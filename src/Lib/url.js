@@ -1,4 +1,4 @@
-const server = "http://192.168.1.16:3000";
+const server = "http://104.155.128.140";
 
 const urlStat={
    login: server +'/api/auth/login',

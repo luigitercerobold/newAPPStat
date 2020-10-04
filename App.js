@@ -29,7 +29,10 @@ import { Provider } from 'react-redux';
 import reducers from './src/reducers/index'
 import { createStackNavigator } from '@react-navigation/stack';
 import Animacion from './src/Login/Component/Animacion';
-import AuthSc from './src/Login/Container/Auth';
+
+
+import TryConnection from './src/Internet/TryConnection'
+
 import Welcome from './src/Login/Component/Welcome';
 import Menu from './src/Home/src/Container/Menu';
 import Cirugias from './src/Home/Cirugias/Views/Cirugias'
@@ -60,6 +63,16 @@ import ProductosProductos from'./src/Home/Productos/Views/Productos'
 import DetalleProducto from'./src/Home/Productos/Views/DetalleProducto'
 import Providers from './src/Home/Productos/Views/Provaider'
 
+
+import ScreenBody from './src/Esqueleto/container/Screens'
+
+import Brazo from './src/Esqueleto/container/Brazo'
+import Caderas from './src/Esqueleto/container/Caderas'
+import Craneo from './src/Esqueleto/container/Craneo'
+import Esqueleto from './src/Esqueleto/container/Esqueleto'
+import Hombro from './src/Esqueleto/container/Hombro'
+import Piernas from './src/Esqueleto/container/Piernas'
+
 const Stack = createStackNavigator();
 const store = createStore(
   reducers, //Todos los reducers
@@ -73,7 +86,7 @@ function NavStack() {
 
   return (
     <Stack.Navigator
-      initialRouteName="Login"
+      initialRouteName="Esqueleto"
       screenOptions={{
         headerShown: true,
         headerTintColor: '#fff',
@@ -88,10 +101,19 @@ function NavStack() {
       }}
     >
 
+      <Stack.Screen options={{ title: 'Brazo' }}                  name="Brazo" component={Brazo} />
+      <Stack.Screen options={{ title: 'Caderas' }}            name="Caderas" component={Caderas} />
+      <Stack.Screen options={{ title: 'Craneo' }}         name="Craneo" component={Craneo} />
+      <Stack.Screen options={{ title: 'Esqueleto' }}                  name="Esqueleto" component={Esqueleto} />
+      <Stack.Screen options={{ title: 'Hombro' }}            name="Hombro" component={Hombro} />
+      <Stack.Screen options={{ title: 'Piernas' }}         name="Piernas" component={Piernas} />
+
+
+      <Stack.Screen name="Try" component={TryConnection} options={{ title: 'try',headerShown: false }} />
 
       <Stack.Screen name="Loading" component={Animacion} options={{ title: 'Loading',headerShown: false }} />
-      <Stack.Screen options={{ title: 'Login' }}                    name="Auth" component={AuthSc} options={{ title: 'Login', headerShown: false, }} />
-      <Stack.Screen options={{ title: 'Welcome' }}                  name="Welcome" component={Welcome} />
+ 
+      <Stack.Screen options={{ title: 'Welcome' }}                  name="Welcome" component={Welcome} options={{headerShown: false} }/>
       <Stack.Screen options={{ title: 'Nuevo Usuario' }}            name="DatosNuevoUsuario" component={DatosNuevoUsuario} />
       <Stack.Screen options={{ title: 'Perfil de Doctor' }}         name="PerfilNuevoUsuario" component={PerfilNuevoUsuario} />
       <Stack.Screen options={{ title: 'Verificar Token' }}          name="VerificarToken" component={VerificarToken} />
@@ -99,7 +121,7 @@ function NavStack() {
       <Stack.Screen options={{ title: 'Asistente Administrativo' }} name="AsistenteAdministrativo" component={AsistenteAdministrativo} />
       <Stack.Screen options={{ title: 'Login' }}                    name="Login" component={Login} options={{ title: 'Menu',headerShown: false }}/>
   
-      <Stack.Screen options={{ title: 'Menú' }}               name="Menu" component={Menu} options={{ title: 'Menu' }} />
+      <Stack.Screen options={{ title: 'Menú' }}               name="Menu" component={Menu} options={{ title: 'Menu',headerShown: false }} />
       <Stack.Screen options={{ title: 'Cirugías' }}           name="Cirugias" component={Cirugias} />
       <Stack.Screen options={{ title: 'Agendar Cirugía' }}    name="AgendarCirugia" component={AgendarCirugia} />
       <Stack.Screen options={{ title: 'Fecha y Hora' }}       name="FechaYHora" component={FechaYHora} />

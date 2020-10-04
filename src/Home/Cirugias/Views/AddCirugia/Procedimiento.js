@@ -9,7 +9,7 @@ import color from 'newAPPStat/src/Lib/Colors'
 import bodyPart from  'newAPPStat/src/Lib/bodyParts'
 import ListButton from '../../Component/ListButton'
 import url from 'newAPPStat/src/Lib/url'
-import { min } from 'react-native-reanimated';
+
 class Cuerpo extends Component {
 
    state = {
@@ -63,7 +63,7 @@ class Cuerpo extends Component {
                </TextInput>
             </Line>
 
-            <ListButton onPress= {this.onPress}/>
+            <ListButton title="Confirmar" onPress= {this.onPress}/>
 
          </View>
       )

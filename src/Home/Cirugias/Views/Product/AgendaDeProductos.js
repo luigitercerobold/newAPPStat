@@ -62,7 +62,7 @@ class AgendaProducto extends Component {
             <BtnProximaCirugia onPress = {this.onPress} text="Agregar Producto" img={require("newAPPStat/assets/Icon/1x/cirugias-agregar_cirugias.png")}/>
 
             
-            <ListButton onPress= {this.goToAgandarCirugia}/>
+            <ListButton title= "confirmar" onPress= {this.goToAgandarCirugia}/>
          </View>
 
       )

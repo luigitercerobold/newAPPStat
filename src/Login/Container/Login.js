@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
 import {
-   View, Text
+   View, Text,Alert
 }
    from 'react-native'
 import ScrollCenter from '../Component/ScrollCenter'
@@ -23,6 +23,7 @@ class Login extends Component {
    }
 
    setUser = (user) => {
+      
       this.setState({ user })
    }
 
@@ -35,6 +36,23 @@ class Login extends Component {
       this.getToken()
    }
 
+
+   alert = (data) => {
+      if( data.message != undefined) {
+      Alert.alert(
+         "Usuario",
+         "Mensaje de Stat: " + data.message,
+         [
+           {
+             text: "Cancel",
+             onPress: () => console.log("Cancel Pressed"),
+             style: "cancel"
+           },
+           { text: "OK", onPress: () => console.log("OK Pressed") }
+         ],
+         { cancelable: false }
+       );}
+   }
    olvidoPassWord = () => {
       console.log('OlvidePasword');
    }
@@ -51,7 +69,7 @@ class Login extends Component {
       })
       const data = await http.instance.post(url, body)
       console.log("recibir", data);
-
+      
       if (data != null) {
          http.instance.setToken(data.token)
          http.instance.setId(data.data.id)
@@ -59,6 +77,19 @@ class Login extends Component {
             this.props.navigation.navigate('Welcome')
          } else {
             this.setState({ alert: "no es posibe ingresar" })
+            Alert.alert(
+               "Usuario",
+               "Mensaje de Stat: " +"estas cuentas solo son para doctores y no comerciantes" ,
+               [
+                 {
+                   text: "Cancel",
+                   onPress: () => console.log("Cancel Pressed"),
+                   style: "cancel"
+                 },
+                 { text: "OK", onPress: () => console.log("OK Pressed") }
+               ],
+               { cancelable: false }
+             )
          }
 
       }
@@ -74,6 +105,7 @@ class Login extends Component {
                </Padding>
                <Padding vertical={0.5}>
                   <TextBox
+                  
                      placeholder="Usuario"
                      onChangeText={this.setUser}
                   />

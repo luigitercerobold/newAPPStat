@@ -52,7 +52,7 @@ class AddProducto extends Component {
              multiline
              numberOfLines={4}
             style={styles.textInput}></TextInput>
-            <ListButton onPress= {this.onPress}/>
+            <ListButton title="Confirmar" onPress= {this.onPress}/>
          </View>
       )
    }

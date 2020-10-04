@@ -2,7 +2,7 @@ import React from 'react';
 import {TextInput,StyleSheet,View} from 'react-native'
 import Padding from './PaddingVertical';
 
-const TextBox = ({ placeholder,value,onChangeText}) => {
+const TextBox = ({ placeholder,value,onChangeText},autocomplete ="off") => {
 
    return (
       <View style =  {styles.Container}>
@@ -12,6 +12,9 @@ const TextBox = ({ placeholder,value,onChangeText}) => {
           style ={styles.textStyle} 
           onChangeText ={text => onChangeText(text)}
           placeholder={placeholder}
+         
+         
+          
          />
       </View>
       </View>
