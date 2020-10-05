@@ -67,11 +67,12 @@ import Providers from './src/Home/Productos/Views/Provaider'
 import ScreenBody from './src/Esqueleto/container/Screens'
 
 import Brazo from './src/Esqueleto/container/Brazo'
-import Caderas from './src/Esqueleto/container/Caderas'
+
 import Craneo from './src/Esqueleto/container/Craneo'
 import Esqueleto from './src/Esqueleto/container/Esqueleto'
-import Hombro from './src/Esqueleto/container/Hombro'
+
 import Piernas from './src/Esqueleto/container/Piernas'
+import Pies from './src/Esqueleto/container/Pies'
 
 const Stack = createStackNavigator();
 const store = createStore(
@@ -102,11 +103,12 @@ function NavStack() {
     >
 
       <Stack.Screen options={{ title: 'Brazo' }}                  name="Brazo" component={Brazo} />
-      <Stack.Screen options={{ title: 'Caderas' }}            name="Caderas" component={Caderas} />
+     
       <Stack.Screen options={{ title: 'Craneo' }}         name="Craneo" component={Craneo} />
       <Stack.Screen options={{ title: 'Esqueleto' }}                  name="Esqueleto" component={Esqueleto} />
-      <Stack.Screen options={{ title: 'Hombro' }}            name="Hombro" component={Hombro} />
+     
       <Stack.Screen options={{ title: 'Piernas' }}         name="Piernas" component={Piernas} />
+      <Stack.Screen options={{ title: 'Pies' }}         name="Pies" component={Pies} />
 
 
       <Stack.Screen name="Try" component={TryConnection} options={{ title: 'try',headerShown: false }} />

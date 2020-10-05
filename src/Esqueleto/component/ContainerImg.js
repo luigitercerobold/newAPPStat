@@ -7,10 +7,10 @@ import Btn from '../component/Btn'
 const window = Dimensions.get("window");
 const screen = Dimensions.get("screen");
 const dimensionScreen = new DimensionScreen(window, screen)
-
+let imgWidthNeto = 0
 
 const ContainerImg = ({ craneo, data, renderItem }) => {
-
+  
    const [imgSize, setImgSize] = useState({ height: 0, width: 0 })
 
    const measureImg = ((event) => {
@@ -35,9 +35,13 @@ const ContainerImg = ({ craneo, data, renderItem }) => {
       const topVertical = center - centerToTop
       const TopHorizontal = center - imgSize.height / 2
 
-      if (imgSize.width + 300 < imgSize.height)
+      if (imgSize.width + 300 < imgSize.height) {
+         
+         imgWidthNeto = imgSize.width
          return topVertical + ((centerToTop * 2) / 8) * poss
+      }
       else {
+         imgWidthNeto= imgSize.height / constanteCenter
          return TopHorizontal + -20 + ((imgSize.height) / 8) * poss
       }
    }
@@ -48,7 +52,7 @@ const ContainerImg = ({ craneo, data, renderItem }) => {
 
       return (
          data.map(item =>
-            renderItem(item, heightMessure(item.possition))
+            renderItem(item, heightMessure(item.possition), imgSize.width,imgWidthNeto)
 
          )
       )
@@ -77,7 +81,7 @@ const styles = StyleSheet.create({
    container: {
       flex: 1,
       flexDirection: "column",
-      backgroundColor: "#5B68",
+      //backgroundColor: "#5B68",
 
    },
    imgContainer: {
@@ -86,7 +90,7 @@ const styles = StyleSheet.create({
 
    },
    imgCon: {
-      backgroundColor: "red",
+      //backgroundColor: "red",
       position: 'relative',
 
    }
@@ -100,7 +104,7 @@ const styles = StyleSheet.create({
       width: '100%',
       height: '100%',
       // position: 'absolute',
-      backgroundColor: "blue",
+     // backgroundColor: "blue",
 
    },
 

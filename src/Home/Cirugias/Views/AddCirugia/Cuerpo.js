@@ -12,9 +12,10 @@ import ListItem from '../../Component/Listitem'
 import http from 'newAPPStat/src/Lib/http'
 import urlStat from 'newAPPStat/src/Lib/url'
 import color from 'newAPPStat/src/Lib/Colors'
+import Esqueleto from '../../../../Esqueleto/container/Esqueleto'
 
 
-class Body extends Component {
+class Body extends Esqueleto {
    state={
       products:bodyPart,
       loading:false
@@ -41,19 +42,7 @@ class Body extends Component {
       return proveedproductsor
    }
 
-   render(){
-      const {products} = this.state
-      return (
-         <View>
-            <Title title="Elige la parte del cuerpo"/>
-            <FlatList
-               data={products}
-               style={styles.flatList}
-               renderItem={({ item }) => <ListItem onPress={()=>this.handlePress(item)} item={item.name} />}
-            />
-         </View>
-      )
-   }
+  
 
 }
 export default Body;

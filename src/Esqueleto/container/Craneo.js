@@ -8,16 +8,28 @@ import Btn from '../component/Btn'
 class Craneo extends Component {
    craneo = {
       data: [ 
-         {id:1,name:'Craneo',possition:1,rigth:true},
-         {id:2,name:'Cuello',possition:2,rigth:true},  
+         {id:6, line:3, name:'Craneo',possition:0.5,rigth:true},
+        
+         {id:7, line:3, name:'Cuello',possition:2.3,rigth:true},
+        
     ]
  
     }
 
-    renderItem =(item,top)=>{
+    renderItem =(item, top,imgWidthBruto,imgWidthNeto)=>{
        
        return(
-         <Btn top = {top} text={item.name} right={item.rigth} /> 
+          <>
+         <Title title='región anatómica' />
+         <Btn 
+            imgWidthNeto={imgWidthNeto} 
+            imgWidthBruto={imgWidthBruto} 
+            onPress={() => this.props.route.params.onPress (item)}
+            top = {top} 
+            text={item.name} 
+            right={item.rigth} 
+            line={item.line} />
+         </>
        )
     }
 
@@ -26,8 +38,11 @@ class Craneo extends Component {
       <>
          <Title title = 'Región Craneo'/> 
          <ContainerSimpleLeft
-         data = {this.craneo.data}
-         renderItem = {this.renderItem}
+            data = {this.craneo.data}
+            renderItem = {this.renderItem}
+            craneo={this.gotoCraneo}
+            img={require('newAPPStat/assets/img/Esqueleto/STAT-esqueleto-regiones-74.png')}
+            
          />
       </>
       )

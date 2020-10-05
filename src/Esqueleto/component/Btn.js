@@ -12,7 +12,7 @@ const messure = {
 const window = Dimensions.get("window");
 const screen = Dimensions.get("screen");
 
-const Btn = ({ text, top, right, onPress,line }) => {
+const Btn = ({ text, top, right, onPress,line,imgWidthBruto,imgWidthNeto }) => {
    const [dimensions, setDimensions] = useState({ window, screen });
    const onChange = ({ window, screen }) => {
       setDimensions({ window, screen });
@@ -33,14 +33,15 @@ const Btn = ({ text, top, right, onPress,line }) => {
    }
 
    const imaginaryLine = () => {
-      return 55
+      return 0
    }
    const originLine = (poss) => {
-      return (poss)*(dimensions.window.width/2-messure.btnWidth-messure.punto-3)/5
+      
+      return   (poss)*(imgWidthNeto/2-5)/5 + (imgWidthBruto - imgWidthNeto)/2
    }
    const press = () => {
       console.log("clic", text)
-      //return onPress()
+      return onPress()
    }
    const rowType = () =>{
       if (right){
@@ -60,22 +61,15 @@ const Btn = ({ text, top, right, onPress,line }) => {
    }
    return (
       <View
-
          style={[styles.container, rightCorner(), { top: top,flexDirection:rowType() }]}>
-            
              { btn()}
-             
-
          <LineSelect
             line={originLine(line)}
             imaginaryLine={imaginaryLine()}
             btnHeigh={messure.btnHeigh}
             radioPunto={messure.punto}
             revese={right}
-            
          />
-        
-
       </View>
    )
 }
