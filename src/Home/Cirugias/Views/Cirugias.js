@@ -28,8 +28,8 @@ class Cirugias extends Component {
         return (
             <View >
                 <Pendiente></Pendiente>
-                <NavigateCirugia text="Ver Cirugias"></NavigateCirugia>
-                <NavigateCirugia text="Agendar Cirugia"></NavigateCirugia>
+                <NavigateCirugia text="Ver Cirugías"></NavigateCirugia>
+                <NavigateCirugia text="Agendar Cirugía"></NavigateCirugia>
             </View> 
         );
     }

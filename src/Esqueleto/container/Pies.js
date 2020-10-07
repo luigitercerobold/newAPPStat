@@ -8,8 +8,9 @@ import Btn from '../component/Btn'
 class Pies extends Component {
    craneo = {
       data: [ 
-         {id:11, line:4.3, name:'Tibia',possition:4,rigth:true},
-         {id:12, line:4.3, name:'Tobillo',possition:5.6,rigth:true},
+         {id:19, line:4.3, name:'Tibia',possition:4,rigth:true},
+         {id:20, line:4.3, name:'Tobillo',possition:5.6,rigth:true},
+         {id:21, line:4.3, name:'Pie',possition:6.5,rigth:true},
          
     ]
  

@@ -19,6 +19,7 @@ class Productos extends Component {
       selectProduct:""
    }
    componentDidMount(){
+      console.log.length('producto')
       this.getProdcuts();
    }
    getProdcuts = async () => {

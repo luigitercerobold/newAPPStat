@@ -4,9 +4,9 @@ import Colors from '../../Lib/Colors'
 import LineSelect from '../component/LineSelect'
 
 const messure = {
-   btnWidth: 88,
+   btnWidth: 86,
    punto: 15,
-   btnHeigh: 40
+   btnHeigh: 40*.80
 }
 
 const window = Dimensions.get("window");
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
       fontWeight: "bold",
 
       backgroundColor: Colors.blue,
-      paddingVertical: 10,
+      paddingVertical: 6,
       borderRadius: 50,
 
       width: messure.btnWidth,
@@ -140,6 +140,7 @@ const styles = StyleSheet.create({
       color: Colors.white,
       textAlign: 'center',
       fontSize:12
+   
    },
 
    right: {

@@ -2,7 +2,7 @@ import React from 'react';
 import {TextInput,StyleSheet,View} from 'react-native'
 import Padding from './PaddingVertical';
 
-const TextBox = ({ placeholder,value,onChangeText},autocomplete ="off") => {
+const TextBox = ({ placeholder,value,onChangeText,keyword='default'},autocomplete ="off") => {
 
    return (
       <View style =  {styles.Container}>
@@ -12,6 +12,7 @@ const TextBox = ({ placeholder,value,onChangeText},autocomplete ="off") => {
           style ={styles.textStyle} 
           onChangeText ={text => onChangeText(text)}
           placeholder={placeholder}
+          keyboardType = {keyword}
          
          
           

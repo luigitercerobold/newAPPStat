@@ -8,12 +8,10 @@
 
 import React from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
+  Image,
+  Pressable,
   StatusBar,
+  View,
 } from 'react-native';
 
 import {
@@ -59,8 +57,8 @@ import IndexProduct from './src/Home/Productos/Views/IndexProduct'
 import BodyProducto from './src/Home/Productos/Views/BodyPart'
 import FiltrarProveedores from './src/Home/Productos/Views/FiltrarProveedores'
 import ProductoProveedor from './src/Home/Productos/Views/ProductosDeProveedores'
-import ProductosProductos from'./src/Home/Productos/Views/Productos'
-import DetalleProducto from'./src/Home/Productos/Views/DetalleProducto'
+import ProductosProductos from './src/Home/Productos/Views/Productos'
+import DetalleProducto from './src/Home/Productos/Views/DetalleProducto'
 import Providers from './src/Home/Productos/Views/Provaider'
 
 
@@ -82,69 +80,66 @@ const store = createStore(
 
 function NavStack() {
 
-
-
-
   return (
     <Stack.Navigator
-      initialRouteName="Esqueleto"
+      initialRouteName="Login"
       screenOptions={{
         headerShown: true,
         headerTintColor: '#fff',
         headerStyle: {
           backgroundColor: color.blue,
-        }
+        },
+        headerTitle: props => <LogoTitle {...props} />,
+        headerBackImage: props => <BackImagerow {...props}/>
+        
       }}
-      options={{
-        headerStyle: {
-          backgroundColor: color.blue,
-        }
-      }}
+
+
     >
 
-      <Stack.Screen options={{ title: 'Brazo' }}                  name="Brazo" component={Brazo} />
-     
-      <Stack.Screen options={{ title: 'Craneo' }}         name="Craneo" component={Craneo} />
-      <Stack.Screen options={{ title: 'Esqueleto' }}                  name="Esqueleto" component={Esqueleto} />
-     
-      <Stack.Screen options={{ title: 'Piernas' }}         name="Piernas" component={Piernas} />
-      <Stack.Screen options={{ title: 'Pies' }}         name="Pies" component={Pies} />
+      <Stack.Screen options={{ title: 'Brazo' }} name="Brazo" component={Brazo} />
+
+      <Stack.Screen options={{ title: 'Craneo' }} name="Craneo" component={Craneo} />
+      <Stack.Screen options={{ title: 'Esqueleto' }} name="Esqueleto" component={Esqueleto} />
+
+      <Stack.Screen options={{ title: 'Piernas' }} name="Piernas" component={Piernas} />
+      <Stack.Screen options={{ title: 'Pies' }} name="Pies" component={Pies} />
 
 
-      <Stack.Screen name="Try" component={TryConnection} options={{ title: 'try',headerShown: false }} />
+      <Stack.Screen name="Try" component={TryConnection} options={{ title: 'try', headerShown: false }} />
 
-      <Stack.Screen name="Loading" component={Animacion} options={{ title: 'Loading',headerShown: false }} />
- 
-      <Stack.Screen options={{ title: 'Welcome' }}                  name="Welcome" component={Welcome} options={{headerShown: false} }/>
-      <Stack.Screen options={{ title: 'Nuevo Usuario' }}            name="DatosNuevoUsuario" component={DatosNuevoUsuario} />
-      <Stack.Screen options={{ title: 'Perfil de Doctor' }}         name="PerfilNuevoUsuario" component={PerfilNuevoUsuario} />
-      <Stack.Screen options={{ title: 'Verificar Token' }}          name="VerificarToken" component={VerificarToken} />
-      <Stack.Screen options={{ title: 'Procedimiento' }}            name="Procedimiento" component={Procedimiento} />
+      <Stack.Screen name="Loading" component={Animacion} options={{ title: 'Loading', headerShown: false }} />
+
+      <Stack.Screen options={{ title: 'Welcome' }} name="Welcome" component={Welcome} options={{ headerShown: false }} />
+      <Stack.Screen options={{ title: 'Nuevo Usuario' }} name="DatosNuevoUsuario" component={DatosNuevoUsuario} />
+      <Stack.Screen options={{ title: 'Perfil de Doctor' }} name="PerfilNuevoUsuario" component={PerfilNuevoUsuario} />
+      <Stack.Screen options={{ title: 'Verificar Token' }} name="VerificarToken" component={VerificarToken} />
+      <Stack.Screen options={{ title: 'Procedimiento' }} name="Procedimiento" component={Procedimiento} />
       <Stack.Screen options={{ title: 'Asistente Administrativo' }} name="AsistenteAdministrativo" component={AsistenteAdministrativo} />
-      <Stack.Screen options={{ title: 'Login' }}                    name="Login" component={Login} options={{ title: 'Menu',headerShown: false }}/>
-  
-      <Stack.Screen options={{ title: 'Menú' }}               name="Menu" component={Menu} options={{ title: 'Menu',headerShown: false }} />
-      <Stack.Screen options={{ title: 'Cirugías' }}           name="Cirugias" component={Cirugias} />
-      <Stack.Screen options={{ title: 'Agendar Cirugía' }}    name="AgendarCirugia" component={AgendarCirugia} />
-      <Stack.Screen options={{ title: 'Fecha y Hora' }}       name="FechaYHora" component={FechaYHora} />
-      <Stack.Screen options={{ title: 'Cuerpo' }}             name="Cuerpo" component={Cuerpo} />
-      <Stack.Screen options={{ title: 'Hospital' }}           name="Hospital" component={Hospital} />
-      <Stack.Screen options={{ title: 'Asistente' }}          name="Asistente" component={Asistente} />
-      <Stack.Screen options={{ title: 'Agendar Producto' }}   name="AgendarProducto" component={AgendarProducto} />
-      <Stack.Screen options={{ title: 'Parte del Cuerpo' }}   name="ElegirBody" component={ElegirBody} />
-      <Stack.Screen options={{ title: 'Proveedor' }}          name="Proveedor" component={Proveedor} />
-      <Stack.Screen options={{ title: 'Productos' }}          name="Productos" component={Productos} />
-      <Stack.Screen options={{ title: 'Agregar Producto' }}   name="AddProductos" component={AddProductos} />
-      <Stack.Screen options={{ title: 'Estado Cirugía' }}     name="EstadoCirugia" component={EstadoCirugia} />
-      <Stack.Screen options={{ title: 'Ver Cirugía' }}        name="VerCirugia" component={VerCirugia} />
-      <Stack.Screen name="IndexProduct" component ={IndexProduct}/>
-      <Stack.Screen name="BodyProducto" component ={BodyProducto}/>
-      <Stack.Screen name="FiltrarProveedores" component ={FiltrarProveedores}/>
-      <Stack.Screen name="ProductosProveedor" component ={ProductoProveedor}/>
-      <Stack.Screen name="ProductosProductos" component ={ProductosProductos}/>
-      <Stack.Screen name="DetalleProducto" component ={DetalleProducto}/>
-      <Stack.Screen name="Provider" component ={Providers}/>
-      
+      <Stack.Screen options={{ title: 'Login' }} name="Login" component={Login} options={{ title: 'Menu', headerShown: false }} />
+
+      <Stack.Screen options={{ title: 'Menú' }} name="Menu" component={Menu} options={{ title: 'Menu', headerShown: false }} />
+      <Stack.Screen options={{ title: 'Cirugías' }} name="Cirugias" component={Cirugias} />
+      <Stack.Screen options={{ title: 'Agendar Cirugía' }} name="AgendarCirugia" component={AgendarCirugia} />
+      <Stack.Screen options={{ title: 'Fecha y Hora' }} name="FechaYHora" component={FechaYHora} />
+      <Stack.Screen options={{ title: 'Cuerpo' }} name="Cuerpo" component={Cuerpo} />
+      <Stack.Screen options={{ title: 'Hospital' }} name="Hospital" component={Hospital} />
+      <Stack.Screen options={{ title: 'Asistente' }} name="Asistente" component={Asistente} />
+      <Stack.Screen options={{ title: 'Agendar Producto' }} name="AgendarProducto" component={AgendarProducto} />
+      <Stack.Screen options={{ title: 'Parte del Cuerpo' }} name="ElegirBody" component={ElegirBody} />
+      <Stack.Screen options={{ title: 'Proveedor' }} name="Proveedor" component={Proveedor} />
+      <Stack.Screen options={{ title: 'Productos' }} name="Productos" component={Productos} />
+      <Stack.Screen options={{ title: 'Agregar Producto' }} name="AddProductos" component={AddProductos} />
+      <Stack.Screen options={{ title: 'Estado Cirugía' }} name="EstadoCirugia" component={EstadoCirugia} />
+      <Stack.Screen options={{ title: 'Ver Cirugía' }} name="VerCirugia" component={VerCirugia} />
+      <Stack.Screen name="IndexProduct" component={IndexProduct} />
+      <Stack.Screen name="BodyProducto" component={BodyProducto} />
+      <Stack.Screen name="FiltrarProveedores" component={FiltrarProveedores} />
+      <Stack.Screen name="ProductosProveedor" component={ProductoProveedor} />
+      <Stack.Screen name="ProductosProductos" component={ProductosProductos} />
+      <Stack.Screen name="DetalleProducto" component={DetalleProducto} />
+      <Stack.Screen name="Provider" component={Providers} />
+
     </Stack.Navigator>
   );
 }
@@ -165,6 +160,37 @@ const App: () => React$Node = () => {
   );
 };
 
+function LogoTitle() {
+  return (
+    <View style={{ flexDirection: "row" }}>
+      <View style={{ flex: 1, alignItems: 'center',backgroundColor:"fff", justifyContent: 'center', flexDirection: "row" }}>
+        <Image
+          style={{ width: 105, height: 35, }}
+          source={require('newAPPStat/assets/img/logo.png')}
+          resizeMode='contain'
+        />
+      </View>
 
+      <Pressable>
+        <Image
+          style={{ width: 40, height: 30 }}
+          source={require('newAPPStat/assets/Icon/1x/menu.png')}
+          resizeMode='contain'
+        />
+      </Pressable>
+    </View>
+
+  );
+}
+
+function BackImagerow() {
+  return (
+        <Image
+          style={{ width: 35, height: 35, }}
+          source={require('newAPPStat/assets/Icon/1x/atras-ingresardatos.png')}
+          resizeMode='contain'
+        />
+  );
+}
 
 export default App;

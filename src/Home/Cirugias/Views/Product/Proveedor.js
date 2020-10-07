@@ -33,7 +33,8 @@ class Proveedor extends Component {
       this.props.navigation.navigate('Productos',{
          body:this.props.route.params?.body,
          proveedor:item,
-         providerId:item.id
+         providerId:item.id,
+         products:this.props.route.params.products
       })
    }
    render() {

@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
 import {
-   View, Text,Alert
+   Alert, Button,Text
 }
    from 'react-native'
 import ScrollCenter from '../Component/ScrollCenter'
@@ -15,11 +15,26 @@ import BtnBlue from '../Component/BtnSimpleBlue'
 import urlStat from 'newAPPStat/src/Lib/url'
 import http from 'newAPPStat/src/Lib/http'
 import Padding from '../Component/PaddingVertical'
+import { TextInput } from 'react-native-gesture-handler'
+import User from '../../Lib/user'
 
 class Login extends Component {
    state = {
       user: '',
-      password: ''
+      password: '',
+      status:'No Conectado a la base de datos'
+   }
+
+   componentDidMount() {
+      this.ping()
+      
+
+   }
+   ping = async () => {
+      const data = await http.instance.get(urlStat.ping)
+      console.log(data.message)
+      this.setState({status:data.message})
+
    }
 
    setUser = (user) => {
@@ -32,7 +47,6 @@ class Login extends Component {
    }
 
    logIn = () => {
-
       this.getToken()
    }
 
@@ -61,6 +75,14 @@ class Login extends Component {
       this.props.navigation.navigate('DatosNuevoUsuario')
    }
 
+
+
+   saveUser(data){
+      http.instance.setToken(data.token)
+      http.instance.setId(data.data.id)
+      User.instance.newUser(data.data)
+      console.log('save user',data.data)
+   } 
    getToken = async () => {
       const url = urlStat.login
       const body = JSON.stringify({
@@ -69,10 +91,24 @@ class Login extends Component {
       })
       const data = await http.instance.post(url, body)
       console.log("recibir", data);
-      
+      if (data.message !=undefined ){
+         Alert.alert(
+            "Usuario",
+            "Mensaje de Stat: " +  data.message  ,
+            [
+              {
+                text: "Cancel",
+                onPress: () => console.log("Cancel Pressed"),
+                style: "cancel"
+              },
+              { text: "OK", onPress: () => console.log("OK Pressed") }
+            ],
+            { cancelable: false }
+          )
+      }
       if (data != null) {
-         http.instance.setToken(data.token)
-         http.instance.setId(data.data.id)
+        
+         this.saveUser(data)
          if (data.data.role == "2") {
             this.props.navigation.navigate('Welcome')
          } else {
@@ -98,9 +134,9 @@ class Login extends Component {
 
    render() {
       return (
-         <ScrollCenter>
+        
             <Container>
-               <Padding vertical={10}>
+               <Padding vertical={1}>
                   <Logo />
                </Padding>
                <Padding vertical={0.5}>
@@ -108,15 +144,18 @@ class Login extends Component {
                   
                      placeholder="Usuario"
                      onChangeText={this.setUser}
+                     keyword='email-address'
+
                   />
                </Padding>
                <Padding vertical={0.5}>
                   <PassWord
                      placeholder="Password"
                      onChangeText={this.setPassword}
+                     onEndEditing = {this.logIn}
                   />
                </Padding>
-               <Padding vertical={3}>
+               <Padding vertical={1}>
                   <BtnSimple
                      title="Iniciar"
                      onPress={this.logIn}
@@ -126,12 +165,15 @@ class Login extends Component {
                   title="¿Olvidaste tu Contraseña?"
                   onPress={this.olvidoPassWord}
                />
+            
                <BtnBlue
                   title="Registrate"
                   onPress={this.registrate}
                />
+                <Text>{this.state.status}</Text>
+              
             </Container>
-         </ScrollCenter>
+           
       )
    }
 }

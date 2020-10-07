@@ -72,7 +72,7 @@ class InicioSc extends Component {
                                 paddingStart: 20,
                                 alignSelf: 'flex-start',
                                 letterSpacing: 3,
-                                fontWeight: 'small',
+                                //fontWeight: 'small',
                                 fontSize: 22,
                             },
                         ]}>
@@ -95,7 +95,7 @@ class InicioSc extends Component {
                 paddingStart: 10,
                 justifyContent:'center',
                 letterSpacing: 2,
-                fontWeight: 'small',
+               // fontWeight: 'small',
                 fontSize: 18,
               },
             ]}>
@@ -133,7 +133,7 @@ class InicioSc extends Component {
                                     paddingStart: 20,
                                     alignSelf: 'center',
                                     letterSpacing: 3,
-                                    fontWeight: 'small',
+                                    //fontWeight: 'small',
                                     fontSize: 28,
                                 },
                             ]}>
@@ -156,7 +156,7 @@ class InicioSc extends Component {
                                     paddingStart: 20,
                                     alignSelf: 'center',
                                     letterSpacing: 3,
-                                    fontWeight: 'small',
+                                    //fontWeight: 'small',
                                     fontSize: 28,
                                 },
                             ]}>

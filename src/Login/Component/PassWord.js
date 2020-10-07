@@ -1,29 +1,38 @@
 import React from 'react';
-import { TextInput, StyleSheet, View, Pressable } from 'react-native'
+import { TextInput, StyleSheet, View, Pressable, Button, Image } from 'react-native'
+import { Switch } from 'react-native-gesture-handler';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-const PassWord = ({ placeholder, value, onChangeText }) => {
+const PassWord = ({ placeholder, value, onChangeText,onEndEditing }) => {
    const [secure, setScure] = React.useState(true);
 
    return (
       <View style={styles.Container}>
-         <View style={styles.Row}>
+         <View style={styles.Row}
+       
+         >
             <TextInput
                secureTextEntry={secure}
                style={styles.textStyle}
                onChangeText={text => onChangeText(text)}
                placeholder={placeholder}
+               onEndEditing ={onEndEditing}
+               
+            
             />
-            <Pressable
+          <Pressable
                onPress={() => setScure(!secure)}
+               style ={styles.imgContainer}
+             
             >
-               <FontAwesome5
-                  style={{ alignSelf: 'center' }}
-                  name="eye-slash"
-                  color="#2185fb"
-                  size={22}
+               <Image
+                 style ={styles.img}
+                  source = {require('newAPPStat/assets/Icon/1x/ver.png')}
+                  resizeMode='contain'
                />
-            </Pressable>
+            </Pressable> 
+           
+         
          </View>
       </View>
 
@@ -55,6 +64,13 @@ const styles = StyleSheet.create({
    }, 
    Container: {
       paddingHorizontal: 50
+   },
+   img: {
+      width:35,
+      height:35
+   },
+   imgContainer:{
+    justifyContent:'center'  
    }
 
 })

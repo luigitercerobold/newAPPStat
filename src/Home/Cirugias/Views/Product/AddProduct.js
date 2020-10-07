@@ -38,8 +38,12 @@ class AddProducto extends Component {
             comment: "hoa"
          }]
       }
+      this.props.route.params.products.push(this.state.producto)
+      this.props.navigation.navigate('AgendarProducto',{
+         pro:pro,producto:this.state.producto,
+         products:this.props.route.params.products
       
-      this.props.navigation.navigate('AgendarProducto',{pro:pro,producto:this.state.producto})
+      })
    }
    render() {
       const { producto, proveedor, loading } = this.state

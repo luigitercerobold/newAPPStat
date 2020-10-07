@@ -56,26 +56,17 @@ class AgendarCirugia extends Component {
       return this.props.route.params?.hospital.name
    }
    isProduct() {
+      console.log("producto",this.props.route.params?.product);
       if (!this.props.route.params?.producto) {
          return ""
       }
-      return this.props.route.params?.producto[1].name
+      return this.props.route.params?.producto[0].name
    }
 
 
    confirmar = async () => {
       console.log('confirmar');
-      // name, date, address, hostedBy, description, hospital, duration
-      // name parte del cuerpo
-      // date hora y fecha
-      // direccion del hospital
-      // HostedBy: iddel creador
-      // decriptcion: procedimiento
-      // id del hospital,
-      // duracion de de es
-      // orders: [idprovedero, listado ]
-      // guests: id, rol, description, respuesta
-
+     
       const body = JSON.stringify({
 
          name: this.props.route.params?.bodyPart,

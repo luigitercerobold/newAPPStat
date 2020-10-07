@@ -41,7 +41,8 @@ class Productos extends Component {
       console.log("seleccionado", item)
       this.setState({selectProduct:item})
       this.props.navigation.navigate('AddProductos',{
-         producto: item
+         producto: item,
+         products:this.props.route.params.products
       })
    }
    render(){

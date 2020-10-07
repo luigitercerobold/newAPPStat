@@ -5,36 +5,42 @@ import ContainerImg from '../component/ContainerImg'
 import Title from '../../Lib/Title'
 import Btn from '../component/Btn'
 class Esqueleto extends Component {
+   gotToView() {
+      return 'Esqueleto'
+   }
    
-   gotoCraneo = () => {
+   gotoCraneo  ()  {
       console.log('craneo')
-      this.props.navigation.navigate('Craneo',{onPress:this.onPress})
+      this.props.navigation.navigate('Craneo',{onPress:this.onPress.bind(this)})
    }
-   gotoBrazo = () => {
+   gotoBrazo  ()  {
       console.log('go to brazo')
-      this.props.navigation.navigate('Brazo',{onPress:this.onPress})
+      this.props.navigation.navigate('Brazo',{onPress:this.onPress.bind(this)})
    }
-   gotoPiernas = () => {
+   gotoPiernas () {
       console.log('go to brazo')
-      this.props.navigation.navigate('Piernas',{onPress:this.onPress})
+      this.props.navigation.navigate('Piernas',{onPress:this.onPress.bind(this)})
    }
-   gotoPies = () => {
+   gotoPies  ()  {
       console.log('go to brazo')
-      this.props.navigation.navigate('Pies',{onPress:this.onPress})
+      this.props.navigation.navigate('Pies',{onPress:this.onPress.bind(this)})
    }
-   onPress =( item) => {
+   onPress ( item) {
       console.log(item)
+      this.props.navigation.navigate(this.gotToView(),{body:item});
    }
+
+   //sacro
    anatomica = {
       data: [ 
-         {id:1, line:4.8, name:'+',possition:0,rigth:true,fun:this.gotoCraneo},
-         {id:2, line:2.6, name:'Hombro',possition:1,rigth:false, fun: this.onPress},
-         {id:3, line:5, name:'Columna',possition:2,rigth:false, fun: this.onPress},
-         {id:4, line:2.4, name:'+',possition:2.3,rigth:true,fun:this.gotoBrazo },
-         {id:5, line:3.6, name:'Pelvis',possition:3,rigth:false,  fun: this.onPress}, 
-         {id:6, line:1, name:'Mano',possition:3.8,rigth:true, fun: this.onPress},  
-         {id:7, line:3.5, name:'+',possition:4.2,rigth:false,fun:this.gotoPiernas   }, 
-         {id:8, line:3.8, name:'+',possition:7,rigth:true ,fun:this.gotoPies   }, 
+         {id:1, line:4.8, name:'+',possition:0,rigth:true,fun:this.gotoCraneo.bind(this)},
+      {id:1, line:2.6, name:'Hombro',possition:1,rigth:false, fun: this.onPress.bind(this)},
+         {id:2, line:4.9, name:'Lumbar',possition:2.6,rigth:false, fun: this.onPress.bind(this)},
+         {id:4, line:2.4, name:'+',possition:2,rigth:true,fun:this.gotoBrazo.bind(this) },
+        // {id:3, line:4.8, name:'Sacro',possition:3,rigth:false,  fun: this.onPress.bind(this)}, 
+         {id:4, line:1, name:'Mano',possition:3.8,rigth:false, fun: this.onPress.bind(this)},  
+         {id:7, line:3.5, name:'+',possition:4.2,rigth:true,fun:this.gotoPiernas.bind(this)   }, 
+         {id:8, line:3.8, name:'+',possition:7,rigth:true ,fun:this.gotoPies.bind(this)   }, 
     ]
  
     }

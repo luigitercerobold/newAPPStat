@@ -1,5 +1,6 @@
 const colors={
-   blue: '#2185fb',
+   blue: 'rgb(33,133,251)',
+   bluePressed: 'rgb(58,147,251)',
    gray: 'rgb(237, 237, 237) ',
    white: '#fff',
    grayLetter: 'gray',

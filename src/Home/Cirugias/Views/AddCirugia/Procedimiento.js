@@ -21,6 +21,8 @@ class Cuerpo extends Component {
 
    componentDidMount = async () => {
       this.getBodyPart()
+      
+      console.log('eviado',this.props.route.params?.body)
    }
 
    getBodyPart = async () =>{
@@ -45,11 +47,7 @@ class Cuerpo extends Component {
    }
 
    render() {
-      const placeholder = {
-         value: null,
-         color: '#9EA0A4',
-       };
-       
+      
       return (
          <View>
             <Title title="Escribe el procedimiento" />

@@ -22,6 +22,7 @@ class FiltrarProveedor extends Component {
    }
    getProvider = async () => {
       this.setState({ loading: true })
+      
       const body = JSON.stringify({
          bodyPartId:this.props.route.params?.body.id+""
       })

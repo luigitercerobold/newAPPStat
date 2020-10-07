@@ -6,7 +6,7 @@ const Description = ({description}) => {
 
    return (
       <View>
-        <Title3 title = "Descripcion"/>  
+        <Title3 title = "Descripción"/>  
          <Text style = {styles.text}>
             {description}
          </Text>

@@ -17,6 +17,7 @@ class Proveedor extends Component {
       loading: false
    }
    componentDidMount() {
+     
       this.getProvider()
    }
    getProvider = async () => {
@@ -28,7 +29,7 @@ class Proveedor extends Component {
    }
 
    handlePress = (item) => {
-      console.log(item.id)
+      console.log(item)
       this.props.navigation.navigate('ProductosProveedor',{
          
          body:{id:null},
@@ -46,7 +47,7 @@ class Proveedor extends Component {
             <FlatList
                data={proveedor}
                style={styles.flatList}
-               renderItem={({ item }) => <ListItem onPress={() => this.handlePress(item)} item={ item.id+" " +  item.name} />}
+               renderItem={({ item }) => <ListItem onPress={() => this.handlePress(item)}  item={ item.id+" " +  item.name} />}
             />
          </View>
       )

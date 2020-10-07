@@ -9,7 +9,7 @@ const Card = ({ img, text }) => {
       <View style={[styles.iconFrame]}>
 
          <View style={styles.imgCenter}>
-            <Image style={styles.imgContainer} source={img} />
+            <Image style={styles.imgContainer} source={img}  resizeMode='contain' />
             <View style={styles.containertext}>
                <Text style={styles.text}>{text}</Text>
             </View>

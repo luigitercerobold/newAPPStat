@@ -33,9 +33,9 @@ class Productos extends Component {
    }
    getProdcuts = async () => {
       this.setState({ loading: true })
+      console.log("poss id",this.props.route.params?.body.id )
       const body = JSON.stringify({
          providerId: this.props.route.params?.providerId + "",
-
          bodyPartId: this.props.route.params?.body.id 
       })
       const obj = await http.instance.post(urlStat.getProviderProducts, body, http.instance.getToken(),)
@@ -57,7 +57,7 @@ class Productos extends Component {
       return this.state.producto.map(product => (
          <ProuductIMG
             onPress={() => this.onPress(product)}
-
+            product = {product}
          >{product.name}</ProuductIMG>
       ))
    }

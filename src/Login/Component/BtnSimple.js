@@ -7,7 +7,14 @@ const BtnSimple = ({onPress,title}) => {
    return (
       <Pressable 
          onPress={onPress}
-         style={styles.Btn}>
+         style={({ pressed }) => [
+            {
+              backgroundColor: pressed
+                ? Color.bluePressed
+                : Color.blue,
+            },
+            styles.Btn
+          ]}>
          <Text style={styles.Text}>{title}</Text>
       </Pressable>
 
@@ -18,7 +25,7 @@ export default BtnSimple;
 const styles = StyleSheet.create(
    {
       Btn:{
-         backgroundColor:Color.blue,
+        
          padding:10,
          paddingHorizontal:40
       },

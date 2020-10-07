@@ -9,37 +9,24 @@ import Line from '../../Component/Line';
 
 class AgendaProducto extends Component {
    state={
-      products:[{
-      id:0,
-      name:"",
-      description:"Producto utilizado para cirugias",
-      price:0,
-      providerId:27,
-      image:"",
-      requested:0,
-      status:true}],
+      products:[],
       loading:false,
       pro:[]
+    
    }
 
    componentDidUpdate(){
-     
+     if(this.props.route.params?.products){
+        console.log(this.props.route.params?.products)
+     }
       this.addProduct();
    }
    
    addProduct(){
-      
-      if(this.props.route.params){
-
-         
-         this.state.products.push(this.props.route.params?.producto )
-         this.state.pro.push(this.props.route.params?.pro )
-         console.log("pro",this.props.route.params?.pro )
-         
-      }    
+   
    }
    onPress = () => {
-      this.props.navigation.navigate('ElegirBody')
+      this.props.navigation.navigate('ElegirBody', {products:this.state.products})
    }
    goToAgandarCirugia = () => {
       console.log("se envio pro",this.state.pro)
@@ -58,10 +45,7 @@ class AgendaProducto extends Component {
                data={products}
       renderItem={({ item }) => <Line><Text style={styles.text}> {item.name}</Text></Line>}
             />
-            
             <BtnProximaCirugia onPress = {this.onPress} text="Agregar Producto" img={require("newAPPStat/assets/Icon/1x/cirugias-agregar_cirugias.png")}/>
-
-            
             <ListButton title= "confirmar" onPress= {this.goToAgandarCirugia}/>
          </View>
 

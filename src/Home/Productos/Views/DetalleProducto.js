@@ -22,8 +22,10 @@ class FiltrarProveedor extends Component {
       proveedor: []
    }
    componentDidMount() {
+      console.log("Detalle de producto")
       console.log("producto", this.props.route.params.product)
       console.log("proveedor", this.props.route.params.proveedor)
+
       this.getParams()
    }
    getParams = () => {

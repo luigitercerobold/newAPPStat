@@ -16,34 +16,11 @@ import Esqueleto from '../../../../Esqueleto/container/Esqueleto'
 
 
 class Body extends Esqueleto {
-   state={
-      products:bodyPart,
-      loading:false
-   }
-   
-   componentDidMount(){
-      this.getBoddy()
-   }
-
-   onPress = () => {
-      this.props.navigation.navigate('ElegirBody')
-   }
-
-   handlePress=(item)=>{
-      console.log(item)
+  
+   onPress ( item,view) {
       this.props.navigation.navigate('Procedimiento',{body:item})
    }
-
-   getBoddy = async () => {
-      this.setState({ loading: true })
-      const proveedor = await http.instance.get(urlStat.getBoddy, http.instance.getToken())
-      this.setState({ products: proveedor.data, loading: false })
-      console.log(this.state.products)
-      return proveedproductsor
-   }
-
-  
-
+   
 }
 export default Body;
 

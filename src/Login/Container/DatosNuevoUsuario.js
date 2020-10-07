@@ -22,9 +22,9 @@ class DatosNuevoUsuario extends Component {
          {
             email: this.state.eMail,
             password: this.state.passWord,
-            name: this.state.name + this.state.lastName,
+            name: this.state.name +" " +this.state.lastName,
             phone: this.state.phone,
-            role: 0.1
+            role: 2
          }
       )
       const user = await Http.instance.post(Url.creteUser, body)
@@ -78,16 +78,18 @@ class DatosNuevoUsuario extends Component {
                <TextBox
                   placeholder={"Correo Electrónico"}
                   onChangeText={this.setEmail}
+                  keyword='email-address'
                />
                <PaddingVertical vertical={0.1} />
                <TextBox
-                  placeholder={"Calve"}
+                  placeholder={"Clave"}
                   onChangeText={this.setPassWord}
                />
                <PaddingVertical vertical={0.1} />
                <TextBox
                   placeholder={"Teléfono"}
                   onChangeText={this.setPhone}
+                  keyword='number-pad'
                />
                <PaddingVertical vertical={5}>
                   <BtnSimple

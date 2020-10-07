@@ -6,7 +6,7 @@ const Card = ({img}) => {
       <View style={[styles.iconFrame, { marginRight: 3, marginTop: 10 }]}>
 
          <View style={styles.imgCenter}>
-            <Image style={styles.imgContainer} source={img} />
+            <Image style={styles.imgContainer} source={img}  resizeMode='contain'/>
          </View>
       </View>
    )

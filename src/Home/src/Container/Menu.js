@@ -23,6 +23,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 //import {Actions} from 'react-native-router-flux';
 import { DrawerActions } from 'react-navigation';
 import Card from '../Component/Card'
+import User from '../../../Lib/user'
 class MenuSc extends Component {
   constructor(props) {
     super(props);
@@ -69,7 +70,7 @@ toggleDrawer = () => {
               fontSize: 24,
               color: 'white',
             }}>
-            {global.username}
+            {User.instance.getUser().name}
           </Text>
         </View>
         <View style={styles.footer}>
@@ -186,13 +187,12 @@ const styles = StyleSheet.create({
   header: {
     flex: 1,
     width: '100%',
-    //alignItems: 'center',
-    //justifyContent: 'center',
+    
     backgroundColor: '#2185fb',
   },
 
   footer: {
-    flex: 1.5,
+    flex: 2,
   },
   inputview: {
     paddingHorizontal: 17,

@@ -30,8 +30,8 @@ class WelcomeSc extends Component {
         <View style={styles.header}>
       
             <Image
-              style={{width: 145, height: 35, resizeMode: 'contain'}}
-              source={LogoS}
+              style={{width: 95, resizeMode: 'contain'}}
+              source={require('newAPPStat/assets/Icon/1x/bienvenido.png')}
             />
       
 
@@ -43,7 +43,7 @@ class WelcomeSc extends Component {
                 paddingTop: 60,
                 alignSelf: 'center',
                 letterSpacing: 3,
-                fontWeight: 'small',
+                //fontWeight: 'small',
                 fontSize: 40,
               },
             ]}>
@@ -58,7 +58,7 @@ class WelcomeSc extends Component {
                 paddingHorizontal: 60,
                 alignSelf: 'center',
                 textAlign: 'center',
-                fontWeight: 'small',
+               // fontWeight: 'small',
                 fontSize: 28,
               },
             ]}>

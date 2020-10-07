@@ -41,7 +41,7 @@ class AgendarCirugia extends Component {
             <Title title="¿En dónde vas a operar?"/>
             <FlatList
                data={hospital}
-               renderItem={({ item }) => <HospitalItem activate={activate} onPress={()=>this.handlePress(item)} item={item.name} />}
+               renderItem={({ item }) => <HospitalItem activate={activate} onPress={()=>this.handlePress(item)} img={item.image } item={item.name} />}
             />
 
          </View>

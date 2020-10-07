@@ -1,6 +1,8 @@
-const server = "http://104.155.128.140";
-
+//const server = "http://104.154.41.85";
+const server = "http://192.168.1.16:3000"
+const imgServer = 'https://storage.googleapis.com/stat-storage-dev/images/'
 const urlStat={
+   img: imgServer,
    login: server +'/api/auth/login',
    getHospital:server+"/api/schedule/hospital/all",
    getProveedor:server+'/api/provider/all',
@@ -15,7 +17,8 @@ const urlStat={
    getDrs:server + "/api/user/doctor/list",
    getAllProduct:server +"/api/product/products",
    getByBodypart: server+"/api/provider/by-body-part",
-   getProviderProducts: server+"/api/product/provider-products"
+   getProviderProducts: server+"/api/product/provider-products",
+   ping: server+"/api/status/ping"
 };
 
 export default urlStat

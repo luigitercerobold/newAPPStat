@@ -10,9 +10,10 @@ import http from 'newAPPStat/src/Lib/http'
 import urlStat from 'newAPPStat/src/Lib/url'
 import color from 'newAPPStat/src/Lib/Colors'
 import BodyParts from '../../../../Lib/BodyParts'
+import Esqueleto from '../../../../Esqueleto/container/Esqueleto'
 
 
-class Body extends Component {
+class Body extends Esqueleto {
    state={
       products:bodyPart,
       loading:false
@@ -22,15 +23,14 @@ class Body extends Component {
       this.getBoddy()
    }
 
-   onPress = () => {
-      this.props.navigation.navigate('ElegirBody')
+   onPress ( item) {
+      this.props.navigation.navigate('Proveedor',{
+         body:item,
+         products:this.props.route.params.products
+      })
    }
 
-   handlePress=(item)=>{
-      console.log(item)
-      this.props.navigation.navigate('Proveedor',{body:item})
-   }
-
+ 
    getBoddy = async () => {
       this.setState({ loading: true })
       const proveedor = await http.instance.get(urlStat.getBoddy, http.instance.getToken())
@@ -39,18 +39,6 @@ class Body extends Component {
       return proveedor
    }
 
-   render(){
-      const {products} = this.state
-      return (
-         <View>
-         
-            <BodyParts
-               products= {products}
-               handlePress={this.handlePress}
-            />
-         </View>
-      )
-   }
 
 }
 export default Body;
