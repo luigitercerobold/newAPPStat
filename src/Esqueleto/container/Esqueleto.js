@@ -4,6 +4,9 @@ import { View, Text } from 'react-native';
 import ContainerImg from '../component/ContainerImg'
 import Title from '../../Lib/Title'
 import Btn from '../component/Btn'
+import Header from '../../Home/src/Component/Header'
+
+
 class Esqueleto extends Component {
    gotToView() {
       return 'Esqueleto'

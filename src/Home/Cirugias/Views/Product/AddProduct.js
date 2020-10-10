@@ -10,7 +10,7 @@ import http from 'newAPPStat/src/Lib/http'
 import urlStat from 'newAPPStat/src/Lib/url'
 import color from 'newAPPStat/src/Lib/Colors'
 import { TextInput } from 'react-native-gesture-handler';
-
+import Header from '../../../src/Component/Header'
 
 class AddProducto extends Component {
    state = {

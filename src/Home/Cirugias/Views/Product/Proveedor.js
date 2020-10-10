@@ -9,7 +9,7 @@ import ListItem from '../../Component/Listitem'
 import http from 'newAPPStat/src/Lib/http'
 import urlStat from 'newAPPStat/src/Lib/url'
 import color from 'newAPPStat/src/Lib/Colors'
-
+import Header from '../../../src/Component/Header'
 
 class Proveedor extends Component {
    state = {

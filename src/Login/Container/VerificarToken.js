@@ -16,15 +16,11 @@ class VerificarToken extends Component {
       message: "ingresa el codigo que se envio al correo"
    }
 
+   componentDidMount(){
+      console.log(this.props.route.params)
+   }
    validar = async (token) => {
 
-      // this.props.navigation.navigate('login',{
-      //    especialidad:this.props.route.params?.especialidad,
-      //    user:this.props.route.params?.user,
-      //    body:this.props.route.params?.body,
-      //    asistente:this.state.eMail
-
-      // })
       const body =
       {
          token: this.state.token,

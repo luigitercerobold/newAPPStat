@@ -5,6 +5,8 @@ import BodyPart from  '../../../Lib/BodyParts'
 import Http from '../../../Lib/http'
 import urlStat from '../../../Lib/url'
 import Esqueleto from '../../../Esqueleto/container/Esqueleto'
+import Header from '../../src/Component/Header'
+
 class BodyProducto extends Esqueleto {
 
    onPress ( item,view) {

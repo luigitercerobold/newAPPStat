@@ -24,6 +24,8 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+
+
 import reducers from './src/reducers/index'
 import { createStackNavigator } from '@react-navigation/stack';
 import Animacion from './src/Login/Component/Animacion';
@@ -32,7 +34,7 @@ import Animacion from './src/Login/Component/Animacion';
 import TryConnection from './src/Internet/TryConnection'
 
 import Welcome from './src/Login/Component/Welcome';
-import Menu from './src/Home/src/Container/Menu';
+import Menu from './src/Home/src/View/Menu';
 import Cirugias from './src/Home/Cirugias/Views/Cirugias'
 import AgendarCirugia from './src/Home/Cirugias/Views/AgendarCirugia'
 import FechaYHora from './src/Home/Cirugias/Views/AgendarCirugia/FechaYHora'
@@ -60,8 +62,8 @@ import ProductoProveedor from './src/Home/Productos/Views/ProductosDeProveedores
 import ProductosProductos from './src/Home/Productos/Views/Productos'
 import DetalleProducto from './src/Home/Productos/Views/DetalleProducto'
 import Providers from './src/Home/Productos/Views/Provaider'
-
-
+import CustomDrawerContent from './src/Drawer/CustomDrawerContent'
+import AceptCirugia from './src/Home/Cirugias/Views/AceptCirugia'
 import ScreenBody from './src/Esqueleto/container/Screens'
 
 import Brazo from './src/Esqueleto/container/Brazo'
@@ -72,11 +74,23 @@ import Esqueleto from './src/Esqueleto/container/Esqueleto'
 import Piernas from './src/Esqueleto/container/Piernas'
 import Pies from './src/Esqueleto/container/Pies'
 
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import Context from './Context'
 const Stack = createStackNavigator();
+const StackLogin = createStackNavigator();
+
 const store = createStore(
   reducers, //Todos los reducers
   {}//estado inicial
 );
+
+
+
+
+
+const Drawer = createDrawerNavigator();
+
+
 
 function NavStack() {
 
@@ -89,37 +103,20 @@ function NavStack() {
         headerStyle: {
           backgroundColor: color.blue,
         },
-        headerTitle: props => <LogoTitle {...props} />,
-        headerBackImage: props => <BackImagerow {...props}/>
-        
+        headerTitle: props => <LogoTitle pro={props} {...props} />,
+        headerBackImage: props => <BackImagerow {...props} />
       }}
-
-
     >
-
       <Stack.Screen options={{ title: 'Brazo' }} name="Brazo" component={Brazo} />
-
       <Stack.Screen options={{ title: 'Craneo' }} name="Craneo" component={Craneo} />
       <Stack.Screen options={{ title: 'Esqueleto' }} name="Esqueleto" component={Esqueleto} />
-
       <Stack.Screen options={{ title: 'Piernas' }} name="Piernas" component={Piernas} />
       <Stack.Screen options={{ title: 'Pies' }} name="Pies" component={Pies} />
-
-
       <Stack.Screen name="Try" component={TryConnection} options={{ title: 'try', headerShown: false }} />
-
       <Stack.Screen name="Loading" component={Animacion} options={{ title: 'Loading', headerShown: false }} />
 
-      <Stack.Screen options={{ title: 'Welcome' }} name="Welcome" component={Welcome} options={{ headerShown: false }} />
-      <Stack.Screen options={{ title: 'Nuevo Usuario' }} name="DatosNuevoUsuario" component={DatosNuevoUsuario} />
-      <Stack.Screen options={{ title: 'Perfil de Doctor' }} name="PerfilNuevoUsuario" component={PerfilNuevoUsuario} />
-      <Stack.Screen options={{ title: 'Verificar Token' }} name="VerificarToken" component={VerificarToken} />
-      <Stack.Screen options={{ title: 'Procedimiento' }} name="Procedimiento" component={Procedimiento} />
-      <Stack.Screen options={{ title: 'Asistente Administrativo' }} name="AsistenteAdministrativo" component={AsistenteAdministrativo} />
-      <Stack.Screen options={{ title: 'Login' }} name="Login" component={Login} options={{ title: 'Menu', headerShown: false }} />
+      <Stack.Screen options={{ title: 'Menú' }} name="Menu" component={Menu} options={{ title: 'Menu', headerhown: false }} />
 
-      <Stack.Screen options={{ title: 'Menú' }} name="Menu" component={Menu} options={{ title: 'Menu', headerShown: false }} />
-      <Stack.Screen options={{ title: 'Cirugías' }} name="Cirugias" component={Cirugias} />
       <Stack.Screen options={{ title: 'Agendar Cirugía' }} name="AgendarCirugia" component={AgendarCirugia} />
       <Stack.Screen options={{ title: 'Fecha y Hora' }} name="FechaYHora" component={FechaYHora} />
       <Stack.Screen options={{ title: 'Cuerpo' }} name="Cuerpo" component={Cuerpo} />
@@ -130,6 +127,7 @@ function NavStack() {
       <Stack.Screen options={{ title: 'Proveedor' }} name="Proveedor" component={Proveedor} />
       <Stack.Screen options={{ title: 'Productos' }} name="Productos" component={Productos} />
       <Stack.Screen options={{ title: 'Agregar Producto' }} name="AddProductos" component={AddProductos} />
+      <Stack.Screen name="AceptCirugia" component={AceptCirugia} />
       <Stack.Screen options={{ title: 'Estado Cirugía' }} name="EstadoCirugia" component={EstadoCirugia} />
       <Stack.Screen options={{ title: 'Ver Cirugía' }} name="VerCirugia" component={VerCirugia} />
       <Stack.Screen name="IndexProduct" component={IndexProduct} />
@@ -145,25 +143,74 @@ function NavStack() {
 }
 
 
+function StackLoginFunction() {
+  return (
+    <StackLogin.Navigator
+      initialRouteName="Login"
+      screenOptions={{
+        headerShown: true,
+        headerTintColor: '#fff',
+        headerStyle: {
+          backgroundColor: color.blue,
+        },
+        headerTitle: props => <LogoTitle pro={props} {...props} />,
+        headerBackImage: props => <BackImagerow {...props} />
+      }}
+    >
+      <StackLogin.Screen name="Try" component={TryConnection} options={{ title: 'try', headerShown: false }} />
+      <StackLogin.Screen options={{ title: 'Welcome' }} name="Welcome" component={Welcome} options={{ headerShown: false }} />
+      <StackLogin.Screen options={{ title: 'Nuevo Usuario' }} name="DatosNuevoUsuario" component={DatosNuevoUsuario} />
+      <StackLogin.Screen options={{ title: 'Perfil de Doctor' }} name="PerfilNuevoUsuario" component={PerfilNuevoUsuario} />
+      <StackLogin.Screen options={{ title: 'Verificar Token' }} name="VerificarToken" component={VerificarToken} />
+      <StackLogin.Screen options={{ title: 'Procedimiento' }} name="Procedimiento" component={Procedimiento} />
+      <StackLogin.Screen options={{ title: 'Asistente Administrativo' }} name="AsistenteAdministrativo" component={AsistenteAdministrativo} />
+      <StackLogin.Screen options={{ title: 'Login' }} name="Login" component={Login} options={{ title: 'Menu', headerShown: false }} />
+    </StackLogin.Navigator>
+  )
+}
+
+function drawerFunction() {
+  return (
+    <Drawer.Navigator initialRouteName="Inicio"
+      drawerContent={props => CustomDrawerContent(props)}
+      drawerPosition="right"
+    >
+      <Drawer.Screen name="Inicio" component={NavStack} />
+      <Drawer.Screen name="Cirugias" component={VerCirugia} />
+      <Drawer.Screen name="Productos" component={IndexProduct} />
+      <Drawer.Screen name="CerrarSesion" component={NavStack} />
+    </Drawer.Navigator>
+  )
+
+
+}
+
 
 const App: () => React$Node = () => {
   return (
     <>
       <Provider store={store}>
         <StatusBar barStyle="light-content" />
+
         <NavigationContainer>
-          <NavStack />
+          
+          {StackLoginFunction()}
+          
         </NavigationContainer>
+
+
       </Provider>
 
     </>
   );
 };
 
-function LogoTitle() {
+function LogoTitle(props) {
+
+  console.log('logo props', props)
   return (
     <View style={{ flexDirection: "row" }}>
-      <View style={{ flex: 1, alignItems: 'center',backgroundColor:"fff", justifyContent: 'center', flexDirection: "row" }}>
+      <View style={{ flex: 1, alignItems: 'center', backgroundColor: "fff", justifyContent: 'center', flexDirection: "row" }}>
         <Image
           style={{ width: 105, height: 35, }}
           source={require('newAPPStat/assets/img/logo.png')}
@@ -171,7 +218,9 @@ function LogoTitle() {
         />
       </View>
 
-      <Pressable>
+      <Pressable
+      // onPress = {() => navigation.toggleDrawer()}
+      >
         <Image
           style={{ width: 40, height: 30 }}
           source={require('newAPPStat/assets/Icon/1x/menu.png')}
@@ -185,11 +234,11 @@ function LogoTitle() {
 
 function BackImagerow() {
   return (
-        <Image
-          style={{ width: 35, height: 35, }}
-          source={require('newAPPStat/assets/Icon/1x/atras-ingresardatos.png')}
-          resizeMode='contain'
-        />
+    <Image
+      style={{ width: 35, height: 35, }}
+      source={require('newAPPStat/assets/Icon/1x/atras-ingresardatos.png')}
+      resizeMode='contain'
+    />
   );
 }
 

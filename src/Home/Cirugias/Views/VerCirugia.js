@@ -7,6 +7,8 @@ import Line from '../Component/Line';
 import http from 'newAPPStat/src/Lib/http'
 import urlStat from 'newAPPStat/src/Lib/url'
 import Navigate from '../Component/NavigateCirugia'
+import Header from '../../src/Component/Header'
+
 class VerCirugia extends Component {
    state={
       cirugia:[{name:""}],

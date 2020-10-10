@@ -9,7 +9,7 @@ import http from 'newAPPStat/src/Lib/http'
 import urlStat from 'newAPPStat/src/Lib/url'
 import color from 'newAPPStat/src/Lib/Colors'
 import ListItem from '../../../Lib/Component/ListItem'
-
+import Header from '../../src/Component/Header'
 
 class FiltrarProveedor extends Component {
    state = {

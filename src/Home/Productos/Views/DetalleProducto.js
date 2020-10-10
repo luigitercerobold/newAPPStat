@@ -12,7 +12,7 @@ import ListItem from '../../../Lib/Component/ListItem'
 import RowIconContact from '../../../Lib/Component/RowIconContact'
 import SingleProduct from '../../../Lib/Component/SigleProduct'
 import Description from '../../../Lib/Component/Description'
-
+import Header from '../../src/Component/Header'
 class FiltrarProveedor extends Component {
    state = {
       products: '',

@@ -6,7 +6,7 @@ import ListButton from '../../Component/ListButton'
 import Title from '../../../../Lib/Title'
 import BtnProximaCirugia from '../../Component/BtnProximaCirugia'
 import Line from '../../Component/Line';
-
+import Header from '../../../src/Component/Header'
 class AgendaProducto extends Component {
    state={
       products:[],

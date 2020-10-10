@@ -4,6 +4,7 @@ import { View,Text } from 'react-native';
 import ContainerSimpleLeft from '../component/ContainerSimpleLeft'
 import Title from '../../Lib/Title'
 import Btn from '../component/Btn'
+import Header from '../../Home/src/Component/Header'
 
 class Brazo extends Component {
    craneo = {
@@ -22,6 +23,7 @@ class Brazo extends Component {
        
        return(
           <>
+          
          <Title title='región anatómica' />
          <Btn 
             imgWidthNeto={imgWidthNeto} 

@@ -4,6 +4,7 @@ import { View,Text } from 'react-native';
 import ContainerSimpleLeft from '../component/ContainerSimpleLeft'
 import Title from '../../Lib/Title'
 import Btn from '../component/Btn'
+import Header from '../../Home/src/Component/Header'
 
 class Piernas extends Component {
    craneo = {

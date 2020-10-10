@@ -8,14 +8,8 @@ import url from 'newAPPStat/src/Lib/url'
 import init from 'newAPPStat/src/Lib/init'
 import ListButton from '../Component/ListButton'
 import { ScrollView } from 'react-native-gesture-handler'
-
-import Container from '../../../Login/Component/LoginComponent/ContainerCenter'
-import BtnSimple from '../../../Login/Component/BtnSimple'
-import ScrollCenter from '../../../Login/Component/ScrollCenter'
-import PaddingVertical from '../../../Login/Component/PaddingVertical'
-import Padding from '../../../Login/Component/PaddingVertical'
-
-
+import Header from '../../../Home/src/Component/Header'
+import Status from '../../../Lib/Component/Status'
 class AgendarCirugia extends Component {
    state = {
       fontLoaded: false,
@@ -23,7 +17,10 @@ class AgendarCirugia extends Component {
       hour: 'h',
       timer: 't',
       token: '',
-      loading:false
+      loading:false,
+      message:'Bad',
+      isOk:true
+      
    }
 
    goToDate() {
@@ -92,19 +89,48 @@ class AgendarCirugia extends Component {
       console.log(body)
       this.setState({loading:true})
       const data =  await http.instance.post(url.saveCirugia, body, http.instance.getToken())
-      this.setState({loading:false})
-      this.props.navigation.navigate('EstadoCirugia', { body: body })
+      this.setState({message:data.message})
+      console.log('respuesta de servidor',data.message)
+      if (this.state.message === 'Datos incompletos' ){
+         console.log('datos incomletos cambiando de estado malo')
+         this.setState({isOk:false})
+      }else {
+         console.log('datos incomletos cambiando de estado bien')
+         this.setState({isOk:true})
+      }
       
+   }
+
+   handlePress = () =>{
+         if (this.state.message === 'Datos incompleto' ){
+            console.log('datos incomletos cambiando de estado malo')
+            this.setState({isOk:false})
+         }else {
+            this.setState({isOk:false})
+            this.goToBack()
+         }
+     
+   }
+   gotoEstado = () => {
+      this.props.navigation.navigate('EstadoCirugia', { body: body })
+      this.setState({isOk:true})
+   }
+   goToBack = ()=> {
+      this.setState({loading:false})
    }
 
    render() {
       const {loading} = this.state
       return (
-         <ScrollView>
+         <View style = {{flex:1}}>
             {loading
 
-            ? <ActivityIndicator/>
-            :<View>
+            ? <Status
+               title = {this.state.message}
+               onPress ={this.handlePress}
+               isOk = {this.state.isOk}
+            />
+            :<ScrollView>
             <Title title="Agendar Cirugía" />
          
             <Navigate
@@ -144,9 +170,9 @@ class AgendarCirugia extends Component {
                action="Añadir Productos"
             ></Navigate>
             <ListButton title="Aceptar" onPress={this.confirmar}/>
-            </View>
+            </ScrollView>
             }
-         </ScrollView>
+         </View>
       )   
    }
 }

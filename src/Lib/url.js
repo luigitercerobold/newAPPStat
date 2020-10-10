@@ -1,5 +1,5 @@
-//const server = "http://104.154.41.85";
-const server = "http://192.168.1.16:3000"
+const server = "http://104.154.41.85";
+//const server = "http://192.168.1.16:3000"
 const imgServer = 'https://storage.googleapis.com/stat-storage-dev/images/'
 const urlStat={
    img: imgServer,

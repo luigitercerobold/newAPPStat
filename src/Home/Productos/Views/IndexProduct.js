@@ -8,6 +8,8 @@ import Container from '../../../Login/Component/LoginComponent/ContainerCenter'
 import ContainerCenter from '../../../Login/Component/LoginComponent/ContainerCenter';
 import ContainerCenterRow from '../../../Login/Component/LoginComponent/ContainerCenterRow';
 import { ScrollView } from 'react-native-gesture-handler';
+import Header from '../../src/Component/Header'
+
 class IndexProduct extends Component {
    goToBodyPart = ()=> {
       this.props.navigation.navigate('BodyProducto')

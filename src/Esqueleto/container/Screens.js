@@ -13,7 +13,7 @@ const ScreensBody = ({Stack}) => {
       <>
          <Stack.Screen options={{ title: 'Brazo' }}                  name="Brazo" component={Brazo} />
 
-         <Stack.Screen options={{ title: 'Craneo' }}         name="Craneo" component={Craneo} />
+         <Stack.Screen options={{ title: 'Cráneo ' }}         name="Craneo" component={Craneo} />
          <Stack.Screen options={{ title: 'Esqueleto' }}                  name="Esqueleto" component={Esqueleto} />
 
          <Stack.Screen options={{ title: 'Piernas' }}         name="PerfiPiernaslNuevoUsuario" component={Piernas} />

@@ -7,7 +7,7 @@ import {
 import PaddingVertical from '../Login/Component/PaddingVertical'
 
 
-function Title(props) {
+function Title (props) {
   return (
     <View style={styles.container}>
       <PaddingVertical vertical={1} />

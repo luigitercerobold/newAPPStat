@@ -19,6 +19,8 @@ import SubTitle from '../../Component/SubTitle'
 import Time from '../../Component/Time';
 import ListButton from '../../Component/ListButton'
 import ContainerText from '../../Component/ContainerText'
+import Header from '../../../src/Component/Header'
+
 
 class FachaYHora extends React.Component {
   state = {

@@ -25,6 +25,7 @@ import Container from '../../../Login/Component/LoginComponent/ContainerCenter'
 import BtnSimple from '../../../Login/Component/BtnSimple'
 import ScrollCenter from '../../../Login/Component/ScrollCenter'
 import PaddingVertical from '../../../Login/Component/PaddingVertical'
+import Header from '../../src/Component/Header'
 
 
 class Cirugias extends Component {
@@ -61,6 +62,7 @@ class Cirugias extends Component {
         return (
 
             <View style={styles.container}>
+                <Header navigation = {this.props.navigation}/>
                 <Title title="Próxima cirugía" />
                 <Container>
                     <BtnProximaCirugia onPress={this.goToVerCirugia} text="Ver cirugía" img={require("newAPPStat/assets/Icon/1x/cirugias-ver_cirgias.png")} />

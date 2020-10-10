@@ -10,13 +10,7 @@ import http from 'newAPPStat/src/Lib/http'
 import urlStat from 'newAPPStat/src/Lib/url'
 import color from 'newAPPStat/src/Lib/Colors'
 import HospitalItem from '../../Component/Listitem'
-
-import Container from '../../../../Login/Component/LoginComponent/ContainerCenter'
-import BtnSimple from '../../../../Login/Component/BtnSimple'
-import ScrollCenter from '../../../../Login/Component/ScrollCenter'
-import PaddingVertical from '../../../../Login/Component/PaddingVertical'
-
-
+import Header from '../../../src/Component/Header'
 class Asitente extends Component {
    state = {
       fontLoaded: false,
