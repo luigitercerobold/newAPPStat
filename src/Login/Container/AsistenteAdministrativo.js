@@ -1,4 +1,4 @@
-import react from "react";
+
 import React, {Component} from 'react'
 import {View, TextInput, Button} from 'react-native'
 import Title from "../../Lib/Title";

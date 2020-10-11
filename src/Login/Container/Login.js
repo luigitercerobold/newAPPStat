@@ -18,28 +18,23 @@ import Padding from '../Component/PaddingVertical'
 import { TextInput } from 'react-native-gesture-handler'
 import User from '../../Lib/user'
 import Contxt from '../../../Context'
-import Context from '../../../Context'
+import Context, { useAuth } from '../../../Context'
 class Login extends Component {
    state = {
       user: '',
       password: '',
       status: ' Error de conexión de red intente mas tarde.'
    }
-
    componentDidMount() {
       this.ping()
-
-
    }
    ping = async () => {
       const data = await http.instance.get(urlStat.ping)
       console.log(data.message)
       this.setState({ status: data.message })
-
    }
 
    setUser = (user) => {
-
       this.setState({ user })
    }
 
@@ -47,45 +42,38 @@ class Login extends Component {
       this.setState({ password })
    }
 
-   logIn = () => {
-      this.getToken()
+   logIn = (activateAuth) => {
+      this.getToken(activateAuth)
    }
 
-
-   alert = (data) => {
-      if (data.message != undefined) {
-         Alert.alert(
-            "Usuario",
-            "Mensaje de Stat: " + data.message,
-            [
-               {
-                  text: "Cancel",
-                  onPress: () => console.log("Cancel Pressed"),
-                  style: "cancel"
-               },
-               { text: "OK", onPress: () => console.log("OK Pressed") }
-            ],
-            { cancelable: false }
-         );
-      }
+   alert = (message) => {
+      Alert.alert(
+         "Usuario",
+         "Mensaje de Stat: " + message,
+         [
+            {
+               text: "Cancel",
+               onPress: () => console.log("Cancel Pressed"),
+               style: "cancel"
+            },
+            { text: "OK", onPress: () => console.log("OK Pressed") }
+         ],
+         { cancelable: false }
+      )
    }
    olvidoPassWord = () => {
       console.log('OlvidePasword');
    }
-
    registrate = () => {
       this.props.navigation.navigate('DatosNuevoUsuario')
    }
-
-
-
    saveUser(data) {
       http.instance.setToken(data.token)
       http.instance.setId(data.data.id)
       User.instance.newUser(data.data)
       console.log('save user', data.data)
    }
-   getToken = async () => {
+   getToken = async (activateAuth) => {
       const url = urlStat.login
       const body = JSON.stringify({
          email: this.state.user,
@@ -93,64 +81,40 @@ class Login extends Component {
       })
       const data = await http.instance.post(url, body)
       console.log("recibir", data);
-      if (data.message != undefined) {
-         Alert.alert(
-            "Usuario",
-            "Mensaje de Stat: " + data.message,
-            [
-               {
-                  text: "Cancel",
-                  onPress: () => console.log("Cancel Pressed"),
-                  style: "cancel"
-               },
-               { text: "OK", onPress: () => console.log("OK Pressed") }
-            ],
-            { cancelable: false }
-         )
 
-         if (data.message ==="Aun no ha confirmado su correo electrónico. Porfavor confírmelo ahora."){
+      if (data.message != undefined) {
+         this.alert(data.message)
+         if (data.message === "Aun no ha confirmado su correo electrónico. Porfavor confírmelo ahora.") {
             console.log('verificar correo')
-            this.props.navigation.navigate('VerificarToken' ,{user:data})
+            this.props.navigation.navigate('VerificarToken', { user: data })
          }
       } else {
-
          if (data != null) {
-
             this.saveUser(data)
-
-
             if (data.data.role == "2") {
-               this.props.navigation.navigate('Welcome')
+               activateAuth()
             } else {
                this.setState({ alert: "no es posibe ingresar" })
-               Alert.alert(
-                  "Usuario",
-                  "Mensaje de Stat: " + "estas cuentas solo son para doctores y no comerciantes",
-                  [
-                     {
-                        text: "Cancel",
-                        onPress: () => console.log("Cancel Pressed"),
-                        style: "cancel"
-                     },
-                     { text: "OK", onPress: () => console.log("OK Pressed") }
-                  ],
-                  { cancelable: false }
-               )
+               this.alert("estas cuentas solo son para doctores y no comerciantes")
             }
 
          }
       }
+   }
 
+   mostrarNuevaVista = (activateAuth) => {
+
+      activateAuth()
    }
 
 
    render() {
-      console.log (Context.Consumer)
+
       return (
 
          <Container>
 
-            
+
             <Padding vertical={1}>
                <Logo />
             </Padding>
@@ -163,19 +127,32 @@ class Login extends Component {
 
                />
             </Padding>
-            <Padding vertical={0.5}>
-               <PassWord
-                  placeholder="Password"
-                  onChangeText={this.setPassword}
-                  onEndEditing={this.logIn}
-               />
-            </Padding>
-            <Padding vertical={1}>
-               <BtnSimple
-                  title="Iniciar"
-                  onPress={this.logIn}
-               />
-            </Padding>
+
+            <Context.Consumer>
+               {
+                  ({ isAuth, activateAuth }) => {
+                     return (
+                        <>
+                           <Padding vertical={0.5}>
+                              <PassWord
+                                 placeholder="Password"
+                                 onChangeText={this.setPassword}
+                                 onEndEditing={()=> this.logIn(activateAuth)}
+                              />
+                           </Padding>
+                           <Padding vertical={1}>
+                              <BtnSimple
+                                 title="Iniciar"
+                                 onPress={ () =>this.logIn(activateAuth)}
+                              />
+                           </Padding>
+                        </>
+
+                     )
+                  }
+               }
+            </Context.Consumer>
+
             <BtnNoBackground
                title="¿Olvidaste tu Contraseña?"
                onPress={this.olvidoPassWord}
