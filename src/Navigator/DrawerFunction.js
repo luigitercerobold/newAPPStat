@@ -1,11 +1,6 @@
 
 import React from 'react';
 
-
-
-import Animacion from '../Login/Component/Animacion';
-
-
 import TryConnection from '../Internet/TryConnection'
 
 import Menu from '../Home/src/View/Menu';
@@ -23,7 +18,7 @@ import Productos from '../Home/Cirugias/Views/Product/Productos'
 import AddProductos from '../Home/Cirugias/Views/Product/AddProduct'
 import EstadoCirugia from '../Home/Cirugias/Views/EstadoCirugia'
 import VerCirugia from '../Home/Cirugias/Views/VerCirugia'
-
+import Procedimiento from '../Home/Cirugias/Views/AddCirugia/Procedimiento'
 import IndexProduct from '../Home/Productos/Views/IndexProduct'
 import BodyProducto from '../Home/Productos/Views/BodyPart'
 import FiltrarProveedores from '../Home/Productos/Views/FiltrarProveedores'
@@ -52,6 +47,8 @@ import Color from '../Lib/Colors'
 
 import {LogoTitle} from './LogoTitle'
 import {BackImageRow} from './BackImageRow'
+import Gallery from '../Home/Productos/Views/GaleryProduc'
+import Hamburgues from './Hamburgues'
  const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -67,7 +64,9 @@ function NavStack() {
           backgroundColor: Color.blue,
         },
         headerTitle: props => <LogoTitle pro={props} {...props} />,
-        headerBackImage: props => <BackImageRow {...props} />
+        headerBackImage: props => <BackImageRow {...props} />,
+        headerRight:props => <Hamburgues {...props}/>,
+        headerTitleAlign:"center"
       }}
     >
       <Stack.Screen options={{ title: 'Brazo' }} name="Brazo" component={Brazo} />
@@ -76,9 +75,10 @@ function NavStack() {
       <Stack.Screen options={{ title: 'Piernas' }} name="Piernas" component={Piernas} />
       <Stack.Screen options={{ title: 'Pies' }} name="Pies" component={Pies} />
       <Stack.Screen name="Try" component={TryConnection} options={{ title: 'try', headerShown: false }} />
-      <Stack.Screen name="Loading" component={Animacion} options={{ title: 'Loading', headerShown: false }} />
-
+      
       <Stack.Screen options={{ title: 'Menú' }} name="Menu" component={Menu} options={{ title: 'Menu', headerhown: false }} />
+
+      <Stack.Screen options={{ title: 'Procedimiento' }} name="Procedimiento" component={Procedimiento} options={{ title: 'Procedimiento' }} />
 
       <Stack.Screen options={{ title: 'Agendar Cirugía' }} name="AgendarCirugia" component={AgendarCirugia} />
       <Stack.Screen options={{ title: 'Fecha y Hora' }} name="FechaYHora" component={FechaYHora} />
@@ -100,7 +100,7 @@ function NavStack() {
       <Stack.Screen name="ProductosProductos" component={ProductosProductos} />
       <Stack.Screen name="DetalleProducto" component={DetalleProducto} />
       <Stack.Screen name="Provider" component={Providers} />
-
+      <Stack.Screen name="Gallery" component={Gallery} />
     </Stack.Navigator>
   );
 }

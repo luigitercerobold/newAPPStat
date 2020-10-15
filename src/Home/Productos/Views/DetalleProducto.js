@@ -5,29 +5,47 @@ import { View, FlatList, Button, Text, ScrollView, StyleSheet, ActivityIndicator
 
 import Title from '../../../Lib/Title'
 
-import http from 'newAPPStat/src/Lib/http'
-import urlStat from 'newAPPStat/src/Lib/url'
+import Http from 'newAPPStat/src/Lib/http'
+import url from 'newAPPStat/src/Lib/url'
 import color from 'newAPPStat/src/Lib/Colors'
 import ListItem from '../../../Lib/Component/ListItem'
 import RowIconContact from '../../../Lib/Component/RowIconContact'
 import SingleProduct from '../../../Lib/Component/SigleProduct'
 import Description from '../../../Lib/Component/Description'
 import Header from '../../src/Component/Header'
+
 class FiltrarProveedor extends Component {
    state = {
       products: '',
       proveedor: [],
       loading: false,
       producto: [],
-      proveedor: []
+      proveedor: [],
+      gallery: []
    }
-   componentDidMount() {
-      console.log("Detalle de producto")
-      console.log("producto", this.props.route.params.product)
-      console.log("proveedor", this.props.route.params.proveedor)
 
+   componentDidMount() {
+    console.log('DetalleProducto')
       this.getParams()
+      this.getGallery()
    }
+   getGallery = async () => {
+
+      console.log("get gallery",this.props.route.params.product.id)
+      const galeryURL = url.getGalery(this.props.route.params.product.id)
+      const galery = await Http.instance.get(galeryURL, Http.instance.getToken())
+         console.log("gallery", galery)
+      const images = []
+
+     
+      galery.data.forEach(element => {
+         images.push({ source: { uri: url.img + element.name } })
+      });
+      this.setState({ gallery: images })
+
+
+   }
+  
    getParams = () => {
       this.setState(
          {
@@ -36,6 +54,8 @@ class FiltrarProveedor extends Component {
          }
 
       )
+  
+
    }
 
    handlePress = (item) => {
@@ -47,12 +67,14 @@ class FiltrarProveedor extends Component {
          <View>{loading ?
             <ActivityIndicator color={color.blue} size="large" /> : null
          }
-            <Title title={"Proveedor - " + proveedor.name }/>
-            <RowIconContact />
-            
+            <Title title={"Proveedor - " + proveedor.name} />
+            <RowIconContact information={proveedor} />
+
             <SingleProduct
                product={producto}
                proveedor={proveedor}
+               navigation={this.props.navigation}
+               gallery={this.state.gallery}
             />
          </View>
       )

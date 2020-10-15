@@ -3,27 +3,17 @@ import {
   View,
   Text,
   StyleSheet,
-  Animated,
+
   Image,
-  TextInput,
-  TouchableOpacity,
+ 
 } from 'react-native';
-import LogoS from '../../../assets/img/slogo.png';
-//import { LinearGradient } from 'expo-linear-gradient';
+
 
 class WelcomeSc extends Component {
   constructor(props) {
     super(props);
   }
-  componentDidMount() {
-    setTimeout(
-        function() {
-          this.props.navigation.navigate('Menu')
-        }
-            .bind(this),
-        2000
-    );
-  }
+  
   render() {
     return (
       <View style={styles.container}>

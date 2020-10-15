@@ -18,7 +18,11 @@ const urlStat={
    getAllProduct:server +"/api/product/products",
    getByBodypart: server+"/api/provider/by-body-part",
    getProviderProducts: server+"/api/product/provider-products",
-   ping: server+"/api/status/ping"
+   ping: server+"/api/status/ping",
+   getCategories:server +"/api/product/categories",
+   getGalery: (id) => {
+      return `${server}/api/product/${id}/gallery/`
+   }
 };
 
 export default urlStat

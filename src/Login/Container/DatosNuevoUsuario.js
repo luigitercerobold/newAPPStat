@@ -9,6 +9,7 @@ import Container from '../Component/LoginComponent/ContainerCenter'
 import BtnSimple from '../Component/BtnSimple'
 import ScrollCenter from '../Component/ScrollCenter'
 import PaddingVertical from '../Component/PaddingVertical'
+import PassWord from '../Component/PassWord'
 class DatosNuevoUsuario extends Component {
    state = {
       name: "Nombre",
@@ -22,13 +23,13 @@ class DatosNuevoUsuario extends Component {
          {
             email: this.state.eMail,
             password: this.state.passWord,
-            name: this.state.name +" " +this.state.lastName,
+            name: this.state.name + " " + this.state.lastName,
             phone: this.state.phone,
             role: 2
          }
       )
       const user = await Http.instance.post(Url.creteUser, body)
-      console.log(user)
+      console.log(user.message)
       if (user.message === "Se ha registrado exitosamente.") {
          this.props.navigation.navigate('PerfilNuevoUsuario', { user: user, body: body })
       } else {
@@ -41,8 +42,24 @@ class DatosNuevoUsuario extends Component {
          ])
       }
 
-
    }
+
+
+   goToPerfil =() =>{
+
+      const body = 
+         {
+            email: this.state.eMail,
+            password: this.state.passWord,
+            name: this.state.name + " " + this.state.lastName,
+            phone: this.state.phone,
+            role: 2
+         }
+      
+      this.props.navigation.navigate('PerfilNuevoUsuario', {body: body })
+      
+   }
+
    setName = (name) => {
       this.setState({ name })
    }
@@ -62,8 +79,8 @@ class DatosNuevoUsuario extends Component {
    render() {
       return (
          <ScrollCenter>
-           
-            <Title title="Tus Datos" />
+
+            <Title title="Nuevo Usuario" />
             <Container>
                <TextBox
                   placeholder={"Nombre"}
@@ -80,10 +97,12 @@ class DatosNuevoUsuario extends Component {
                   onChangeText={this.setEmail}
                   keyword='email-address'
                />
+              
                <PaddingVertical vertical={0.1} />
-               <TextBox
-                  placeholder={"Clave"}
+               <PassWord
+                  placeholder="Password"
                   onChangeText={this.setPassWord}
+                  //onEndEditing={() => this.logIn(activateAuth)}
                />
                <PaddingVertical vertical={0.1} />
                <TextBox
@@ -94,7 +113,7 @@ class DatosNuevoUsuario extends Component {
                <PaddingVertical vertical={5}>
                   <BtnSimple
                      title="Siguiente"
-                     onPress={this.goToToken}
+                     onPress={this.goToPerfil}
                   />
                </PaddingVertical>
 

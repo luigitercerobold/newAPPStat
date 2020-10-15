@@ -8,10 +8,8 @@ const Header = () => {
    const [count, setCount] = useState(0);
    const [user, setUser] = useState(User.instance.user)
    useEffect(() => {
-      console.log('set user')
+ 
    
-      console.log(user)
-      console.log(User.instance.getUser())
       if(User.instance.getUser() != null || user != User.instance.getUser()){
        
          setUser(User.instance.getUser())

@@ -17,13 +17,14 @@ import http from 'newAPPStat/src/Lib/http'
 import Padding from '../Component/PaddingVertical'
 import { TextInput } from 'react-native-gesture-handler'
 import User from '../../Lib/user'
-import Contxt from '../../../Context'
 import Context, { useAuth } from '../../../Context'
+import Welcome from '../Component/Welcome'
 class Login extends Component {
    state = {
       user: '',
       password: '',
-      status: ' Error de conexión de red intente mas tarde.'
+      status: ' Error de conexión de red intente mas tarde.',
+      isLogin: false
    }
    componentDidMount() {
       this.ping()
@@ -84,7 +85,7 @@ class Login extends Component {
 
       if (data.message != undefined) {
          this.alert(data.message)
-         if (data.message === "Aun no ha confirmado su correo electrónico. Porfavor confírmelo ahora.") {
+         if (data.message === "El correo electrónico que ha ingresado no está registrado.") {
             console.log('verificar correo')
             this.props.navigation.navigate('VerificarToken', { user: data })
          }
@@ -92,7 +93,7 @@ class Login extends Component {
          if (data != null) {
             this.saveUser(data)
             if (data.data.role == "2") {
-               activateAuth()
+               this.mostrarNuevaVista(activateAuth)
             } else {
                this.setState({ alert: "no es posibe ingresar" })
                this.alert("estas cuentas solo son para doctores y no comerciantes")
@@ -104,67 +105,81 @@ class Login extends Component {
 
    mostrarNuevaVista = (activateAuth) => {
 
-      activateAuth()
+     this.setState({isLogin:!this.state.isLogin})
+     setTimeout(
+      function() {
+         activateAuth()
+      }
+          .bind(this),
+      2000
+  );
    }
 
 
    render() {
-
+      const { isLogin } = this.state;
       return (
+         <>
+            {isLogin
+               ?<Welcome/>
+         : <Container>
 
-         <Container>
+                  <Padding vertical={1}>
+                     <Logo />
+                  </Padding>
+                  <Padding vertical={0.5}>
+                     <TextBox
+
+                        placeholder="Usuario"
+                        onChangeText={this.setUser}
+                        keyword='email-address'
+
+                     />
+                  </Padding>
+
+                  <Context.Consumer>
+                     {
+                        ({ isAuth, activateAuth }) => {
+                           return (
+                              <>
+                                 <Padding vertical={0.5}>
+                                    <PassWord
+                                       placeholder="Password"
+                                       onChangeText={this.setPassword}
+                                       onEndEditing={() => this.logIn(activateAuth)}
+                                    />
+                                 </Padding>
+                                 <Padding vertical={1}>
+                                    <BtnSimple
+                                       title="Iniciar"
+                                       onPress={() => this.logIn(activateAuth)}
+                                    />
+                                 </Padding>
+                              </>
+
+                           )
+                        }
+                     }
+                  </Context.Consumer>
+
+                  <BtnNoBackground
+                     title="¿Olvidaste tu Contraseña?"
+                     onPress={this.olvidoPassWord}
+                  />
+
+                  <BtnBlue
+                     title="Registrate"
+                     onPress={this.registrate}
+                  />
+                  <Text>{this.state.status}</Text>
+
+               </Container>
+            }
 
 
-            <Padding vertical={1}>
-               <Logo />
-            </Padding>
-            <Padding vertical={0.5}>
-               <TextBox
 
-                  placeholder="Usuario"
-                  onChangeText={this.setUser}
-                  keyword='email-address'
+         </>
 
-               />
-            </Padding>
-
-            <Context.Consumer>
-               {
-                  ({ isAuth, activateAuth }) => {
-                     return (
-                        <>
-                           <Padding vertical={0.5}>
-                              <PassWord
-                                 placeholder="Password"
-                                 onChangeText={this.setPassword}
-                                 onEndEditing={()=> this.logIn(activateAuth)}
-                              />
-                           </Padding>
-                           <Padding vertical={1}>
-                              <BtnSimple
-                                 title="Iniciar"
-                                 onPress={ () =>this.logIn(activateAuth)}
-                              />
-                           </Padding>
-                        </>
-
-                     )
-                  }
-               }
-            </Context.Consumer>
-
-            <BtnNoBackground
-               title="¿Olvidaste tu Contraseña?"
-               onPress={this.olvidoPassWord}
-            />
-
-            <BtnBlue
-               title="Registrate"
-               onPress={this.registrate}
-            />
-            <Text>{this.state.status}</Text>
-
-         </Container>
 
       )
    }

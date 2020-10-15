@@ -8,46 +8,65 @@ import ListItem from '../../../Lib/Component/ListItem'
 import http from 'newAPPStat/src/Lib/http'
 import urlStat from 'newAPPStat/src/Lib/url'
 import color from 'newAPPStat/src/Lib/Colors'
-import Header from '../../src/Component/Header'
+import ProviderSearch from '../Component/ProviderSearch'
 
 class Proveedor extends Component {
    state = {
       products: bodyPart,
       proveedor: [],
-      loading: false
+      loading: false,
+      allProvider: []
    }
    componentDidMount() {
-     
       this.getProvider()
    }
    getProvider = async () => {
       this.setState({ loading: true })
       const proveedor = await http.instance.get(urlStat.getProveedor, http.instance.getToken())
-      this.setState({ proveedor: proveedor.data, loading: false })
+      this.setState({ proveedor: proveedor.data, loading: false, allProvider: proveedor.data })
       console.log(this.state.proveedor)
       return proveedor
    }
 
    handlePress = (item) => {
-      console.log(item)
-      this.props.navigation.navigate('ProductosProveedor',{
-         
-         body:{id:null},
-         proveedor:item,
-         providerId:item.id
-      })
+      const passProveedor = {
+         body: { id: null },
+         proveedor: item,
+         providerId: item.id
+      }
+      this.gotoProductoProveedor(passProveedor)
+
    }
+
+   gotoProductoProveedor(passProveedor) {
+
+      this.props.navigation.navigate('ProductosProveedor', passProveedor)
+   }
+
+   handleSearch = (query) => {
+      const { allProvider } = this.state
+      const providerFiltered = allProvider.filter(provider => {
+         return provider.name.toLowerCase().includes(query.toLowerCase())
+      })
+      this.setState({ proveedor: providerFiltered })
+   }
+
    render() {
       const { products, proveedor, loading } = this.state
       return (
-         <View>{loading ?
-            <ActivityIndicator color={color.blue} size="large" /> : null
-         }
-            <Title title="Proveedor" />
+         <View style={styles.container}>
+            <View style = {styles.containerTittle}>
+               <Title title="Proveedor" />
+               <ProviderSearch style={styles.search} onChange={this.handleSearch} />
+            </View>
+
+            {loading ?
+               <ActivityIndicator color={color.blue} size="large" /> : null
+            }
             <FlatList
                data={proveedor}
                style={styles.flatList}
-               renderItem={({ item }) => <ListItem onPress={() => this.handlePress(item)}  item={ item.id+" " +  item.name} />}
+               renderItem={({ item }) => <ListItem key={item.id} onPress={() => this.handlePress(item)} item={item} />}
             />
          </View>
       )
@@ -58,7 +77,19 @@ export default Proveedor;
 
 const styles = StyleSheet.create({
    flatList: {
-      marginTop:20,
-      flexGrow: 0
+      marginTop:45,
+      flexGrow: 0,
+   },
+   container: {
+      flex: 1
+   },
+   containerTittle:{
+      flexDirection:"row",
+      alignItems:'flex-end',
+      alignContent:"center",
+      justifyContent:"space-evenly"
+   },
+   search:{
+      width:225
    }
 })

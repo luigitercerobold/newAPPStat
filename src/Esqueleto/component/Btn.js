@@ -16,7 +16,7 @@ const Btn = ({ text, top, right, onPress,line,imgWidthBruto,imgWidthNeto }) => {
    const [dimensions, setDimensions] = useState({ window, screen });
    const onChange = ({ window, screen }) => {
       setDimensions({ window, screen });
-      console.log ('cambio')
+  
 
    };
    useEffect(() => {
@@ -40,7 +40,7 @@ const Btn = ({ text, top, right, onPress,line,imgWidthBruto,imgWidthNeto }) => {
       return   (poss)*(imgWidthNeto/2-5)/5 + (imgWidthBruto - imgWidthNeto)/2
    }
    const press = () => {
-      console.log("clic", text)
+    
       return onPress()
    }
    const rowType = () =>{

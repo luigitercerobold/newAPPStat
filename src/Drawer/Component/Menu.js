@@ -1,14 +1,14 @@
 import React from 'react'
 import {Image, StyleSheet, Text, View} from 'react-native'
 import TextMenu from './TextMenu'
-const Menu = () => {
+const Menu = ({navigation}) => {
 
    return (
       <View style ={styles.container}>
       
-       <TextMenu title="Cirugía"/>
-       <TextMenu title="Asistencia"/>
-       <TextMenu title="Productos"/>
+       <TextMenu onPress={()=>  navigation.navigate('EstadoCirugia')} title="Cirugía"/>
+       <TextMenu onPress={()=>  navigation.navigate('IndexProduct')}  title="Asistencia"/>
+       <TextMenu onPress={()=>  navigation.navigate('IndexProduct')}  title="Productos"/>
          
       </View>
 

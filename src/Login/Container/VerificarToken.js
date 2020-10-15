@@ -1,6 +1,6 @@
 import react from "react";
 import React, { Component } from 'react'
-import { View, TextInput, Button, Text } from 'react-native'
+import { View, TextInput, Button, Text,Alert } from 'react-native'
 import Title from "../../Lib/Title";
 import TextBox from '../Component/TextBox'
 import Http from '../../Lib/http'
@@ -38,7 +38,7 @@ class VerificarToken extends Component {
          this.props.navigation.navigate('Login')
 
       } else {
-
+         this.alert(validar.message)
          this.setState({ message: validar.message })
       }
    }
@@ -46,11 +46,28 @@ class VerificarToken extends Component {
    setToken = (token) => {
       this.setState({ token })
    }
+
+   alert = (message) => {
+      Alert.alert(
+         "Usuario",
+         "Mensaje de Stat: " + message,
+         [
+            {
+               text: "Cancel",
+               onPress: () => console.log("Cancel Pressed"),
+               style: "cancel"
+            },
+            { text: "OK", onPress: () => console.log("OK Pressed") }
+         ],
+         { cancelable: false }
+      )
+   }
+   
    render() {
 
       return (
 
-         <ScrollCenter>
+         <>
             
             <Title title="Verifica tus datos" />
             <Container>
@@ -70,7 +87,7 @@ class VerificarToken extends Component {
                   />
                </PaddingVertical>
             </Container>
-         </ScrollCenter>
+         </>
 
       )
 

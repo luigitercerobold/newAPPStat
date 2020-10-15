@@ -46,6 +46,7 @@ class Asitente extends Component {
             <FlatList
                data={hospital}
                renderItem={({ item }) => <HospitalItem activate={activate} onPress={()=>this.handlePress(item)} item={item.name} />}
+               numColumns={2}
             />
 
          </View>

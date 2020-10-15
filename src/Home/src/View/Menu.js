@@ -14,14 +14,14 @@ import { DrawerActions } from 'react-navigation';
 import Section from '../Component/Section'
 
 import PersonalData from '../Component/PersonalData'
-import LogoWhite from '../../../../assets/img/logo.png';
-import Header from '../Component/Header'
-import Drawer from '../../../Drawer/DrawerMenu';
-
+import http from 'newAPPStat/src/Lib/http'
+import urlStat from 'newAPPStat/src/Lib/url'
+import init from '../../../Lib/init'
+import User from '../../../Lib/user'
 class MenuSc extends Component {
   constructor(props) {
     super(props);
-    console.log('menusc',props)
+    
   }
   toggleDrawer = () => {
     this.props.navigation.dispatch(DrawerActions.toggleDrawer())
@@ -41,42 +41,62 @@ class MenuSc extends Component {
 
   }
 
-  mostrar = (props) =>{
-      console.log(props)
+  mostrar = (props) => {
+    console.log(props)
 
   }
+  componentDidMount() {
+    if (http.instance.getToken() === null) {
+        this.getToken()
+    }
+
+}
+
+
+  getToken = async () => {
+    const url = urlStat.login
+    const body = init
+    const data = await http.instance.post(url, body)
+    this.setState({ token: data.token })
+    http.instance.setToken(data.token)
+    http.instance.setId(data.data.id)
+    console.log("data", data.data);
+
+    http.instance.setToken(data.token)
+    http.instance.setId(data.data.id)
+    User.instance.newUser(data.data)
+    console.log('save user', data.data)
+
+}
 
   render(props) {
 
     return (
-     
-       
-        
-        <View style={styles.container} {...props}>
-        <Header navigation = {this.props.navigation}/>  
-          <View style={styles.header} {...props}>
-            
-            <PersonalData />
-          </View>
-          <View style={styles.footer}>
-            <Section
-              text="Cirugia"
-              img={require('newAPPStat/assets/Icon/1x/menu-cirugas.png')}
-              nexPage={this.fecha}
-            ></Section>
-            <Section
-              text="Asistencia"
-              img={require('newAPPStat/assets/Icon/1x/menu-asistencias.png')}
-            ></Section>
-            <Section
-              text="Productos"
-              img={require('newAPPStat/assets/Icon/1x/menu-productos.png')}
-              nexPage={this.producto}
-            ></Section>
-          </View>
+      <View style={styles.container} {...props}>
+        <View style={styles.header} {...props}>
+          <PersonalData />
         </View>
-   
+        <View style={styles.footer}>
+          <Section
+            text="Cirugía"
+            img={require('newAPPStat/assets/Icon/1x/menu-cirugas.png')}
+            nexPage={this.fecha}
+            container = {false}
+          ></Section>
+          <Section
+            text="Asistencia"
+            img={require('newAPPStat/assets/Icon/1x/menu-asistencias.png')}
+          ></Section>
+          <Section
+            text="Productos"
+            img={require('newAPPStat/assets/Icon/1x/menu-productos.png')}
+            nexPage={this.producto}
+            borderLine={false}
+          ></Section>
+        </View>
+      </View>
     );
+
   }
 }
 export default MenuSc;
@@ -87,10 +107,8 @@ const styles = StyleSheet.create({
   },
 
   header: {
-    flex: 1,
+    flex: 0.8,
     width: '100%',
-    //alignItems: 'center',
-    //justifyContent: 'center',
     backgroundColor: '#2185fb',
   },
 

@@ -4,20 +4,28 @@ import { View, FlatList, Button, Text, ScrollView, StyleSheet, ActivityIndicator
 
 
 import Title from '../../../Lib/Title'
-
+import Color from '../../../Lib/Colors'
 import http from 'newAPPStat/src/Lib/http'
 import urlStat from 'newAPPStat/src/Lib/url'
 import color from 'newAPPStat/src/Lib/Colors'
 import ListItem from '../../../Lib/Component/ListItem'
 import Header from '../../src/Component/Header'
+import ProviderSearch from '../Component/ProviderSearch'
+
 
 class FiltrarProveedor extends Component {
+   constructor(props) {
+      super(props)
+      this.goToProductoProveedor.bind(this)
+   }
    state = {
       products: '',
       proveedor: [],
-      loading: false
+      loading: false,
+      allProvider:[]
    }
    componentDidMount() {
+   
       this.getProvider()
    }
    getProvider = async () => {
@@ -27,32 +35,48 @@ class FiltrarProveedor extends Component {
          bodyPartId:this.props.route.params?.body.id+""
       })
       const proveedor = await http.instance.post(urlStat.getByBodypart,body,http.instance.getToken())
-      this.setState({ proveedor: proveedor.data, loading: false })
+      this.setState({ proveedor: proveedor.data, loading: false,allProvider:proveedor.data })
       console.log('provvedores',this.state.proveedor)
       return proveedor
    }
 
    handlePress = (item) => {
-      console.log(item.id)
-      this.props.navigation.navigate('ProductosProveedor',{
+      const query ={
          body:this.props.route.params?.body,
          proveedor:item,
          providerId:item.id
-      })
+      }
+      this.goToProductoProveedor(query) 
    }
+
+   goToProductoProveedor (query) {
+      this.props.navigation.navigate('ProductosProveedor',query)
+
+   }
+
+   handleSearch = (query) =>{
+      const {allProvider} =this.state
+      const providerFiltered = allProvider.filter(provider =>{
+         return provider.name.toLowerCase().includes(query.toLowerCase())
+      })
+      this.setState({proveedor:providerFiltered})
+   }
+
    render() {
       const { products, proveedor, loading } = this.state
       return (
-         <View>{loading ?
+         <View style={styles.container}>{loading ?
             <ActivityIndicator color={color.blue} size="large" /> : null
          }
-            <Title title="Proveedores" />
+          <View style = {styles.containerTittle}>
+               <Title title="Proveedor" />
+               <ProviderSearch style={styles.search} onChange={this.handleSearch} />
+            </View>
             <FlatList
                data={proveedor}
                style={styles.flatList}
-               renderItem={({ item }) => <ListItem onPress={() => this.handlePress(item)} item={ item.id+" " +  item.name} />}
+               renderItem={({ item }) => <ListItem key={item.id} onPress={() => this.handlePress(item)} item={item} />}
             />
-         
          </View>
       )
    }
@@ -62,8 +86,22 @@ export default FiltrarProveedor;
 
 const styles = StyleSheet.create({
    flatList: {
-      height: 300,
-
-      flexGrow: 0
+      backgroundColor:color.gray,
+      flex:1,
+      marginTop: 20,
+   
+    
+   },
+   container:{
+      flex:1,
+   },
+   containerTittle:{
+      flexDirection:"row",
+      alignItems:'flex-end',
+      alignContent:"center",
+      justifyContent:"space-evenly"
+   },
+   search:{
+      width:225
    }
 })

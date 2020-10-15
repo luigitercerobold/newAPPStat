@@ -7,6 +7,7 @@ import Container from '../Component/LoginComponent/ContainerCenter'
 import BtnSimple from '../Component/BtnSimple'
 import ScrollCenter from '../Component/ScrollCenter'
 import PaddingVertical from '../Component/PaddingVertical'
+import SubTittle from '../../Lib/Component/SubTittle';
 class AsistenteAdministrativo extends Component{
    state={
       eMail:"Correo Electronico"
@@ -15,12 +16,12 @@ class AsistenteAdministrativo extends Component{
       this.setState({eMail})
    }
    gotoToToken = () =>{
+      console.log("got to vrificar token",this.props.route.params)
       this.props.navigation.navigate('VerificarToken',{
          especialidad:this.props.route.params?.especialidad,
          user:this.props.route.params?.user,
          body:this.props.route.params?.body,
-         asistente:this.state.eMail
-         
+         asistente:this.state.eMail 
       })
       
    }
@@ -28,10 +29,11 @@ class AsistenteAdministrativo extends Component{
       return(
          <ScrollCenter>
             
-            <Title title="Asistente Administrativo"/>
+            <Title title="Permisos"/>
+            <SubTittle tittle = "Ingrese el correo del asistente administrativo para otorgar accesos"/>
             <Container>
             <TextBox
-               placeholder={this.state.eMail}
+               placeholder={"Asistent"}
                onChangeText={this.setEmail}
             />
             <PaddingVertical vertical={3}>

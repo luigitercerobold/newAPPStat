@@ -15,7 +15,7 @@ const ContainerSimpleLeft = ({data,renderItem,img}) => {
    const [imgSize, setImgSize] = useState({ height: 0, width: 0 })
   
    const measureImg = ((event) => {
-      console.log('event peroperties: ', event.nativeEvent.layout.height);
+      
       setImgSize(
          {
             height: event.nativeEvent.layout.height,

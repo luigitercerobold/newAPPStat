@@ -11,79 +11,67 @@ import urlStat from 'newAPPStat/src/Lib/url'
 import color from 'newAPPStat/src/Lib/Colors'
 import { TextInput } from 'react-native-gesture-handler';
 import Header from '../../../src/Component/Header'
+import DetalleProducto from '../../../Productos/Views/DetalleProducto'
 
 class AddProducto extends Component {
    state = {
-      products: bodyPart,
-      proveedor: [],
-      loading: false,
-      producto: ''
+      chage: [],
+      comment: ""
    }
    componentDidMount() {
-      this.setProduct()
+
    }
 
 
-   setProduct = () => {
-      this.setState({ producto: this.props.route.params?.producto })
-      console.log("producto seleccionado detalle", this.props.route.params?.producto)
+   onChangeText = (comment) => {
+      this.setState({comment})
    }
-   onPress=()=> {
-      console.log("agregarproducto", this.props.route.params?.producto)
-      const pro = {
-         providerId: 27,
-         products:[
-            {
-            productId:this.props.route.params?.producto.id,
-            comment: "hoa"
-         }]
-      }
-      this.props.route.params.products.push(this.state.producto)
-      this.props.navigation.navigate('AgendarProducto',{
-         pro:pro,producto:this.state.producto,
-         products:this.props.route.params.products
+   onPress = () => {
+      this.props.route.params.product.provider = this.props.route.params.proveedor
+      this.props.route.params.product.comment = this.state.comment
+      this.props.route.params.product.productId = this.props.route.params.productId
+
+      this.props.route.params.products.push(this.props.route.params.product)
       
-      })
+      this.props.navigation.navigate("AgendarProducto", {product :this.state.chage} )
+
    }
+
    render() {
-      const { producto, proveedor, loading } = this.state
+
       return (
-         <View style = {styles.container}>
-            <Title title={producto.name} />
-            <Image style={styles.img} source={require("newAPPStat/assets/img/multimedica.png")}></Image>
-            <Text>{producto.description}</Text>
-            <TextInput 
-             multiline
-             numberOfLines={4}
-            style={styles.textInput}></TextInput>
-            <ListButton title="Confirmar" onPress= {this.onPress}/>
-         </View>
+         <>
+            <ScrollView>
+               <DetalleProducto {...this.props} />
+
+               <UselessTextInput
+                  placeholder ="Comentario"
+                  multiline
+                  numberOfLines={4}
+                  onChangeText={text => this.onChangeText(text)}
+                  value={this.state.comment}
+                  style = {{marginHorizontal:30}}
+                  
+               />
+               <ListButton title="Confirmar" onPress={this.onPress} />
+            </ScrollView>
+
+         </>
+
       )
    }
 
 }
 export default AddProducto;
 
-const styles = StyleSheet.create({
-   textInput:{
-      margin:30,
-      height:150,
-      backgroundColor:"rgba(241,238,238,0.5)",
-      width:220,
-      borderBottomWidth: 1,
-   },
-   flatList: {
-      height: 300,
 
-      flexGrow: 0
-   },
-   img:{
-      width:150,
-      height:150
-   },
-   container:{
-      justifyContent:"center",
-      alignItems:"center",
-      alignContent:"center"
-   }
-})
+const UselessTextInput = (props) => {
+   return (
+      <TextInput
+         {...props} // Inherit any props passed to it; e.g., multiline, numberOfLines below
+         editable
+         maxLength={40}
+         
+      />
+   );
+}

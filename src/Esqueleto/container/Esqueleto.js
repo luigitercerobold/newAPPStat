@@ -13,23 +13,23 @@ class Esqueleto extends Component {
    }
    
    gotoCraneo  ()  {
-      console.log('craneo')
+     
       this.props.navigation.navigate('Craneo',{onPress:this.onPress.bind(this)})
    }
    gotoBrazo  ()  {
-      console.log('go to brazo')
+    
       this.props.navigation.navigate('Brazo',{onPress:this.onPress.bind(this)})
    }
    gotoPiernas () {
-      console.log('go to brazo')
+   
       this.props.navigation.navigate('Piernas',{onPress:this.onPress.bind(this)})
    }
    gotoPies  ()  {
-      console.log('go to brazo')
+     
       this.props.navigation.navigate('Pies',{onPress:this.onPress.bind(this)})
    }
    onPress ( item) {
-      console.log(item)
+    
       this.props.navigation.navigate(this.gotToView(),{body:item});
    }
 
@@ -49,7 +49,7 @@ class Esqueleto extends Component {
     }
    
    renderItem = (item, top,imgWidthBruto,imgWidthNeto) => {
-      console.log(item)
+    
       return (
          <Btn 
             imgWidthNeto={imgWidthNeto} 

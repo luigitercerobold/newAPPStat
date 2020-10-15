@@ -9,7 +9,7 @@ class FechaHora extends Component {
     isDatePickerVisible: false,
   }
   showDatePicker = () => {
-    console.log(this.state.isDatePickerVisible)
+  
     this.setState({ isDatePickerVisible: true });
   };
   hideDatePicker = () => {

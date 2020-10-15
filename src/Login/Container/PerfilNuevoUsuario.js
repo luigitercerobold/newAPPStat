@@ -1,12 +1,15 @@
 
 import React, { Component } from 'react'
-import { View, TextInput, Button } from 'react-native'
+import { View, TextInput, Button,Alert } from 'react-native'
+import Http from '../../Lib/http'
+import Url from '../../Lib/url'
 import Title from "../../Lib/Title";
 import TextBox from '../Component/TextBox'
 import Container from '../Component/LoginComponent/ContainerCenter'
 import BtnSimple from '../Component/BtnSimple'
 import ScrollCenter from '../Component/ScrollCenter'
 import PaddingVertical from '../Component/PaddingVertical'
+import SubTittle from '../../Lib/Component/SubTittle';
 
 class AsistenteAdministrativo extends Component {
    state = {
@@ -16,13 +19,34 @@ class AsistenteAdministrativo extends Component {
    goToToken = () => {
 
    }
-   goToAsistenteAdministrativo = () => {
-      this.props.navigation.navigate('AsistenteAdministrativo', {
-         especialidad: this.state,
-         user: this.props.route.params?.user,
-         body: this.props.route.params?.body
+   goToAsistenteAdministrativo  = async () => {
 
-      })
+      const body = this.props.route.params?.body
+      
+      body.idNumber = this.state.colegiado
+      body.speciality = this.state.especialidad 
+
+      const user = await Http.instance.post(Url.creteUser, JSON.stringify( body))
+      console.log("se ha registrado correctament",user)
+      if (user.message === "Se ha registrado exitosamente.") {
+         this.props.navigation.navigate('AsistenteAdministrativo', {
+            especialidad: this.state,
+            user: user,
+            body: this.props.route.params?.body
+
+         })
+      } else {
+         Alert.alert('Error', user.message, [
+            {
+               text: "Aceptar",
+               onPress: () => { },
+               style: "cancel"
+            }
+         ])
+      }
+
+
+
    }
 
 
@@ -33,22 +57,34 @@ class AsistenteAdministrativo extends Component {
       this.setState(especialidad)
    }
 
+   colegiado = (text) => {
+      this.setState({
+         colegiado: text
+      })
+   }
 
+   especialidad = (text) => {
+      this.setState({
+         especialidad: text
+      })
+   }
    render() {
 
       return (
-         <ScrollCenter>
+      
+<>
+            <Title title="Perfil" />
             
-            <Title title="Tu perfil como doctor" />
+               
             <Container>
                <TextBox
-                  placeholder={this.state.colegiado}
-                  onChangeText={this.onChangeText}
+                  placeholder={"Colegiado"}
+                  onChangeText={this.colegiado}
                />
                <PaddingVertical vertical={0.1} />
                <TextBox
-                  placeholder={this.state.especialidad}
-                  onChangeText={this.onChangeText}
+                  placeholder={"Especialidad"}
+                  onChangeText={this.especialidad}
                />
                <PaddingVertical vertical={0.1} />
                <PaddingVertical vertical={5}>
@@ -58,7 +94,7 @@ class AsistenteAdministrativo extends Component {
                   />
                </PaddingVertical>
             </Container>
-         </ScrollCenter>
+    </>
       )
 
    }

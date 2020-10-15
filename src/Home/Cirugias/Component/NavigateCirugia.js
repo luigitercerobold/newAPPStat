@@ -2,39 +2,53 @@ import React, { Component } from 'react'
 import { Button, View, Text, Image, StyleSheet, Pressable } from 'react-native'
 import Colors from 'newAPPStat/src/Lib/Colors'
 
-function NavigateCirugias(props) {
+function NavigateCirugias({ text1, text2, text3, img, goToPage, action, delate=true,edit =true }) {
+
+
+
    return (
 
       <View>
-         {(props.text1) ?
+         {(text1) ?
             <View style={styles.container}>
                <View style={styles.containerSelector}>
-                  <Image style={styles.img} source={props.img}></Image>
+                  <Image style={styles.img} source={img}></Image>
                   <View style={styles.containerCenter}>
                      <Text style={styles.texPrincipal}>
-                        {props.text1}
+                        {text1}
                      </Text>
                      <Text style={styles.texSeond}>
-                        {props.text2}
+                        {text2}
                      </Text>
                      <Text>
-                        {props.text3}
+                        {text3}
                      </Text>
                   </View>
                   <View>
-                     <Pressable onPress={props.goToPage} style={styles.myButton}>
+                     {delate
+                     ? <Pressable onPress={goToPage} style={[styles.myButton, styles.red]}>
+                           <Image style={styles.pencil} source={require("newAPPStat/assets/Icon/1x/cancerlar_informacion.png")} ></Image>
+                        </Pressable>
+                        : null
+                     }
+
+                     {edit?
+                        <Pressable onPress={goToPage} style={styles.myButton}>
                         <Image style={styles.pencil} source={require("newAPPStat/assets/Icon/1x/editar_inofrmacion.png")} ></Image>
-                     </Pressable>
+                        </Pressable>
+                        :null
+                     }
+                     
                   </View>
                </View>
             </View> :
             <View style={styles.containerCenterNone}>
-               <Pressable onPress={props.goToPage} style={styles.containerNone}>
+               <Pressable onPress={goToPage} style={styles.containerNone}>
                   <View style={styles.myButton}>
                      <Image style={styles.pencil} source={require("newAPPStat/assets/Icon/1x/cirugias-agregar_cirugias.png")} ></Image>
-                  
+
                   </View>
-                  <Text style={styles.textAdd}>{props.action}</Text>
+                  <Text style={styles.textAdd}>{action}</Text>
                </Pressable>
             </View>
 
@@ -46,21 +60,21 @@ function NavigateCirugias(props) {
 
 export default NavigateCirugias;
 const styles = StyleSheet.create({
-   texSeond:{
-      fontSize:16,
-      fontWeight:"600",
+   texSeond: {
+      fontSize: 16,
+      fontWeight: "600",
    },
-   texPrincipal:{
-      fontSize:22,
-      fontWeight:"900",
+   texPrincipal: {
+      fontSize: 22,
+      fontWeight: "900",
    },
-   containerCenterNone:{
-      
-      alignItems:'center'
+   containerCenterNone: {
+
+      alignItems: 'center'
    },
    containerNone: {
       flexDirection: 'row',
-      width:190,
+      width: 190,
       marginVertical: 25,
       alignContent: 'center',
 
@@ -86,14 +100,16 @@ const styles = StyleSheet.create({
 
    },
    myButton: {
-      padding: 5,
-      height: 45,
-      width: 45,  //The Width must be the same as the height
+      margin: 10,
+      height: 30,
+      width: 30,  //The Width must be the same as the height
       borderRadius: 400, //Then Make the Border Radius twice the size of width or Height   
       backgroundColor: Colors.blue,
       justifyContent: 'center',
       alignItems: 'center',
-
+   },
+   red: {
+      backgroundColor: Colors.red,
    },
    containerCenter: {
       flex: 1,

@@ -1,6 +1,6 @@
 const init =JSON.stringify({
-   email: "c.barrera.home@gmail.com",
-   password: "Calavera12",
+   email: "estuardo@bold.gt",
+   password: "123456789",
 })
 
 export default init

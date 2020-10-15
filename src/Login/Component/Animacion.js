@@ -22,10 +22,6 @@ class LoadingSc extends Component {
           duration: 400,
         }),
 
-        // Animated.timing(LogoScale, {
-        //   toValue: 2,
-        //   duration: 500,
-        // }),
       ]),
       Animated.parallel([
         Animated.timing(LogoAnime, {
@@ -42,7 +38,7 @@ class LoadingSc extends Component {
     ]).start(({ finished }) => {
       setTimeout(
           function() {
-              this.props.navigation.navigate('Auth');
+              this.props.navigation.navigate('Login');
           }
               .bind(this),
           500
@@ -60,27 +56,17 @@ class LoadingSc extends Component {
             transform: [
               {
                 translateY: this.state.LogoAnime,
-                // scale: this.state.LogoScale.interpolate({
-                //   inputRange: [0, 0.5, 1],
-                //   outputRange: [1, 0.8, 0.6],
-                // }),
-                // scaleY: this.state.LogoScale.interpolate({
-                //   inputRange: [0, 0.5, 1],
-                //   outputRange: [1,0.5, 0.2],
-                // }),
+             
               },
             ],
             top: this.state.LogoAnime.interpolate({
               inputRange: [0, 1],
-              outputRange: [80, 0],
+              outputRange: [60, 0],
             }),
           }}>
-          <Image style={{width: 185, height: 55}} source={Logo} />
+          <Image style={{width: 145, height: 35,}} source={Logo} resizeMode= 'contain' />
         </Animated.View>
 
-        {/*<Text style={{fontFamily: 'Questrial-Regular', fontSize: 32}}>*/}
-        {/*  Cargando escena*/}
-        {/*</Text>*/}
       </View>
     );
   }

@@ -6,7 +6,7 @@ class DrawerMenu extends Component {
 
    render() {
       // prepare your drawer content
-      var drawerContent = (<DrawerContent></DrawerContent>)
+    
       // customize drawer's style (Optional)
       var customStyles = {
          drawer: {
@@ -17,8 +17,11 @@ class DrawerMenu extends Component {
          mask: {}, // style of mask if it is enabled
          main: {} // style of main board
       };
-
-    
+      const onPress = () => {
+       
+        this.drawer.closeDrawer()
+      }
+      var drawerContent = (<DrawerContent onPress={this.props.onPress} close= {onPress}></DrawerContent>)
       return (
          <Drawer
             ref={drawer => this.drawer = drawer}
@@ -28,8 +31,8 @@ class DrawerMenu extends Component {
             type={Drawer.types.Overlay}
             customStyles={{ drawer: styles.drawer }}
             drawerPosition={Drawer.positions.Right}
-            onDrawerOpen={() => { console.log('Drawer is opened'); }}
-            onDrawerClose={() => { console.log('Drawer is closed') }}
+            //onDrawerOpen={() => { console.log('Drawer is opened'); }}
+            //onDrawerClose={() => { console.log('Drawer is closed') }}
             easingFunc={Easing.ease}
          >
 
@@ -55,7 +58,7 @@ const styles = StyleSheet.create(
          backgroundColor: "green"
       },
       drawer: {
-         backgroundColor: "gray",
+         backgroundColor:"white",
          flex: 1,
       },
       content: {

@@ -1,53 +1,47 @@
 import React from 'react';
-import {TextInput,StyleSheet,View} from 'react-native'
-import Padding from './PaddingVertical';
+import { TextInput, StyleSheet, View } from 'react-native'
 
-const TextBox = ({ placeholder,value,onChangeText,keyword='default'},autocomplete ="off") => {
+
+const TextBox = ({ placeholder, onChangeText, keyword = 'default' , autocomplete = "off",style}) => {
 
    return (
-      <View style =  {styles.Container}>
-<View style ={styles.Row} >
-         
-         <TextInput 
-          style ={styles.textStyle} 
-          onChangeText ={text => onChangeText(text)}
-          placeholder={placeholder}
-          keyboardType = {keyword}
-         
-         
-          
-         />
+      <View style={[styles.Container,style]}>
+         <View style={styles.Row} >
+            <TextInput
+               style={styles.textStyle}
+               onChangeText={text => onChangeText(text)}
+               placeholder={placeholder}
+               keyboardType={keyword}
+            />
+         </View>
       </View>
-      </View>
-      
-     
    )
 }
 
 export default TextBox;
 
-const styles =  StyleSheet.create({
-   textStyle:{
+const styles = StyleSheet.create({
+   textStyle: {
       letterSpacing: 3,
       color: 'gray',
       fontFamily: 'Questrial-Regular',
       fontWeight: '100',
       fontSize: 22,
-    
+
       borderBottomWidth: 1,
       borderBottomColor: '#2185fb',
-      
-      width:'100%',
-      paddingHorizontal:15,
-      
+
+      width: '100%',
+      paddingHorizontal: 15,
+
    },
    Row: {
-    
+
       flexDirection: 'row',
-      justifyContent:'center'
+      justifyContent: 'center'
    }
-   ,Container:{
-      paddingHorizontal:25
+   , Container: {
+      paddingHorizontal: 25
    }
 
 })

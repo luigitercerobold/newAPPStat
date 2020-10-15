@@ -16,7 +16,7 @@ const Listitem = ({ item, onPress,activate,img }) => {
       }
    }
    const pressed = () => {
-      console.log('presable')
+    
       onPress();
    }
 

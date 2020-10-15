@@ -19,7 +19,8 @@ class AgendarCirugia extends Component {
       token: '',
       loading:false,
       message:'Bad',
-      isOk:true
+      isOk:true,
+      loading2:false
       
    }
 
@@ -43,7 +44,7 @@ class AgendarCirugia extends Component {
    }
 
    changeDate(date, hour, timer) {
-      console.log(date, hour, timer)
+    
    }
 
    isHospital() {
@@ -57,12 +58,16 @@ class AgendarCirugia extends Component {
       if (!this.props.route.params?.producto) {
          return ""
       }
-      return this.props.route.params?.producto[0].name
+      if (this.props.route.params?.producto.length>0){
+         return this.props.route.params?.producto[0].name
+      }
+      return "sin datos"
+     
    }
 
 
    confirmar = async () => {
-      console.log('confirmar');
+  
      
       const body = JSON.stringify({
 
@@ -76,7 +81,7 @@ class AgendarCirugia extends Component {
             hours: this.props.route.params?.fullTime.getHours(),
             minutes: this.props.route.params?.fullTime.getMinutes(),
          },
-         orders: this.props.route.params?.pro,
+         orders: this.props.route.params?.producto,
          guests: [
             {
                id: 1,
@@ -86,25 +91,26 @@ class AgendarCirugia extends Component {
                response: ""
             },]
       });
-      console.log(body)
-      this.setState({loading:true})
+   
+      this.setState({loading:true,loading2:true})
       const data =  await http.instance.post(url.saveCirugia, body, http.instance.getToken())
       this.setState({message:data.message})
-      console.log('respuesta de servidor',data.message)
-      if (this.state.message === 'Datos incompletos' ){
-         console.log('datos incomletos cambiando de estado malo')
-         this.setState({isOk:false})
-      }else {
-         console.log('datos incomletos cambiando de estado bien')
+      this.setState({loading2:false})
+      if (this.state.message === 'Se ha creado la cita correctamente.' ){
          this.setState({isOk:true})
+         
+      }else {
+         this.setState({isOk:false})
+         
       }
       
    }
 
    handlePress = () =>{
-         if (this.state.message === 'Datos incompleto' ){
-            console.log('datos incomletos cambiando de estado malo')
-            this.setState({isOk:false})
+         if (this.state.message === 'Se ha creado la cita correctamente.'){
+          
+            this.setState({isOk:true})
+            this.gotoEstado()
          }else {
             this.setState({isOk:false})
             this.goToBack()
@@ -112,7 +118,7 @@ class AgendarCirugia extends Component {
      
    }
    gotoEstado = () => {
-      this.props.navigation.navigate('EstadoCirugia', { body: body })
+      this.props.navigation.navigate('EstadoCirugia')
       this.setState({isOk:true})
    }
    goToBack = ()=> {
@@ -129,6 +135,7 @@ class AgendarCirugia extends Component {
                title = {this.state.message}
                onPress ={this.handlePress}
                isOk = {this.state.isOk}
+               loading = {this.state.loading2}
             />
             :<ScrollView>
             <Title title="Agendar Cirugía" />
@@ -140,14 +147,15 @@ class AgendarCirugia extends Component {
                text2={this.props.route.params?.timer}
                // text3={}
                action="Agendar cirugía"
+               delate={false}
             ></Navigate>
             <Navigate
                img={require("newAPPStat/assets/Icon/1x/cirugia_agendada.png")}
                goToPage={() => this.goToCuerpo()}
                text1={this.props.route.params?.bodyPart}
                text2={this.props.route.params?.procedimiento}
-
                action="Añadir cirugía"
+               delate={false}
             ></Navigate>
             <Navigate
                img={require("newAPPStat/assets/Icon/1x/hospital-agregado.png")}
@@ -155,12 +163,14 @@ class AgendarCirugia extends Component {
                text1={this.isHospital()}
 
                action="Añadir Hopital"
+               delate={false}
             ></Navigate>
             <Navigate
                img={require("newAPPStat/assets/Icon/1x/asistencia-agregada.png")}
                goToPage={() => this.goToAsistent()}
                text1={this.props.route.params?.asistente}
                action="Añadir Asistencia"
+               delate={false}
             ></Navigate>
             <Navigate
                img={require("newAPPStat/assets/Icon/1x/menu-productos.png")}
@@ -168,6 +178,7 @@ class AgendarCirugia extends Component {
                text1={this.isProduct()}
                text2="..."
                action="Añadir Productos"
+               delate={false}
             ></Navigate>
             <ListButton title="Aceptar" onPress={this.confirmar}/>
             </ScrollView>

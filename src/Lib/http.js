@@ -19,17 +19,7 @@ class Http {
    }
 
 
-   get = async (url) => {
-      console.log("eviando", url)
-      try {
-         let req = await fetch(url);
-         let json = await req.json();
-         return json
-      }catch(err){
-         console.log("http get method err", err);
-         throw Error(err);
-      }
-   }
+  
    post = async (url,body) => {
       try {
          let req = await fetch (url,{
@@ -49,7 +39,7 @@ class Http {
       }
    }
    get = async (url,token) => {
-      console.log("eviando2", url)
+      console.log("eviando2", url, token)
       try {
          let req = await fetch(url,{
             method:"GET",
@@ -60,7 +50,7 @@ class Http {
              },
          });
          let json = await req.json();
-         console.log(json)
+         console.log('recibido de get 2',json)
          return json
       }catch(err){
          console.log("http get method err", err);

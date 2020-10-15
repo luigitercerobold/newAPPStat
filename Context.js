@@ -12,7 +12,7 @@ const Provider = ({children}) => {
          setIsAuth(true)
       },
       logAuth: () =>{
-
+         setIsAuth(false )
       }
       
    }

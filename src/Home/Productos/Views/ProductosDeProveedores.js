@@ -15,7 +15,10 @@ import Header from '../../src/Component/Header'
 import Drawer from '../../../Drawer/DrawerMenu'
 import SimpleButton from '../../../Lib/Component/BotonSiemple'
 class Productos extends Component {
-
+   constructor (props){
+      super(props)
+      this.goToDetalleProdcuto.bind(this)
+   }
 
    state = {
 
@@ -23,9 +26,13 @@ class Productos extends Component {
       loading: false,
       selectProduct: "",
       proveedor: [],
-      bodyPart: []
+      bodyPart: [],
+      allProducto:[]
    }
+
+   
    componentDidMount() {
+   
       this.getProdcuts();
       this.setState({
          proveedor: this.props.route.params.proveedor,
@@ -33,6 +40,7 @@ class Productos extends Component {
 
       })
    }
+
    getProdcuts = async () => {
       this.setState({ loading: true })
 
@@ -41,29 +49,55 @@ class Productos extends Component {
          bodyPartId: this.props.route.params?.body.id
       })
       const obj = await http.instance.post(urlStat.getProviderProducts, body, http.instance.getToken(),)
-      this.setState({ producto: obj.data, loading: false })
-
-
+      this.setState({ allProducto:obj.data,producto: obj.data, loading: false })
+      
    }
 
    onPress = (item) => {
-
-      this.props.navigation.navigate('DetalleProducto', {
+      const query ={
          product: item,
          proveedor: this.props.route.params.proveedor,
-      })
+      }
+      this.goToDetalleProdcuto(query)
    }
+
+   goToDetalleProdcuto (query) {
+
+      this.props.navigation.navigate('DetalleProducto', query)
+   }
+
+
    listas = () => {
       return this.state.producto.map(product => (
          <ProuductIMG
             onPress={() => this.onPress(product)}
             product={product}
+            key={product.id}
          >{product.name}</ProuductIMG>
       ))
    }
    referenceDrawer = () => {
       console.log(this.refDrawer.drawer.openDrawer())
    }
+
+   categoriesFilter = (query) => {
+      console.log(query)
+      const {allProducto} =this.state
+      const providerFiltered = allProducto.filter(producto =>{
+         for (let canCategori = 0; canCategori < producto.categories.length; canCategori++) {
+            const element = producto.categories[canCategori];
+            if(element.id === query.id){
+
+               return producto
+            }
+            
+         }
+        
+      })
+      this.setState({producto:providerFiltered})
+   }
+
+
    render() {
       const { producto, loading, proveedor, bodyPart } = this.state
 
@@ -71,20 +105,23 @@ class Productos extends Component {
 
          <Drawer
             ref={drawer => this.refDrawer = drawer}
+            onPress = {this.categoriesFilter}
          >
             <View>
+              
+               <View style={styles.categories}>
+                  <Title title={proveedor.name} />
+                  <SimpleButton
+                     title='Categorías'
+                     onPress= {this.referenceDrawer}
+                  />
+               </View>
+
                {loading
                   ? <ActivityIndicator color={color.blue} size="large" />
                   : null
                }
 
-               <View style={styles.categories}>
-                  <Title title={proveedor.name} />
-                  <SimpleButton
-                     title='categorías'
-                     onPress= {this.referenceDrawer}
-                  />
-               </View>
                <ScrollView
                   style={styles.scroll}>
                   <ProuductRow>
@@ -110,6 +147,9 @@ const styles = StyleSheet.create({
       height: '80%'
    },
    categories:{
-      flexDirection:"row"
+      flexDirection:"row",
+      alignItems:'flex-end',
+      alignContent:"center",
+      justifyContent:"space-evenly"
    }
 })

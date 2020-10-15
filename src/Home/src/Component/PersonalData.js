@@ -18,7 +18,7 @@ import {
 import { DrawerActions } from 'react-navigation';
 import Section from '../Component/Section'
 import User from '../../../Lib/user'
-
+import url from '../../../Lib/url'
 class MenuSc extends Component {
   constructor(props) {
     super(props);
@@ -40,7 +40,22 @@ class MenuSc extends Component {
     this.props.navigation.navigate('IndexProduct')
 
   }
+getUser =()=>{
 
+  if(User.instance.getUser()===null){
+ return "loading"
+  }else {
+   return User.instance.getUser().name
+  }
+}
+getPhoto =()=>{
+
+  if(User.instance.getUser()===null){
+ return "loading"
+  }else {
+   return User.instance.getUser().photo
+  }
+}
 
 
   render(props) {
@@ -48,7 +63,7 @@ class MenuSc extends Component {
     return (
  
         <View style={styles.header} {...props}>
-        <Image style={styles.imgContainer, styles.imgalingrigtg} source={require('newAPPStat/assets/img/avatar.png')} />
+        <Image style={styles.imgContainer, styles.imgalingrigtg} source={{uri:url.img + this.getPhoto()}} />
           <Text
             style={{
               alignSelf: 'flex-start',
@@ -59,7 +74,7 @@ class MenuSc extends Component {
               fontSize: 24,
               color: 'white',
             }}>
-            {User.instance.getUser().name}
+            {this.getUser()}
           </Text>
         </View>
      
@@ -76,8 +91,7 @@ const styles = StyleSheet.create({
   header: {
     flex: 1,
     width: '100%',
-    //alignItems: 'center',
-    //justifyContent: 'center',
+  marginTop:25,
     backgroundColor: '#2185fb',
   },
 
@@ -85,12 +99,12 @@ const styles = StyleSheet.create({
     flex: 2,
   },imgContainer: {
    width: 66,
-   height: 66
+   height: 66,
  },
  imgalingrigtg: {
    marginLeft: 30,
    width: 90,
-   height: 90
+   height: 90,borderRadius:50
  },
 
 });

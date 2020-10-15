@@ -1,16 +1,19 @@
 import { CardStyleInterpolators } from '@react-navigation/stack'
 import React from 'react'
-import { View, StyleSheet, Text, Image } from 'react-native'
+import { View, StyleSheet, Text, Image, StatusBar,ActivityIndicator } from 'react-native'
 import Color from '../Colors'
 import SimpleBoton from './BotonSiemple'
 
-const AceptRequest = ({ title = 'Aceptar',onPress,isOk }) => {
+const AceptRequest = ({ title = 'Aceptar',onPress,isOk,loading }) => {
    console.log(isOk)
    return (
       <View style={styles.container}>
          <View style={styles.container}>
-
          </View>
+      {!loading
+         ?
+      <>
+        
          <View style={styles.container}>
             <View style={styles.message}>
                {isOk 
@@ -29,8 +32,9 @@ const AceptRequest = ({ title = 'Aceptar',onPress,isOk }) => {
                />
             </View>
          </View>
-
-
+      </>
+      :<ActivityIndicator color={Color.blue} size="large" /> 
+      }
       </View>
 
    )

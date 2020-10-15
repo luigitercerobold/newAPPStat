@@ -1,13 +1,25 @@
 import React from 'react'
-import {Image, StyleSheet, Text, View} from 'react-native'
-
-const TextMenu = ({title}) => {
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
+import Color from '../../Lib/Colors'
+const TextMenu = ({ title, onPress }) => {
 
    return (
-      <View style ={styles.container}>
-         <Text>{title}</Text>
+      <Pressable
+         onPress = {onPress}
+         style={({ pressed }) => [
+            
+             pressed
+                ? styles.containerPressable
+                : styles.container,
+            ,
+            styles.container
+          ]}
+      >
          
-      </View>
+            <Text style = {styles.text}>{title}</Text>
+       
+      </Pressable>
+
 
    )
 
@@ -18,14 +30,21 @@ export default TextMenu
 const styles = StyleSheet.create(
    {
 
-      container:{
-         flex:0.5
-      }, 
-      img:{
-         width:100,
-         height:100,
+      container: {
+      
+         height:40,
+         justifyContent:'center',
+         flex:1
+      },
+      containerPressable:{
+         backgroundColor:Color.gray,
          
          
+      },
+      text: {
+         paddingHorizontal:20,
+         fontSize:15
       }
+      
    }
 )

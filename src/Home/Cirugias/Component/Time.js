@@ -19,7 +19,7 @@ class Time extends Component {
     })
 
 
-    console.log(selectedDate, this.state.date)
+
     this.props.onChangeEnd(selectedDate)
 
   }

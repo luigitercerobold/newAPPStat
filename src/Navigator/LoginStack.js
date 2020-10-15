@@ -12,13 +12,14 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Color from '../Lib/Colors'
 import {LogoTitle} from './LogoTitle'
 import {BackImageRow} from './BackImageRow'
+import Animacion from '../Login/Component/Animacion';
 const StackLogin = createStackNavigator();
 
 
 export function StackLoginFunction() {
    return (
      <StackLogin.Navigator
-       initialRouteName="Login"
+       initialRouteName="Animacion"
        screenOptions={{
          headerShown: true,
          headerTintColor: '#fff',
@@ -26,7 +27,8 @@ export function StackLoginFunction() {
            backgroundColor: Color.blue,
          },
          headerTitle: props => <LogoTitle pro={props} {...props} />,
-         headerBackImage: props => <BackImageRow {...props} />
+         headerBackImage: props => <BackImageRow {...props} />,
+         headerRight: prps
        }}
      >
        
@@ -37,6 +39,8 @@ export function StackLoginFunction() {
        <StackLogin.Screen options={{ title: 'Procedimiento' }} name="Procedimiento" component={Procedimiento} />
        <StackLogin.Screen options={{ title: 'Asistente Administrativo' }} name="AsistenteAdministrativo" component={AsistenteAdministrativo} />
        <StackLogin.Screen options={{ title: 'Login' }} name="Login" component={Login} options={{ title: 'Menu', headerShown: false }} />
+       <StackLogin.Screen options={{ title: 'Login' }} name="Animacion" component={Animacion} options={{ title: 'Menu', headerShown: false }} />
+     
      </StackLogin.Navigator>
    )
  }

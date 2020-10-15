@@ -1,52 +1,79 @@
 import React from 'react';
-import { Component,useEffect} from 'react';
-import {View,FlatList, Button,Text,StyleSheet} from 'react-native';
+import { Component, useEffect } from 'react';
+import { View, FlatList, Button, Text, StyleSheet } from 'react-native';
 import ButtonAddProduct from './Component/ButtonAddProduct'
 import ListButton from '../../Component/ListButton'
 import Title from '../../../../Lib/Title'
 import BtnProximaCirugia from '../../Component/BtnProximaCirugia'
 import Line from '../../Component/Line';
 import Header from '../../../src/Component/Header'
+import NavigateCirugia from '../../Component/NavigateProducto'
+import { ScrollView } from 'react-native-gesture-handler';
 class AgendaProducto extends Component {
-   state={
-      products:[],
-      loading:false,
-      pro:[]
-    
+   state = {
+      products: []
+      ,
+      loading: false,
+      pro: [],
+      remove:false
+
    }
 
-   componentDidUpdate(){
-     if(this.props.route.params?.products){
-        console.log(this.props.route.params?.products)
-     }
-      this.addProduct();
+   componentDidUpdate() {
+
+      console.log(this.state.products)
+      if (this.props.route.params?.products) {
+         if (this.props.route.params.products != this.state.products) {
+            this.setState({ pro: this.props.route.params.products })
+         }
+      }
+
    }
-   
-   addProduct(){
-   
+
+   addProduct() {
+
    }
    onPress = () => {
-      this.props.navigation.navigate('ElegirBody', {products:this.state.products})
+      this.props.navigation.navigate('ElegirBody', { products: this.state.products })
    }
    goToAgandarCirugia = () => {
-      console.log("se envio pro",this.state.pro)
-      this.props.navigation.navigate('AgendarCirugia',{pro:this.state.pro, producto:this.state.products})
+      console.log("se envio pro", this.state.pro)
+      this.props.navigation.navigate('AgendarCirugia', { pro: this.state.pro, producto: this.state.products })
+   }
+   removeElement = (item) => {
+
+      const produtctos = this.state.products.filter(function(product) {
+         return product.id !== item.id; 
+     });
+     this.setState({products:produtctos})
    }
 
-   
 
-   render(){
-      const {products,loading} = this.state
+
+   render() {
+      const { products, loading } = this.state
 
       return (
-         <View>
-            <Title title="Productos Agregados"/>
+         <View  style={{flex:1}}>
+            <Title title="Productos Agregados" />
+            <ScrollView style={{flex:1}}>
+
             <FlatList
                data={products}
-      renderItem={({ item }) => <Line><Text style={styles.text}> {item.name}</Text></Line>}
+               styles = {styles.flatLis}
+               renderItem={({ item }) =>
+              
+                  <NavigateCirugia
+                     item={item}
+                 
+                     remove = {this.removeElement}
+                   
+                  ></NavigateCirugia>
+               }
             />
-            <BtnProximaCirugia onPress = {this.onPress} text="Agregar Producto" img={require("newAPPStat/assets/Icon/1x/cirugias-agregar_cirugias.png")}/>
-            <ListButton title= "confirmar" onPress= {this.goToAgandarCirugia}/>
+            <BtnProximaCirugia onPress={this.onPress} text="Agregar Producto" img={require("newAPPStat/assets/Icon/1x/cirugias-agregar_cirugias.png")} />
+            <ListButton title="confirmar" onPress={this.goToAgandarCirugia} />
+            </ScrollView>
          </View>
 
       )
@@ -55,8 +82,11 @@ class AgendaProducto extends Component {
 }
 export default AgendaProducto;
 const styles = StyleSheet.create({
-   text:{
-      textAlign:"center",
-      fontSize:20
+   text: {
+      textAlign: "center",
+      fontSize: 20
+   },
+   flatLis:{
+      flex:0.3
    }
 })

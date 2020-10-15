@@ -1,7 +1,8 @@
 import React from 'react';
-import { Text, View,StyleSheet,Pressable } from 'react-native'
+import { Text, View,StyleSheet,Pressable, Image } from 'react-native'
 import Line from './Line'
-import color from 'newAPPStat/src/Lib/Colors';
+import color from '../Colors';
+import urlStat from '../url';
 
 const Listitem = ({ item, onPress,activate }) => {
   const state={
@@ -15,15 +16,18 @@ const Listitem = ({ item, onPress,activate }) => {
       }
    }
    const pressed = () => {
-      console.log('presable')
+      console.log(urlStat.img+ item.photo)
       onPress();
    }
 
    return (
-      <Pressable onPress={pressed} style={activated}>
+      <Pressable onPress={pressed} style={[activated,styles.container]}>
          <Line>
             <View style={styles.containerItem}>
-               <Text>{item}</Text>
+               <Text style = {styles.text}>{item.name}</Text>
+
+             
+               <Image resizeMode='contain' style = {styles.image} source= {{uri: urlStat.img+ item.photo}}></Image>
             </View>
          </Line>
       </Pressable>
@@ -33,21 +37,27 @@ export default Listitem;
 
 const styles = StyleSheet.create(
    {
-      
-      
       activated:{
-         
-        
-         backgroundColor:color.blue,
+         backgroundColor:color.gray,
+         flex:1
       },
       container:{
-         backgroundColor:'rgb(255, 0, 255)',
-         
+         flex:1
       },
       containerItem:{
          alignItems:'center',
-         paddingVertical:25,
-         backgroundColor:'white'
+         paddingVertical:5,
+         backgroundColor:color.gray
+      },
+      image:{
+         height:100,
+         width:'100%'
+      },
+      text:{
+         margin: 10,
+         fontSize: 20,
+         color: color.grayLetter
+
       }
    }
 )
