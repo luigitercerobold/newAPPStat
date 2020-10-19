@@ -24,7 +24,7 @@ const ContainerImg = ({ craneo, data, renderItem }) => {
    })
 
    const heightMessure = (poss) => {
-      const padding = 30
+      const padding = 40
       const heightOriginal = 930
       const widthOriginal = 496
       const constanteCenter = heightOriginal / widthOriginal
@@ -35,7 +35,7 @@ const ContainerImg = ({ craneo, data, renderItem }) => {
       const topVertical = center - centerToTop
       const TopHorizontal = center - imgSize.height / 2
 
-      if (imgSize.width + 300 < imgSize.height) {
+      if (imgSize.width  < imgSize.height && imgSize.height /imgSize.width >heightOriginal/widthOriginal) {
          
          imgWidthNeto = imgSize.width
          return topVertical + ((centerToTop * 2) / 8) * poss

@@ -21,11 +21,17 @@ class AgendaProducto extends Component {
 
    componentDidUpdate() {
 
-      console.log(this.state.products)
       if (this.props.route.params?.products) {
          if (this.props.route.params.products != this.state.products) {
             this.setState({ pro: this.props.route.params.products })
          }
+      }
+
+   }
+   componentDidMount () {
+     
+      if (this.props.route.params.products) {
+         this.setState({products:this.props.route.params.products})
       }
 
    }
@@ -37,8 +43,8 @@ class AgendaProducto extends Component {
       this.props.navigation.navigate('ElegirBody', { products: this.state.products })
    }
    goToAgandarCirugia = () => {
-      console.log("se envio pro", this.state.pro)
-      this.props.navigation.navigate('AgendarCirugia', { pro: this.state.pro, producto: this.state.products })
+     
+      this.props.navigation.navigate('AgendarCirugia', { pro: this.state.pro, producto: this.state.products,products: this.state.products })
    }
    removeElement = (item) => {
 

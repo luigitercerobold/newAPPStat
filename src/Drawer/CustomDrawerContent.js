@@ -15,7 +15,7 @@ const CustomDrawerContent = (props) => {
       <Header />
       <Inicio goTo={()=>  props.navigation.navigate('Menu')}/>
       <Menu navigation ={props.navigation} />
-      <Permisos goTo={()=>  props.navigation.navigate('IndexProduct')}/>
+      <Permisos goTo={()=>  props.navigation.navigate('AsistenteAdministrativo')}/>
       <CerrarSesion/>
       
       

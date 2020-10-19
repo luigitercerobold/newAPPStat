@@ -22,14 +22,13 @@ class Cuerpo extends Component {
    componentDidMount = async () => {
       this.getBodyPart()
       
-      console.log('eviado',this.props.route.params?.body)
+    
    }
 
    getBodyPart = async () =>{
-      console.log(Http.instance.getToken());
+    
       const bodyPart = await Http.instance.get(url.getBoddy,Http.instance.getToken())
-      console.log("body parts",bodyPart)
-      
+   
       bodyPart.data.forEach(element => {
          this.state.bodyPart2.push({
             label: element.id,
@@ -39,7 +38,7 @@ class Cuerpo extends Component {
       this.setState({bodyPart:bodyPart.data})
    }
    onPress = () => {
-      console.log(this.state.value)
+     
       this.props.navigation.navigate('AgendarCirugia',{bodyPart:this.props.route.params?.body.name, procedimiento:this.state.procedimiento})
    }
    textInputChange = (value) =>{

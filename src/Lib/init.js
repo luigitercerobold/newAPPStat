@@ -1,5 +1,5 @@
 const init =JSON.stringify({
-   email: "estuardo@bold.gt",
+   email: "luigitercero3@gmail.com",
    password: "123456789",
 })
 

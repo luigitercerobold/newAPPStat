@@ -33,14 +33,19 @@ class AgendarCirugia extends Component {
    goToHospital() {
       this.props.navigation.navigate('Hospital',)
    }
-   goToProducto() {
-
-   }
+ 
    goToAsistent() {
-      this.props.navigation.navigate('Asistente',)
+      
+      this.props.navigation.navigate('AgregarAsistente',
+      {
+         allDoctor:  this.props.route.params?.allDoctor,
+         anestesia:  this.props.route.params?.anestesia,
+         doctor:  this.props.route.params?.doctor
+      }
+   )
    }
    goToProducto() {
-      this.props.navigation.navigate('AgendarProducto')
+      this.props.navigation.navigate('AgendarProducto',{products: this.props.route.params?.producto})
    }
 
    changeDate(date, hour, timer) {
@@ -54,7 +59,7 @@ class AgendarCirugia extends Component {
       return this.props.route.params?.hospital.name
    }
    isProduct() {
-      console.log("producto",this.props.route.params?.product);
+      
       if (!this.props.route.params?.producto) {
          return ""
       }
@@ -168,7 +173,7 @@ class AgendarCirugia extends Component {
             <Navigate
                img={require("newAPPStat/assets/Icon/1x/asistencia-agregada.png")}
                goToPage={() => this.goToAsistent()}
-               text1={this.props.route.params?.asistente}
+               text1={this.props.route.params?.allDoctor[0].name}
                action="Añadir Asistencia"
                delate={false}
             ></Navigate>

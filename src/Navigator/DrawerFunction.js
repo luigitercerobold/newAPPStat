@@ -49,7 +49,17 @@ import {LogoTitle} from './LogoTitle'
 import {BackImageRow} from './BackImageRow'
 import Gallery from '../Home/Productos/Views/GaleryProduc'
 import Hamburgues from './Hamburgues'
- const Stack = createStackNavigator();
+
+import Asistencia from '../Home/Asistente/View/Asistencia'
+import InvitarContacto from '../Home/Asistente/View/Invitar'
+import BuscarContacto from '../Home/Asistente/View/Buscar'
+import AsistenteAdministrativo from '../Home/Asistente/View/Asistente'
+import SendInvitation from '../Home/Asistente/View/SendInivitation'
+
+import AgregarAsistente from '../Home/Cirugias/Views/Asistencia/View/Index'
+import AgregarAsistenteDeStat from '../Home/Cirugias/Views/Asistencia/View/AgregarDeStat'
+import AgregarDeContacto from '../Home/Cirugias/Views/Asistencia/View/AgregarDeContactos'
+const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 function NavStack() {
@@ -100,7 +110,18 @@ function NavStack() {
       <Stack.Screen name="ProductosProductos" component={ProductosProductos} />
       <Stack.Screen name="DetalleProducto" component={DetalleProducto} />
       <Stack.Screen name="Provider" component={Providers} />
-      <Stack.Screen name="Gallery" component={Gallery} />
+      <Stack.Screen name="Asistencia" component={Asistencia} />
+      <Stack.Screen name="BuscarContacto" component={BuscarContacto} />
+      <Stack.Screen name="InvitarContacto" component={InvitarContacto} />
+      <Stack.Screen name="SendInvitation" component={SendInvitation} />
+      <Stack.Screen name="AsistenteAdministrativo" component={AsistenteAdministrativo} />
+
+      <Stack.Screen name="AgregarAsistente" component={AgregarAsistente} />
+      <Stack.Screen name="AgregarAsistenteDeStat" component={AgregarAsistenteDeStat} />
+      <Stack.Screen name="AgregarDeContacto" component={AgregarDeContacto} />
+      
+
+      
     </Stack.Navigator>
   );
 }

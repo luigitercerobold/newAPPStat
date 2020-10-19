@@ -13,12 +13,15 @@ import Color from '../Lib/Colors'
 import {LogoTitle} from './LogoTitle'
 import {BackImageRow} from './BackImageRow'
 import Animacion from '../Login/Component/Animacion';
+import Olvidar from '../Login/Container/Olvidar'
+import CorreoCorrectamente from '../Login/Container/CorreoCorrectamente'
 const StackLogin = createStackNavigator();
 
 
 export function StackLoginFunction() {
    return (
      <StackLogin.Navigator
+    
        initialRouteName="Animacion"
        screenOptions={{
          headerShown: true,
@@ -28,7 +31,8 @@ export function StackLoginFunction() {
          },
          headerTitle: props => <LogoTitle pro={props} {...props} />,
          headerBackImage: props => <BackImageRow {...props} />,
-         headerRight: prps
+         //headerRight:props => <Hamburgues {...props}/>,
+         headerTitleAlign:"center"
        }}
      >
        
@@ -40,6 +44,8 @@ export function StackLoginFunction() {
        <StackLogin.Screen options={{ title: 'Asistente Administrativo' }} name="AsistenteAdministrativo" component={AsistenteAdministrativo} />
        <StackLogin.Screen options={{ title: 'Login' }} name="Login" component={Login} options={{ title: 'Menu', headerShown: false }} />
        <StackLogin.Screen options={{ title: 'Login' }} name="Animacion" component={Animacion} options={{ title: 'Menu', headerShown: false }} />
+       <StackLogin.Screen options={{ title: 'Olvidar' }} name="Olvidar" component={Olvidar}  />
+       <StackLogin.Screen options={{ title: 'Olvidar' }} name="CorreoCorrectamente" component={CorreoCorrectamente}  />
      
      </StackLogin.Navigator>
    )

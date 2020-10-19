@@ -49,21 +49,21 @@ const styles = StyleSheet.create({
       fontFamily: 'Questrial-Regular',
       fontWeight: '100',
       fontSize: 22,
-      // marginEnd: "10%",
+
       borderBottomWidth: 1,
       borderBottomColor: '#2185fb',
-   
+
       width: '100%',
-      borderBottomWidth: 1,
-      borderBottomColor: '#2185fb',
+      paddingHorizontal: 15,
+
    },
    Row: {
-     
+
       flexDirection: 'row',
       justifyContent: 'center'
-   }, 
-   Container: {
-      paddingHorizontal: 50
+   }
+   , Container: {
+      paddingHorizontal: 55
    },
    img: {
       width:35,

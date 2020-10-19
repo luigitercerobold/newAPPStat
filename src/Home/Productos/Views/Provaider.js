@@ -24,7 +24,7 @@ class Proveedor extends Component {
       this.setState({ loading: true })
       const proveedor = await http.instance.get(urlStat.getProveedor, http.instance.getToken())
       this.setState({ proveedor: proveedor.data, loading: false, allProvider: proveedor.data })
-      console.log(this.state.proveedor)
+    
       return proveedor
    }
 

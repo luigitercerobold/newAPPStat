@@ -18,6 +18,7 @@ import http from 'newAPPStat/src/Lib/http'
 import urlStat from 'newAPPStat/src/Lib/url'
 import init from '../../../Lib/init'
 import User from '../../../Lib/user'
+
 class MenuSc extends Component {
   constructor(props) {
     super(props);
@@ -42,7 +43,7 @@ class MenuSc extends Component {
   }
 
   mostrar = (props) => {
-    console.log(props)
+    
 
   }
   componentDidMount() {
@@ -60,15 +61,16 @@ class MenuSc extends Component {
     this.setState({ token: data.token })
     http.instance.setToken(data.token)
     http.instance.setId(data.data.id)
-    console.log("data", data.data);
 
     http.instance.setToken(data.token)
     http.instance.setId(data.data.id)
     User.instance.newUser(data.data)
-    console.log('save user', data.data)
+   
 
 }
-
+  asistencia = () => {
+    this.props.navigation.navigate('Asistencia')
+  }
   render(props) {
 
     return (
@@ -85,6 +87,7 @@ class MenuSc extends Component {
           ></Section>
           <Section
             text="Asistencia"
+            nexPage={this.asistencia}
             img={require('newAPPStat/assets/Icon/1x/menu-asistencias.png')}
           ></Section>
           <Section

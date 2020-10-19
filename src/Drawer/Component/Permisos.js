@@ -1,16 +1,19 @@
 import React from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
 import TextMenu from './TextMenu'
-const Permisos = () => {
+const Permisos = ({goTo}) => {
 
    return (
-      <View style={styles.container}>
+      <Pressable style={styles.container}
+         onPress={goTo}
+      >
           <Image resizeMode='contain' style = {styles.img} source  = {require('newAPPStat/assets/Icon/1x/permisos.png')}
           />
-         <TextMenu title="Permisos" />
+         <TextMenu 
+         onPress={goTo} title="Permisos" />
 
-
-      </View>
+         
+      </Pressable>
 
    )
 

@@ -63,7 +63,7 @@ class Login extends Component {
       )
    }
    olvidoPassWord = () => {
-      console.log('OlvidePasword');
+      this.props.navigation.navigate('Olvidar')
    }
    registrate = () => {
       this.props.navigation.navigate('DatosNuevoUsuario')

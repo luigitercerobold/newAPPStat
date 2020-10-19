@@ -1,6 +1,6 @@
 import React from 'react'
 import {Text,StyleSheet,View} from 'react-native'
-export default ({tittle}) => {
+export default ({tittle,title}) => {
 
    return (
       <View style={styles.container}>
@@ -11,6 +11,7 @@ export default ({tittle}) => {
 
         ]}>
         {tittle}
+        {title}
       </Text>
     </View>
 

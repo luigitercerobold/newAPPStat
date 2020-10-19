@@ -36,8 +36,7 @@ class Cirugias extends Component {
         this.setState({ token: data.token })
         http.instance.setToken(data.token)
         http.instance.setId(data.data.id)
-        console.log("data", data.data);
-
+    
     }
 
     goToAgendarCirugia = () => {

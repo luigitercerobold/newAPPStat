@@ -9,12 +9,12 @@ import Header from '../../Home/src/Component/Header'
 class Brazo extends Component {
    craneo = {
       data: [ 
-         {id:5, line:1.7, name:'Húmero',possition:1.5,rigth:true},
-         {id:6, line:1.6, name:'Codo',possition:3.6,rigth:true},
-         {id:7, line:0.3, name:'Radio',possition:5,rigth:true},
-         {id:8, line:3, name:'Clavicula',possition:0,rigth:true},
+         {id:5, line:1.1, name:'Húmero',possition:1.5,rigth:true},
+         {id:6, line:1, name:'Codo',possition:3.6,rigth:true},
+         {id:7, line:0.05, name:'Radio',possition:5,rigth:true},
+         {id:8, line:2, name:'Clavicula',possition:0,rigth:true},
         //
-         {id:1, line:1.6, name:'Hombro',possition:0.6,rigth:true}
+         {id:1, line:1.4, name:'Hombro',possition:0.6,rigth:true}
     ]
  
     }

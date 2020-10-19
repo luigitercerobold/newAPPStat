@@ -7,13 +7,14 @@ import Btn from '../component/Btn'
 const window = Dimensions.get("window");
 const screen = Dimensions.get("screen");
 const dimensionScreen = new DimensionScreen(window, screen)
-let imgWidthNeto = 0
+let imgWidthBruto= 0
 
 
 const ContainerSimpleLeft = ({data,renderItem,img}) => { 
 
    const [imgSize, setImgSize] = useState({ height: 0, width: 0 })
-  
+   const [dimensions, setDimensions] = useState({ window, screen });
+
    const measureImg = ((event) => {
       
       setImgSize(
@@ -23,10 +24,23 @@ const ContainerSimpleLeft = ({data,renderItem,img}) => {
          }
       )
    })
+
+
+   const onChange = ({ window, screen }) => {
+      setDimensions({ window, screen });
+  
+   };
+   useEffect(() => {
+      Dimensions.addEventListener("change", onChange);
+      return () => {
+         Dimensions.removeEventListener("change", onChange);
+      };
+   });
+
    
 
    const heightMessure = (poss) => {
-      const padding = 30
+      const padding = 20
       const heightOriginal = 910
       const widthOriginal = 596
       const constanteCenter = heightOriginal / widthOriginal
@@ -35,24 +49,29 @@ const ContainerSimpleLeft = ({data,renderItem,img}) => {
       const center = imgSize.height / 2 + padding
 
       const topVertical = center - centerToTop
-      const TopHorizontal = center - imgSize.height / 2
+      const TopHorizontal = center - imgSize.height / 2 //top de 
 
-      if (imgSize.width + 300 < imgSize.height) {
-         
-         imgWidthNeto = imgSize.width
+      if (dimensions.window.width < dimensions.window.height) {
+         console.log("mas  alta")
+         imgWidthNeto = imgSize.width+10
+         imgWidthBruto =0
          return topVertical + ((centerToTop * 2) / 8) * poss
       }
       else {
+         // los -10 son de un padinng que se encuentra en los boones 
+         console.log("mas  ancha",dimensions.window.width , dimensions.window.height)
          imgWidthNeto= imgSize.height / constanteCenter
-         return TopHorizontal + -20 + ((imgSize.height) / 8) * poss
+         imgWidthBruto =dimensions.window.width +imgSize.width*3
+         return   ((imgSize.height) / 8) * poss
       }
    }
 
    const render = () => {
+      
 
       return (
          data.map(item =>
-            renderItem(item, heightMessure(item.possition), imgSize.width,imgWidthNeto)
+            renderItem(item, heightMessure(item.possition), imgSize.width +imgWidthBruto ,imgWidthNeto)
 
          )
       )
@@ -86,12 +105,12 @@ const styles = StyleSheet.create({
    },
   
    imgCon:{
-     // backgroundColor: "red",
+      backgroundColor: "red",
    },
    
    image: {  
       height :'100%',
-     // backgroundColor: "blue",
+      backgroundColor: "blue",
     
       aspectRatio: 596/910
    },

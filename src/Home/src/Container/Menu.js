@@ -20,7 +20,7 @@ import User from '../../../Lib/user'
 class MenuSc extends Component {
   constructor(props) {
     super(props);
-    console.log('menusc',props)
+   
   }
   toggleDrawer = () => {
     this.props.navigation.dispatch(DrawerActions.toggleDrawer())

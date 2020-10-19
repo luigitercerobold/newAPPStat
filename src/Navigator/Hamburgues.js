@@ -19,9 +19,6 @@ export class LogoTitle extends Component {
             />
          </Pressable>
 
-
-
-
       );
    }
 }

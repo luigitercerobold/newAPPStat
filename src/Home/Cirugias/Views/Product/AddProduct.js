@@ -28,13 +28,10 @@ class AddProducto extends Component {
    }
    onPress = () => {
       this.props.route.params.product.provider = this.props.route.params.proveedor
-      this.props.route.params.product.comment = this.state.comment
-      this.props.route.params.product.productId = this.props.route.params.productId
-
+      this.props.route.params.product.comment = this.state.comment+""
+      this.props.route.params.product.productId = this.props.route.params.product.id
       this.props.route.params.products.push(this.props.route.params.product)
-      
       this.props.navigation.navigate("AgendarProducto", {product :this.state.chage} )
-
    }
 
    render() {

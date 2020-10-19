@@ -26,12 +26,12 @@ class Asitente extends Component {
       this.setState({ loading: true })
       const hospital = await http.instance.get(urlStat.getDrs, http.instance.getToken())
       this.setState({ hospital: hospital.data, loading: false })
-      console.log(this.state.hospital)
+     
       return hospital
    }
 
    handlePress = (item) =>{
-      console.log(item.name)
+    
       this.props.navigation.navigate('AgendarCirugia',{asistente:item.name})
       
    }

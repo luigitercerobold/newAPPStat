@@ -9,12 +9,14 @@ import Header from '../../Home/src/Component/Header'
 class Piernas extends Component {
    craneo = {
       data: [ 
-         {id:13, line:3.6, name:'Cadera',possition:1.4,rigth:true},
-         {id:14, line:3.3, name:'Femur',possition:3.6,rigth:true},
-         {id:15, line:3.1, name:'Diafisis',possition:2.6,rigth:true},
-         {id:16, line:3.7, name:'Rodilla',possition:5.8,rigth:true},
-         {id:17, line:3.7, name:'Pelvis',possition:0,rigth:true},
-         {id:18, line:6, name:'Sacro',possition:.7,rigth:true},
+         {id:17, line:3.5, name:'Pelvis',possition:0,rigth:true},
+         {id:18, line:5.4, name:'Sacro',possition:.7,rigth:true},
+         {id:13, line:2.1, name:'Cadera',possition:1.4,rigth:true},
+         {id:15, line:2.4, name:'Diafisis',possition:2.6,rigth:true},
+         {id:14, line:2.7, name:'Femur',possition:3.6,rigth:true},
+         
+         {id:16, line:3.2, name:'Rodilla',possition:5.8,rigth:true},
+         
     ]
  
     }

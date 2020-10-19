@@ -35,7 +35,7 @@ class Body extends Esqueleto {
       this.setState({ loading: true })
       const proveedor = await http.instance.get(urlStat.getBoddy, http.instance.getToken())
       this.setState({ products: proveedor.data, loading: false })
-      console.log(this.state.products)
+      
       return proveedor
    }
 

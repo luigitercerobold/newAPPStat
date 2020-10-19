@@ -1,12 +1,26 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Pressable, Text, StyleSheet } from 'react-native';
 import Color from 'newAPPStat/src/Lib/Colors'
 
-const BtnSimple = ({onPress,title}) => {
 
+const BtnSimple = ({onPress,title,onePress=true}) => {
+
+   const [pressOne, setPressOne] = useState(true)
+   const onlyOnePress = () => {
+      onPress()
+      if (pressOne) {
+        
+      }
+      
+      if (onePress === true) {
+         setPressOne(false)
+      }
+
+
+   }
    return (
       <Pressable 
-         onPress={onPress}
+         onPress={onlyOnePress}
          style={({ pressed }) => [
             {
               backgroundColor: pressed

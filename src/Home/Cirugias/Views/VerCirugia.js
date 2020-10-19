@@ -22,7 +22,7 @@ class VerCirugia extends Component {
       this.setState({ loading: true })
       const cirugia = await http.instance.get(urlStat.getCirugias, http.instance.getToken())
       this.setState({ cirugia: cirugia.data, loading: false })
-      console.log(this.state.cirugia)
+   
       return Cirugias
    }
    onPress = () => {

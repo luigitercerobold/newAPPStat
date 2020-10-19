@@ -87,12 +87,9 @@ class Productos extends Component {
          for (let canCategori = 0; canCategori < producto.categories.length; canCategori++) {
             const element = producto.categories[canCategori];
             if(element.id === query.id){
-
                return producto
-            }
-            
+            }  
          }
-        
       })
       this.setState({producto:providerFiltered})
    }
