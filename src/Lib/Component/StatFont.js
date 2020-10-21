@@ -6,14 +6,14 @@ const StatFont = ({ style, children }) => {
 
 
    return (
-      <StatFont
+      <Text
          style={
-            [styles.fontStyle]
+            [styles.fontStyle,style]
 
          }
       >
          {children}
-      </StatFont>
+      </Text>
 
    )
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, View, Text, Image, StyleSheet, Pressable } from 'react-native'
 import Colors from 'newAPPStat/src/Lib/Colors'
-
+import StatFont from '../../../Lib/Component/StatFont'
 function NavigateCirugias({ text1, text2, text3, img, goToPage, action, delate=true,edit =true }) {
 
 
@@ -14,15 +14,15 @@ function NavigateCirugias({ text1, text2, text3, img, goToPage, action, delate=t
                <View style={styles.containerSelector}>
                   <Image style={styles.img} source={img}></Image>
                   <View style={styles.containerCenter}>
-                     <Text style={styles.texPrincipal}>
+                     <StatFont style={styles.texPrincipal}>
                         {text1}
-                     </Text>
-                     <Text style={styles.texSeond}>
+                     </StatFont>
+                     <StatFont style={styles.texSeond}>
                         {text2}
-                     </Text>
-                     <Text>
+                     </StatFont>
+                     <StatFont>
                         {text3}
-                     </Text>
+                     </StatFont>
                   </View>
                   <View>
                      {delate
@@ -48,7 +48,7 @@ function NavigateCirugias({ text1, text2, text3, img, goToPage, action, delate=t
                      <Image style={styles.pencil} source={require("newAPPStat/assets/Icon/1x/cirugias-agregar_cirugias.png")} ></Image>
 
                   </View>
-                  <Text style={styles.textAdd}>{action}</Text>
+                  <StatFont style={styles.textAdd}>{action}</StatFont>
                </Pressable>
             </View>
 

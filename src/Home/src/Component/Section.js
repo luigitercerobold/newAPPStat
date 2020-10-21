@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import Card from './Card'
-
+import StatFont from '../../../Lib/Component/StatFont'
 function Section({ nexPage, text, img, borderLine = true, container = true }) {
    const Stilene = () => {
 
@@ -35,7 +35,7 @@ function Section({ nexPage, text, img, borderLine = true, container = true }) {
             <View style={[Stilene(), negativemargin(),{ flexDirection: 'row' }]}>
              
                   <View style={styles.containerText}>
-                     <Text style={styles.text_input}>{text}</Text>
+                     <StatFont style={styles.text_input}>{text}</StatFont>
                   </View>
                   <Card
                      img={img}
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
 
 
       color: '#1f2d49',
-      fontFamily: 'Questrial-Regular',
+    
       fontWeight: '100',
       letterSpacing: 2,
       fontSize: 28,

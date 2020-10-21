@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, FlatList, View,StyleSheet,Image, Pressable} from 'react-native'
 import urlStat from '../../../Lib/url'
-
+import StatFont from '../../../Lib/Component/StatFont'
 
 const Doctors =({ item, onPress }) => {
 
@@ -17,7 +17,7 @@ const Doctors =({ item, onPress }) => {
          style = {styles.img}
             source = {{uri: urlStat.img + item.photo}}
          />
-         <Text style ={styles.text} >{item.name}</Text>
+         <StatFont style ={styles.text} >{item.name}</StatFont>
          
       </Pressable>
    )

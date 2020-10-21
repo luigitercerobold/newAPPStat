@@ -9,7 +9,7 @@ import Container from '../Component/LoginComponent/ContainerCenter'
 import BtnSimple from '../Component/BtnSimple'
 import ScrollCenter from '../Component/ScrollCenter'
 import PaddingVertical from '../Component/PaddingVertical'
-
+import StatFont from '../../Lib/Component/StatFont'
 class VerificarToken extends Component {
    state = {
       token: "''",
@@ -71,15 +71,15 @@ class VerificarToken extends Component {
             
             <Title title="Verifica tus datos" />
             <Container>
-               <Text>Se envió un código a tu correo electrónico</Text>
+               <StatFont>Se envió un código a tu correo electrónico</StatFont>
                <TextBox
                   placeholder={"Introduce el código"}
                   onChangeText={this.setToken}
                />
              
-               <Text>
+               <StatFont>
                   {this.state.message}
-               </Text>
+               </StatFont>
                <PaddingVertical vertical={5}>
                   <BtnSimple
                      title="Finalizar"

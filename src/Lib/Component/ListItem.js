@@ -3,7 +3,7 @@ import { Text, View,StyleSheet,Pressable, Image } from 'react-native'
 import Line from './Line'
 import color from '../Colors';
 import urlStat from '../url';
-
+import StatFont from '../../Lib/Component/StatFont'
 const Listitem = ({ item, onPress,activate }) => {
   const state={
       activate:false
@@ -24,7 +24,7 @@ const Listitem = ({ item, onPress,activate }) => {
       <Pressable onPress={pressed} style={[activated,styles.container]}>
          <Line>
             <View style={styles.containerItem}>
-               <Text style = {styles.text}>{item.name}</Text>
+               <StatFont style = {styles.text}>{item.name}</StatFont>
 
              
                <Image resizeMode='contain' style = {styles.image} source= {{uri: urlStat.img+ item.photo}}></Image>

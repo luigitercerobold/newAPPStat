@@ -3,7 +3,7 @@ import React from 'react'
 import { View, StyleSheet, Text, Image, StatusBar,ActivityIndicator } from 'react-native'
 import Color from '../Colors'
 import SimpleBoton from './BotonSiemple'
-
+import StatFont from '../../Lib/Component/StatFont'
 const AceptRequest = ({ title = 'Aceptar',onPress,isOk,loading }) => {
    console.log(isOk)
    return (
@@ -21,7 +21,7 @@ const AceptRequest = ({ title = 'Aceptar',onPress,isOk,loading }) => {
                 :  <Image style= {styles.containerImg}source={require('newAPPStat/assets/Icon/1x/cancelar.png')} />
             }
               
-               <Text style={styles.text}>{title}</Text>
+               <StatFont style={styles.text}>{title}</StatFont>
             </View>
          </View>
          <View style={styles.container,styles.contButton}>

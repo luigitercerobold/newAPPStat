@@ -6,12 +6,13 @@ import {
 }from 'react-native'
 import { TextInput } from 'react-native-gesture-handler';
 import Color from 'newAPPStat/src/Lib/Colors'
+import StatFont from '../../../Lib/Component/StatFont'
 const BtnProximaCirugia = ({ text, img, onPress }) => {
 
    return (
    
    <View style ={styles.container}>
-      <Text style={styles.text}> {text}</Text>
+      <StatFont style={styles.text}> {text}</StatFont>
       <Pressable onPress={onPress} style={({ pressed }) => [
             {
               backgroundColor: pressed

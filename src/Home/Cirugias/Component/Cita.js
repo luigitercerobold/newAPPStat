@@ -7,13 +7,13 @@ import {
 } from 'react-native'
 import {Picker} from '@react-native-community/picker';
 import RNPickerSelect from 'react-native-picker-select';
-
+import StatFont from '../../../Lib/Component/StatFont'
 
 function Cita(props) {
     
     return(
        <View>
-           <Text>{props.title}</Text>
+           <StatFont>{props.title}</StatFont>
            <RNPickerSelect
             onValueChange={(value) => console.log(value)}
             items={[

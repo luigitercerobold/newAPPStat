@@ -8,7 +8,7 @@ import {
  
 } from 'react-native';
 
-
+import StatFont from '../../Lib/Component/StatFont'
 class WelcomeSc extends Component {
   constructor(props) {
     super(props);
@@ -25,7 +25,7 @@ class WelcomeSc extends Component {
             />
       
 
-          <Text
+          <StatFont
             style={[
               styles.text_login,
               {
@@ -38,8 +38,8 @@ class WelcomeSc extends Component {
               },
             ]}>
             BIENVENIDO
-          </Text>
-          <Text
+          </StatFont>
+          <StatFont
             style={[
               styles.text_login,
               {
@@ -53,7 +53,7 @@ class WelcomeSc extends Component {
               },
             ]}>
             {global.username}
-          </Text>
+          </StatFont>
         </View>
       </View>
     );

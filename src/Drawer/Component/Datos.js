@@ -2,13 +2,13 @@ import React from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import User from '../../Lib/user'
 import Color from '../../Lib/Colors'
-
+import StatFont from '../../Lib/Component/StatFont'
 const Datos = ({ name, email }) => {
 
    return (
       <View style = {styles.container}>
-         <Text style = {styles.name}>{name}</Text>
-         <Text>{email}</Text>
+         <StatFont style = {styles.name}>{name}</StatFont>
+         <StatFont>{email}</StatFont>
       </View>
    )
 

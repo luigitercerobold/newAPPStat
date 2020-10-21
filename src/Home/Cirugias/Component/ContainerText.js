@@ -1,14 +1,14 @@
 import React from 'react'
 import { Text, StyleSheet } from 'react-native'
 import Colors from 'newAPPStat/src/Lib/Colors'
-
+import StatFont from '../../../Lib/Component/StatFont'
 
 const ContainerText = (props) => {
 
    return(
-      <Text style = {styles.text}>
+      <StatFont style = {styles.text}>
          {props.children}
-      </Text>
+      </StatFont>
    )
 }
 

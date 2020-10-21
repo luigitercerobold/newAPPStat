@@ -1,18 +1,18 @@
 import React from 'react'
 import {Text,StyleSheet,View} from 'react-native'
+import StatFont from '../../Lib/Component/StatFont'
 export default ({tittle,title}) => {
-
    return (
       <View style={styles.container}>
       
-      <Text
+      <StatFont
         style={[
           styles.text_login,
 
         ]}>
         {tittle}
         {title}
-      </Text>
+      </StatFont>
     </View>
 
    )

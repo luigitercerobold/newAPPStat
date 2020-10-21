@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Pressable, Text, View, StyleSheet } from 'react-native'
 import Color from '../../../Lib/Colors'
-
+import StatFont from '../../../Lib/Component/StatFont'
 
 const TabsDoctor = ({ component1, component2 }) => {
    const [press1, setPress1] = useState(true)
@@ -40,13 +40,13 @@ const TabsDoctor = ({ component1, component2 }) => {
                style={[press(press1),styles.buttom,styles.borderRadiusLeft]}
                onPress={handlePress1}
             >
-               <Text style={[textActivate(press1),styles.text]}>Médico ayudante</Text>
+               <StatFont style={[textActivate(press1),styles.text]}>Médico ayudante</StatFont>
             </Pressable>
             <Pressable
                style={[press(press2),styles.buttom,styles.borderRadiusRight]}
                onPress={handlePress2}
             >
-               <Text style = {[textActivate(press2),styles.text]}>Anestesia</Text>
+               <StatFont style = {[textActivate(press2),styles.text]}>Anestesia</StatFont>
             </Pressable>
 
 

@@ -19,6 +19,7 @@ import { DrawerActions } from 'react-navigation';
 import Section from '../Component/Section'
 import User from '../../../Lib/user'
 import url from '../../../Lib/url'
+import StatFont from '../../../Lib/Component/StatFont'
 class MenuSc extends Component {
   constructor(props) {
     super(props);
@@ -64,7 +65,7 @@ getPhoto =()=>{
  
         <View style={styles.header} {...props}>
         <Image style={styles.imgContainer, styles.imgalingrigtg} source={{uri:url.img + this.getPhoto()}} />
-          <Text
+          <StatFont
             style={{
               alignSelf: 'flex-start',
               paddingStart: 25,
@@ -75,7 +76,7 @@ getPhoto =()=>{
               color: 'white',
             }}>
             {this.getUser()}
-          </Text>
+          </StatFont>
         </View>
      
     );

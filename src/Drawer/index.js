@@ -7,11 +7,11 @@ import {
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
-
+import StatFont from '../Lib/Component/StatFont'
 function Feed({ navigation }) {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Feed Screen</Text>
+      <StatFont>Feed Screen</StatFont>
       <Button title="Open drawer" onPress={() => navigation.openDrawer()} />
       <Button title="Toggle drawer" onPress={() => navigation.toggleDrawer()} />
     </View>
@@ -21,7 +21,7 @@ function Feed({ navigation }) {
 function Notifications() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Notifications Screen</Text>
+      <StatFont>Notifications Screen</StatFont>
     </View>
   );
 }

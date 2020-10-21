@@ -15,7 +15,7 @@ import { NavigationActions } from 'react-navigation';
 //import { LinearGradient } from 'expo-linear-gradient';
 //import {Actions} from 'react-native-router-flux';
 
-
+import StatFont from '../../../../Lib/Component/StatFont'
 import Title from '../../../../Lib/Title'
 class Fecha extends Component {
   constructor(props) {
@@ -65,7 +65,7 @@ class Fecha extends Component {
               onPress={() => this.props.navigation.navigate('Hora', {
                 fecha: startDate.split(' ')[0] + startDate.split(' ')[1] + ' ' + startDate.split(' ')[2]
               })}>
-              <Text
+              <StatFont
                 style={[
                   styles.text_login,
                   {
@@ -74,7 +74,7 @@ class Fecha extends Component {
                 ]}>
                 {' '}
                   Continuar
-                </Text>
+                </StatFont>
             </TouchableOpacity>
             <Button
               title='Continuar'

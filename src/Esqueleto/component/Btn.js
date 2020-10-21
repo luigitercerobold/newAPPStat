@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Pressable, Text, View, StyleSheet, Dimensions } from 'react-native'
 import Colors from '../../Lib/Colors'
 import LineSelect from '../component/LineSelect'
-
+import StatFont from '../../Lib/Component/StatFont'
 const messure = {
    btnWidth: 86,
    punto: 15,
@@ -55,7 +55,7 @@ const Btn = ({ text, top, right, onPress, line, imgWidthBruto, imgWidthNeto }) =
          onPress={press}
          style={styles.btn}
       >
-         <Text style={styles.text}>{text} </Text>
+         <StatFont style={styles.text}>{text} </StatFont>
       </Pressable>)
    }
 

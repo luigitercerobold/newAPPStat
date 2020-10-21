@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pressable, Text, StyleSheet } from 'react-native';
 import Color from 'newAPPStat/src/Lib/Colors'
-
+import StatFont from '../../Lib/Component/StatFont'
 const BtnSimple = ({onPress,title}) => {
 
    return (
@@ -15,7 +15,7 @@ const BtnSimple = ({onPress,title}) => {
             },
             styles.Btn
           ]}>
-         <Text style={styles.Text}>{title}</Text>
+         <StatFont style={styles.Text}>{title}</StatFont>
       </Pressable>
 
    )

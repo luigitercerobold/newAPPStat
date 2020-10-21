@@ -3,7 +3,7 @@ import { View, Button, Platform, Text, StyleSheet, Pressable } from 'react-nativ
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Line from './Line'
 import Colors from 'newAPPStat/src/Lib/Colors'
-
+import StatFont from '../../../Lib/Component/StatFont'
 class Time extends Component {
   state = {
     date: new Date(2020, 0, 0),
@@ -45,9 +45,9 @@ class Time extends Component {
             onPress={this.showTimepicker}
           >
             <View style={styles.container}>
-              <Text style={styles.text}>
+              <StatFont style={styles.text}>
                 {this.props.title}
-              </Text>
+              </StatFont>
               <Line>
                 {this.props.children}
                 {this.state.show && (

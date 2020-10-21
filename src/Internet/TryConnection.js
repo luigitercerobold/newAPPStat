@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Text, View, ActivityIndicator, FlatList } from 'react-native'
 import Http from '../Lib/http'
 import TextBox from '../Login/Component/TextBox'
+import StatFont from '../Lib/Component/StatFont'
 const TryConnection = () => {
    const [isLoading, setLoading] = useState(true);
    const [data, setData] = useState([]);
@@ -62,13 +63,13 @@ const TryConnection = () => {
 
    return (
       <View style={{ flex: 1, padding: 24 }}>
-         <Text>hola</Text>
+      
          {isLoading ? <ActivityIndicator /> : (
             <FlatList
                data={data}
                keyExtractor={({ id }, index) => id}
                renderItem={({ item }) => (
-                  <Text>{item.title}, {item.releaseYear}</Text>
+                  <StatFont>{item.title}, {item.releaseYear}</StatFont>
                )}
             />
 
@@ -77,19 +78,19 @@ const TryConnection = () => {
 
          {isLoading2 ? <ActivityIndicator /> : (
             <View>
-               <Text>info</Text>
-               <Text>{data2?.data.id}</Text>
-               <Text>info2</Text>
-               <Text>{ JSON.stringify(info)}</Text>
+               <StatFont>info</StatFont>
+               <StatFont>{data2?.data.id}</StatFont>
+               <StatFont>info2</StatFont>
+               <StatFont>{ JSON.stringify(info)}</StatFont>
             </View>
          )}
 
       {serverloading ? <ActivityIndicator /> : (
             <View>
-               <Text>info</Text>
-               <Text>{server}</Text>
-               <Text>info2</Text>
-               <Text>{ JSON.stringify(serverError)}</Text>
+               <StatFont>info</StatFont>
+               <StatFont>{server}</StatFont>
+               <StatFont>info2</StatFont>
+               <StatFont>{ JSON.stringify(serverError)}</StatFont>
             </View>
          )}
       </View>

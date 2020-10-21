@@ -1,13 +1,13 @@
 import React from 'react'
 import { View,Image,StyleSheet, Text} from 'react-native'
 import Colors from 'newAPPStat/src/Lib/Colors'
-
+import StatFont from '../Lib/Component/StatFont'
 const Add = ({img})=> {
    return(
       <View style={styles.container}>
-         <Text>
+         <StatFont>
             Anuncio
-         </Text>
+         </StatFont>
       </View>
    )
 }

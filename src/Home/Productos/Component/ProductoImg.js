@@ -1,6 +1,7 @@
 import React from 'react'
 import { Text, View, StyleSheet, Pressable, Image } from 'react-native'
 import url from '../../../Lib/url'
+import StatFont from '../../../Lib/Component/StatFont'
 const ProductoImg = ({ children, onPress, product }) => {
 
    return (
@@ -13,7 +14,7 @@ const ProductoImg = ({ children, onPress, product }) => {
                uri: url.img + product.image,
             }}></Image>
          </View>
-         <Text style={styles.text}> {children} </Text>
+         <StatFont style={styles.text}> {children} </StatFont>
 
 
       </Pressable>

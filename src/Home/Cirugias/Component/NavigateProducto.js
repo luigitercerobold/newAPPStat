@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Button, View, Text, Image, StyleSheet, Pressable } from 'react-native'
 import Colors from 'newAPPStat/src/Lib/Colors'
 import url from '../../../Lib/url'
+import StatFont from '../../../Lib/Component/StatFont'
 function NavigateCirugias({item,goToPage,remove}) {
 
    const onpress = ()=> {
@@ -15,9 +16,9 @@ function NavigateCirugias({item,goToPage,remove}) {
                <View style={styles.containerSelector}>
                   <Image style={styles.img} source={{uri:url.img+item.image }}></Image>
                   <View style={styles.containerCenter}>
-                     <Text style={styles.texPrincipal}>
+                     <StatFont style={styles.texPrincipal}>
                         {item.name}
-                     </Text>
+                     </StatFont>
                    
                   </View>
                   <View>

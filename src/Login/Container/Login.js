@@ -19,6 +19,7 @@ import { TextInput } from 'react-native-gesture-handler'
 import User from '../../Lib/user'
 import Context, { useAuth } from '../../../Context'
 import Welcome from '../Component/Welcome'
+import StatFont from '../../Lib/Component/StatFont'
 class Login extends Component {
    state = {
       user: '',
@@ -171,7 +172,7 @@ class Login extends Component {
                      title="Registrate"
                      onPress={this.registrate}
                   />
-                  <Text>{this.state.status}</Text>
+                  <StatFont>{this.state.status}</StatFont>
 
                </Container>
             }

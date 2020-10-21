@@ -5,11 +5,11 @@ import {
     StyleSheet
 }from 'react-native';
 
-
+import StatFont from '../../../Lib/Component/StatFont'
 function SubTitle (props) {
     return(
 
-        <Text
+        <StatFont
         style={[
           styles.text_login,
           {
@@ -24,7 +24,7 @@ function SubTitle (props) {
           },
         ]}>
         {props.text}
-      </Text>
+      </StatFont>
     )
 
 }

@@ -5,19 +5,19 @@ import {
   StyleSheet
 } from 'react-native';
 import PaddingVertical from '../../Login/Component/PaddingVertical'
-
+import StatFont from '../Component/StatFont'
 
 function Title(props) {
   return (
 <View style ={styles.container}>
 <PaddingVertical vertical={1} />
-    <Text
+    <StatFont
       style={[
         styles.text_login,
 
       ]}>
       {props.title}
-    </Text>
+    </StatFont>
 </View>
     
   )

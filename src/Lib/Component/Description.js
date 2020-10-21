@@ -1,15 +1,15 @@
 import React from 'react'
 import {View,Text,StyleSheet} from 'react-native'
 import Title3 from './Title3'
-
+import StatFont from '../../Lib/Component/StatFont'
 const Description = ({description}) => {
 
    return (
       <View>
         <Title3 title = "Descripción"/>  
-         <Text style = {styles.text}>
+         <StatFont style = {styles.text}>
             {description}
-         </Text>
+         </StatFont>
       </View>
    )
 

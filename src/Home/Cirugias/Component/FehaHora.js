@@ -3,7 +3,7 @@ import { Button, View, StyleSheet, Pressable, Text } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import Line from './Line'
 import Colors from 'newAPPStat/src/Lib/Colors'
-
+import StatFont from '../../../Lib/Component/StatFont'
 class FechaHora extends Component {
   state = {
     isDatePickerVisible: false,
@@ -27,9 +27,9 @@ class FechaHora extends Component {
           onPress={this.showDatePicker}
         >
           <View style={styles.container}>
-            <Text style={styles.text}>
+            <StatFont style={styles.text}>
               {this.props.title}
-            </Text>
+            </StatFont>
             <Line>
               {this.props.children}
               <DateTimePickerModal

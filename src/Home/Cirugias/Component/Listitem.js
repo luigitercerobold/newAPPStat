@@ -3,7 +3,7 @@ import { Text, View,StyleSheet,Pressable, Image } from 'react-native'
 import Line from './Line'
 import color from 'newAPPStat/src/Lib/Colors';
 import url from '../../../Lib/url'
-
+import StatFont from '../../../Lib/Component/StatFont'
 const Listitem = ({ item, onPress,activate,img }) => {
   const state={
       activate:false
@@ -30,7 +30,7 @@ const Listitem = ({ item, onPress,activate,img }) => {
                   uri: url.img + img
                          
                }}></Image>
-               <Text>{item}</Text>
+               <StatFont>{item}</StatFont>
 
             </View>
          </Line>

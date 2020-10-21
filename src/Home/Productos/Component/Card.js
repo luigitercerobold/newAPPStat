@@ -2,8 +2,7 @@ import React from 'react'
 import { View, Image, StyleSheet, Text } from 'react-native'
 import ContainerText from '../../Cirugias/Component/ContainerText'
 import Colors from 'newAPPStat/src/Lib/Colors'
-import Padding from '../../../Login/Component/PaddingVertical'
-
+import StatFont from '../../../Lib/Component/StatFont'
 const Card = ({ img, text }) => {
    return (
       <View style={[styles.iconFrame]}>
@@ -11,7 +10,7 @@ const Card = ({ img, text }) => {
          <View style={styles.imgCenter}>
             <Image style={styles.imgContainer} source={img}  resizeMode='contain' />
             <View style={styles.containertext}>
-               <Text style={styles.text}>{text}</Text>
+               <StatFont style={styles.text}>{text}</StatFont>
             </View>
             
          </View>

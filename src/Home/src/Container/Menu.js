@@ -16,7 +16,7 @@ import { DrawerActions } from 'react-navigation';
 import Card from '../Component/Card'
 import User from '../../../Lib/user'
 
-
+import StatFont from '../../../Lib/Component/StatFont'
 class MenuSc extends Component {
   constructor(props) {
     super(props);
@@ -56,7 +56,7 @@ class MenuSc extends Component {
 
             <Image style={styles.imgContainer, styles.imgalingrigtg} source={require('newAPPStat/assets/img/avatar.png')} />
 
-            <Text
+            <StatFont
               style={{
                 alignSelf: 'flex-start',
                 paddingStart: 25,
@@ -67,7 +67,7 @@ class MenuSc extends Component {
                 color: 'white',
               }}>
               {User.instance.getUser().name}
-            </Text>
+            </StatFont>
           </View>
           <View style={styles.footer}>
 
@@ -77,7 +77,7 @@ class MenuSc extends Component {
               }}
               onPress={() => this.props.navigation.navigate('EstadoCirugia')}>
               <View style={[styles.reactItem, { flexDirection: 'row' }]}>
-                <Text
+                <StatFont
                   style={[
                     styles.text_input,
                     {
@@ -86,7 +86,7 @@ class MenuSc extends Component {
                     },
                   ]}>
                   {"Cirugías    "}
-                </Text>
+                </StatFont>
                 <Card
                   img={require('newAPPStat/assets/Icon/1x/menu-cirugas.png')}
                 />
@@ -99,12 +99,12 @@ class MenuSc extends Component {
               }}
               onPress={() => this.props.navigation.navigate('AssIni')}>
               <View style={[styles.reactItem, { flexDirection: 'row' }]}>
-                <Text
+                <StatFont
                   style={[
                     styles.text_input,
                   ]}>
                   Asistencia
-              </Text>
+              </StatFont>
                 <Card
                   img={require('newAPPStat/assets/Icon/1x/menu-asistencias.png')}
                 />
@@ -116,7 +116,7 @@ class MenuSc extends Component {
               }}
               onPress={() => this.props.navigation.navigate('IndexProduct')}>
               <View style={[styles.reactItem, { flexDirection: 'row' }]}>
-                <Text
+                <StatFont
                   style={[
                     styles.text_input,
                     {
@@ -125,7 +125,7 @@ class MenuSc extends Component {
                     },
                   ]}>
                   Productos
-              </Text>
+              </StatFont>
                 <Card
                   img={require('newAPPStat/assets/Icon/1x/menu-productos.png')}
                 />

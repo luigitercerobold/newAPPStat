@@ -4,14 +4,14 @@ import {
     Text,StyleSheet
    
 }from 'react-native';
-
+import StatFont from '../../../Lib/Component/StatFont'
 
 
 function Pendiente (props) {
    return(
-          <Text style={style.text}>
+          <StatFont style={style.text}>
             No tienes ninguna cirugia pendiente
-         </Text>
+         </StatFont>
    )
 }
 export default Pendiente;

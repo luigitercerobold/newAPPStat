@@ -5,8 +5,8 @@ import Title from '../Title'
 import Title3 from './Title3'
 import url from '../../Lib/url'
 import Description from './Description'
-import Http from '../../Lib/http'
-import Gallery from 'react-native-image-gallery';
+import StatFont from '../../Lib/Component/StatFont'
+
 
 const SingleProduct = ({ product, proveedor,navigation,gallery}) => {
 
@@ -15,7 +15,7 @@ const SingleProduct = ({ product, proveedor,navigation,gallery}) => {
   
    const categorias = (categorias) => {
       if (categorias) {
-         return (categorias.map(categoria => <Text key={categoria.id} >{categoria.name}</Text>))
+         return (categorias.map(categoria => <StatFont key={categoria.id} >{categoria.name}</StatFont>))
       }
    }
 
@@ -34,7 +34,7 @@ const SingleProduct = ({ product, proveedor,navigation,gallery}) => {
                
 
             </View>
-            <Text>Marca del producto</Text>
+            <StatFont>Marca del producto</StatFont>
             <Title title={product.name} />
 
             {categorias(product.categories)}

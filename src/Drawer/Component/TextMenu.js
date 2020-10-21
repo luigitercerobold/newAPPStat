@@ -1,6 +1,7 @@
 import React from 'react'
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
 import Color from '../../Lib/Colors'
+import StatFont from '../../Lib/Component/StatFont'
 const TextMenu = ({ title, onPress }) => {
 
    return (
@@ -16,7 +17,7 @@ const TextMenu = ({ title, onPress }) => {
           ]}
       >
          
-            <Text style = {styles.text}>{title}</Text>
+            <StatFont style = {styles.text}>{title}</StatFont>
        
       </Pressable>
 
