@@ -9,14 +9,20 @@ import Header from '../../Home/src/Component/Header'
 class Pies extends Component {
    craneo = {
       data: [ 
-         {id:19, line:4.3, name:'Tibia',possition:4,rigth:true},
-         {id:20, line:4.3, name:'Tobillo',possition:5.6,rigth:true},
-         {id:21, line:4.3, name:'Pie',possition:6.5,rigth:true},
+         {id:19, line:3.9, name:'Tibia',possition:4,rigth:true},
+         {id:20, line:3.8, name:'Tobillo',possition:5.6,rigth:true},
+         {id:21, line:3.7, name:'Pie',possition:6.5,rigth:true},
          
     ]
  
     }
-
+    /**
+     * 
+     * @param {los datos de item} item 
+     * @param {*la suma del top del} top 
+     * @param {*} imgWidthBruto 
+     * @param {*} imgWidthNeto 
+     */
     renderItem =(item, top,imgWidthBruto,imgWidthNeto)=>{
        
        return(

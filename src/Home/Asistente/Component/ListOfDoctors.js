@@ -17,13 +17,14 @@ const ListOfDoctors = ({ item, loading, onPress }) => {
          {loading ?
             <ActivityIndicator color={Color.blue} size="large" />
 
-            : <FlatList
+            : null
+         }
+         <FlatList
                data={item}
                renderItem={({ item }) => <Doctors onPress={onPress} item={itemFilter(item)} />}
                numColumns={2}
                style={styles.container}
             />
-         }
 
       </>
    )

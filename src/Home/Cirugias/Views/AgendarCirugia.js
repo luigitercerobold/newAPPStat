@@ -58,6 +58,20 @@ class AgendarCirugia extends Component {
       }
       return this.props.route.params?.hospital.name
    }
+
+  
+
+   isAsist() {
+      
+      if (!this.props.route.params?.allDoctor) {
+         return ""
+      }
+      if (this.props.route.params?.allDoctor.length>0){
+         return  this.props.route.params?.allDoctor[0].name
+      }
+      return "sin datos"
+     
+   }
    isProduct() {
       
       if (!this.props.route.params?.producto) {
@@ -173,7 +187,7 @@ class AgendarCirugia extends Component {
             <Navigate
                img={require("newAPPStat/assets/Icon/1x/asistencia-agregada.png")}
                goToPage={() => this.goToAsistent()}
-               text1={this.props.route.params?.allDoctor[0].name}
+               text1={this.isAsist()}
                action="Añadir Asistencia"
                delate={false}
             ></Navigate>

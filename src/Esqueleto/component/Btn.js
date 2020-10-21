@@ -1,22 +1,22 @@
-import React ,{ useState, useEffect } from 'react'
-import { Pressable, Text, View, StyleSheet,Dimensions } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { Pressable, Text, View, StyleSheet, Dimensions } from 'react-native'
 import Colors from '../../Lib/Colors'
 import LineSelect from '../component/LineSelect'
 
 const messure = {
    btnWidth: 86,
    punto: 15,
-   btnHeigh: 40*.80
+   btnHeigh: 40 * .80
 }
 
 const window = Dimensions.get("window");
 const screen = Dimensions.get("screen");
 
-const Btn = ({ text, top, right, onPress,line,imgWidthBruto,imgWidthNeto }) => {
+const Btn = ({ text, top, right, onPress, line, imgWidthBruto, imgWidthNeto }) => {
    const [dimensions, setDimensions] = useState({ window, screen });
    const onChange = ({ window, screen }) => {
       setDimensions({ window, screen });
-  
+
 
    };
    useEffect(() => {
@@ -36,17 +36,16 @@ const Btn = ({ text, top, right, onPress,line,imgWidthBruto,imgWidthNeto }) => {
       return 0
    }
    const originLine = (poss) => {
-      
-      return   (poss)*(imgWidthNeto/2-5)/5 + (imgWidthBruto - imgWidthNeto)/2
+      return (poss) * (imgWidthNeto / 2 - 5) / 5 + (imgWidthBruto - imgWidthNeto) / 2
    }
    const press = () => {
-    
+
       return onPress()
    }
-   const rowType = () =>{
-      if (right){
+   const rowType = () => {
+      if (right) {
          return 'row-reverse'
-      }else {
+      } else {
          return 'row'
       }
    }
@@ -59,10 +58,12 @@ const Btn = ({ text, top, right, onPress,line,imgWidthBruto,imgWidthNeto }) => {
          <Text style={styles.text}>{text} </Text>
       </Pressable>)
    }
+
+
    return (
       <View
-         style={[styles.container, rightCorner(), { top: top,flexDirection:rowType() }]}>
-             { btn()}
+         style={[styles.container, rightCorner(), { top: top, flexDirection: rowType() }]}>
+         { btn()}
          <LineSelect
             line={originLine(line)}
             imaginaryLine={imaginaryLine()}
@@ -89,11 +90,11 @@ const styles = StyleSheet.create({
       marginHorizontal: 10,
       padding: 0,
 
-    
+
       borderRadius: 50,
       paddingHorizontal: 0,
       width: 130,
-      
+
    },
    line: {
 
@@ -123,7 +124,7 @@ const styles = StyleSheet.create({
    },
    btn: {
       color: "white",
-      
+
       fontWeight: "bold",
 
       backgroundColor: Colors.blue,
@@ -139,8 +140,8 @@ const styles = StyleSheet.create({
    text: {
       color: Colors.white,
       textAlign: 'center',
-      fontSize:12
-   
+      fontSize: 12
+
    },
 
    right: {

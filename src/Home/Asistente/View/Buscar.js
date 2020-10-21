@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, ActivityIndicator, FlatList, Text,Alert } from 'react-native'
+import { StyleSheet, View, ActivityIndicator, FlatList, Text, Alert } from 'react-native'
 import Title from '../../../Lib/Title'
 import Color from '../../../Lib/Colors'
 import Http from '../../../Lib/http'
@@ -11,7 +11,8 @@ export class Buscar extends Component {
    state = {
       loading: false,
       doctor: [],
-      allDoctor: []
+      allDoctor: [],
+      query:""
    }
 
    componentDidMount() {
@@ -36,7 +37,7 @@ export class Buscar extends Component {
       const providerFiltered = allDoctor.filter(doctor => {
          return doctor.name.toLowerCase().includes(query.toLowerCase())
       })
-      this.setState({ doctor: providerFiltered })
+      this.setState({ doctor: providerFiltered,query:query })
    }
    ayudante = () => {
 
@@ -45,7 +46,7 @@ export class Buscar extends Component {
       }
       return "Anestesia"
    }
-   handlePress  (item)  {
+   handlePress(item) {
       item.role = this.props.route.params.role
 
       this.setState({ loading: true })
@@ -53,33 +54,33 @@ export class Buscar extends Component {
          contactId: item.id,
          role: item.role
       })
-      this.agregarUser(body,item)
+      this.agregarUser(body, item)
 
       this.setState({ loading: false })
       this.goto()
-      
+
    }
    goto() {
-     
-      this.props.navigation.navigate('Asistencia', { update: true,contact:this.props.route.params.contact })
+
+      this.props.navigation.navigate('Asistencia', { update: true, contact: this.props.route.params.contact })
 
 
    }
 
    agregarUser = async (body, item) => {
-     
+
       const req = await Http.instance.post(urlStat.addContact, body, Http.instance.getToken())
       this.alert(req.message)
       if (req.message === "Se ha agregado el contacto exitosamente") {
          this.props.route.params.contact.push({
-            contact:item
-               })
+            contact: item
+         })
       }
-      
+
    }
 
    alert = (message) => {
-      
+
       Alert.alert(
          "Usuario",
          "Mensaje de Stat: " + message,
@@ -95,13 +96,29 @@ export class Buscar extends Component {
       )
    }
 
+   buscar = async () => {
+      this.setState({ loading: true })
+      const body = JSON.stringify({
+         queryText:this.state.query
+      })
+      const req = await Http.instance.post(urlStat.searchContact,body ,Http.instance.getToken())
+      this.setState({ doctor: req.data, loading: false })
+   }
+
    render() {
       const { loading, doctor } = this.state
       return (
          <View style={styles.container}>
-            <Title title={"Asistencia - " + this.ayudante()} />
+            <Title title={ this.ayudante()} />
+
             <View style={styles.listCenter}>
                <Search style={styles.search} onChange={this.handleSearch} />
+               <View style={styles.containerButtom}>
+                  <BtnSimple
+                     title={'Buscar'}
+                     onPress={this.buscar}
+                  />
+               </View>
                <ListOfDoctors onPress={this.handlePress.bind(this)} loading={loading} item={doctor} />
                <View style={styles.containerButtom}>
                   <BtnSimple

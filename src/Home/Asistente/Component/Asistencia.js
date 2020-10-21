@@ -7,7 +7,7 @@ import urlStat from '../../../Lib/url'
 
 import BtnSimple from '../../../Lib/Component/BotonSiemple'
 import Tab from './Tabs'
-const Asistencia = ({loading,component1, pressAcept, doctor, anestesia ,aceptButton =false}) => {
+const Asistencia = ({ loading, component1, pressAcept, doctor, anestesia, aceptButton = false }) => {
 
 
    return (
@@ -20,15 +20,19 @@ const Asistencia = ({loading,component1, pressAcept, doctor, anestesia ,aceptBut
             />
          </View>
 
-      {
-         aceptButton ?<BtnSimple
-         title={'aceptar'}
-         onPress={() => pressAcept()}
-      />
-         :null
-      }
+         {
+            aceptButton ?
+               <View style = {{alignItems:"center", marginBottom:15}}>
+                  <BtnSimple
+                     title={'       Aceptar     '}
+                     onPress={() => pressAcept()}
+                  />
+               </View>
+               : null
 
-         
+         }
+
+
 
       </View>
 

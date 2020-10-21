@@ -10,7 +10,7 @@ import PaddingVertical from '../Login/Component/PaddingVertical'
 function Title (props) {
   return (
     <View style={styles.container}>
-      <PaddingVertical vertical={1} />
+      
       <Text
         style={[
           styles.text_login,
@@ -38,7 +38,8 @@ const styles = StyleSheet.create({
 
     fontSize: 25,
   }, container: {
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
+    paddingVertical:20
   }
 
 });

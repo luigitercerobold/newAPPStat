@@ -1,5 +1,5 @@
-//const server = "http://104.154.41.85";
-const server = "http://192.168.0.108:3000"
+const server = "http://104.154.41.85";
+//const server = "http://192.168.0.108:3000"
 const imgServer = 'https://storage.googleapis.com/stat-storage-dev/images/'
 const urlStat={
    img: imgServer,
@@ -25,7 +25,7 @@ const urlStat={
    },
    addContact :server + "/api/user/contact",
    getContacts:server + "/api/user/contacts",
-   searchContact: server +"api/user/doctor/search"
+   searchContact: server +"/api/user/doctor/search"
 };
 
 export default urlStat
