@@ -11,13 +11,16 @@ import { ScrollView } from 'react-native-gesture-handler';
 import Header from '../../src/Component/Header'
 
 class IndexProduct extends Component {
+
    goToBodyPart = ()=> {
       this.props.navigation.navigate('BodyProducto')
    }
+
    goToProveedor =() =>{
       this.props.navigation.navigate('Provider')
      
    }
+
    render() {
       return (
          <ScrollView >
@@ -39,8 +42,6 @@ class IndexProduct extends Component {
          </ScrollView>
 
       )
-
-
    }
 }
 export default IndexProduct

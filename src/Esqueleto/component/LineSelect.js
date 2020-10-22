@@ -18,13 +18,13 @@ const LineSelect = ({ line, imaginaryLine, btnHeigh, radioPunto, revese, btn }) 
 
    const point = () => {
       return (
-      <View style={styles.puntoContainer}>
-         <View style={[styles.punto, {
-            width: radioPunto,
-            height: radioPunto
-         }]}>
+         <View style={styles.puntoContainer}>
+            <View style={[styles.punto, {
+               width: radioPunto,
+               height: radioPunto
+            }]}>
+            </View>
          </View>
-      </View>
       )
    }
    const imaginary = () => {
@@ -49,9 +49,9 @@ const LineSelect = ({ line, imaginaryLine, btnHeigh, radioPunto, revese, btn }) 
 
 
          {lines()}
-         
+
          {point()}
-      
+
       </View>
 
 

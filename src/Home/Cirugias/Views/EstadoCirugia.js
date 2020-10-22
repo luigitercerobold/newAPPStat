@@ -50,7 +50,6 @@ class Cirugias extends Component {
     render() {
 
         return (
-
             <View style={styles.container}>
                 <Title title="Próxima cirugía" />
                 <Container>

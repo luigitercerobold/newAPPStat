@@ -22,7 +22,7 @@ class VerCirugia extends Component {
       this.setState({ loading: true })
       const cirugia = await http.instance.get(urlStat.getCirugias, http.instance.getToken())
       this.setState({ cirugia: cirugia.data, loading: false })
-   
+
       return Cirugias
    }
    onPress = () => {
@@ -32,8 +32,8 @@ class VerCirugia extends Component {
       this.props.navigation.navigate('AgendarCirugia', { producto: this.state.products })
    }
 
-   goTo  = (item) => {
-      this.props.navigation.navigate('AgendarCirugia',{cirugia:item})
+   goTo = (item) => {
+      this.props.navigation.navigate('AgendarCirugia', { cirugia: item })
    }
 
    render() {

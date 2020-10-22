@@ -12,7 +12,7 @@ export class Buscar extends Component {
       loading: false,
       doctor: [],
       allDoctor: [],
-      query:""
+      query: ""
    }
 
    componentDidMount() {
@@ -37,7 +37,7 @@ export class Buscar extends Component {
       const providerFiltered = allDoctor.filter(doctor => {
          return doctor.name.toLowerCase().includes(query.toLowerCase())
       })
-      this.setState({ doctor: providerFiltered,query:query })
+      this.setState({ doctor: providerFiltered, query: query })
    }
    ayudante = () => {
 
@@ -99,9 +99,9 @@ export class Buscar extends Component {
    buscar = async () => {
       this.setState({ loading: true })
       const body = JSON.stringify({
-         queryText:this.state.query
+         queryText: this.state.query
       })
-      const req = await Http.instance.post(urlStat.searchContact,body ,Http.instance.getToken())
+      const req = await Http.instance.post(urlStat.searchContact, body, Http.instance.getToken())
       this.setState({ doctor: req.data, loading: false })
    }
 
@@ -109,7 +109,7 @@ export class Buscar extends Component {
       const { loading, doctor } = this.state
       return (
          <View style={styles.container}>
-            <Title title={ this.ayudante()} />
+            <Title title={this.ayudante()} />
 
             <View style={styles.listCenter}>
                <Search style={styles.search} onChange={this.handleSearch} />

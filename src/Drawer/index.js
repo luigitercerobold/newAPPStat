@@ -8,6 +8,7 @@ import {
   DrawerItem,
 } from '@react-navigation/drawer';
 import StatFont from '../Lib/Component/StatFont'
+
 function Feed({ navigation }) {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -53,7 +54,7 @@ export default function MyDrawer() {
   );
 }
 
- function App() {
+function App() {
   return (
     <NavigationContainer>
       <MyDrawer />

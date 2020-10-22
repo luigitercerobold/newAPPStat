@@ -22,11 +22,12 @@ import User from '../../../Lib/user'
 class MenuSc extends Component {
   constructor(props) {
     super(props);
-    
   }
+  
   toggleDrawer = () => {
     this.props.navigation.dispatch(DrawerActions.toggleDrawer())
   }
+
   static navigationOptions = ({ navigation }) => {
     return {
       title: 'nombre de usuario'
@@ -39,20 +40,17 @@ class MenuSc extends Component {
 
   producto = () => {
     this.props.navigation.navigate('IndexProduct')
-
   }
 
   mostrar = (props) => {
     
-
   }
+
   componentDidMount() {
     if (http.instance.getToken() === null) {
-        this.getToken()
+      this.getToken()
     }
-
-}
-
+  }
 
   getToken = async () => {
     const url = urlStat.login
@@ -65,14 +63,14 @@ class MenuSc extends Component {
     http.instance.setToken(data.token)
     http.instance.setId(data.data.id)
     User.instance.newUser(data.data)
-   
 
-}
+  }
+
   asistencia = () => {
     this.props.navigation.navigate('Asistencia')
   }
-  render(props) {
 
+  render(props) {
     return (
       <View style={styles.container} {...props}>
         <View style={styles.header} {...props}>
@@ -83,7 +81,7 @@ class MenuSc extends Component {
             text="Cirugía"
             img={require('newAPPStat/assets/Icon/1x/menu-cirugas.png')}
             nexPage={this.fecha}
-            container = {false}
+            container={false}
           ></Section>
           <Section
             text="Asistencia"

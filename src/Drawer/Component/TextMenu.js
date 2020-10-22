@@ -6,19 +6,19 @@ const TextMenu = ({ title, onPress }) => {
 
    return (
       <Pressable
-         onPress = {onPress}
+         onPress={onPress}
          style={({ pressed }) => [
-            
-             pressed
-                ? styles.containerPressable
-                : styles.container,
+
+            pressed
+               ? styles.containerPressable
+               : styles.container,
             ,
             styles.container
-          ]}
+         ]}
       >
-         
-            <StatFont style = {styles.text}>{title}</StatFont>
-       
+
+         <StatFont style={styles.text}>{title}</StatFont>
+
       </Pressable>
 
 
@@ -32,20 +32,20 @@ const styles = StyleSheet.create(
    {
 
       container: {
-      
-         height:40,
-         justifyContent:'center',
-         flex:1
+
+         height: 40,
+         justifyContent: 'center',
+         flex: 1
       },
-      containerPressable:{
-         backgroundColor:Color.gray,
-         
-         
+      containerPressable: {
+         backgroundColor: Color.gray,
+
+
       },
       text: {
-         paddingHorizontal:20,
-         fontSize:15
+         paddingHorizontal: 20,
+         fontSize: 15
       }
-      
+
    }
 )

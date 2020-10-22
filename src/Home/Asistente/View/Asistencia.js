@@ -68,11 +68,11 @@ export class Asistencia extends Component {
    onPress = (role) => {
       this.setState({ reload: true })
       const array = this.elegirDoctor(role)
-      this.goto(role,array)
+      this.goto(role, array)
    }
 
    goto(role, array) {
-      console.log(role,array)
+      console.log(role, array)
       this.props.navigation.navigate('BuscarContacto', { role: role, contact: array, allDoctor: this.state.allDoctor })
 
    }
@@ -105,8 +105,8 @@ export class Asistencia extends Component {
    }
 
 
-   handlePress (item)  {
-     
+   handlePress(item) {
+
    }
 
    render() {
@@ -114,11 +114,11 @@ export class Asistencia extends Component {
       return (
          <AsitenciaComponent
             component1={this.component1}
-            pressAcept={() =>console.log('aceptar ')}
-            doctor = {doctor}
-            anestesia = {anestesia}
-            loading = {loading}
-            aceptButton ={false}
+            pressAcept={() => console.log('aceptar ')}
+            doctor={doctor}
+            anestesia={anestesia}
+            loading={loading}
+            aceptButton={false}
          />
       )
    }

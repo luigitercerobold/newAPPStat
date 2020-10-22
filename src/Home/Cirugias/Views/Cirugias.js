@@ -20,7 +20,7 @@ class Cirugias extends Component {
         super();
     }
 
-    goToAgendarCirugia(){
+    goToAgendarCirugia() {
         this.props.navigation.navigate('')
     }
     render() {
@@ -30,11 +30,11 @@ class Cirugias extends Component {
                 <Pendiente></Pendiente>
                 <NavigateCirugia text="Ver Cirugías"></NavigateCirugia>
                 <NavigateCirugia text="Agendar Cirugía"></NavigateCirugia>
-            </View> 
+            </View>
         );
     }
 }
 export default Cirugias;
 const styles = StyleSheet.create({
-   
+
 });

@@ -15,7 +15,7 @@ class AgendaProducto extends Component {
       ,
       loading: false,
       pro: [],
-      remove:false
+      remove: false
 
    }
 
@@ -28,10 +28,10 @@ class AgendaProducto extends Component {
       }
 
    }
-   componentDidMount () {
-     
+   componentDidMount() {
+
       if (this.props.route.params.products) {
-         this.setState({products:this.props.route.params.products})
+         this.setState({ products: this.props.route.params.products })
       }
 
    }
@@ -43,15 +43,15 @@ class AgendaProducto extends Component {
       this.props.navigation.navigate('ElegirBody', { products: this.state.products })
    }
    goToAgandarCirugia = () => {
-     
-      this.props.navigation.navigate('AgendarCirugia', { pro: this.state.pro, producto: this.state.products,products: this.state.products })
+
+      this.props.navigation.navigate('AgendarCirugia', { pro: this.state.pro, producto: this.state.products, products: this.state.products })
    }
    removeElement = (item) => {
 
-      const produtctos = this.state.products.filter(function(product) {
-         return product.id !== item.id; 
-     });
-     this.setState({products:produtctos})
+      const produtctos = this.state.products.filter(function (product) {
+         return product.id !== item.id;
+      });
+      this.setState({ products: produtctos })
    }
 
 
@@ -60,24 +60,24 @@ class AgendaProducto extends Component {
       const { products, loading } = this.state
 
       return (
-         <View  style={{flex:1}}>
+         <View style={{ flex: 1 }}>
             <Title title="Productos Agregados" />
-         
+
 
             <FlatList
                data={products}
-               styles = {styles.flatLis}
+               styles={styles.flatLis}
                renderItem={({ item }) =>
-              
+
                   <NavigateCirugia
                      item={item}
-                     remove = {this.removeElement}
+                     remove={this.removeElement}
                   ></NavigateCirugia>
                }
             />
             <BtnProximaCirugia onPress={this.onPress} text="Agregar Producto" img={require("newAPPStat/assets/Icon/1x/cirugias-agregar_cirugias.png")} />
             <ListButton title="confirmar" onPress={this.goToAgandarCirugia} />
-            
+
          </View>
 
       )
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
       textAlign: "center",
       fontSize: 20
    },
-   flatLis:{
-      flex:0.3
+   flatLis: {
+      flex: 0.3
    }
 })

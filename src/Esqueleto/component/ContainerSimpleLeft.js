@@ -67,13 +67,12 @@ const ContainerSimpleLeft = ({ data, renderItem, img }) => {
          console.log("mas  ancha", dimensions.window.width, dimensions.window.height, imgSize.width)
          imgWidthNeto = imgSize.height / constanteCenter
          //imgSize.width= dimensions.window.width*2 
-         imgWidthBruto = (dimensions.window.width * 2) - imgSize.width*.90
+         imgWidthBruto = (dimensions.window.width * 2) - imgSize.width * .90
          return ((imgSize.height) / 8) * poss
       }
    }
 
    const render = () => {
-
 
       return (
          data.map(item =>

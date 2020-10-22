@@ -6,7 +6,7 @@ import http from 'newAPPStat/src/Lib/http'
 import urlStat from 'newAPPStat/src/Lib/url'
 import color from 'newAPPStat/src/Lib/Colors'
 import HospitalItem from '../../Component/Listitem'
- import Header from '../../../src/Component/Header'
+import Header from '../../../src/Component/Header'
 
 
 class AgendarCirugia extends Component {
@@ -14,7 +14,7 @@ class AgendarCirugia extends Component {
       fontLoaded: false,
       hospital: '',
       loading: false,
-      activate:false
+      activate: false
    }
 
    componentDidMount() {
@@ -24,25 +24,25 @@ class AgendarCirugia extends Component {
       this.setState({ loading: true })
       const hospital = await http.instance.get(urlStat.getHospital, http.instance.getToken())
       this.setState({ hospital: hospital.data, loading: false })
-     
+
       return hospital
    }
 
-   handlePress = (item) =>{
-   
-      this.props.navigation.navigate('AgendarCirugia',{hospital:item})
+   handlePress = (item) => {
+
+      this.props.navigation.navigate('AgendarCirugia', { hospital: item })
    }
    render() {
-      const { hospital, loading,activate } = this.state;
+      const { hospital, loading, activate } = this.state;
       return (
          <View>
             { loading ?
                <ActivityIndicator color={color.blue} size="large" /> : null
             }
-            <Title title="¿En dónde vas a operar?"/>
+            <Title title="¿En dónde vas a operar?" />
             <FlatList
                data={hospital}
-               renderItem={({ item }) => <HospitalItem activate={activate} onPress={()=>this.handlePress(item)} img={item.image } item={item.name} />}
+               renderItem={({ item }) => <HospitalItem activate={activate} onPress={() => this.handlePress(item)} img={item.image} item={item.name} />}
             />
 
          </View>

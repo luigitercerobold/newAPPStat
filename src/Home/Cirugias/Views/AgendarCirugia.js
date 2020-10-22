@@ -28,11 +28,11 @@ class AgendarCirugia extends Component {
    }
 
    cargarCirugia(cirugia) {
-      
+
       console.log(cirugia)
-      
+
       this.setState({ screen: "VerCirugia" })
-      
+
       this.props.route.params.date = cirugia.date
       this.props.route.params.timer = cirugia.end
       this.props.route.params.bodyPart = cirugia.name
@@ -124,7 +124,7 @@ class AgendarCirugia extends Component {
 
    editarCirugia = async () => {
       console.log('regresando')
-     
+
    }
 
    crearCirugia = async () => {

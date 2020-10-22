@@ -9,7 +9,7 @@ class AsistenteAdministrativo extends Component {
       this.setState({ eMail })
    }
    gotoToToken = (eMail) => {
-   
+
       this.props.navigation.navigate('SendInvitation')
 
    }
@@ -17,9 +17,9 @@ class AsistenteAdministrativo extends Component {
       return (
          <>
             <Permisos
-               onPress ={this.gotoToToken}
-               title = "Permisos"
-               subTitle="Ingrese el correo del asistente administrativo para otorgar accesos" 
+               onPress={this.gotoToToken}
+               title="Permisos"
+               subTitle="Ingrese el correo del asistente administrativo para otorgar accesos"
             >
             </Permisos>
          </>

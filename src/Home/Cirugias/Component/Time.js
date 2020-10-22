@@ -18,16 +18,14 @@ class Time extends Component {
       show: Platform.OS === 'ios'
     })
 
-
-
     this.props.onChangeEnd(selectedDate)
 
   }
 
-
   showTimepicker = () => {
     this.showMode('time');
   };
+
   showMode = (currentMode) => {
     this.setState({
       show: true,
@@ -35,7 +33,6 @@ class Time extends Component {
     });
 
   };
-
 
   render() {
     return (
@@ -82,6 +79,6 @@ const styles = StyleSheet.create({
 
   },
   container: {
-    
+
   }
 })

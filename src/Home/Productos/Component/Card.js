@@ -8,11 +8,11 @@ const Card = ({ img, text }) => {
       <View style={[styles.iconFrame]}>
 
          <View style={styles.imgCenter}>
-            <Image style={styles.imgContainer} source={img}  resizeMode='contain' />
+            <Image style={styles.imgContainer} source={img} resizeMode='contain' />
             <View style={styles.containertext}>
                <StatFont style={styles.text}>{text}</StatFont>
             </View>
-            
+
          </View>
       </View>
    )
@@ -35,8 +35,8 @@ const styles = StyleSheet.create({
       shadowColor: '#000000',
       shadowOpacity: 0.8,
       shadowRadius: 8,
-      marginHorizontal:10,
-      marginVertical:25
+      marginHorizontal: 10,
+      marginVertical: 25
    },
    imgCenter: {
       justifyContent: "center",
@@ -46,14 +46,14 @@ const styles = StyleSheet.create({
       width: 75,
       height: 75
    },
-   text:{
-      color:Colors.grayLetter,
-      fontSize:20,
-      textAlign:"center",
-      paddingVertical:10
+   text: {
+      color: Colors.grayLetter,
+      fontSize: 20,
+      textAlign: "center",
+      paddingVertical: 10
    },
-   containertext:{
-      height:12
+   containertext: {
+      height: 12
    }
 
 })

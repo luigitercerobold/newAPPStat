@@ -42,6 +42,7 @@ class Productos extends Component {
    }
 
    getProdcuts = async () => {
+
       this.setState({ loading: true })
 
       const body = JSON.stringify({
@@ -54,20 +55,24 @@ class Productos extends Component {
    }
 
    onPress = (item) => {
+
       const query ={
          product: item,
          proveedor: this.props.route.params.proveedor,
       }
       this.goToDetalleProdcuto(query)
+
    }
 
    goToDetalleProdcuto (query) {
 
       this.props.navigation.navigate('DetalleProducto', query)
+
    }
 
 
    listas = () => {
+
       return this.state.producto.map(product => (
          <ProuductIMG
             onPress={() => this.onPress(product)}
@@ -75,12 +80,16 @@ class Productos extends Component {
             key={product.id}
          >{product.name}</ProuductIMG>
       ))
+
    }
    referenceDrawer = () => {
+
       console.log(this.refDrawer.drawer.openDrawer())
+
    }
 
    categoriesFilter = (query) => {
+
       console.log(query)
       const {allProducto} =this.state
       const providerFiltered = allProducto.filter(producto =>{
@@ -92,6 +101,7 @@ class Productos extends Component {
          }
       })
       this.setState({producto:providerFiltered})
+      
    }
 
 
@@ -133,6 +143,7 @@ class Productos extends Component {
    }
 
 }
+
 export default Productos;
 
 const styles = StyleSheet.create({

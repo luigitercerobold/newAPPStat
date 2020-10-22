@@ -4,7 +4,6 @@ import {View, Image, StyleSheet} from 'react-native'
 const Card = ({img}) => {
    return(
       <View style={[styles.iconFrame, { marginRight: 3, marginTop: 10 }]}>
-
          <View style={styles.imgCenter}>
             <Image style={styles.imgContainer} source={img}  resizeMode='contain'/>
          </View>

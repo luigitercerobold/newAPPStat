@@ -8,13 +8,16 @@ class FechaHora extends Component {
   state = {
     isDatePickerVisible: false,
   }
+
   showDatePicker = () => {
-  
+
     this.setState({ isDatePickerVisible: true });
   };
+
   hideDatePicker = () => {
     this.setState({ isDatePickerVisible: false });
   };
+
   handleConfirm = (date) => {
     this.props.onChageDateHour(date);
     this.hideDatePicker();

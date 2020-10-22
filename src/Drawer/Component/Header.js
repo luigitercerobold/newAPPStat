@@ -1,23 +1,20 @@
-import React,{useState,useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import { Use } from 'react-native-svg'
 import User from '../../Lib/user'
 import Datos from './Datos'
 import Color from '../../Lib/Colors'
 const Header = () => {
+   
    const [count, setCount] = useState(0);
    const [user, setUser] = useState(User.instance.user)
    useEffect(() => {
- 
-   
-      if(User.instance.getUser() != null || user != User.instance.getUser()){
-       
+      if (User.instance.getUser() != null || user != User.instance.getUser()) {
+
          setUser(User.instance.getUser())
       }
-         
-        
    }
-   
+
    );
 
    return (
@@ -52,7 +49,7 @@ const styles = StyleSheet.create(
 
       container: {
          flex: 1,
-         paddingTop:30
+         paddingTop: 30
 
       },
 
@@ -67,6 +64,6 @@ const styles = StyleSheet.create(
          height: 70,
       },
 
-      
+
    }
 )

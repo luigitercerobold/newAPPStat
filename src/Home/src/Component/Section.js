@@ -12,13 +12,14 @@ import {
 import Card from './Card'
 import StatFont from '../../../Lib/Component/StatFont'
 function Section({ nexPage, text, img, borderLine = true, container = true }) {
+   
    const Stilene = () => {
-
       if (borderLine) {
          return styles.reactItem
       }
       return styles.reactItemNoLine
    }
+
    const negativemargin = () => {
       if (container) {
          return styles.contaninerNone
@@ -32,20 +33,19 @@ function Section({ nexPage, text, img, borderLine = true, container = true }) {
          <Pressable
             style={styles.container}
             onPress={nexPage}>
-            <View style={[Stilene(), negativemargin(),{ flexDirection: 'row' }]}>
-             
-                  <View style={styles.containerText}>
-                     <StatFont style={styles.text_input}>{text}</StatFont>
-                  </View>
-                  <Card
-                     img={img}
-                  />
-            
+            <View style={[Stilene(), negativemargin(), { flexDirection: 'row' }]}>
+
+               <View style={styles.containerText}>
+                  <StatFont style={styles.text_input}>{text}</StatFont>
+               </View>
+               <Card
+                  img={img}
+               />
+
             </View>
          </Pressable>
 
       </View>
-
    )
 
 }
@@ -61,34 +61,34 @@ const styles = StyleSheet.create({
       justifyContent: 'center'
    },
    container: {
-   flex:1,
+      flex: 1,
       backgroundColor: 'white',
       paddingHorizontal: 10
    },
 
    contaninerNone: {
-      flex:2  
+      flex: 2
    },
    containerMarginNegative: {
-    
-     flex:.85,
-     paddingBottom:45
+
+      flex: .85,
+      paddingBottom: 45
    },
    reactItem: {
       borderBottomWidth: 0.5,
       borderBottomColor: '#000',
       paddingHorizontal: 15,
       alignContent: 'center',
-      
+
       alignItems: 'center',
-        
-          marginTop:-20
+
+      marginTop: -20
    },
    reactItemNoLine: {
 
       paddingHorizontal: 15,
       alignContent: 'center',
-    
+
       alignItems: 'center'
    },
 
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
 
 
       color: '#1f2d49',
-    
+
       fontWeight: '100',
       letterSpacing: 2,
       fontSize: 28,

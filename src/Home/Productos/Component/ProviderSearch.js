@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import TextBox from '../../../Lib/Component/TexBox'
 
 const ProviderSearch = ({onChange,style}) => {
+   
    const [query, setQuery] = useState('');
    const handleText = (query) => {
       setQuery(query)
@@ -9,6 +10,7 @@ const ProviderSearch = ({onChange,style}) => {
          onChange(query)
       }
    }
+
    return (
       <TextBox
          placeholder="Buscar"

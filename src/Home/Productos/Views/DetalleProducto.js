@@ -15,6 +15,7 @@ import Description from '../../../Lib/Component/Description'
 import Header from '../../src/Component/Header'
 
 class FiltrarProveedor extends Component {
+   
    state = {
       products: '',
       proveedor: [],
@@ -29,6 +30,7 @@ class FiltrarProveedor extends Component {
       this.getParams()
       this.getGallery()
    }
+
    getGallery = async () => {
 
       console.log("get gallery",this.props.route.params.product.id)
@@ -36,13 +38,11 @@ class FiltrarProveedor extends Component {
       const galery = await Http.instance.get(galeryURL, Http.instance.getToken())
          console.log("gallery", galery)
       const images = []
-
      
       galery.data.forEach(element => {
          images.push({ source: { uri: url.img + element.name } })
       });
       this.setState({ gallery: images })
-
 
    }
   
@@ -54,8 +54,6 @@ class FiltrarProveedor extends Component {
          }
 
       )
-  
-
    }
 
    handlePress = (item) => {

@@ -3,36 +3,36 @@ import { Button, View, Text, Image, StyleSheet, Pressable } from 'react-native'
 import Colors from 'newAPPStat/src/Lib/Colors'
 import url from '../../../Lib/url'
 import StatFont from '../../../Lib/Component/StatFont'
-function NavigateCirugias({item,goToPage,remove}) {
+function NavigateCirugias({ item, goToPage, remove }) {
 
-   const onpress = ()=> {
-      
+   const onpress = () => {
+
    }
    return (
 
       <View>
-     
-            <View style={styles.container}>
-               <View style={styles.containerSelector}>
-                  <Image style={styles.img} source={{uri:url.img+item.image }}></Image>
-                  <View style={styles.containerCenter}>
-                     <StatFont style={styles.texPrincipal}>
-                        {item.name}
-                     </StatFont>
-                   
-                  </View>
-                  <View>
-                     <Pressable onPress={ ()=>remove (item)} style={[styles.myButton,styles.red]}>
-                        <Image style={styles.pencil} source={require("newAPPStat/assets/Icon/1x/cancerlar_informacion.png")} ></Image>
-                     </Pressable>
-                     <Pressable onPress={goToPage} style={styles.myButton}>
-                        <Image style={styles.pencil} source={require("newAPPStat/assets/Icon/1x/editar_inofrmacion.png")} ></Image>
-                     </Pressable>
-                  </View>
+
+         <View style={styles.container}>
+            <View style={styles.containerSelector}>
+               <Image style={styles.img} source={{ uri: url.img + item.image }}></Image>
+               <View style={styles.containerCenter}>
+                  <StatFont style={styles.texPrincipal}>
+                     {item.name}
+                  </StatFont>
+
+               </View>
+               <View>
+                  <Pressable onPress={() => remove(item)} style={[styles.myButton, styles.red]}>
+                     <Image style={styles.pencil} source={require("newAPPStat/assets/Icon/1x/cancerlar_informacion.png")} ></Image>
+                  </Pressable>
+                  <Pressable onPress={goToPage} style={styles.myButton}>
+                     <Image style={styles.pencil} source={require("newAPPStat/assets/Icon/1x/editar_inofrmacion.png")} ></Image>
+                  </Pressable>
                </View>
             </View>
+         </View>
 
-         
+
       </View>
 
    )
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
 
    },
    myButton: {
-      margin:10,
+      margin: 10,
       height: 30,
       width: 30,  //The Width must be the same as the height
       borderRadius: 400, //Then Make the Border Radius twice the size of width or Height   
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
    },
-   red:{
+   red: {
       backgroundColor: Colors.red,
    },
    containerCenter: {

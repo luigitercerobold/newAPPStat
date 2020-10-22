@@ -5,8 +5,8 @@ import StatFont from '../../../Lib/Component/StatFont'
 
 const ContainerText = (props) => {
 
-   return(
-      <StatFont style = {styles.text}>
+   return (
+      <StatFont style={styles.text}>
          {props.children}
       </StatFont>
    )
@@ -14,13 +14,13 @@ const ContainerText = (props) => {
 
 export default ContainerText
 
-const styles  = StyleSheet.create (
+const styles = StyleSheet.create(
    {
-      text:{
-         
-         fontSize:25,
-         color:Colors.grayLetter
-      
+      text: {
+
+         fontSize: 25,
+         color: Colors.grayLetter
+
       }
    }
 

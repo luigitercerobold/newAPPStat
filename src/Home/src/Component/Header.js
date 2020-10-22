@@ -12,8 +12,6 @@ import Padding from '../../../Login/Component/PaddingVertical';
 
 const Header = ({navigation}) =>{
 
-
-
    return (
       <View style={styles.container} >
          <View style={styles.areaContainer}></View>
@@ -36,14 +34,13 @@ const Header = ({navigation}) =>{
    );
    
 }
+
 export default Header;
 const styles = StyleSheet.create({
    container: {
       height: 50,
       backgroundColor: Color.blue,
-      flexDirection: 'row',
-
-      
+      flexDirection: 'row',   
    },
 
    header: {

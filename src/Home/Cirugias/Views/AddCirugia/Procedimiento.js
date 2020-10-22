@@ -33,10 +33,12 @@ class Cuerpo extends Component {
       });
       this.setState({ bodyPart: bodyPart.data })
    }
+
    onPress = () => {
 
       this.props.navigation.navigate('AgendarCirugia', { bodyPart: this.props.route.params?.body.name, procedimiento: this.state.procedimiento })
    }
+   
    textInputChange = (value) => {
       this.setState({ procedimiento: value })
    }

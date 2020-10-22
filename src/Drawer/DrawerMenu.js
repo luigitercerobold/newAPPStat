@@ -6,7 +6,7 @@ class DrawerMenu extends Component {
 
    render() {
       // prepare your drawer content
-    
+
       // customize drawer's style (Optional)
       var customStyles = {
          drawer: {
@@ -18,10 +18,10 @@ class DrawerMenu extends Component {
          main: {} // style of main board
       };
       const onPress = () => {
-       
-        this.drawer.closeDrawer()
+
+         this.drawer.closeDrawer()
       }
-      var drawerContent = (<DrawerContent onPress={this.props.onPress} close= {onPress}></DrawerContent>)
+      var drawerContent = (<DrawerContent onPress={this.props.onPress} close={onPress}></DrawerContent>)
       return (
          <Drawer
             ref={drawer => this.drawer = drawer}
@@ -37,7 +37,7 @@ class DrawerMenu extends Component {
          >
 
             {this.props.children}
-            
+
          </Drawer>
       );
    }
@@ -58,7 +58,7 @@ const styles = StyleSheet.create(
          backgroundColor: "green"
       },
       drawer: {
-         backgroundColor:"white",
+         backgroundColor: "white",
          flex: 1,
       },
       content: {

@@ -21,17 +21,20 @@ class DatosNuevoUsuario extends Component {
    }
 
    componentDidMount() {
+      
       console.log(User.instance.user)
       this.setState(
          {
-            name:User.instance.user.name,
-            eMail:User.instance.user.email,
-            phone:User.instance.user.phone  
+            name: User.instance.user.name,
+            eMail: User.instance.user.email,
+            phone: User.instance.user.phone
          }
-      )      
+      )
 
    }
+
    goToToken = async () => {
+
       const body = JSON.stringify(
          {
             email: this.state.eMail,
@@ -57,20 +60,19 @@ class DatosNuevoUsuario extends Component {
 
    }
 
+   goToPerfil = () => {
 
-   goToPerfil =() =>{
+      const body =
+      {
+         email: this.state.eMail,
+         password: this.state.passWord,
+         name: this.state.name + " " + this.state.lastName,
+         phone: this.state.phone,
+         role: 2
+      }
 
-      const body = 
-         {
-            email: this.state.eMail,
-            password: this.state.passWord,
-            name: this.state.name + " " + this.state.lastName,
-            phone: this.state.phone,
-            role: 2
-         }
-      
-      this.props.navigation.navigate('PerfilNuevoUsuario', {body: body })
-      
+      this.props.navigation.navigate('PerfilNuevoUsuario', { body: body })
+
    }
 
    setName = (name) => {
@@ -99,19 +101,19 @@ class DatosNuevoUsuario extends Component {
                   placeholder={this.state.name}
                   onChangeText={this.setName}
                />
-             
+
                <PaddingVertical vertical={0.1} />
                <TextBox
                   placeholder={this.state.eMail}
                   onChangeText={this.setEmail}
                   keyword='email-address'
                />
-              
+
                <PaddingVertical vertical={0.1} />
                <PassWord
                   placeholder="Password"
                   onChangeText={this.setPassWord}
-                  //onEndEditing={() => this.logIn(activateAuth)}
+               //onEndEditing={() => this.logIn(activateAuth)}
                />
                <PaddingVertical vertical={0.1} />
                <TextBox

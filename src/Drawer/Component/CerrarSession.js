@@ -10,7 +10,6 @@ const CerrarSession = () => {
 
       <View style={styles.container}>
 
-
          <Context.Consumer>
             {
                ({ isAuth, activateAuth, logAuth }) => {
@@ -22,7 +21,6 @@ const CerrarSession = () => {
                }
             }
          </Context.Consumer>
-
 
       </View>
    )

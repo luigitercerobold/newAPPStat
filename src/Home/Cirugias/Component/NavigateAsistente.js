@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Button, View, Text, Image, StyleSheet, Pressable } from 'react-native'
 import Colors from 'newAPPStat/src/Lib/Colors'
 import StatFont from '../../../Lib/Component/StatFont'
-function NavigateCirugias({ text1, text2, text3, img, goToPage, action, delate=true,edit =true }) {
+function NavigateCirugias({ text1, text2, text3, img, goToPage, action, delate = true, edit = true }) {
 
 
 
@@ -26,19 +26,19 @@ function NavigateCirugias({ text1, text2, text3, img, goToPage, action, delate=t
                   </View>
                   <View>
                      {delate
-                     ? <Pressable onPress={goToPage} style={[styles.myButton, styles.red]}>
+                        ? <Pressable onPress={goToPage} style={[styles.myButton, styles.red]}>
                            <Image style={styles.pencil} source={require("newAPPStat/assets/Icon/1x/cancerlar_informacion.png")} ></Image>
                         </Pressable>
                         : null
                      }
 
-                     {edit?
+                     {edit ?
                         <Pressable onPress={goToPage} style={styles.myButton}>
-                        <Image style={styles.pencil} source={require("newAPPStat/assets/Icon/1x/editar_inofrmacion.png")} ></Image>
+                           <Image style={styles.pencil} source={require("newAPPStat/assets/Icon/1x/editar_inofrmacion.png")} ></Image>
                         </Pressable>
-                        :null
+                        : null
                      }
-                     
+
                   </View>
                </View>
             </View> :

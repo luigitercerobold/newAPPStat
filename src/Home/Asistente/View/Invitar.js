@@ -4,7 +4,7 @@ import TextBox from '../../../Login/Component/TextBox'
 import Title from '../../../Lib/Title'
 import SimpleButom from '../../../Lib/Component/BotonSiemple'
 
-export const Invitar = ({navigation}) => {
+export const Invitar = ({ navigation }) => {
 
    const [contact, setContact] = useState('')
    const setUser = () => {
@@ -33,14 +33,14 @@ export const Invitar = ({navigation}) => {
 
                <Image
                   source={require('newAPPStat/assets/Icon/1x/whatsapp.png')}
-                  style={{ height: 80, width: 80 ,marginVertical:40}}
+                  style={{ height: 80, width: 80, marginVertical: 40 }}
                />
             </View>
 
          </View>
 
          <View style={{ flex: 1 }}>
-            <View style={{ justifyContent: 'flex-end', alignContent:'flex-end', alignItems: 'center' }}>
+            <View style={{ justifyContent: 'flex-end', alignContent: 'flex-end', alignItems: 'center' }}>
 
                <SimpleButom
                   title="Enviar Invitacion"

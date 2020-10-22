@@ -17,9 +17,11 @@ class Proveedor extends Component {
       loading: false,
       allProvider: []
    }
+
    componentDidMount() {
       this.getProvider()
    }
+
    getProvider = async () => {
       this.setState({ loading: true })
       const proveedor = await http.instance.get(urlStat.getProveedor, http.instance.getToken())
@@ -71,8 +73,8 @@ class Proveedor extends Component {
          </View>
       )
    }
-
 }
+
 export default Proveedor;
 
 const styles = StyleSheet.create({

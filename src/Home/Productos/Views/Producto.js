@@ -12,16 +12,19 @@ import color from 'newAPPStat/src/Lib/Colors'
 
 
 class Productos extends Component {
+
    state={
       products:bodyPart,
       proveedor:[],
       loading:false,
       selectProduct:""
    }
+
    componentDidMount(){
       console.log.length('producto')
       this.getProdcuts();
    }
+
    getProdcuts = async () => {
       this.setState({ loading: true })
       const body =JSON.stringify({
@@ -34,9 +37,11 @@ class Productos extends Component {
       console.log(this.state.proveedor)
       return proveedor
    }
+
    onPress = () => {
     
    }
+
    handlePress=(item)=>{
       console.log("seleccionado", item)
       this.setState({selectProduct:item})
@@ -44,6 +49,7 @@ class Productos extends Component {
          producto: item
       })
    }
+   
    render(){
       const {products,proveedor,loading} = this.state
       return (

@@ -24,9 +24,11 @@ class MenuSc extends Component {
   constructor(props) {
     super(props);
   }
+  
   toggleDrawer = () => {
     this.props.navigation.dispatch(DrawerActions.toggleDrawer())
   }
+
   static navigationOptions = ({ navigation }) => {
     return {
       title: 'nombre de usuario'
@@ -39,46 +41,48 @@ class MenuSc extends Component {
 
   producto = () => {
     this.props.navigation.navigate('IndexProduct')
+  }
+
+  getUser = () => {
+
+    if (User.instance.getUser() === null) {
+      return "loading"
+    } else {
+      return User.instance.getUser().name
+    }
 
   }
-getUser =()=>{
+  getPhoto = () => {
 
-  if(User.instance.getUser()===null){
- return "loading"
-  }else {
-   return User.instance.getUser().name
-  }
-}
-getPhoto =()=>{
+    if (User.instance.getUser() === null) {
+      return "loading"
+    } else {
+      return User.instance.getUser().photo
+    }
 
-  if(User.instance.getUser()===null){
- return "loading"
-  }else {
-   return User.instance.getUser().photo
   }
-}
 
 
   render(props) {
 
     return (
- 
-        <View style={styles.header} {...props}>
-        <Image style={styles.imgContainer, styles.imgalingrigtg} source={{uri:url.img + this.getPhoto()}} />
-          <StatFont
-            style={{
-              alignSelf: 'flex-start',
-              paddingStart: 25,
-              paddingTop: 8,
-              letterSpacing: 3,
-              fontFamily: 'Questrial-Regular',
-              fontSize: 24,
-              color: 'white',
-            }}>
-            {this.getUser()}
-          </StatFont>
-        </View>
-     
+
+      <View style={styles.header} {...props}>
+        <Image style={styles.imgContainer, styles.imgalingrigtg} source={{ uri: url.img + this.getPhoto() }} />
+        <StatFont
+          style={{
+            alignSelf: 'flex-start',
+            paddingStart: 25,
+            paddingTop: 8,
+            letterSpacing: 3,
+            fontFamily: 'Questrial-Regular',
+            fontSize: 24,
+            color: 'white',
+          }}>
+          {this.getUser()}
+        </StatFont>
+      </View>
+
     );
   }
 }
@@ -92,20 +96,20 @@ const styles = StyleSheet.create({
   header: {
     flex: 1,
     width: '100%',
-  marginTop:25,
+    marginTop: 25,
     backgroundColor: '#2185fb',
   },
 
   footer: {
     flex: 2,
-  },imgContainer: {
-   width: 66,
-   height: 66,
- },
- imgalingrigtg: {
-   marginLeft: 30,
-   width: 90,
-   height: 90,borderRadius:50
- },
+  }, imgContainer: {
+    width: 66,
+    height: 66,
+  },
+  imgalingrigtg: {
+    marginLeft: 30,
+    width: 90,
+    height: 90, borderRadius: 50
+  },
 
 });
