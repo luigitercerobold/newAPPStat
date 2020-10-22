@@ -12,6 +12,7 @@ const TextBox = ({ placeholder, onChangeText, keyword = 'default' , autocomplete
                onChangeText={text => onChangeText(text)}
                placeholder={placeholder}
                keyboardType={keyword}
+               
             />
          </View>
       </View>

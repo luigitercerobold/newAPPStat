@@ -13,9 +13,10 @@ const CustomDrawerContent = (props) => {
       <View style={{flex:1 , margin:20}}>
        
       <Header />
-      <Inicio goTo={()=>  props.navigation.navigate('Menu')}/>
+      <Inicio  title= {'Inicio'}goTo={()=>  props.navigation.navigate('Menu')}/>
       <Menu navigation ={props.navigation} />
       <Permisos goTo={()=>  props.navigation.navigate('AsistenteAdministrativo')}/>
+      <Inicio  title= {'Editar Usuario'}goTo={()=>  props.navigation.navigate('EditarUsuario')}/>
       <CerrarSesion/>
       
       

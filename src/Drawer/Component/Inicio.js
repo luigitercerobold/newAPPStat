@@ -1,11 +1,11 @@
 import React from 'react'
 import {Image, StyleSheet, Text, View} from 'react-native'
 import TextMenu from './TextMenu'
-const Inicio = ({goTo}) => {
+const Inicio = ({goTo , title}) => {
 
    return (
       <View style ={styles.container}>
-           <TextMenu title="Inicio" onPress={goTo} />
+           <TextMenu title={title} onPress={goTo} />
          
       </View>
 

@@ -8,7 +8,7 @@ const Datos = ({ name, email }) => {
    return (
       <View style = {styles.container}>
          <StatFont style = {styles.name}>{name}</StatFont>
-         <StatFont>{email}</StatFont>
+         <StatFont style = {{fontSize:12,width:150}}>{email}</StatFont>
       </View>
    )
 
@@ -23,7 +23,8 @@ const styles = StyleSheet.create(
       },
       name: {
          color: Color.blue,
-         fontSize: 20
+         fontSize: 20,
+         width:150
       }
    }
 )
