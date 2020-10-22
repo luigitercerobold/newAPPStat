@@ -32,7 +32,9 @@ class VerCirugia extends Component {
       this.props.navigation.navigate('AgendarCirugia', { producto: this.state.products })
    }
 
-
+   goTo  = (item) => {
+      this.props.navigation.navigate('AgendarCirugia',{cirugia:item})
+   }
 
    render() {
       const { cirugia, loading } = this.state
@@ -48,7 +50,7 @@ class VerCirugia extends Component {
                   renderItem={({ item }) =>
                      <Navigate
                         img={require("newAPPStat/assets/Icon/1x/menu-cirugas.png")}
-                        goToPage={() => this.goToDate()}
+                        goToPage={() => this.goTo(item)}
                         text1={"Operación de " + item.name}
                         text2={item.address}
                         text3={item.date}

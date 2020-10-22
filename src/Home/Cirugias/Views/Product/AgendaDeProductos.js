@@ -62,7 +62,7 @@ class AgendaProducto extends Component {
       return (
          <View  style={{flex:1}}>
             <Title title="Productos Agregados" />
-            <ScrollView style={{flex:1}}>
+         
 
             <FlatList
                data={products}
@@ -71,15 +71,13 @@ class AgendaProducto extends Component {
               
                   <NavigateCirugia
                      item={item}
-                 
                      remove = {this.removeElement}
-                   
                   ></NavigateCirugia>
                }
             />
             <BtnProximaCirugia onPress={this.onPress} text="Agregar Producto" img={require("newAPPStat/assets/Icon/1x/cirugias-agregar_cirugias.png")} />
             <ListButton title="confirmar" onPress={this.goToAgandarCirugia} />
-            </ScrollView>
+            
          </View>
 
       )
