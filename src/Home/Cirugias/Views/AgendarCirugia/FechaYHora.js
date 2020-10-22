@@ -27,10 +27,11 @@ class FachaYHora extends React.Component {
     start: 'Presiona aquí',
     time: 'Presiona aquí',
     fullStart: '',
-    fullTime: ''
+    fullTime: '',
+    duration:''
   };
   onPress = () => {
-    console.log('regresando')
+    console.log("enviando fullstart",this.state.fullStart) 
     this.props.navigation.navigate('AgendarCirugia', {
       date: this.state.start,
       timer: this.state.time,
@@ -46,26 +47,44 @@ class FachaYHora extends React.Component {
     if (min < 10) {
       min = "0" + min
     }
-    const date = `${start.getDate()}/${start.getMonth()}/${start.getFullYear()} - ${start.getHours()} : ${min}`
+    const date = `${start.getDate()}/${start.getMonth()+1}/${start.getFullYear()} - ${start.getHours()} : ${min}`
 
     this.setState({
       start: date,
-      fullStart: start
+      fullStart: start,
+      duration:start
+      //time:start
     })
 
   }
   handleTimer = (time) => {
     let min = time.getMinutes();
+    let fecha = new Date()
+
+    fecha.setFullYear(this.state.fullStart.getFullYear())
+    fecha.setMonth(this.state.fullStart.getMonth())
+    fecha.setDate(this.state.fullStart.getDate())
+  
+  
+    fecha.setHours(this.state.fullStart.getHours())
+    fecha.setMinutes(this.state.fullStart.getMinutes())
+
+    console.log(this.state.fullStart)
+    fecha.setHours(fecha.getHours() + time.getHours());
+    fecha.setMinutes(fecha.getMinutes() + time.getMinutes());
+    console.log(fecha)
+    console.log(this.state.fullStart)
+    
     if (min < 10) {
       min = "0" + min
     }
     const timer = `${time.getHours()}:${min}`
     this.setState({
       time: timer,
-      fullTime: time,
+      fullTime: fecha,
       timerH: time.getHours(),
-      timerM: time.getMinutes()
-
+      timerM: time.getMinutes(),
+      
     })
 
 
@@ -87,8 +106,8 @@ class FachaYHora extends React.Component {
           </Time>
         </View>
 
-        
-        <ListButton  title ="Aceptar" onPress={this.onPress} />
+
+        <ListButton title="Aceptar" onPress={this.onPress} />
       </View>
     );
   }

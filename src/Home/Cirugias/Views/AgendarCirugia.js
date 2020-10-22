@@ -22,8 +22,10 @@ class AgendarCirugia extends Component {
 
    componentDidMount() {
       if (this.props.route.params !== undefined) {
-
-         this.cargarCirugia(this.props.route.params.cirugia)
+         if(this.props.route.params.cirugia !=undefined){
+            this.cargarCirugia(this.props.route.params.cirugia)
+         }
+         
       }
    }
 
@@ -142,7 +144,7 @@ class AgendarCirugia extends Component {
    }
 
    goToFromMessage(message) {
-      if (tmessage === 'Se ha creado la cita correctamente.') {
+      if (message === 'Se ha creado la cita correctamente.') {
          this.setState({ isOk: true })
       } else {
          this.setState({ isOk: false })
@@ -184,6 +186,11 @@ class AgendarCirugia extends Component {
                   onPress={this.handlePress}
                   isOk={this.state.isOk}
                   loading={this.state.loading2}
+                  eventStart= {this.props.route.params.fullStart}
+                  eventFinish= {this.props.route.params.fullTime}
+                  titleCalendar={this.props.route.params?.procedimiento}
+                  hospitalName ={this.isHospital()}
+
                />
                : <ScrollView>
                   <Title title="Agendar Cirugía" />

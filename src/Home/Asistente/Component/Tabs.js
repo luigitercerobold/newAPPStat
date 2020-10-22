@@ -16,7 +16,7 @@ const TabsDoctor = ({ component1, component2 }) => {
       setPress2(true)
    }
    const textActivate = (press) => {
-   
+
       if (press) {
          return styles.textActivate
       }
@@ -24,7 +24,7 @@ const TabsDoctor = ({ component1, component2 }) => {
    }
 
    const press = (press) => {
-     
+
 
       if (press) {
          return styles.buttonTabActivate
@@ -37,16 +37,16 @@ const TabsDoctor = ({ component1, component2 }) => {
          <View style={{ flexDirection: "row", justifyContent: "space-around", marginHorizontal: 20 }}>
 
             <Pressable
-               style={[press(press1),styles.buttom,styles.borderRadiusLeft]}
+               style={[press(press1), styles.buttom, styles.borderRadiusLeft]}
                onPress={handlePress1}
             >
-               <StatFont style={[textActivate(press1),styles.text]}>Médico ayudante</StatFont>
+               <StatFont style={[textActivate(press1), styles.text]}>Médico ayudante</StatFont>
             </Pressable>
             <Pressable
-               style={[press(press2),styles.buttom,styles.borderRadiusRight]}
+               style={[press(press2), styles.buttom, styles.borderRadiusRight]}
                onPress={handlePress2}
             >
-               <StatFont style = {[textActivate(press2),styles.text]}>Anestesia</StatFont>
+               <StatFont style={[textActivate(press2), styles.text]}>Anestesia</StatFont>
             </Pressable>
 
 
@@ -66,21 +66,21 @@ const TabsDoctor = ({ component1, component2 }) => {
 export default TabsDoctor
 
 const styles = StyleSheet.create({
-   buttom:{
-      height:50,
- 
-      justifyContent:'center',
-     
+   buttom: {
+      height: 50,
+
+      justifyContent: 'center',
+
 
    },
-   borderRadiusRight:{
-      borderBottomRightRadius:15,
-      borderTopRightRadius:15
+   borderRadiusRight: {
+      borderBottomRightRadius: 15,
+      borderTopRightRadius: 15
 
    },
-   borderRadiusLeft :{
-      borderBottomLeftRadius:15,
-      borderTopLeftRadius:15
+   borderRadiusLeft: {
+      borderBottomLeftRadius: 15,
+      borderTopLeftRadius: 15
    },
    buttonTabActivate: {
       backgroundColor: Color.blue,
@@ -98,9 +98,9 @@ const styles = StyleSheet.create({
       color: Color.black
    },
    text: {
-      fontSize:20,
-      marginLeft:5,
-      textAlign:'center'
+      fontSize: 20,
+      marginLeft: 5,
+      textAlign: 'center'
    }
 
 

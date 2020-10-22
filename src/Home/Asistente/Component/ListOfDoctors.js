@@ -20,11 +20,11 @@ const ListOfDoctors = ({ item, loading, onPress }) => {
             : null
          }
          <FlatList
-               data={item}
-               renderItem={({ item }) => <Doctors onPress={onPress} item={itemFilter(item)} />}
-               numColumns={2}
-               style={styles.container}
-            />
+            data={item}
+            renderItem={({ item }) => <Doctors onPress={onPress} item={itemFilter(item)} />}
+            numColumns={2}
+            style={styles.container}
+         />
 
       </>
    )

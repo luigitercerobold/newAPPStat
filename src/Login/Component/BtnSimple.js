@@ -39,9 +39,9 @@ export default BtnSimple;
 const styles = StyleSheet.create(
    {
       Btn:{
-        
+         maxWidth:200,
          padding:10,
-         paddingHorizontal:40
+         paddingHorizontal:30
       },
       Text:{
          color:Color.white

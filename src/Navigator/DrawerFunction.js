@@ -60,6 +60,7 @@ import AgregarAsistente from '../Home/Cirugias/Views/Asistencia/View/Index'
 import AgregarAsistenteDeStat from '../Home/Cirugias/Views/Asistencia/View/AgregarDeStat'
 import AgregarDeContacto from '../Home/Cirugias/Views/Asistencia/View/AgregarDeContactos'
 import EditarUsuario from '../Home/src/View/EditarUsuario';
+import Calendar from  '../Home/src/View/Calendar'
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -122,7 +123,7 @@ function NavStack() {
       <Stack.Screen name="AgregarAsistenteDeStat" component={AgregarAsistenteDeStat} />
       <Stack.Screen name="AgregarDeContacto" component={AgregarDeContacto} />
       <Stack.Screen name="EditarUsuario" component={EditarUsuario} />
-      
+      <Stack.Screen name= "Calendar" component= {Calendar} />
       
     </Stack.Navigator>
   );

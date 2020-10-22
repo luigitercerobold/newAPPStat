@@ -1,12 +1,14 @@
 import React from 'react'
 import Acept from '../../../Lib/Component/Status'
-
-const AceptCirugia = () => {
+import AddCalendar from '../../../Lib/Component/Calendar'
+const AceptCirugia = ({}) => {
 
    return (
+      <>
       <Acept
          title = "Cirugía agendad con éxito"
       />
+      </>
    )
 }
 

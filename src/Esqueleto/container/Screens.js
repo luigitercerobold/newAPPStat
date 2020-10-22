@@ -7,16 +7,16 @@ import Esqueleto from './Esqueleto'
 import Piernas from './Piernas'
 
 
-const ScreensBody = ({Stack}) => {
+const ScreensBody = ({ Stack }) => {
 
    return (
       <>
-         <Stack.Screen options={{ title: 'Brazo' }}                  name="Brazo" component={Brazo} />
+         <Stack.Screen options={{ title: 'Brazo' }} name="Brazo" component={Brazo} />
 
-         <Stack.Screen options={{ title: 'Cráneo ' }}         name="Craneo" component={Craneo} />
-         <Stack.Screen options={{ title: 'Esqueleto' }}                  name="Esqueleto" component={Esqueleto} />
+         <Stack.Screen options={{ title: 'Cráneo ' }} name="Craneo" component={Craneo} />
+         <Stack.Screen options={{ title: 'Esqueleto' }} name="Esqueleto" component={Esqueleto} />
 
-         <Stack.Screen options={{ title: 'Piernas' }}         name="PerfiPiernaslNuevoUsuario" component={Piernas} />
+         <Stack.Screen options={{ title: 'Piernas' }} name="PerfiPiernaslNuevoUsuario" component={Piernas} />
       </>
    )
 }
