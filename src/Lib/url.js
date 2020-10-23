@@ -25,7 +25,8 @@ const urlStat={
    },
    addContact :server + "/api/user/contact",
    getContacts:server + "/api/user/contacts",
-   searchContact: server +"/api/user/doctor/search"
+   searchContact: server +"/api/user/doctor/search",
+   editNameAndPhone: server +"/api/user/edit"
 };
 
 export default urlStat

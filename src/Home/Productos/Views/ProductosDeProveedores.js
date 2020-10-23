@@ -71,17 +71,18 @@ class Productos extends Component {
    }
 
 
-   listas = () => {
-
-      return this.state.producto.map(product => (
+   listas = (item) => {
+      console.log(item)
+      return (
          <ProuductIMG
-            onPress={() => this.onPress(product)}
-            product={product}
-            key={product.id}
-         >{product.name}</ProuductIMG>
-      ))
+            onPress={() => this.onPress(item.item)}
+            product={item.item}
+            key={item.item.id}
+         >{item.item.name}</ProuductIMG>
+      )
 
    }
+
    referenceDrawer = () => {
 
       console.log(this.refDrawer.drawer.openDrawer())
@@ -107,7 +108,6 @@ class Productos extends Component {
 
    render() {
       const { producto, loading, proveedor, bodyPart } = this.state
-
       return (
 
          <Drawer
@@ -129,12 +129,14 @@ class Productos extends Component {
                   : null
                }
 
-               <ScrollView
-                  style={styles.scroll}>
-                  <ProuductRow>
-                     {this.listas()}
-                  </ProuductRow>
-               </ScrollView>
+
+               <FlatList
+               data = {producto}
+               renderItem= {this.listas}
+               numColumns={2}
+               style={styles.scroll}
+               />
+               
                <AddBottom />
             </View>
          </Drawer>

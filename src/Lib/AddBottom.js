@@ -17,7 +17,7 @@ export default AddBottom
 const styles = StyleSheet.create(
    {
       container:{
-         bottom:25,
+         bottom:10,
          right:0,
          left:0,
          paddingTop:"18%",

@@ -22,17 +22,10 @@ export default StatFont
 
 const styles = StyleSheet.create({
    fontStyle: {
-   
       fontFamily: 'Questrial-Regular',
       fontWeight: '100',
-  
-    
       color: "black",
-
-
       letterSpacing: 1,
-
-      fontSize: 20,
-
+      fontSize: 15,
    }
 })

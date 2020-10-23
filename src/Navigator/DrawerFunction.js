@@ -124,6 +124,7 @@ function NavStack() {
       <Stack.Screen name="AgregarDeContacto" component={AgregarDeContacto} />
       <Stack.Screen name="EditarUsuario" component={EditarUsuario} />
       <Stack.Screen name= "Calendar" component= {Calendar} />
+      <Stack.Screen name= "Gallery" component= {Gallery} />
       
     </Stack.Navigator>
   );

@@ -3,7 +3,7 @@ import { Pressable, Text, StyleSheet } from 'react-native';
 import Color from 'newAPPStat/src/Lib/Colors'
 import StatFont from '../../Lib/Component/StatFont'
 
-const BtnSimple = ({onPress,title,onePress=true}) => {
+const BtnSimple = ({onPress,title,onePress=true,style}) => {
 
    const [pressOne, setPressOne] = useState(true)
    const onlyOnePress = () => {
@@ -27,7 +27,8 @@ const BtnSimple = ({onPress,title,onePress=true}) => {
                 ? Color.bluePressed
                 : Color.blue,
             },
-            styles.Btn
+            styles.Btn,
+            style
           ]}>
          <StatFont style={styles.Text}>{title}</StatFont>
       </Pressable>

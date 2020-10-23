@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { Alert, Text } from 'react-native'
 import Title from "../../../Lib/Title";
 import TextBox from '../../../Login/Component/TextBox'
-import Http from '../../../Lib/http'
+
 import Url from '../../../Lib/url'
 import Container from '../../../Login/Component/LoginComponent/ContainerCenter'
 import BtnSimple from '../../../Login/Component/BtnSimple'
@@ -11,13 +11,17 @@ import ScrollCenter from '../../../Login/Component/ScrollCenter'
 import PaddingVertical from '../../../Login/Component/PaddingVertical'
 import PassWord from '../../../Login/Component/PassWord'
 import User from '../../../Lib/user'
+import Http from '../../../Lib/http'
+import urlStat from '../../../Lib/url';
+
+
 class DatosNuevoUsuario extends Component {
    state = {
-      name: "Nombre",
-      lastName: "Apellido",
-      eMail: "eMail",
-      passWord: "Clave",
-      phone: "Teléfono"
+      name: "",
+      lastName: "",
+      eMail: "",
+      passWord: "",
+      phone: ""
    }
 
    componentDidMount() {
@@ -37,8 +41,8 @@ class DatosNuevoUsuario extends Component {
 
       const body = JSON.stringify(
          {
-            email: this.state.eMail,
-            password: this.state.passWord,
+            //email: this.state.eMail,
+            //password: this.state.passWord,
             name: this.state.name + " " + this.state.lastName,
             phone: this.state.phone,
             role: 2
@@ -60,19 +64,20 @@ class DatosNuevoUsuario extends Component {
 
    }
 
-   goToPerfil = () => {
+   goToPerfil = async() => {
 
       const body =
       {
-         email: this.state.eMail,
-         password: this.state.passWord,
-         name: this.state.name + " " + this.state.lastName,
+        // email: this.state.eMail,
+        // password: this.state.passWord,
+         name: this.state.name ,
          phone: this.state.phone,
-         role: 2
+         //role: 2
       }
 
-      this.props.navigation.navigate('PerfilNuevoUsuario', { body: body })
-
+       const req = await Http.instance.post(urlStat.editNameAndPhone,body,Http.instance.getToken())
+      console.log(req)
+      
    }
 
    setName = (name) => {
@@ -98,26 +103,26 @@ class DatosNuevoUsuario extends Component {
             <Title title="Editar Usuario" />
             <Container>
                <TextBox
-                  placeholder={this.state.name}
+                  placeholder={User.instance.user.name}
                   onChangeText={this.setName}
                />
 
-               <PaddingVertical vertical={0.1} />
+               {/* <PaddingVertical vertical={0.1} />
                <TextBox
                   placeholder={this.state.eMail}
                   onChangeText={this.setEmail}
                   keyword='email-address'
-               />
+               /> */}
 
-               <PaddingVertical vertical={0.1} />
+               {/* <PaddingVertical vertical={0.1} />
                <PassWord
                   placeholder="Password"
                   onChangeText={this.setPassWord}
                //onEndEditing={() => this.logIn(activateAuth)}
-               />
+               /> */}
                <PaddingVertical vertical={0.1} />
                <TextBox
-                  placeholder={this.state.phone}
+                  placeholder={User.instance.user.phone}
                   onChangeText={this.setPhone}
                   keyword='number-pad'
                />
