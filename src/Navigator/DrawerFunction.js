@@ -61,6 +61,7 @@ import AgregarAsistenteDeStat from '../Home/Cirugias/Views/Asistencia/View/Agreg
 import AgregarDeContacto from '../Home/Cirugias/Views/Asistencia/View/AgregarDeContactos'
 import EditarUsuario from '../Home/src/View/EditarUsuario';
 import Calendar from  '../Home/src/View/Calendar'
+import CropPhoto from '../Login/Container/CropPhoto';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -69,7 +70,7 @@ function NavStack() {
 
   return (
     <Stack.Navigator
-      initialRouteName="Menu"
+      initialRouteName="CropPhoto"
       screenOptions={{
         headerShown: true,
         headerTintColor: '#fff',
@@ -125,7 +126,7 @@ function NavStack() {
       <Stack.Screen name="EditarUsuario" component={EditarUsuario} />
       <Stack.Screen name= "Calendar" component= {Calendar} />
       <Stack.Screen name= "Gallery" component= {Gallery} />
-      
+      <Stack.Screen name= 'CropPhoto' component= {CropPhoto} />
     </Stack.Navigator>
   );
 }
