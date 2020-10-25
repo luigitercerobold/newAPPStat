@@ -5,7 +5,7 @@ import { View, FlatList, Button, Text, ScrollView, StyleSheet, ActivityIndicator
 
 import Title from '../../../Lib/Title'
 
-import Http from 'newAPPStat/src/Lib/http'
+import Http from '../../../Lib/http'
 import url from 'newAPPStat/src/Lib/url'
 import color from 'newAPPStat/src/Lib/Colors'
 import ListItem from '../../../Lib/Component/ListItem'

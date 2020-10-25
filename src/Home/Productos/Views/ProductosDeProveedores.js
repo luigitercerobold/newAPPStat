@@ -14,6 +14,7 @@ import AddBottom from '../../../Lib/AddBottom'
 import Header from '../../src/Component/Header'
 import Drawer from '../../../Drawer/DrawerMenu'
 import SimpleButton from '../../../Lib/Component/BotonSiemple'
+
 class Productos extends Component {
    constructor (props){
       super(props)
@@ -158,7 +159,7 @@ const styles = StyleSheet.create({
    },
    categories:{
       flexDirection:"row",
-      alignItems:'flex-end',
+      alignItems:'center',
       alignContent:"center",
       justifyContent:"space-evenly"
    }

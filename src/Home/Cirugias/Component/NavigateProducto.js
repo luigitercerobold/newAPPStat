@@ -14,7 +14,7 @@ function NavigateCirugias({ item, goToPage, remove }) {
 
          <View style={styles.container}>
             <View style={styles.containerSelector}>
-               <Image style={styles.img} source={{ uri: url.img + item.image }}></Image>
+               <Image style={styles.img} source={{ uri: url.img + item.image }} ></Image>
                <View style={styles.containerCenter}>
                   <StatFont style={styles.texPrincipal}>
                      {item.name}
