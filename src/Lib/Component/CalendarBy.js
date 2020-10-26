@@ -38,6 +38,8 @@ export const Calendar = ({ minDate, customDatesStyles, onDateChange, onMonthChan
    );
 }
 
+
+// ejemplo
 export default class App extends Component {
    constructor(props) {
       super(props);

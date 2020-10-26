@@ -4,6 +4,7 @@
 
 import React, { Component } from 'react'
 import { Text, View, Pressable, FlatList, ActivityIndicator } from 'react-native'
+import ActivityIndicatorStat from '../../../../Lib/Component/ActivitiIndicator'
 import Title from '../../../../Lib/Title'
 import Navigate from '../../Component/NavigateCirugia'
 import http from 'newAPPStat/src/Lib/http'
@@ -40,7 +41,7 @@ class Asitente extends Component {
       return (
          <View>
             { loading ?
-               <ActivityIndicator color={color.blue} size="large" /> : null
+               <ActivityIndicatorStat color={color.blue} size="large" /> : null
             }
             <Title title="¿Con quién vas a operar?"/>
             <FlatList

@@ -9,12 +9,9 @@ import {
     TouchableOpacity,
 } from 'react-native';
 
-
-//import { LinearGradient } from 'expo-linear-gradient';
-//import {Actions} from 'react-native-router-flux';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Pendiente from '../Component/Pendiente'
 import NavigateCirugia from '../Component/NavigateCirugia'
+
 class Cirugias extends Component {
     constructor() {
         super();
@@ -23,8 +20,9 @@ class Cirugias extends Component {
     goToAgendarCirugia() {
         this.props.navigation.navigate('')
     }
-    render() {
 
+    render() {
+        
         return (
             <View >
                 <Pendiente></Pendiente>

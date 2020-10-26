@@ -44,7 +44,7 @@ class Cirugias extends Component {
     }
 
     goToVerCirugia = () => {
-        this.props.navigation.navigate('VerCirugia');
+        this.props.navigation.navigate('VerCelendar');
     }
 
     render() {

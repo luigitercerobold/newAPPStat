@@ -3,20 +3,22 @@ import React, { Component } from 'react';
 import { View, FlatList, Button, Text, ScrollView, StyleSheet, ActivityIndicator, Pressable } from 'react-native';
 
 import Title from '../../../Lib/Title'
-import bodyPart from 'newAPPStat/src/Lib/bodyParts'
-import ListItem from '../../../Lib/Component/ListItem'
+
+import ActivityIndicatorStat from '../../../Lib/Component/ActivitiIndicator'
 import http from 'newAPPStat/src/Lib/http'
 import urlStat from 'newAPPStat/src/Lib/url'
 import color from 'newAPPStat/src/Lib/Colors'
 import ProuductRow from '../Component/ProductRow'
 import ProuductIMG from '../Component/ProductoImg'
 import AddBottom from '../../../Lib/AddBottom'
-import Header from '../../src/Component/Header'
+
 import Drawer from '../../../Drawer/DrawerMenu'
 import SimpleButton from '../../../Lib/Component/BotonSiemple'
 
+
+
 class Productos extends Component {
-   constructor (props){
+   constructor(props) {
       super(props)
       this.goToDetalleProdcuto.bind(this)
    }
@@ -28,12 +30,12 @@ class Productos extends Component {
       selectProduct: "",
       proveedor: [],
       bodyPart: [],
-      allProducto:[]
+      allProducto: []
    }
 
-   
+
    componentDidMount() {
-   
+
       this.getProdcuts();
       this.setState({
          proveedor: this.props.route.params.proveedor,
@@ -51,13 +53,13 @@ class Productos extends Component {
          bodyPartId: this.props.route.params?.body.id
       })
       const obj = await http.instance.post(urlStat.getProviderProducts, body, http.instance.getToken(),)
-      this.setState({ allProducto:obj.data,producto: obj.data, loading: false })
-      
+      this.setState({ allProducto: obj.data, producto: obj.data, loading: false })
+
    }
 
    onPress = (item) => {
 
-      const query ={
+      const query = {
          product: item,
          proveedor: this.props.route.params.proveedor,
       }
@@ -65,7 +67,7 @@ class Productos extends Component {
 
    }
 
-   goToDetalleProdcuto (query) {
+   goToDetalleProdcuto(query) {
 
       this.props.navigation.navigate('DetalleProducto', query)
 
@@ -93,17 +95,17 @@ class Productos extends Component {
    categoriesFilter = (query) => {
 
       console.log(query)
-      const {allProducto} =this.state
-      const providerFiltered = allProducto.filter(producto =>{
+      const { allProducto } = this.state
+      const providerFiltered = allProducto.filter(producto => {
          for (let canCategori = 0; canCategori < producto.categories.length; canCategori++) {
             const element = producto.categories[canCategori];
-            if(element.id === query.id){
+            if (element.id === query.id) {
                return producto
-            }  
+            }
          }
       })
-      this.setState({producto:providerFiltered})
-      
+      this.setState({ producto: providerFiltered })
+
    }
 
 
@@ -113,31 +115,31 @@ class Productos extends Component {
 
          <Drawer
             ref={drawer => this.refDrawer = drawer}
-            onPress = {this.categoriesFilter}
+            onPress={this.categoriesFilter}
          >
             <View>
-              
+
                <View style={styles.categories}>
                   <Title title={proveedor.name} />
                   <SimpleButton
                      title='Categorías'
-                     onPress= {this.referenceDrawer}
+                     onPress={this.referenceDrawer}
                   />
                </View>
 
                {loading
-                  ? <ActivityIndicator color={color.blue} size="large" />
+                  ? <ActivityIndicatorStat color={color.blue} size="large" />
                   : null
                }
 
 
                <FlatList
-               data = {producto}
-               renderItem= {this.listas}
-               numColumns={2}
-               style={styles.scroll}
+                  data={producto}
+                  renderItem={this.listas}
+                  numColumns={2}
+                  style={styles.scroll}
                />
-               
+
                <AddBottom />
             </View>
          </Drawer>
@@ -157,10 +159,10 @@ const styles = StyleSheet.create({
    scroll: {
       height: '80%'
    },
-   categories:{
-      flexDirection:"row",
-      alignItems:'center',
-      alignContent:"center",
-      justifyContent:"space-evenly"
+   categories: {
+      flexDirection: "row",
+      alignItems: 'center',
+      alignContent: "center",
+      justifyContent: "space-evenly"
    }
 })

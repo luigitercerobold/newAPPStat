@@ -1,7 +1,8 @@
 import React from 'react'
-import { Text, FlatList, StyleSheet, ActivityIndicator } from 'react-native'
+import { Text, FlatList, StyleSheet } from 'react-native'
 import Doctors from './Doctors'
 import Color from '../../../Lib/Colors'
+import ActivityIndicatorStat from '../../../Lib/Component/ActivitiIndicator'
 const ListOfDoctors = ({ item, loading, onPress }) => {
 
    const itemFilter = (item) => {
@@ -15,7 +16,7 @@ const ListOfDoctors = ({ item, loading, onPress }) => {
    return (
       <>
          {loading ?
-            <ActivityIndicator color={Color.blue} size="large" />
+            <ActivityIndicatorStat color={Color.blue} size="large" />
 
             : null
          }

@@ -84,13 +84,7 @@ class Fecha extends Component {
             >
 
             </Button>
-            {/*<ActivityIndicator*/}
-            {/*  animating={this.state.animating}*/}
-            {/*  color='#2185fb'*/}
-            {/*  size="small"*/}
-            {/*  style={styles.activityIndicator}*/}
-            {/*/>*/}
-            {/* </LinearGradient> */}
+         
           </View>
         </View>
 

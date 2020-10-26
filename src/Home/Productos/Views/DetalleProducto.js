@@ -1,7 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
-import { View, FlatList, Button, Text, ScrollView, StyleSheet, ActivityIndicator } from 'react-native';
-
+import { View, FlatList, Button, Text, ScrollView, StyleSheet } from 'react-native';
+import ActivityIndicatorStat from '../../../Lib/Component/ActivitiIndicator'
 
 import Title from '../../../Lib/Title'
 
@@ -63,7 +63,7 @@ class FiltrarProveedor extends Component {
       const { producto, proveedor, loading } = this.state
       return (
          <View>{loading ?
-            <ActivityIndicator color={color.blue} size="large" /> : null
+            <ActivityIndicatorStat color={color.blue} size="large" /> : null
          }
             <Title title={"Proveedor - " + proveedor.name} />
             <RowIconContact information={proveedor} />

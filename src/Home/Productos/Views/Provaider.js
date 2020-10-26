@@ -9,6 +9,7 @@ import http from 'newAPPStat/src/Lib/http'
 import urlStat from 'newAPPStat/src/Lib/url'
 import color from 'newAPPStat/src/Lib/Colors'
 import ProviderSearch from '../Component/ProviderSearch'
+import ActivityIndicatorStat from '../../../Lib/Component/ActivitiIndicator'
 
 class Proveedor extends Component {
    state = {
@@ -63,7 +64,7 @@ class Proveedor extends Component {
             </View>
 
             {loading ?
-               <ActivityIndicator color={color.blue} size="large" /> : null
+               <ActivityIndicatorStat color={color.blue} size="large" /> : null
             }
             <FlatList
                data={proveedor}
