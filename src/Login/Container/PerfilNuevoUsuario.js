@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react'
-import { View, TextInput, Button,Alert } from 'react-native'
+import { View, TextInput, Button, Alert } from 'react-native'
 import Http from '../../Lib/http'
 import Url from '../../Lib/url'
 import Title from "../../Lib/Title";
@@ -10,7 +10,7 @@ import BtnSimple from '../Component/BtnSimple'
 import ScrollCenter from '../Component/ScrollCenter'
 import PaddingVertical from '../Component/PaddingVertical'
 import SubTittle from '../../Lib/Component/SubTittle';
-
+import StatusBar from '../Component/Statusbar';
 class AsistenteAdministrativo extends Component {
    state = {
       colegiado: 'Colegiado',
@@ -19,15 +19,15 @@ class AsistenteAdministrativo extends Component {
    goToToken = () => {
 
    }
-   goToAsistenteAdministrativo  = async () => {
+   goToAsistenteAdministrativo = async () => {
 
       const body = this.props.route.params?.body
-      
-      body.idNumber = this.state.colegiado
-      body.speciality = this.state.especialidad 
 
-      const user = await Http.instance.post(Url.creteUser, JSON.stringify( body))
-      console.log("se ha registrado correctament",user)
+      body.idNumber = this.state.colegiado
+      body.speciality = this.state.especialidad
+
+      const user = await Http.instance.post(Url.creteUser, JSON.stringify(body))
+      console.log("se ha registrado correctament", user)
       if (user.message === "Se ha registrado exitosamente.") {
          this.props.navigation.navigate('AsistenteAdministrativo', {
             especialidad: this.state,
@@ -71,11 +71,11 @@ class AsistenteAdministrativo extends Component {
    render() {
 
       return (
-      
-<>
+
+         <>
             <Title title="Perfil" />
-            
-               
+
+
             <Container>
                <TextBox
                   placeholder={"Colegiado"}
@@ -86,15 +86,20 @@ class AsistenteAdministrativo extends Component {
                   placeholder={"Especialidad"}
                   onChangeText={this.especialidad}
                />
-               <PaddingVertical vertical={0.1} />
-               <PaddingVertical vertical={5}>
+
+
+               <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}>
+                  <StatusBar
+                     step={2}
+                  />
                   <BtnSimple
-                     title="Validar Colegiado"
+                     title="Continuar"
                      onPress={this.goToAsistenteAdministrativo}
                   />
-               </PaddingVertical>
+               </View>
+
             </Container>
-    </>
+         </>
       )
 
    }
