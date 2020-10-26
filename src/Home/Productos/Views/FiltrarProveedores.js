@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
-import { View, FlatList, Button, Text, ScrollView, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, FlatList, StyleSheet } from 'react-native';
 
 
 import Title from '../../../Lib/Title'
@@ -11,7 +11,7 @@ import color from 'newAPPStat/src/Lib/Colors'
 import ListItem from '../../../Lib/Component/ListItem'
 import Header from '../../src/Component/Header'
 import ProviderSearch from '../Component/ProviderSearch'
-
+import ActivityIndicatorStat from '../../../Lib/Component/ActivitiIndicator'
 
 class FiltrarProveedor extends Component {
    constructor(props) {
@@ -68,7 +68,7 @@ class FiltrarProveedor extends Component {
       const { products, proveedor, loading } = this.state
       return (
          <View style={styles.container}>{loading ?
-            <ActivityIndicator color={color.blue} size="large" /> : null
+            <ActivityIndicatorStat color={color.blue} size="large" /> : null
          }
             <View style={styles.containerTittle}>
                <Title title="Proveedor" />
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
    },
    containerTittle: {
       flexDirection: "row",
-      alignItems: 'flex-end',
+      alignItems: 'center',
       alignContent: "center",
       justifyContent: "space-evenly"
    },

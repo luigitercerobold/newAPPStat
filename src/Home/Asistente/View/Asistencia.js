@@ -21,9 +21,13 @@ export class Asistencia extends Component {
 
 
    componentDidUpdate() {
+      console.log("actualizar1")
       if (this.props.route.params) {
+    
+         
          if (this.props.route.params.update === true) {
-            this.setState({ reload: !this.state.reload, pro: this.state.contact, loading: true, })
+            console.log("actualizar2",this.props.route.params.update)
+            this.setState({ reload: !this.state.reload, pro: this.props.route.params.contact, loading: true, })
             this.props.route.params.update = false
             this.setState({ loading: false })
          }

@@ -6,29 +6,27 @@ import AddAsistencia from '../../../../Asistente/View/Asistencia'
 import AsitenciaComponent from '../../../../Asistente/Component/Asistencia'
 class Index extends AddAsistencia {
 
-   goto (role,array) {
-      console.log(role,array)
+   goto(role, array) {
+    
       this.props.navigation.navigate('AgregarDeContacto', { role: role, contact: array, allDoctor: this.state.allDoctor })
 
    }
 
-  
-   componentDidMount () {
-console.log(this.props.route.params?.allDoctor)
-      
-   this.setState({
-         allDoctor:  this.props.route.params?.allDoctor || [],
-         anestesia:  this.props.route.params?.anestesia || [],
-         doctor:  this.props.route.params?.doctor || []
+
+   componentDidMount() {
+   
+      this.setState({
+         allDoctor: this.props.route.params?.allDoctor || [],
+         anestesia: this.props.route.params?.anestesia || [],
+         doctor: this.props.route.params?.doctor || []
       })
    }
-   enviarACirugia () {
-      console.log()
-      this.props.navigation.navigate('AgendarCirugia',{
-         allDoctor:this.state.allDoctor,
-         anestesia:this.state.anestesia,
-         doctor:this.state.doctor   
-      
+   enviarACirugia() {
+      this.props.navigation.navigate('AgendarCirugia', {
+         allDoctor: this.state.allDoctor,
+         anestesia: this.state.anestesia,
+         doctor: this.state.doctor
+
       })
    }
 
@@ -38,10 +36,10 @@ console.log(this.props.route.params?.allDoctor)
          <AsitenciaComponent
             component1={this.component1}
             pressAcept={this.enviarACirugia.bind(this)}
-            doctor = {doctor}
-            anestesia = {anestesia}
-            loading = {loading}
-            aceptButton ={true}
+            doctor={doctor}
+            anestesia={anestesia}
+            loading={loading}
+            aceptButton={true}
          />
       )
    }

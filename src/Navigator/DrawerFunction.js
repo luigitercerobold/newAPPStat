@@ -17,7 +17,7 @@ import Proveedor from '../Home/Cirugias/Views/Product/Proveedor'
 import Productos from '../Home/Cirugias/Views/Product/Productos'
 import AddProductos from '../Home/Cirugias/Views/Product/AddProduct'
 import EstadoCirugia from '../Home/Cirugias/Views/EstadoCirugia'
-import VerCirugia from '../Home/Cirugias/Views/VerCirugia'
+import VerCirugia from '../Home/Cirugias/Views/VerCirugias/VerCirugia'
 import Procedimiento from '../Home/Cirugias/Views/AddCirugia/Procedimiento'
 import IndexProduct from '../Home/Productos/Views/IndexProduct'
 import BodyProducto from '../Home/Productos/Views/BodyPart'
@@ -60,8 +60,13 @@ import AgregarAsistente from '../Home/Cirugias/Views/Asistencia/View/Index'
 import AgregarAsistenteDeStat from '../Home/Cirugias/Views/Asistencia/View/AgregarDeStat'
 import AgregarDeContacto from '../Home/Cirugias/Views/Asistencia/View/AgregarDeContactos'
 import EditarUsuario from '../Home/src/View/EditarUsuario';
-import Calendar from  '../Home/src/View/Calendar'
+
 import CropPhoto from '../Login/Container/CropPhoto';
+import Calendar from  '../Home/Cirugias/Views/AgendarCirugia/Calendar'
+import Invitation from '../Home/Cirugias/Views/Invitation'
+import VerInvitacion from '../Home/Cirugias/Views/VerInvitacion'
+import CalendarBy from '../Lib/Component/CalendarBy'
+import VerCelendar from '../Home/Cirugias/Views/VerCirugias/Calendar'
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -107,6 +112,7 @@ function NavStack() {
       <Stack.Screen name="AceptCirugia" component={AceptCirugia} />
       <Stack.Screen options={{ title: 'Estado Cirugía' }} name="EstadoCirugia" component={EstadoCirugia} />
       <Stack.Screen options={{ title: 'Ver Cirugía' }} name="VerCirugia" component={VerCirugia} />
+      <Stack.Screen options={{ title: 'Ver Cirugía' }} name="VerCelendar" component={VerCelendar} />
       <Stack.Screen name="IndexProduct" component={IndexProduct} />
       <Stack.Screen name="BodyProducto" component={BodyProducto} />
       <Stack.Screen name="FiltrarProveedores" component={FiltrarProveedores} />
@@ -127,6 +133,10 @@ function NavStack() {
       <Stack.Screen name= "Calendar" component= {Calendar} />
       <Stack.Screen name= "Gallery" component= {Gallery} />
       <Stack.Screen name= 'CropPhoto' component= {CropPhoto} />
+      <Stack.Screen name= "Invitation" component = {Invitation}/>
+      <Stack.Screen name= "VerInvitacion" component = {VerInvitacion}/>
+      
+      <Stack.Screen name = "CalendarBy" component = {CalendarBy}/>
     </Stack.Navigator>
   );
 }

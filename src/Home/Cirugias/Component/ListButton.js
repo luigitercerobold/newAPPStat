@@ -9,7 +9,7 @@ const ListButton = ({ onPress, title }) => {
               <Button title="Cancelar"></Button>
             </View> */}
 
-      <Padding vertical={3}>
+      <Padding vertical={-1}>
         <BtnSimple
           title={title}
           onPress={onPress}

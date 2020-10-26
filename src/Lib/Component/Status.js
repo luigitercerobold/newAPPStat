@@ -5,6 +5,7 @@ import Color from '../Colors'
 import SimpleBoton from './BotonSiemple'
 import StatFont from '../../Lib/Component/StatFont'
 import Calendar from '../../Lib/Component/Calendar'
+import ActivityIndicatorStat from '../../Lib/Component/ActivitiIndicator'
 const AceptRequest = ({ title = 'Aceptar', onPress, isOk, loading, eventStart, eventFinish, titleCalendar,hospitalName }) => {
    console.log(isOk)
    useEffect(()=> {
@@ -51,7 +52,7 @@ const AceptRequest = ({ title = 'Aceptar', onPress, isOk, loading, eventStart, e
 
                </View>
             </>
-            : <ActivityIndicator color={Color.blue} size="large" />
+            : <ActivityIndicatorStat color={Color.blue} size="large" />
          }
       </View>
 

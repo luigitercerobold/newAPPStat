@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { Button, View, Text, Image, StyleSheet, Pressable } from 'react-native'
 import Colors from 'newAPPStat/src/Lib/Colors'
 import StatFont from '../../../Lib/Component/StatFont'
+
+
 function NavigateCirugias({ text1, text2, text3, img, goToPage, action, delate = true, edit = true }) {
-
-
 
    return (
 
@@ -12,17 +12,24 @@ function NavigateCirugias({ text1, text2, text3, img, goToPage, action, delate =
          {(text1) ?
             <View style={styles.container}>
                <View style={styles.containerSelector}>
-                  <Image style={styles.img} source={img}></Image>
+                  <Image style={styles.img} source={img} resizeMode="contain"></Image>
                   <View style={styles.containerCenter}>
                      <StatFont style={styles.texPrincipal}>
                         {text1}
                      </StatFont>
-                     <StatFont style={styles.texSeond}>
-                        {text2}
-                     </StatFont>
-                     <StatFont>
-                        {text3}
-                     </StatFont>
+                     {text2 ?
+                        <StatFont style={styles.texSeond}>
+                           {text2}
+                        </StatFont>
+                        : null
+                     }
+
+                     {text3 ?
+                        <StatFont style={styles.texSeond}>
+                           {text3}
+                        </StatFont>
+                        : null}
+
                   </View>
                   <View>
                      {delate
@@ -115,7 +122,7 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
 
-      paddingHorizontal: 30
+      paddingHorizontal: 15
    },
    img: {
       width: 56,

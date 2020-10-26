@@ -12,7 +12,7 @@ function NavigateCirugias({ text1, text2, text3, img, goToPage, action, delate =
          {(text1) ?
             <View style={styles.container}>
                <View style={styles.containerSelector}>
-                  <Image style={styles.img} source={img}></Image>
+                  <Image style={styles.img} source={img} resizeMode="contain"></Image>
                   <View style={styles.containerCenter}>
                      <StatFont style={styles.texPrincipal}>
                         {text1}

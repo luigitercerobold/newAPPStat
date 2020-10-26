@@ -10,20 +10,22 @@ import ListButton from '../Component/ListButton'
 import { ScrollView } from 'react-native-gesture-handler'
 import Header from '../../../Home/src/Component/Header'
 import Status from '../../../Lib/Component/Status'
-class AgendarCirugia extends Component {
+import { date } from '../../../Lib/Component/GetDate'
+
+class VerInvitacion extends Component {
    state = {
       loading: false,
-      message: 'Bad',
+      message: 'Confirmado',
       isOk: true,
       loading2: false,
-      screen: "EstadoCirugia"
+      screen: "Invitation"
 
    }
 
    componentDidMount() {
       if (this.props.route.params !== undefined) {
          if(this.props.route.params.cirugia !=undefined){
-            this.cargarCirugia(this.props.route.params.cirugia)
+            this.cargarCirugia(this.props.route.params.cirugia.scheduleData)
          }
          
       }
@@ -37,6 +39,9 @@ class AgendarCirugia extends Component {
 
       this.props.route.params.date = cirugia.date
       this.props.route.params.timer = cirugia.end
+
+      this.props.route.params.fullStart= cirugia.date
+      this.props.route.params.fullTime = cirugia.end
       this.props.route.params.bodyPart = cirugia.name
       this.props.route.params.procedimiento = cirugia.description
       this.props.route.params.hospital = {}
@@ -46,7 +51,7 @@ class AgendarCirugia extends Component {
    }
 
    goToDate() {
-      this.props.navigation.navigate('Calendar')
+      this.props.navigation.navigate('FechaYHora')
    }
    goToCuerpo() {
       this.props.navigation.navigate('Cuerpo')
@@ -113,15 +118,13 @@ class AgendarCirugia extends Component {
    }
 
    confirmar = () => {
-      if (this.state.screen === "EstadoCirugia") {
-         this.crearCirugia()
-
-      } else {
-         this.editarCirugia()
-      }
-
-
-
+      this.setState({ loading: true, loading2: true })
+      this.setState({ loading2: false })
+      // if (this.state.screen === "EstadoCirugia") {
+      //    this.crearCirugia()
+      // } else {
+      //    this.editarCirugia()
+      // }
    }
 
    editarCirugia = async () => {
@@ -130,6 +133,9 @@ class AgendarCirugia extends Component {
    }
 
    crearCirugia = async () => {
+
+
+      
       const body = this.createBody()
 
       this.setState({ loading: true, loading2: true })
@@ -157,19 +163,20 @@ class AgendarCirugia extends Component {
    }
 
    handlePress = () => {
-      if (this.state.message === 'Se ha creado la cita correctamente.') {
+      this.gotoEstado()
+      // if (this.state.message === 'Se ha creado la cita correctamente.') {
 
-         this.setState({ isOk: true })
-         this.gotoEstado()
-      } else {
-         this.setState({ isOk: false })
-         this.goToBack()
-      }
+      //    this.setState({ isOk: true })
+      //    this.gotoEstado()
+      // } else {
+      //    this.setState({ isOk: false })
+      //    this.goToBack()
+      // }
 
    }
    gotoEstado = () => {
-      this.props.navigation.navigate(this.state.screen)
-      this.setState({ isOk: true })
+      this.props.navigation.navigate("Invitation")
+     
    }
    goToBack = () => {
       this.setState({ loading: false })
@@ -198,11 +205,14 @@ class AgendarCirugia extends Component {
                   <Navigate
                      img={require("newAPPStat/assets/Icon/1x/menu-cirugas.png")}
                      goToPage={() => this.goToDate()}
-                     text1={this.props.route.params?.date}
-                     text2={this.props.route.params?.timer}
+                     text1 = {"Fecha"}
+                     text2={"Inicia:   " + date(this.props.route.params.date)}
+                     text3={"Finaliza: " + date(this.props.route.params.timer)}
+                     
                      // text3={}
                      action="Agendar cirugía"
                      delate={false}
+                     edit = {false}
                   ></Navigate>
                   <Navigate
                      img={require("newAPPStat/assets/Icon/1x/cirugia_agendada.png")}
@@ -211,6 +221,7 @@ class AgendarCirugia extends Component {
                      text2={this.props.route.params?.procedimiento}
                      action="Añadir cirugía"
                      delate={false}
+                     edit = {false}
                   ></Navigate>
                   <Navigate
                      img={require("newAPPStat/assets/Icon/1x/hospital-agregado.png")}
@@ -219,6 +230,7 @@ class AgendarCirugia extends Component {
 
                      action="Añadir Hopital"
                      delate={false}
+                     edit = {false}
                   ></Navigate>
                   <Navigate
                      img={require("newAPPStat/assets/Icon/1x/asistencia-agregada.png")}
@@ -226,6 +238,7 @@ class AgendarCirugia extends Component {
                      text1={this.isAsist()}
                      action="Añadir Asistencia"
                      delate={false}
+                     edit = {false}
                   ></Navigate>
                   <Navigate
                      img={require("newAPPStat/assets/Icon/1x/menu-productos.png")}
@@ -234,13 +247,15 @@ class AgendarCirugia extends Component {
                      text2="..."
                      action="Añadir Productos"
                      delate={false}
+                     edit = {false}
                   ></Navigate>
                   <ListButton title="Aceptar" onPress={this.confirmar} />
+                  <ListButton title="Rechazar" onPress={this.confirmar} />
                </ScrollView>
             }
          </View>
       )
    }
 }
-export default AgendarCirugia;
+export default VerInvitacion;
 

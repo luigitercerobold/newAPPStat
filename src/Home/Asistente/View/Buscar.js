@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, ActivityIndicator, FlatList, Text, Alert } from 'react-native'
+import { StyleSheet, View, FlatList, Text, Alert } from 'react-native'
 import Title from '../../../Lib/Title'
 import Color from '../../../Lib/Colors'
 import Http from '../../../Lib/http'
@@ -7,6 +7,7 @@ import urlStat from '../../../Lib/url'
 import ListOfDoctors from '../Component/ListOfDoctors'
 import BtnSimple from '../../../Lib/Component/BotonSiemple'
 import Search from '../../Productos/Component/ProviderSearch'
+import ActivityIndicatorStat from '../../../Lib/Component/ActivitiIndicator'
 export class Buscar extends Component {
    state = {
       loading: false,
@@ -47,34 +48,32 @@ export class Buscar extends Component {
       return "Anestesia"
    }
    handlePress(item) {
-      item.role = this.props.route.params.role
-
       this.setState({ loading: true })
+      item.role = this.props.route.params.role
+      
       const body = JSON.stringify({
          contactId: item.id,
          role: item.role
       })
-      this.agregarUser(body, item)
-
-      this.setState({ loading: false })
-      this.goto()
-
+     this.agregarUser(body, item)
+     
    }
    goto() {
-
       this.props.navigation.navigate('Asistencia', { update: true, contact: this.props.route.params.contact })
-
-
    }
 
    agregarUser = async (body, item) => {
-
+      this.setState({ loading: true })
       const req = await Http.instance.post(urlStat.addContact, body, Http.instance.getToken())
-      this.alert(req.message)
-      if (req.message === "Se ha agregado el contacto exitosamente") {
+   
+      
+      if (req.message === "Se ha agregado el contacto exitosamente.") {
          this.props.route.params.contact.push({
             contact: item
          })
+         this.goto()
+      }else{
+         this.alert(req.message)
       }
 
    }
@@ -108,10 +107,15 @@ export class Buscar extends Component {
    render() {
       const { loading, doctor } = this.state
       return (
+
+
          <View style={styles.container}>
             <Title title={this.ayudante()} />
-
-            <View style={styles.listCenter}>
+            {
+               loading? 
+               
+               <ActivityIndicatorStat color={Color.blue} size="large" />
+             :  <View style={styles.listCenter}>
                <Search style={styles.search} onChange={this.handleSearch} />
                <View style={styles.containerButtom}>
                   <BtnSimple
@@ -127,6 +131,8 @@ export class Buscar extends Component {
                   />
                </View>
             </View>
+            }
+            
          </View>
 
       )

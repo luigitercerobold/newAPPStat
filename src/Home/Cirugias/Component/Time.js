@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
 
   text: {
     fontSize: 20,
-    color: Colors.grayLetter,
+    color: Colors.black,
     paddingBottom: 20,
     padding: 20
 

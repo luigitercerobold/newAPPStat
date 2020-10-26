@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react'
-import { Alert, Text } from 'react-native'
+import { Alert, Text, View } from 'react-native'
 import Title from "../../Lib/Title";
 import TextBox from '../Component/TextBox'
 import Http from '../../Lib/http'
@@ -10,6 +10,7 @@ import BtnSimple from '../Component/BtnSimple'
 import ScrollCenter from '../Component/ScrollCenter'
 import PaddingVertical from '../Component/PaddingVertical'
 import PassWord from '../Component/PassWord'
+import StatusBar from '../Component/Statusbar';
 class DatosNuevoUsuario extends Component {
    state = {
       name: "Nombre",
@@ -45,9 +46,9 @@ class DatosNuevoUsuario extends Component {
    }
 
 
-   goToPerfil =() =>{
-
-      const body = 
+   goToPerfil = () => {
+      if (this.state.phone.length == 8) {
+         const body =
          {
             email: this.state.eMail,
             password: this.state.passWord,
@@ -55,9 +56,19 @@ class DatosNuevoUsuario extends Component {
             phone: this.state.phone,
             role: 2
          }
-      
-      this.props.navigation.navigate('PerfilNuevoUsuario', {body: body })
-      
+
+         this.props.navigation.navigate('PerfilNuevoUsuario', { body: body })
+      } else {
+         Alert.alert('Error', "Debe elegir un número de 8 dígitos", [
+            {
+               text: "Aceptar",
+               onPress: () => { },
+               style: "cancel"
+            }
+         ])
+      }
+
+
    }
 
    setName = (name) => {
@@ -97,12 +108,12 @@ class DatosNuevoUsuario extends Component {
                   onChangeText={this.setEmail}
                   keyword='email-address'
                />
-              
+
                <PaddingVertical vertical={0.1} />
                <PassWord
                   placeholder="Password"
                   onChangeText={this.setPassWord}
-                  //onEndEditing={() => this.logIn(activateAuth)}
+               //onEndEditing={() => this.logIn(activateAuth)}
                />
                <PaddingVertical vertical={0.1} />
                <TextBox
@@ -110,13 +121,18 @@ class DatosNuevoUsuario extends Component {
                   onChangeText={this.setPhone}
                   keyword='number-pad'
                />
-               <PaddingVertical vertical={5}>
+
+               <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}>
+
+                  <StatusBar
+                     step={1}
+                  />
                   <BtnSimple
                      title="Siguiente"
                      onPress={this.goToPerfil}
                   />
-               </PaddingVertical>
 
+               </View>
 
             </Container>
          </ScrollCenter>
