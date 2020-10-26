@@ -28,10 +28,10 @@ class FachaYHora extends React.Component {
     time: 'Presiona aquí',
     fullStart: '',
     fullTime: '',
-    duration:''
+    duration: ''
   };
   onPress = () => {
-    console.log("enviando fullstart",this.state.fullStart) 
+    console.log("enviando fullstart", this.state.fullStart)
     this.props.navigation.navigate('AgendarCirugia', {
       date: this.state.start,
       timer: this.state.time,
@@ -43,16 +43,20 @@ class FachaYHora extends React.Component {
   }
 
   handleStartCirugia = (start) => {
+    let dates = new Date(this.props.route.params.date)
+    dates.setHours(start.getHours())
+    dates.setMinutes(start.getMinutes())
+
     let min = start.getMinutes();
     if (min < 10) {
       min = "0" + min
     }
-    const date = `${start.getDate()}/${start.getMonth()+1}/${start.getFullYear()} - ${start.getHours()} : ${min}`
+    const date = `${dates.getDate()}/${dates.getMonth() + 1}/${dates.getFullYear()} - ${dates.getHours()} : ${min}`
 
     this.setState({
       start: date,
-      fullStart: start,
-      duration:start
+      fullStart: dates,
+      duration: dates
       //time:start
     })
 
@@ -64,8 +68,8 @@ class FachaYHora extends React.Component {
     fecha.setFullYear(this.state.fullStart.getFullYear())
     fecha.setMonth(this.state.fullStart.getMonth())
     fecha.setDate(this.state.fullStart.getDate())
-  
-  
+
+
     fecha.setHours(this.state.fullStart.getHours())
     fecha.setMinutes(this.state.fullStart.getMinutes())
 
@@ -74,7 +78,7 @@ class FachaYHora extends React.Component {
     fecha.setMinutes(fecha.getMinutes() + time.getMinutes());
     console.log(fecha)
     console.log(this.state.fullStart)
-    
+
     if (min < 10) {
       min = "0" + min
     }
@@ -84,7 +88,7 @@ class FachaYHora extends React.Component {
       fullTime: fecha,
       timerH: time.getHours(),
       timerM: time.getMinutes(),
-      
+
     })
 
 
@@ -97,17 +101,17 @@ class FachaYHora extends React.Component {
       <View style={styles.container}>
         <Title title='Agendar cirugía' ></Title>
         <View>
-          <FechaHora title='¿Cuándo es tu cirugía?' onChageDateHour={this.handleStartCirugia}>
-
+          <Time title='HORA DE INICIO' onChangeEnd={this.handleStartCirugia}>
             <ContainerText>{this.state.start} </ContainerText>
-          </FechaHora>
-          <Time title='¿Cuánto tiempo te tomarás?' onChangeEnd={this.handleTimer}>
+          </Time>
+          <Time title='DURACIÓN (HORAS)' onChangeEnd={this.handleTimer}>
             <ContainerText>{this.state.time} </ContainerText>
           </Time>
         </View>
-
+        <View style={{flex:1,justifyContent:'flex-end'}}>
 
         <ListButton title="Aceptar" onPress={this.onPress} />
+        </View>
       </View>
     );
   }

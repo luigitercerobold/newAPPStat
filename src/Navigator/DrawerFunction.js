@@ -60,9 +60,11 @@ import AgregarAsistente from '../Home/Cirugias/Views/Asistencia/View/Index'
 import AgregarAsistenteDeStat from '../Home/Cirugias/Views/Asistencia/View/AgregarDeStat'
 import AgregarDeContacto from '../Home/Cirugias/Views/Asistencia/View/AgregarDeContactos'
 import EditarUsuario from '../Home/src/View/EditarUsuario';
-import Calendar from  '../Home/src/View/Calendar'
+import Calendar from  '../Home/Cirugias/Views/AgendarCirugia/Calendar'
 import Invitation from '../Home/Cirugias/Views/Invitation'
 import VerInvitacion from '../Home/Cirugias/Views/VerInvitacion'
+import CalendarBy from '../Lib/Component/CalendarBy'
+
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -130,6 +132,7 @@ function NavStack() {
       <Stack.Screen name= "Invitation" component = {Invitation}/>
       <Stack.Screen name= "VerInvitacion" component = {VerInvitacion}/>
       
+      <Stack.Screen name = "CalendarBy" component = {CalendarBy}/>
     </Stack.Navigator>
   );
 }
