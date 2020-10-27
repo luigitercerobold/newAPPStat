@@ -56,7 +56,6 @@ class ImgPerfil extends Component {
 
     return (
 
-
       <Image style={[styles.imgContainer, styles.imgalingrigtg, this.props.style]} source={this.props.source} />
 
     );

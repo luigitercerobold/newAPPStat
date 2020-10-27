@@ -19,10 +19,20 @@ class VerCirugia extends Component {
       this.getCirugias()
    }
    getCirugias = async () => {
-      this.setState({ loading: true })
-      const cirugia = await http.instance.get(urlStat.getCirugias, http.instance.getToken())
-      this.setState({ cirugia: cirugia.data, loading: false })
+      const today = this.props.route.params.date
 
+      const nextDay = new Date(this.props.route.params.date)
+      nextDay.setDate(nextDay.getDate() + 1)
+      const body = JSON.stringify({
+         "minDate": `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`,
+         "maxDate": `${nextDay.getFullYear()}-${nextDay.getMonth() + 1}-${nextDay.getDate()}`
+
+      })
+      this.setState({ loading: true })
+      const cirugia = await http.instance.post(urlStat.getInvitation, body, http.instance.getToken())
+
+      this.setState({ cirugia: cirugia.data, loading: false })
+      console.log(this.state.cirugia)
       return cirugia
    }
    onPress = () => {
@@ -33,6 +43,7 @@ class VerCirugia extends Component {
    }
 
    goTo = (item) => {
+      console.log(item.scheduleData.name)
       this.props.navigation.navigate('AgendarCirugia', { cirugia: item })
    }
 
@@ -45,16 +56,18 @@ class VerCirugia extends Component {
 
             { loading ?
                <ActivityIndicatorStat color={color.blue} size="large" />
-               : <FlatList
+               :
+
+               <FlatList
                   data={cirugia}
                   renderItem={({ item }) =>
                      <Navigate
-                     key= {item.id}
+                        key={item?.invitationData?.id}
                         img={require("newAPPStat/assets/Icon/1x/menu-cirugas.png")}
                         goToPage={() => this.goTo(item)}
-                        text1={"Operación de " + item.name}
-                        text2={item.address}
-                        text3={item.date}
+                        text1={"Operación de " + item?.scheduleData?.name}
+                        text2={item?.scheduleData?.address}
+                        text3={item?.scheduleData?.date}
                         action="Agendar cirugía"
                      ></Navigate>}
                />

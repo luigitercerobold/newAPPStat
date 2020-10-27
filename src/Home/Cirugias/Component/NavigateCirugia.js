@@ -4,7 +4,7 @@ import Colors from 'newAPPStat/src/Lib/Colors'
 import StatFont from '../../../Lib/Component/StatFont'
 
 
-function NavigateCirugias({ text1, text2, text3, img, goToPage, action, delate = true, edit = true }) {
+const NavigateCirugias =({ text1, text2, text3, img, goToPage, action, delate = true, edit = true }) =>{
 
    return (
 

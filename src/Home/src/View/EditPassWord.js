@@ -70,12 +70,12 @@ class DatosNuevoUsuario extends Component {
       {
          // email: this.state.eMail,
          // password: this.state.passWord,
-         name: this.state.name,
+         oldPassword: this.state.name,
          phone: this.state.phone,
          //role: 2
       }
 
-      const req = await Http.instance.post(urlStat.editNameAndPhone, body, Http.instance.getToken())
+      const req = await Http.instance.post(urlStat.editPassword, body, Http.instance.getToken())
       console.log(req)
 
    }
@@ -107,32 +107,23 @@ class DatosNuevoUsuario extends Component {
                   onChangeText={this.setName}
                />
 
-               {/* <PaddingVertical vertical={0.1} />
-               <TextBox
-                  placeholder={this.state.eMail}
-                  onChangeText={this.setEmail}
-                  keyword='email-address'
-               /> */}
+              
 
-               {/* <PaddingVertical vertical={0.1} />
+               <PaddingVertical vertical={0.1} />
                <PassWord
-                  placeholder="Password"
+                  placeholder="Vieja Contraseña"
                   onChangeText={this.setPassWord}
                //onEndEditing={() => this.logIn(activateAuth)}
-               /> */}
-               <PaddingVertical vertical={0.1} />
-               <TextBox
-                  placeholder={User.instance.user.phone}
-                  onChangeText={this.setPhone}
-                  keyword='number-pad'
                />
 
-               <PaddingVertical vertical={5}>
-                  <BtnSimple
-                     title="Contraseña"
-                     onPress={this.goToPerfil}
-                  />
-               </PaddingVertical>
+               <PaddingVertical vertical={0.1} />
+               <PassWord
+                  placeholder="Nueva Contraseña"
+                  onChangeText={this.setPassWord}
+               //onEndEditing={() => this.logIn(activateAuth)}
+               />
+
+         
                <PaddingVertical vertical={5}>
                   <BtnSimple
                      title="Aceptar"

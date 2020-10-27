@@ -45,7 +45,8 @@ const styles = StyleSheet.create(
          paddingHorizontal:30
       },
       Text:{
-         color:Color.white
+         color:Color.white,
+         textAlign:"center"
       }
    }
 )

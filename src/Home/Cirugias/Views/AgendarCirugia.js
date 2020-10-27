@@ -46,7 +46,7 @@ class AgendarCirugia extends Component {
    }
 
    goToDate() {
-      this.props.navigation.navigate('Calendar')
+      this.props.navigation.navigate('FechaYHora')
    }
    goToCuerpo() {
       this.props.navigation.navigate('Cuerpo')

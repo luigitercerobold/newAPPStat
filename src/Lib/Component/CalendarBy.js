@@ -8,16 +8,16 @@ import CalendarPicker from 'react-native-calendar-picker';
 import moment from 'moment';
 import Colors from '../Colors'
 
-export const Calendar = ({ minDate, customDatesStyles, onDateChange, onMonthChange }) => {
+export const Calendar = ({ minDate, customDatesStyles, onDateChange, onMonthChange,initialDate }) => {
 
    return (
       <View style={styles.container}>
          <CalendarPicker
-            minDate={minDate}
+            //minDate={minDate}
             todayTextStyle={{ fontWeight: 'bold' }}
             todayBackgroundColor={'transparent'}
             customDatesStyles={customDatesStyles}
-            // minDate={today}
+           
             selectedDayColor={Colors.blue}
             selectedDayTextColor={Colors.white}
             startFromMonday={true}
@@ -32,6 +32,7 @@ export const Calendar = ({ minDate, customDatesStyles, onDateChange, onMonthChan
 
             }}
             onMonthChange={onMonthChange}
+            initialDate={initialDate}
          />
 
       </View>

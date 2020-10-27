@@ -17,7 +17,8 @@ class Calendar2 extends Component {
       cirugia: [{ name: "" }],
       loading: false,
       finish: false,
-      newFormat: []
+      newFormat: [],
+      minDate:""
    }
 
    componentDidMount() {
@@ -26,11 +27,23 @@ class Calendar2 extends Component {
    }
 
    getCirugias = async () => {
+
+      const today = new Date()
+      
       this.setState({ loading: true })
-      const cirugia = await http.instance.get(urlStat.getCirugias, http.instance.getToken())
+
+      const body = JSON.stringify({
+         "minDate":`${today.getFullYear()}-${today.getMonth()+1}-1`,
+         "maxDate":`${today.getFullYear()}-${today.getMonth()+2}-1`
+
+      })
+
+      const cirugia = await http.instance.post(urlStat.getInvitation,body ,http.instance.getToken())
 
       this.customDatesStyles(cirugia.data)
-      this.setState({ cirugia: cirugia.data, loading: false })
+      this.setState({ cirugia: cirugia.data, loading: false,minDate:today })
+
+      console.log(cirugia)
       return cirugia.data
    }
 
@@ -40,7 +53,7 @@ class Calendar2 extends Component {
 
       customDatesStyles = dates.map((element) => {
 
-         let date = moment.utc(element.date).format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
+         let date = moment.utc(element.scheduleData.date).format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
 
          return {
             date: date,
@@ -57,14 +70,40 @@ class Calendar2 extends Component {
       return customDatesStyles
    }
 
-   onDateChange =(date, type)=> {
+   onDateChange = (date, type) => {
 
-      this.props.navigation.navigate('VerCirugia',{date:date})
-      
-   }  
+      const dates = new Date(date)
+      console.log(dates.getDate())
+     this.props.navigation.navigate('VerCirugia', { date:new Date(date) })
+
+   }
+
+   onMonthChange = async (date) => {
+      const today = new Date(date)
+   
+      this.setState({ minDate:today, loading: true })
+
+      console.log(`${today.getFullYear()}-${today.getMonth+1}-1`)
+      const body = JSON.stringify({
+         "minDate":`${today.getFullYear()}-${today.getMonth()+1}-1`,
+         "maxDate":`${today.getFullYear()}-${today.getMonth()+2}-1`
+
+      })
+
+      const cirugia = await http.instance.post(urlStat.getInvitation,body ,http.instance.getToken())
+
+      this.customDatesStyles(cirugia.data)
+      this.setState({ cirugia: cirugia.data, loading: false })
+
+      console.log(cirugia)
+      return cirugia.data
+
+   }
+
+ 
 
    render() {
-
+      const {minDate} = this.state
       return (
          <>
             <Title
@@ -76,7 +115,11 @@ class Calendar2 extends Component {
 
                   <Calendar
                      customDatesStyles={this.state.newFormat}
-                     onDateChange= {this.onDateChange}
+                     onDateChange={this.onDateChange}
+                     onMonthChange ={this.onMonthChange}
+                     
+                     initialDate={minDate}
+                  
                   />
 
                </>
