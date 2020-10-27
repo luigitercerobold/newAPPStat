@@ -72,7 +72,7 @@ class MenuSc extends Component {
 
         <ImgPerfil  
         source={{ uri: url.img + this.getPhoto() }}   
-        style = {{}}
+        
         />
         
 

@@ -67,6 +67,8 @@ import Invitation from '../Home/Cirugias/Views/Invitation'
 import VerInvitacion from '../Home/Cirugias/Views/VerInvitacion'
 import CalendarBy from '../Lib/Component/CalendarBy'
 import VerCelendar from '../Home/Cirugias/Views/VerCirugias/Calendar'
+import EditPassword from '../Home/src/View/EditPassWord'
+
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -137,6 +139,7 @@ function NavStack() {
       <Stack.Screen name= "VerInvitacion" component = {VerInvitacion}/>
       
       <Stack.Screen name = "CalendarBy" component = {CalendarBy}/>
+      <Stack.Screen name = "EditPassword" component = {EditPassword}/>
     </Stack.Navigator>
   );
 }

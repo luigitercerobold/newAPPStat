@@ -24,7 +24,7 @@ const Asistencia = ({ loading, component1, pressAcept, doctor, anestesia, aceptB
             aceptButton ?
                <View style={{ alignItems: "center", marginBottom: 15 }}>
                   <BtnSimple
-                     title={'       Aceptar     '}
+                     title={'Aceptar'}
                      onPress={() => pressAcept()}
                   />
                </View>

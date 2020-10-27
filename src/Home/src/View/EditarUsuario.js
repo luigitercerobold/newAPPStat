@@ -66,7 +66,7 @@ class DatosNuevoUsuario extends Component {
 
    goToPerfil = async () => {
 
-      const body =
+      const body =JSON.stringify(
       {
          // email: this.state.eMail,
          // password: this.state.passWord,
@@ -74,9 +74,17 @@ class DatosNuevoUsuario extends Component {
          phone: this.state.phone,
          //role: 2
       }
-
+      )
       const req = await Http.instance.post(urlStat.editNameAndPhone, body, Http.instance.getToken())
-      console.log(req)
+      if(req.data.message="Se guardó la información exitosamente"){
+         User.instance.user.name = this.state.name
+         User.instance.user.phone = this.state.phone
+      }else(
+         Alert.alert(req.data.message)
+
+      )
+
+   
 
    }
 
@@ -96,6 +104,10 @@ class DatosNuevoUsuario extends Component {
    setPhone = (phone) => {
       this.setState({ phone })
    }
+
+   editaPassword = () => {
+      this.props.navigation.navigate("EditPassword")
+   }
    render() {
       return (
          <ScrollCenter>
@@ -107,19 +119,6 @@ class DatosNuevoUsuario extends Component {
                   onChangeText={this.setName}
                />
 
-               {/* <PaddingVertical vertical={0.1} />
-               <TextBox
-                  placeholder={this.state.eMail}
-                  onChangeText={this.setEmail}
-                  keyword='email-address'
-               /> */}
-
-               {/* <PaddingVertical vertical={0.1} />
-               <PassWord
-                  placeholder="Password"
-                  onChangeText={this.setPassWord}
-               //onEndEditing={() => this.logIn(activateAuth)}
-               /> */}
                <PaddingVertical vertical={0.1} />
                <TextBox
                   placeholder={User.instance.user.phone}
@@ -129,8 +128,8 @@ class DatosNuevoUsuario extends Component {
 
                <PaddingVertical vertical={5}>
                   <BtnSimple
-                     title="Contraseña"
-                     onPress={this.goToPerfil}
+                     title="Editar Contraseña"
+                     onPress={this.editaPassword}
                   />
                </PaddingVertical>
                <PaddingVertical vertical={5}>

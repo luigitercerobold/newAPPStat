@@ -8,7 +8,7 @@ import BtnSimple from './BtnSimple'
 
 import PaddingVertical from './PaddingVertical'
 import SubTittle from '../../Lib/Component/SubTittle';
-const AsistenteAdministrativo = ({ onPress,children,title,subTitle,placeholder ="Asistente" }) => {
+const AsistenteAdministrativo = ({ onPress,children,title,subTitle ="Siguiente",placeholder ="Asistente" }) => {
    const [eMail, setEmail] = useState('')
 
 
@@ -24,7 +24,7 @@ const AsistenteAdministrativo = ({ onPress,children,title,subTitle,placeholder =
             />
             <PaddingVertical vertical={3}>
                <BtnSimple
-                  title="Siguiente"
+                  title={subTitle}
                   onPress={() =>onPress(eMail)}
                />
             </PaddingVertical>

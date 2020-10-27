@@ -28,7 +28,8 @@ const urlStat={
    searchContact: server +"/api/user/doctor/search",
    editNameAndPhone: server +"/api/user/edit",
    getInvitation: server +"/api/schedule/invited",
-    editPassword: server +"/api/auth/change-password "
+    editPassword: server +"/api/auth/change-password",
+    recoverPassword: server +"/api/auth/recover-password"
 };
 
 export default urlStat

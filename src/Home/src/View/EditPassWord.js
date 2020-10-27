@@ -15,100 +15,68 @@ import Http from '../../../Lib/http'
 import urlStat from '../../../Lib/url';
 
 
-class DatosNuevoUsuario extends Component {
+class    DatosNuevoUsuario extends Component {
    state = {
       name: "",
       lastName: "",
       eMail: "",
       passWord: "",
-      phone: ""
+      phone: "",
+      newPassword:""
    }
 
    componentDidMount() {
 
-      console.log(User.instance.user)
-      this.setState(
-         {
-            name: User.instance.user.name,
-            eMail: User.instance.user.email,
-            phone: User.instance.user.phone
-         }
-      )
 
    }
 
-   goToToken = async () => {
-
-      const body = JSON.stringify(
-         {
-            //email: this.state.eMail,
-            //password: this.state.passWord,
-            name: this.state.name + " " + this.state.lastName,
-            phone: this.state.phone,
-            role: 2
-         }
-      )
-      const user = await Http.instance.post(Url.creteUser, body)
-      console.log(user.message)
-      if (user.message === "Se ha registrado exitosamente.") {
-         this.props.navigation.navigate('PerfilNuevoUsuario', { user: user, body: body })
-      } else {
-         Alert.alert('Error', user.message, [
-            {
-               text: "Aceptar",
-               onPress: () => { },
-               style: "cancel"
-            }
-         ])
-      }
-
-   }
+   
 
    goToPerfil = async () => {
 
       const body =
+      JSON.stringify(
       {
          // email: this.state.eMail,
          // password: this.state.passWord,
-         oldPassword: this.state.name,
-         phone: this.state.phone,
-         //role: 2
-      }
+         oldPassword: this.state.passWord,
+         newPassword: this.state.newPassword,
+         //role:) 2
+      })
 
       const req = await Http.instance.post(urlStat.editPassword, body, Http.instance.getToken())
-      console.log(req)
-
+      Alert.alert(
+         "Usuario",
+         "Mensaje de Stat: " +req. message,
+         [
+            {
+               text: "Cancel",
+               onPress: () => console.log("Cancel Pressed"),
+               style: "cancel"
+            },
+            { text: "OK", onPress: () => this.setState({ newPassword:"",passWord: "",}) }
+         ],
+         { cancelable: false }
+      )
    }
 
-   setName = (name) => {
-      this.setState({ name })
+   setNewPassword = (newPassword) => {
+      this.setState({ newPassword })
    }
-   setLastName = (lastName) => {
-      this.setState({ lastName })
-   }
-   setEmail = (eMail) => {
-      this.setState({ eMail })
-   }
+
+ 
    setPassWord = (passWord) => {
       this.setState({ passWord })
 
    }
-   setPhone = (phone) => {
-      this.setState({ phone })
-   }
+
    render() {
       return (
          <ScrollCenter>
 
-            <Title title="Editar Usuario" />
+            <Title title="Editar Contraseña" />
             <Container>
-               <TextBox
-                  placeholder={User.instance.user.name}
-                  onChangeText={this.setName}
-               />
-
-              
-
+           
                <PaddingVertical vertical={0.1} />
                <PassWord
                   placeholder="Vieja Contraseña"
@@ -119,7 +87,7 @@ class DatosNuevoUsuario extends Component {
                <PaddingVertical vertical={0.1} />
                <PassWord
                   placeholder="Nueva Contraseña"
-                  onChangeText={this.setPassWord}
+                  onChangeText={this.setNewPassword}
                //onEndEditing={() => this.logIn(activateAuth)}
                />
 

@@ -8,8 +8,10 @@ import BtnSimple from '../Component/BtnSimple'
 import ScrollCenter from '../Component/ScrollCenter'
 import PaddingVertical from '../Component/PaddingVertical'
 import SubTittle from '../../Lib/Component/SubTittle';
+import Http from '../../Lib/http'
 
 import Permisos from '../Component/PermisosAsistente'
+import urlStat from '../../Lib/url';
 class Olvidar extends Component {
    state = {
       eMail: "Correo Electronico"
@@ -17,9 +19,16 @@ class Olvidar extends Component {
    setEmail = (eMail) => {
       this.setState({ eMail })
    }
-   gotoToToken = (eMail) => {
+   gotoToToken =  (eMail) => {
       console.log("CorreoCorrectamente", this.props.route.params)
-      this.props.navigation.navigate('CorreoCorrectamente')
+      const body= JSON.stringify(
+         {
+            userEmail:eMail
+         }
+      )
+      const req = Http.instance.post(urlStat.recoverPassword,body)
+         console.log(req)
+      this.props.navigation.navigate('CorreoCorrectamente', )
 
    }
    render() {
@@ -28,7 +37,7 @@ class Olvidar extends Component {
             <Permisos
                onPress ={this.gotoToToken}
                title = "Nueva Contraseña"
-               subTitle="Ingrese el correo registrado y se enviará una clave temporal a su correo electronico" 
+               subTitle="Enviar email" 
                placeholder="Correo electrónico"
             >
 

@@ -23,10 +23,10 @@ export class Asistencia extends Component {
    componentDidUpdate() {
       console.log("actualizar1")
       if (this.props.route.params) {
-    
-         
+
+
          if (this.props.route.params.update === true) {
-            console.log("actualizar2",this.props.route.params.update)
+            console.log("actualizar2", this.props.route.params.update)
             this.setState({ reload: !this.state.reload, pro: this.props.route.params.contact, loading: true, })
             this.props.route.params.update = false
             this.setState({ loading: false })
@@ -90,11 +90,32 @@ export class Asistencia extends Component {
       }
    }
 
+   cancelDoctors = (item) => {
+     
+      const allDoctor = this.state.allDoctor.filter(function (elemet) {
+         return elemet.id !== item.id;
+      });
+      const anestesia = this.state.anestesia.filter(function (elemet) {
+         return elemet.id !== item.id;
+      });
+      const doctor = this.state.doctor.filter(function (elemet) {
+         return elemet.id !== item.id;
+      });
+
+      this.setState({
+         allDoctor,
+         anestesia,
+         doctor,
+      
+      })
+   }
+   
+
    component1 = (loading, component, item) => {
 
       return (
          <>
-            <ListOfDoctors onPress={this.handlePress.bind(this)} loading={loading} item={item} />
+            <ListOfDoctors cancel={this.cancelDoctors} onPress={this.handlePress.bind(this)} loading={loading} item={item} />
             <View style={{ padding: 15 }}>
                <View style={{ alignItems: 'center' }}>
                   <BtnSimple
