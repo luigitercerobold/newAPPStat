@@ -1,6 +1,6 @@
 import react from "react";
 import React, { Component } from 'react'
-import { View, TextInput, Button, Text,Alert } from 'react-native'
+import { View, TextInput, Button, Text, Alert } from 'react-native'
 import Title from "../../Lib/Title";
 import TextBox from '../Component/TextBox'
 import Http from '../../Lib/http'
@@ -10,13 +10,14 @@ import BtnSimple from '../Component/BtnSimple'
 import ScrollCenter from '../Component/ScrollCenter'
 import PaddingVertical from '../Component/PaddingVertical'
 import StatFont from '../../Lib/Component/StatFont'
+import StatusBar from '../Component/Statusbar';
 class VerificarToken extends Component {
    state = {
       token: "''",
       message: "ingresa el codigo que se envio al correo"
    }
 
-   componentDidMount(){
+   componentDidMount() {
       console.log(this.props.route.params)
    }
    validar = async (token) => {
@@ -62,30 +63,38 @@ class VerificarToken extends Component {
          { cancelable: false }
       )
    }
-   
+
    render() {
 
       return (
 
          <>
-            
+
             <Title title="Verifica tus datos" />
             <Container>
-               <StatFont>Se envió un código a tu correo electrónico</StatFont>
-               <TextBox
-                  placeholder={"Introduce el código"}
-                  onChangeText={this.setToken}
-               />
-             
-               <StatFont>
-                  {this.state.message}
-               </StatFont>
-               <PaddingVertical vertical={5}>
+               <View style={{ flex: 2,justifyContent: 'center', alignItems: 'center'  }}>
+                  <StatFont>Se envió un código a tu correo electrónico</StatFont>
+                  <TextBox
+                     placeholder={"Introduce el código"}
+                     onChangeText={this.setToken}
+                  />
+
+                  <StatFont>
+                     {this.state.message}
+                  </StatFont>
+               </View>
+
+               <View style={{ flex: .5, justifyContent: 'flex-end', alignItems: 'center' }}>
+
+                  <StatusBar
+                     step={5}
+                  />
                   <BtnSimple
-                     title="Finalizar"
+                     title="Siguiente"
                      onPress={this.validar}
                   />
-               </PaddingVertical>
+
+               </View>
             </Container>
          </>
 

@@ -1,31 +1,19 @@
 import React, { Component } from 'react';
 import {
-  View,
-  Text,
   StyleSheet,
-  ActivityIndicator,
-  Animated,
-  TouchableOpacity,
   Image,
-  TextInput,
 } from 'react-native';
-import {
-  createDrawerNavigator,
-  DrawerContentScrollView,
-  DrawerItemList,
-  DrawerItem,
-} from '@react-navigation/drawer';
+
 import { DrawerActions } from 'react-navigation';
-import Section from '../Component/Section'
+
 import User from '../../../Lib/user'
 import url from '../../../Lib/url'
-import StatFont from '../../../Lib/Component/StatFont'
-import ImgPerfil from './ImgPerfil';
-class MenuSc extends Component {
+
+class ImgPerfil extends Component {
   constructor(props) {
     super(props);
   }
-  
+
   toggleDrawer = () => {
     this.props.navigation.dispatch(DrawerActions.toggleDrawer())
   }
@@ -64,38 +52,17 @@ class MenuSc extends Component {
   }
 
 
-  render(props) {
+  render() {
 
     return (
 
-      <View style={styles.header} {...props}>
 
-        <ImgPerfil  
-        source={{ uri: url.img + this.getPhoto() }}   
-        style = {{}}
-        />
-        
-
-  
-       
-        <StatFont
-          style={{
-            alignSelf: 'flex-start',
-            paddingStart: 25,
-            paddingTop: 8,
-            letterSpacing: 3,
-            fontFamily: 'Questrial-Regular',
-            fontSize: 24,
-            color: 'white',
-          }}>
-          {this.getUser()}
-        </StatFont>
-      </View>
+      <Image style={[styles.imgContainer, styles.imgalingrigtg, this.props.style]} source={this.props.source} />
 
     );
   }
 }
-export default MenuSc;
+export default ImgPerfil;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -111,8 +78,8 @@ const styles = StyleSheet.create({
 
   footer: {
     flex: 2,
-  }, 
-   imgContainer: {
+  },
+  imgContainer: {
     width: 66,
     height: 66,
   },
@@ -120,6 +87,7 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     width: 90,
     height: 90, borderRadius: 50
+
   },
 
 });

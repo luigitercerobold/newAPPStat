@@ -1,6 +1,11 @@
 import ImagePicker from 'react-native-image-picker';
 import React, { Component } from 'react'
-import { Button, Text, PermissionsAndroid, Image, StyleSheet } from 'react-native'
+import { Button, Text, PermissionsAndroid, Image, StyleSheet, View } from 'react-native'
+import StatusBar from '../Component/Statusbar';
+import BtnSimple from '../Component/BtnSimple'
+import Container from '../Component/LoginComponent/ContainerCenter'
+import Title from "../../Lib/Title";
+import ImgPerfil from '../../Home/src/Component/ImgPerfil'
 const options = {
    title: 'Seleccione la imagen',
    takePhotoButtonTitle: 'Tomar foto',
@@ -56,20 +61,54 @@ export default class MICamara extends Component {
       });
 
    }
+
+   goToPerfil =()=>{
+      this.props.navigation.navigate('PerfilNuevoUsuario', {  body: this.props.route.params.body })
+   }
    render() {
       return (
          <>
-            <Button
-               title="press"
-               onPress={this.handleSelectImage.bind(this)}>
-               <Text>Tomar foto</Text>
-            </Button>
-            {this.state.data
-               ?
-               <Image source={this.state.avatarSource} style={styles.uploadAvatar} />
-               : null
-            }
+            <Title title="Nuevo Usuario" />
+            <Container>
 
+
+               <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center' }}>
+                  {this.state.data
+                     ?
+
+                     <ImgPerfil
+                        source={this.state.avatarSource}
+                        style={{
+                           marginLeft: 0,
+                           width: 200,
+                           height: 200, borderRadius: 100,
+                           margin: 20
+                        }}
+                     />
+
+                     : null
+                  }
+
+                  <BtnSimple
+                     title="Fotografía"
+                     onPress={this.goToPerfil}
+                     onPress={this.handleSelectImage.bind(this)}
+                  />
+
+               </View>
+
+               <View style={{ flex: .5, justifyContent: 'flex-end', alignItems: 'center' }}>
+
+                  <StatusBar
+                     step={2}
+                  />
+                  <BtnSimple
+                     title="Siguiente"
+                     onPress={this.goToPerfil}
+                  />
+
+               </View>
+            </Container>
          </>
       )
    }
@@ -78,9 +117,9 @@ export default class MICamara extends Component {
 
 
 const styles = StyleSheet.create({
-   uploadAvatar:{
-      height:200,
-      width:200
+   uploadAvatar: {
+      height: 200,
+      width: 200
    }
 
 })

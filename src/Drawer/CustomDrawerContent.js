@@ -20,7 +20,6 @@ const CustomDrawerContent = (props) => {
          <Inicio title={'Inivtacion'} goTo={() => props.navigation.navigate('Invitation')} />
          <CerrarSesion />
 
-
       </View>
 
 

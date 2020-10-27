@@ -32,7 +32,8 @@ class DatosNuevoUsuario extends Component {
       const user = await Http.instance.post(Url.creteUser, body)
       console.log(user.message)
       if (user.message === "Se ha registrado exitosamente.") {
-         this.props.navigation.navigate('PerfilNuevoUsuario', { user: user, body: body })
+         
+         this.props.navigation.navigate('CropPhoto', { user: user, body: body })
       } else {
          Alert.alert('Error', user.message, [
             {
@@ -57,7 +58,8 @@ class DatosNuevoUsuario extends Component {
             role: 2
          }
 
-         this.props.navigation.navigate('PerfilNuevoUsuario', { body: body })
+      
+         this.props.navigation.navigate('CropPhoto', {  body: body })
       } else {
          Alert.alert('Error', "Debe elegir un número de 8 dígitos", [
             {

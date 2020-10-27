@@ -15,6 +15,7 @@ import {BackImageRow} from './BackImageRow'
 import Animacion from '../Login/Component/Animacion';
 import Olvidar from '../Login/Container/Olvidar'
 import CorreoCorrectamente from '../Login/Container/CorreoCorrectamente'
+import CropPhoto from '../Login/Container/CropPhoto';
 const StackLogin = createStackNavigator();
 
 
@@ -35,7 +36,7 @@ export function StackLoginFunction() {
          headerTitleAlign:"center"
        }}
      >
-       
+       <StackLogin.Screen options={{ title: 'Animacion' }} name="Animacion" component={Animacion} options={{ title: 'Menu', headerShown: false }} />
        <StackLogin.Screen options={{ title: 'Welcome' }} name="Welcome" component={Welcome} options={{ headerShown: false }} />
        <StackLogin.Screen options={{ title: 'Nuevo Usuario' }} name="DatosNuevoUsuario" component={DatosNuevoUsuario} />
        <StackLogin.Screen options={{ title: 'Perfil de Doctor' }} name="PerfilNuevoUsuario" component={PerfilNuevoUsuario} />
@@ -43,10 +44,9 @@ export function StackLoginFunction() {
        <StackLogin.Screen options={{ title: 'Procedimiento' }} name="Procedimiento" component={Procedimiento} />
        <StackLogin.Screen options={{ title: 'Asistente Administrativo' }} name="AsistenteAdministrativo" component={AsistenteAdministrativo} />
        <StackLogin.Screen options={{ title: 'Login' }} name="Login" component={Login} options={{ title: 'Menu', headerShown: false }} />
-       <StackLogin.Screen options={{ title: 'Login' }} name="Animacion" component={Animacion} options={{ title: 'Menu', headerShown: false }} />
        <StackLogin.Screen options={{ title: 'Olvidar' }} name="Olvidar" component={Olvidar}  />
        <StackLogin.Screen options={{ title: 'Olvidar' }} name="CorreoCorrectamente" component={CorreoCorrectamente}  />
-     
+       <StackLogin.Screen name= 'CropPhoto' component= {CropPhoto} />
      </StackLogin.Navigator>
    )
  }

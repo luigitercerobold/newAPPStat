@@ -75,7 +75,7 @@ function NavStack() {
 
   return (
     <Stack.Navigator
-      initialRouteName="CropPhoto"
+      initialRouteName="Menu"
       screenOptions={{
         headerShown: true,
         headerTintColor: '#fff',

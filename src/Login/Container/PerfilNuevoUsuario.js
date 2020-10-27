@@ -90,7 +90,7 @@ class AsistenteAdministrativo extends Component {
 
                <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}>
                   <StatusBar
-                     step={2}
+                     step={3}
                   />
                   <BtnSimple
                      title="Continuar"
