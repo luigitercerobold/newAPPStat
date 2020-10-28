@@ -19,6 +19,9 @@ export class Asistencia extends Component {
 
    }
 
+   isDelete  ()  {
+      return true
+   }
 
    componentDidUpdate() {
       console.log("estado", this.state.allDoctor)
@@ -113,7 +116,7 @@ export class Asistencia extends Component {
 
       return (
          <>
-            <ListOfDoctors cancel={this.cancelDoctors} onPress={this.handlePress.bind(this)} loading={loading} item={item} />
+            <ListOfDoctors isDelete = {this.isDelete()} cancel={this.cancelDoctors} onPress={this.handlePress.bind(this)} loading={loading} item={item} />
             <View style={{ padding: 15 }}>
                <View style={{ alignItems: 'center' }}>
                   <BtnSimple

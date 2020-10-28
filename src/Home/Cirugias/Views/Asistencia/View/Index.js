@@ -7,26 +7,34 @@ import AsitenciaComponent from '../../../../Asistente/Component/Asistencia'
 class Index extends AddAsistencia {
 
    goto(role, array) {
-    
+   
       this.props.navigation.navigate('AgregarDeContacto', { role: role, contact: array, allDoctor: this.state.allDoctor })
 
    }
 
 
    componentDidMount() {
+
       this.setState({
          allDoctor: this.props.route.params?.allDoctor || [],
          anestesia: this.props.route.params?.anestesia || [],
          doctor: this.props.route.params?.doctor || []
       })
+
    }
+
    enviarACirugia() {
+
       this.props.navigation.navigate('AgendarCirugia', {
          allDoctor: this.state.allDoctor,
          anestesia: this.state.anestesia,
          doctor: this.state.doctor
 
       })
+
+   }
+   isDelete(){
+      return true
    }
 
    render() {

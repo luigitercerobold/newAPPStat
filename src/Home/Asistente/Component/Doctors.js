@@ -3,9 +3,10 @@ import { Text, FlatList, View, StyleSheet, Image, Pressable } from 'react-native
 import urlStat from '../../../Lib/url'
 import StatFont from '../../../Lib/Component/StatFont'
 import Colors from '../../../Lib/Colors'
-const Doctors = ({ item, onPress, cancel }) => {
+const Doctors = ({ item, onPress, cancel,isDelete }) => {
 
    const onPressable = () => {
+    
       onPress(item)
     
 
@@ -15,7 +16,7 @@ const Doctors = ({ item, onPress, cancel }) => {
          onPress={onPressable}
       >
          <View>
-            {cancel ?
+            {isDelete ?
                <View style={{ zIndex: 2, flexDirection: "row-reverse" }}>
                   <Pressable onPress={cancel} style={[styles.myButton, styles.red]}>
                      <Image style={styles.pencil} source={require("newAPPStat/assets/Icon/1x/cancerlar_informacion.png")} ></Image>

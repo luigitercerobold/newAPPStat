@@ -26,6 +26,9 @@ class AgregarDeContacto extends Asistencia {
       this.props.navigation.navigate('AgregarAsistenteDeStat', { role: this.props.route.params.role, contact: this.props.route.params.contact, allDoctor: this.props.route.params.allDoctor })
 
    }
+   isDelete(){
+      return false
+   }
 }
 
 export default AgregarDeContacto
