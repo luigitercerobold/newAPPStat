@@ -32,7 +32,7 @@ const App: () => React$Node = () => {
                 
                   <NavigationContainer>
                     {
-                      isAuth
+                      !isAuth
                       ? DrawerFunction()
                       :StackLoginFunction()
                     }

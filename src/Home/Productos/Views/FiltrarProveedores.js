@@ -67,13 +67,15 @@ class FiltrarProveedor extends Component {
    render() {
       const { products, proveedor, loading } = this.state
       return (
-         <View style={styles.container}>{loading ?
-            <ActivityIndicatorStat color={color.blue} size="large" /> : null
-         }
-            <View style={styles.containerTittle}>
+         <View style={styles.container}>
+            <View style = {styles.containerTittle}>
                <Title title="Proveedor" />
                <ProviderSearch style={styles.search} onChange={this.handleSearch} />
             </View>
+
+            {loading ?
+               <ActivityIndicatorStat color={color.blue} size="large" /> : null
+            }
             <FlatList
                data={proveedor}
                style={styles.flatList}
@@ -88,14 +90,11 @@ export default FiltrarProveedor;
 
 const styles = StyleSheet.create({
    flatList: {
-      backgroundColor: color.gray,
-      flex: 1,
-      marginTop: 20,
-
-
+      marginTop: 45,
+      flexGrow: 0,
    },
    container: {
-      flex: 1,
+      flex: 1
    },
    containerTittle: {
       flexDirection: "row",
@@ -107,3 +106,4 @@ const styles = StyleSheet.create({
       width: 225
    }
 })
+

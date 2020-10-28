@@ -29,7 +29,11 @@ const urlStat={
    editNameAndPhone: server +"/api/user/edit",
    getInvitation: server +"/api/schedule/invited",
     editPassword: server +"/api/auth/change-password",
-    recoverPassword: server +"/api/auth/recover-password"
+    recoverPassword: server +"/api/auth/recover-password",
+    getDetails: (id) => {
+      return `${server}/api/schedule/details/${id}`
+   },
+   
 };
 
 export default urlStat

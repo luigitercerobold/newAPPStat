@@ -21,12 +21,12 @@ export class Asistencia extends Component {
 
 
    componentDidUpdate() {
-      console.log("actualizar1")
+      console.log("estado", this.state.allDoctor)
+
       if (this.props.route.params) {
 
-
          if (this.props.route.params.update === true) {
-            console.log("actualizar2", this.props.route.params.update)
+
             this.setState({ reload: !this.state.reload, pro: this.props.route.params.contact, loading: true, })
             this.props.route.params.update = false
             this.setState({ loading: false })
@@ -67,8 +67,6 @@ export class Asistencia extends Component {
 
    }
 
-
-
    onPress = (role) => {
       this.setState({ reload: true })
       const array = this.elegirDoctor(role)
@@ -91,7 +89,7 @@ export class Asistencia extends Component {
    }
 
    cancelDoctors = (item) => {
-     
+
       const allDoctor = this.state.allDoctor.filter(function (elemet) {
          return elemet.id !== item.id;
       });
@@ -106,10 +104,10 @@ export class Asistencia extends Component {
          allDoctor,
          anestesia,
          doctor,
-      
+
       })
    }
-   
+
 
    component1 = (loading, component, item) => {
 

@@ -4,7 +4,7 @@ import Title from '../../../Lib/Title'
 import Navigate from '../Component/NavigateCirugia'
 import { getActiveChildNavigationOptions } from 'react-navigation'
 import http from '../../../Lib/http'
-import url from 'newAPPStat/src/Lib/url'
+import url from '../../../Lib/url'
 import init from 'newAPPStat/src/Lib/init'
 import ListButton from '../Component/ListButton'
 import { ScrollView } from 'react-native-gesture-handler'
@@ -22,31 +22,65 @@ class AgendarCirugia extends Component {
 
    componentDidMount() {
       if (this.props.route.params !== undefined) {
-         if(this.props.route.params.cirugia !=undefined){
+         if (this.props.route.params.cirugia != undefined) {
             this.cargarCirugia(this.props.route.params.cirugia)
          }
-         
+
       }
    }
 
-   cargarCirugia(cirugia) {
+   cargarCirugia = async (cirugia) => {
 
-      console.log(cirugia)
+      this.setState({ loading2: true })
+      const ciru = await http.instance.get(url.getDetails(cirugia.scheduleData.id), http.instance.getToken())
 
-      this.setState({ screen: "VerCirugia" })
+      const details = ciru.data
+      console.log(details)
 
-      this.props.route.params.date = cirugia.date
-      this.props.route.params.timer = cirugia.end
-      this.props.route.params.bodyPart = cirugia.name
-      this.props.route.params.procedimiento = cirugia.description
-      this.props.route.params.hospital = {}
-      this.props.route.params.hospital.name = "mandar info Hospital"
-      this.props.route.params.hospital.id = cirugia.hospital_id
+      this.llenarDoctores(details.doctorsInvited)
+      this.llenarProducto(details.scheduleProducts)
+      this.props.route.params.date = details.date
+      this.props.route.params.timer = details.end
+      this.props.route.params.bodyPart = details.name
+      this.props.route.params.procedimiento = details.description
+      this.props.route.params.hospital = details.hospital
+      this.setState({ loading2: false })
+   }
+
+   llenarProducto = async (productos) => {
+      let product = []
+      product = productos.map((element) => {
+
+         return element.product
+      })
+
+      this.props.route.params.producto = product
+   }
+
+   llenarDoctores = async (doctoresInvitados) => {
+      
+      let allDoctor = []
+      let doctors = []
+      let anestesista = []
+
+      allDoctor = doctoresInvitados.map((element) => {
+         element.user.role = element.role
+         return element.user
+      })
+
+      doctors = allDoctor.filter((element) => element.role === 1)
+
+      anestesista = allDoctor.filter((element) => element.role === 2)
+
+
+      this.props.route.params.allDoctor = allDoctor
+      this.props.route.params.anestesia = anestesista
+      this.props.route.params.doctor = doctors
 
    }
 
    goToDate() {
-      this.props.navigation.navigate('FechaYHora')
+      this.props.navigation.navigate('Calendar')
    }
    goToCuerpo() {
       this.props.navigation.navigate('Cuerpo')
@@ -119,9 +153,6 @@ class AgendarCirugia extends Component {
       } else {
          this.editarCirugia()
       }
-
-
-
    }
 
    editarCirugia = async () => {
@@ -171,6 +202,7 @@ class AgendarCirugia extends Component {
       this.props.navigation.navigate(this.state.screen)
       this.setState({ isOk: true })
    }
+
    goToBack = () => {
       this.setState({ loading: false })
    }
@@ -186,10 +218,10 @@ class AgendarCirugia extends Component {
                   onPress={this.handlePress}
                   isOk={this.state.isOk}
                   loading={this.state.loading2}
-                  eventStart= {this.props.route.params.fullStart}
-                  eventFinish= {this.props.route.params.fullTime}
+                  eventStart={this.props.route.params.fullStart}
+                  eventFinish={this.props.route.params.fullTime}
                   titleCalendar={this.props.route.params?.procedimiento}
-                  hospitalName ={this.isHospital()}
+                  hospitalName={this.isHospital()}
 
                />
                : <ScrollView>

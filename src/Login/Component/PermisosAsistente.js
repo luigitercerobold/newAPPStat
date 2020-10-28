@@ -16,7 +16,7 @@ const AsistenteAdministrativo = ({ onPress,children,title,subTitle ="Siguiente",
       <>
 
          <Title title={title}/>
-    
+      
          <Container>
             <TextBox
                placeholder={placeholder}

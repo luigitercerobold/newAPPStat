@@ -43,7 +43,7 @@ class VerCirugia extends Component {
    }
 
    goTo = (item) => {
-      console.log(item.scheduleData.name)
+      
       this.props.navigation.navigate('AgendarCirugia', { cirugia: item })
    }
 
@@ -66,7 +66,7 @@ class VerCirugia extends Component {
                         img={require("newAPPStat/assets/Icon/1x/menu-cirugas.png")}
                         goToPage={() => this.goTo(item)}
                         text1={"Operación de " + item?.scheduleData?.name}
-                        text2={item?.scheduleData?.address}
+                        text2={item?.scheduleData?.hospital?.name}
                         text3={item?.scheduleData?.date}
                         action="Agendar cirugía"
                      ></Navigate>}

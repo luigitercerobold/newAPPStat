@@ -14,7 +14,6 @@ class Index extends AddAsistencia {
 
 
    componentDidMount() {
-   
       this.setState({
          allDoctor: this.props.route.params?.allDoctor || [],
          anestesia: this.props.route.params?.anestesia || [],
