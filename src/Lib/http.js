@@ -1,82 +1,103 @@
 
 class Http {
    static instance = new Http()
-   constructor(){
-      this.token=null
-      this.id=null
+   constructor() {
+      this.token = null
+      this.id = null
    }
-   setToken =(token)=> {
-      this.token=token
+   setToken = (token) => {
+      this.token = token
    }
-   getToken = ()=> {
+   getToken = () => {
       return this.token
    }
-   setId =(id)=> {
-      this.id=id
+   setId = (id) => {
+      this.id = id
    }
-   getId = ()=> {
+   getId = () => {
       return this.id
    }
 
 
-  
-   post = async (url,body) => {
+
+   post = async (url, body) => {
       try {
-         let req = await fetch (url,{
+         let req = await fetch(url, {
             headers: {
                Accept: 'application/json',
                'Content-Type': 'application/json',
-             },
-            method:"POST",
+            },
+            method: "POST",
             body
          });
-         
+
          let json = await req.json();
          return json;
-      }catch(err){
+      } catch (err) {
          console.log("http method post err", err);
          throw Error(err);
       }
    }
-   get = async (url,token) => {
+   get = async (url, token) => {
       console.log("eviando2", url, token)
       try {
-         let req = await fetch(url,{
-            method:"GET",
+         let req = await fetch(url, {
+            method: "GET",
             headers: {
                Accept: 'application/json',
                'Content-Type': 'application/json',
-               'Authorization':token
-             },
+               'Authorization': token
+            },
          });
          let json = await req.json();
-         console.log('recibido de get 2',json)
+         console.log('recibido de get 2', json)
          return json
-      }catch(err){
+      } catch (err) {
          console.log("http get method err", err);
          throw Error(err);
       }
    }
-   post = async (url,body,token) => {
+   post = async (url, body, token) => {
       try {
-         console.log("enviar post",url,body,token)
-         let req = await fetch (url,{
-           
+         console.log("enviar post", url, body, token)
+         let req = await fetch(url, {
+
             headers: {
                Accept: 'application/json',
                'Content-Type': 'application/json',
-               'Authorization':token
-             },
-            method:"POST",
+               'Authorization': token
+            },
+            method: "POST",
             body
          });
-         
+
          let json = await req.json();
          return json;
-      }catch(err){
+      } catch (err) {
          console.log("http method post err", err);
          throw Error(err);
       }
    }
+   deleting = async (url, token) => {
+      console.log("deleting", url, token)
+      try {
+         let req = await fetch(url, {
+            method: "DELETE",
+            headers: {
+               Accept: 'application/json',
+               'Content-Type': 'application/json',
+               'Authorization': token
+            },
+         });
+         let json = await req.json();
+         console.log('recibido de get 2', json)
+         return json
+      } catch (err) {
+         console.log("http get method err", err);
+         throw Error(err);
+      }
+   }
 }
+
+
 export default Http

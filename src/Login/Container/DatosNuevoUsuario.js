@@ -59,7 +59,7 @@ class DatosNuevoUsuario extends Component {
          }
 
       
-         this.props.navigation.navigate('CropPhoto', {  body: body })
+         this.props.navigation.navigate('PerfilNuevoUsuario', {  body: body })
       } else {
          Alert.alert('Error', "Debe elegir un número de 8 dígitos", [
             {

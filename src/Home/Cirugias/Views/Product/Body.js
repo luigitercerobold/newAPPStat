@@ -26,7 +26,8 @@ class Body extends Esqueleto {
    onPress ( item) {
       this.props.navigation.navigate('Proveedor',{
          body:item,
-         products:this.props.route.params.products
+         products:this.props.route.params.products,
+         schedule:this.props.route.params.schedule
       })
    }
 

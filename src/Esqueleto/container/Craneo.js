@@ -9,7 +9,7 @@ import Header from '../../Home/src/Component/Header'
 class Craneo extends Component {
    craneo = {
       data: [
-         { id: 9, line: 2.5, name: 'Craneo', possition: 0.5, rigth: true },
+         { id: 9, line: 0, name: 'Craneo', possition: 0.5, rigth: true },
 
          { id: 10, line: 2.5, name: 'Cervical', possition: 2.3, rigth: true },
          { id: 11, line: 2.5, name: 'Maxilo', possition: 1.6, rigth: true },

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { version } from 'react';
 import { Component, useEffect } from 'react';
 import { View, FlatList, Button, Text, StyleSheet } from 'react-native';
 import ButtonAddProduct from './Component/ButtonAddProduct'
@@ -9,57 +9,111 @@ import Line from '../../Component/Line';
 import Header from '../../../src/Component/Header'
 import NavigateCirugia from '../../Component/NavigateProducto'
 import { ScrollView } from 'react-native-gesture-handler';
+import Http from '../../../../Lib/http'
+import urlStat from '../../../../Lib/url'
 class AgendaProducto extends Component {
+
    state = {
-      products: []
-      ,
+      products: [],
       loading: false,
       pro: [],
-      remove: false
+      remove: true,
+      edit: -1
+
 
    }
 
-   componentDidUpdate() {
 
-      if (this.props.route.params?.products) {
-         if (this.props.route.params.products != this.state.products) {
-            this.setState({ pro: this.props.route.params.products })
-         }
-      }
 
-   }
    componentDidMount() {
 
-      if (this.props.route.params.products) {
-         this.setState({ products: this.props.route.params.products })
+      if (this.props.route.params.schedule !== 1) {
+
+         this.getData()
+      } else {
+         this.setState({
+            products: this.props.route.params.products,
+            edit: this.props.route.params.schedule || -1,
+
+         })
       }
+
+   }
+
+
+   getData = async () => {
+
+      const req = await Http.instance.get(urlStat.getProductFromschedule(this.props.route.params.schedule), Http.instance.getToken())
+
+
+      let productos = req.data
+
+      let schedule = this.props.route.params.schedule
+
+      let product = []
+      product = productos.map((element) => {
+         console.log(element.id, element.product.id)
+         element.product.role = element.role
+         element.product.schedule = schedule
+         element.product.invitation = element.id
+         element.product.id =element.id
+         return element.product
+      })
+
+      this.props.route.params.producto = product
+      this.setState({
+         products: product,
+         edit: this.props.route.params.schedule || -1,
+         remove: false
+
+      })
 
    }
 
    addProduct() {
 
    }
+
    onPress = () => {
-      this.props.navigation.navigate('ElegirBody', { products: this.state.products })
+      this.props.navigation.navigate('ElegirBody', { 
+         products: this.state.products,
+         schedule:this.props.route.params.schedule
+      })
    }
+
    goToAgandarCirugia = () => {
 
-      this.props.navigation.navigate('AgendarCirugia', { pro: this.state.pro, producto: this.state.products, products: this.state.products })
+
+      this.props.navigation.navigate('AgendarCirugia', { producto: this.state.products })
+
    }
+
    removeElement = (item) => {
 
-      const produtctos = this.state.products.filter(function (product) {
+
+      this.props.route.params.products
+      const products = this.state.products.filter(function (product) {
          return product.id !== item.id;
       });
-      this.setState({ products: produtctos })
+
+      this.setState({ products })
+      if (this.state.edit != -1) {
+         this.deleteOnDemand(item)
+
+      }
+
    }
+   deleteOnDemand = async (item) => {
+      console.log(item)
+      const req = await Http.instance.deleting(urlStat.onDemandDeleteProduct(item.invitation), Http.instance.getToken())
 
-
+   }
 
    render() {
       const { products, loading } = this.state
 
       return (
+
          <View style={{ flex: 1 }}>
             <Title title="Productos Agregados" />
 
@@ -75,9 +129,16 @@ class AgendaProducto extends Component {
                   ></NavigateCirugia>
                }
             />
-            <BtnProximaCirugia onPress={this.onPress} text="Agregar Producto" img={require("newAPPStat/assets/Icon/1x/cirugias-agregar_cirugias.png")} />
-            <ListButton title="confirmar" onPress={this.goToAgandarCirugia} />
+            <View style={{ marginBottom: 10 }}>
+               <BtnProximaCirugia onPress={this.onPress} text="Agregar Producto" img={require("newAPPStat/assets/Icon/1x/cirugias-agregar_cirugias.png")} />
 
+               {this.state.remove ? <ListButton title="confirmar" onPress={this.goToAgandarCirugia} />
+                  : null
+
+
+               }
+
+            </View>
          </View>
 
       )

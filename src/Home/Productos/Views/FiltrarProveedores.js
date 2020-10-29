@@ -79,7 +79,7 @@ class FiltrarProveedor extends Component {
             <FlatList
                data={proveedor}
                style={styles.flatList}
-               renderItem={({ item }) => <ListItem key={item.id} onPress={() => this.handlePress(item)} item={item} />}
+               renderItem={({ item }) => <ListItem  name={item.companyName} key={item.id} onPress={() => this.handlePress(item)} item={item} />}
             />
          </View>
       )

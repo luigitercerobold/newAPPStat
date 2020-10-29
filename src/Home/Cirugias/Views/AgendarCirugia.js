@@ -19,7 +19,7 @@ class AgendarCirugia extends Component {
       screen: "EstadoCirugia"
 
    }
-
+   
    componentDidMount() {
       if (this.props.route.params !== undefined) {
          if (this.props.route.params.cirugia != undefined) {
@@ -32,39 +32,44 @@ class AgendarCirugia extends Component {
    cargarCirugia = async (cirugia) => {
 
       this.setState({ loading2: true })
+  
       const ciru = await http.instance.get(url.getDetails(cirugia.scheduleData.id), http.instance.getToken())
 
       const details = ciru.data
-      console.log(details)
+      console.log("dotails", cirugia.scheduleData.id)
 
-      this.llenarDoctores(details.doctorsInvited)
-      this.llenarProducto(details.scheduleProducts)
+      this.llenarDoctores(details.doctorsInvited, cirugia.scheduleData.id)
+      this.llenarProducto(details.scheduleProducts, cirugia.scheduleData.id)
       this.props.route.params.date = details.date
       this.props.route.params.timer = details.end
       this.props.route.params.bodyPart = details.name
       this.props.route.params.procedimiento = details.description
       this.props.route.params.hospital = details.hospital
+      this.props.route.params.schedule = cirugia.scheduleData.id
       this.setState({ loading2: false })
    }
 
-   llenarProducto = async (productos) => {
+   llenarProducto = async (productos, schedule) => {
       let product = []
       product = productos.map((element) => {
-
+         element.product.schedule = schedule
          return element.product
       })
 
       this.props.route.params.producto = product
+
    }
 
-   llenarDoctores = async (doctoresInvitados) => {
-      
+   llenarDoctores = async (doctoresInvitados, schedule) => {
+
       let allDoctor = []
       let doctors = []
       let anestesista = []
 
       allDoctor = doctoresInvitados.map((element) => {
          element.user.role = element.role
+         element.user.schedule = schedule
+         element.user.invitation = element.id
          return element.user
       })
 
@@ -94,12 +99,17 @@ class AgendarCirugia extends Component {
          {
             allDoctor: this.props.route.params?.allDoctor,
             anestesia: this.props.route.params?.anestesia,
-            doctor: this.props.route.params?.doctor
+            doctor: this.props.route.params?.doctor,
+            schedule: this.props.route.params?.schedule
          }
       )
    }
    goToProducto() {
-      this.props.navigation.navigate('AgendarProducto', { products: this.props.route.params?.producto })
+      this.props.navigation.navigate('AgendarProducto',
+         {
+            products: this.props.route.params?.producto, schedule: this.props.route.params?.schedule
+         }
+      )
    }
    isHospital() {
       if (!this.props.route.params?.hospital) {
@@ -129,6 +139,7 @@ class AgendarCirugia extends Component {
    }
 
    createBody() {
+      console.log("all doctors", this.props.route.params?.allDoctor)
       const body = JSON.stringify({
          name: this.props.route.params?.bodyPart,
          date: this.props.route.params?.fullStart,

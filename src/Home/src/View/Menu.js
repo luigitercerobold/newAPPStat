@@ -18,12 +18,18 @@ import http from 'newAPPStat/src/Lib/http'
 import urlStat from 'newAPPStat/src/Lib/url'
 import init from '../../../Lib/init'
 import User from '../../../Lib/user'
+import ContextUser from './ContextUser'
 
 class MenuSc extends Component {
+  state={
+    img:null
+  }
   constructor(props) {
     super(props);
   }
-  
+  componentDidUpdate(){
+    
+  }
   toggleDrawer = () => {
     this.props.navigation.dispatch(DrawerActions.toggleDrawer())
   }
@@ -43,7 +49,7 @@ class MenuSc extends Component {
   }
 
   mostrar = (props) => {
-    
+
   }
 
   componentDidMount() {
@@ -56,13 +62,14 @@ class MenuSc extends Component {
     const url = urlStat.login
     const body = init
     const data = await http.instance.post(url, body)
-    this.setState({ token: data.token })
+   console.log(data)
     http.instance.setToken(data.token)
     http.instance.setId(data.data.id)
 
     http.instance.setToken(data.token)
     http.instance.setId(data.data.id)
     User.instance.newUser(data.data)
+    this.setState({ token: data.token })
 
   }
 
@@ -74,7 +81,10 @@ class MenuSc extends Component {
     return (
       <View style={styles.container} {...props}>
         <View style={styles.header} {...props}>
-          <PersonalData />
+     
+            <PersonalData onPress={() => this.props.navigation.navigate('CropPhoto')} />
+      
+
         </View>
         <View style={styles.footer}>
           <Section

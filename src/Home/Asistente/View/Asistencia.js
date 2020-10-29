@@ -15,16 +15,17 @@ export class Asistencia extends Component {
       anestesia: [],
       allDoctor: [],
       reload: false,
-      pro: []
+      pro: [],
+      edit: -1
 
    }
 
-   isDelete  ()  {
+   isDelete() {
       return true
    }
 
    componentDidUpdate() {
-      console.log("estado", this.state.allDoctor)
+
 
       if (this.props.route.params) {
 
@@ -91,32 +92,43 @@ export class Asistencia extends Component {
       }
    }
 
-   cancelDoctors = (item) => {
+   cancelDoctors(item) {
 
-      const allDoctor = this.state.allDoctor.filter(function (elemet) {
-         return elemet.id !== item.id;
-      });
+      
+
       const anestesia = this.state.anestesia.filter(function (elemet) {
-         return elemet.id !== item.id;
-      });
-      const doctor = this.state.doctor.filter(function (elemet) {
+         //console.log("anestesia", elemet.id, item.id)
          return elemet.id !== item.id;
       });
 
+      const doctor = this.state.doctor.filter(function (elemet) {
+         //console.log("doctores", elemet.id, item)
+         return elemet.id !== item.id;
+      });
+      const allDoctor = this.state.allDoctor.filter(function (elemet) {
+         //console.log("all Doctor", elemet.id, item.contact.id)
+         return elemet.id !== item.contact.id;
+      });
+      
       this.setState({
          allDoctor,
          anestesia,
          doctor,
 
       })
+      this.borrarCOntact(item)
    }
+   borrarCOntact = async (item) => {
 
+      const req = await Http.instance.deleting(urlStat.deleteContanct(item.contact.id), Http.instance.getToken())
+      console.log(req)
+   }
 
    component1 = (loading, component, item) => {
 
       return (
          <>
-            <ListOfDoctors isDelete = {this.isDelete()} cancel={this.cancelDoctors} onPress={this.handlePress.bind(this)} loading={loading} item={item} />
+            <ListOfDoctors isDelete={this.isDelete()} cancel={this.cancelDoctors.bind(this)} onPress={this.handlePress.bind(this)} loading={loading} item={item} />
             <View style={{ padding: 15 }}>
                <View style={{ alignItems: 'center' }}>
                   <BtnSimple

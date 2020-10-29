@@ -6,6 +6,7 @@ class Productos extends ProductoProveedor {
    
    goToDetalleProdcuto (query) {
       query.products = this.props.route.params.products
+      query.schedule=this.props.route.params.schedule
       this.props.navigation.navigate('AddProductos', query)
    }
 

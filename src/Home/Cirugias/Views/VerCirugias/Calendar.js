@@ -54,7 +54,7 @@ class Calendar2 extends Component {
       customDatesStyles = dates.map((element) => {
 
          let date = moment.utc(element.scheduleData.date).format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
-
+         console.log(date)
          return {
             date: date,
             style: { backgroundColor: Colors.blue },

@@ -15,7 +15,7 @@ import AddBottom from '../../../Lib/AddBottom'
 import Drawer from '../../../Drawer/DrawerMenu'
 import SimpleButton from '../../../Lib/Component/BotonSiemple'
 
-
+import ProviderSearch from '../Component/ProviderSearch'
 
 class Productos extends Component {
    constructor(props) {
@@ -35,7 +35,7 @@ class Productos extends Component {
 
 
    componentDidMount() {
-
+console.log("----",this.props.route.params.proveedor)
       this.getProdcuts();
       this.setState({
          proveedor: this.props.route.params.proveedor,
@@ -75,7 +75,7 @@ class Productos extends Component {
 
 
    listas = (item) => {
-      console.log(item)
+    
       return (
          <ProuductIMG
             onPress={() => this.onPress(item.item)}
@@ -107,10 +107,17 @@ class Productos extends Component {
       this.setState({ producto: providerFiltered })
 
    }
+   handleSearch = (query) => {
+      const { allProducto } = this.state
+      const providerFiltered = allProducto.filter(producto => {
+         return producto.name.toLowerCase().includes(query.toLowerCase())
+      })
+      this.setState({ producto: providerFiltered })
+   }
 
 
    render() {
-      const { producto, loading, proveedor, bodyPart } = this.state
+      const { producto, loading, proveedor, bodyPart,allProducto } = this.state
       return (
 
          <Drawer
@@ -126,7 +133,7 @@ class Productos extends Component {
                      onPress={this.referenceDrawer}
                   />
                </View>
-
+               <ProviderSearch style={styles.search} onChange={this.handleSearch} />
                {loading
                   ? <ActivityIndicatorStat color={color.blue} size="large" />
                   : null
@@ -157,12 +164,14 @@ const styles = StyleSheet.create({
       flexGrow: 0
    },
    scroll: {
-      height: '80%'
+      height: '73%'
    },
    categories: {
       flexDirection: "row",
       alignItems: 'center',
       alignContent: "center",
       justifyContent: "space-evenly"
+   },search:{
+      //width:225
    }
 })

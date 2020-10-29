@@ -14,7 +14,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Context from './Context'
 import { StackLoginFunction } from './src/Navigator/LoginStack'
 import { DrawerFunction } from './src/Navigator/DrawerFunction'
-
+import UserContext from './src/Home/src/View/ContextUser'
 
 const App: () => React$Node = () => {
   return (
@@ -23,9 +23,8 @@ const App: () => React$Node = () => {
       <Context.Provider>
         <StatusBar barStyle="light-content" />
 
-
-
         <Context.Consumer>
+          
           {
             ({ isAuth, activateAuth }) => {
               return (
@@ -33,7 +32,7 @@ const App: () => React$Node = () => {
                   <NavigationContainer>
                     {
                       !isAuth
-                      ? DrawerFunction()
+                      ?   DrawerFunction()
                       :StackLoginFunction()
                     }
                   </NavigationContainer>

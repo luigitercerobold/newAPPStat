@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Image,
   TextInput,
+  Pressable,
 } from 'react-native';
 import {
   createDrawerNavigator,
@@ -21,11 +22,12 @@ import User from '../../../Lib/user'
 import url from '../../../Lib/url'
 import StatFont from '../../../Lib/Component/StatFont'
 import ImgPerfil from './ImgPerfil';
+import ContextUser from '../View/ContextUser'
 class MenuSc extends Component {
   constructor(props) {
     super(props);
   }
-  
+
   toggleDrawer = () => {
     this.props.navigation.dispatch(DrawerActions.toggleDrawer())
   }
@@ -69,15 +71,24 @@ class MenuSc extends Component {
     return (
 
       <View style={styles.header} {...props}>
+        <Pressable
+          onPress= {this.props.onPress}
 
-        <ImgPerfil  
-        source={{ uri: url.img + this.getPhoto() }}   
-        
+        >
+          
+          { User.instance.getUser()?.photo2?<ImgPerfil
+          source={ User.instance.getUser().photo2}
+
         />
-        
+          :<ImgPerfil
+          source={{ uri: url.img + this.getPhoto() }}
 
-  
-       
+        />
+          
+          }
+          
+        </Pressable>
+
         <StatFont
           style={{
             alignSelf: 'flex-start',
@@ -111,8 +122,8 @@ const styles = StyleSheet.create({
 
   footer: {
     flex: 2,
-  }, 
-   imgContainer: {
+  },
+  imgContainer: {
     width: 66,
     height: 66,
   },

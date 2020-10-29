@@ -18,14 +18,14 @@ const ListOfDoctors = ({ item, loading, onPress,cancel,isDelete }) => {
          {loading ?
             <ActivityIndicatorStat color={Color.blue} size="large" />
 
-            : null
-         }
-         <FlatList
+            : <FlatList
             data={item}
             renderItem={({ item }) => <Doctors isDelete = {isDelete}cancel={()=>cancel(item)}onPress={onPress} item={itemFilter(item)} />}
             numColumns={2}
             style={styles.container}
          />
+         }
+         
 
       </>
    )

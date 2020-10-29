@@ -13,17 +13,22 @@ import ActivityIndicatorStat from '../../../Lib/Component/ActivitiIndicator'
 
 class Proveedor extends Component {
    state = {
+
       products: bodyPart,
       proveedor: [],
       loading: false,
       allProvider: []
+
    }
 
    componentDidMount() {
+
       this.getProvider()
+
    }
 
    getProvider = async () => {
+
       this.setState({ loading: true })
       const proveedor = await http.instance.get(urlStat.getProveedor, http.instance.getToken())
       this.setState({ proveedor: proveedor.data, loading: false, allProvider: proveedor.data })
@@ -32,11 +37,13 @@ class Proveedor extends Component {
    }
 
    handlePress = (item) => {
+
       const passProveedor = {
          body: { id: null },
          proveedor: item,
          providerId: item.id
       }
+
       this.gotoProductoProveedor(passProveedor)
 
    }
@@ -47,11 +54,13 @@ class Proveedor extends Component {
    }
 
    handleSearch = (query) => {
+
       const { allProvider } = this.state
       const providerFiltered = allProvider.filter(provider => {
          return provider.name.toLowerCase().includes(query.toLowerCase())
       })
       this.setState({ proveedor: providerFiltered })
+
    }
 
    render() {
@@ -69,7 +78,7 @@ class Proveedor extends Component {
             <FlatList
                data={proveedor}
                style={styles.flatList}
-               renderItem={({ item }) => <ListItem key={item.id} onPress={() => this.handlePress(item)} item={item} />}
+               renderItem={({ item }) => <ListItem  name={item.companyName}key={item.id} onPress={() => this.handlePress(item)} item={item} />}
             />
          </View>
       )
