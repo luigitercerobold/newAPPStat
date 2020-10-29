@@ -19,7 +19,11 @@ class Invitation extends Component {
    }
 
    getData = async () => {
-      const req = await Http.instance.get(urlStat.getInvitation, Http.instance.getToken())
+      const body={
+         nada:"nada"
+
+      }
+      const req = await Http.instance.post(urlStat.getCirugias,body, Http.instance.getToken())
 
       this.setState({
          data: req.data

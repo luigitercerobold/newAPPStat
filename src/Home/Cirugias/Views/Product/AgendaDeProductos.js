@@ -28,12 +28,12 @@ class AgendaProducto extends Component {
 
    componentDidMount() {
 
-      if (this.props.route.params.schedule !== 1) {
+      if (this.props.route.params.schedule !== undefined) {
 
          this.getData()
       } else {
          this.setState({
-            products: this.props.route.params.products,
+            products: this.props.route.params.products||[],
             edit: this.props.route.params.schedule || -1,
 
          })

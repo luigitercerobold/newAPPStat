@@ -26,24 +26,12 @@ class AsistenteAdministrativo extends Component {
       body.idNumber = this.state.colegiado
       body.speciality = this.state.especialidad
 
-      const user = await Http.instance.post(Url.creteUser, JSON.stringify(body))
-      console.log("se ha registrado correctament", user)
-      if (user.message === "Se ha registrado exitosamente.") {
-         this.props.navigation.navigate('AsistenteAdministrativo', {
-            especialidad: this.state,
-            user: user,
-            body: this.props.route.params?.body
-
-         })
-      } else {
-         Alert.alert('Error', user.message, [
-            {
-               text: "Aceptar",
-               onPress: () => { },
-               style: "cancel"
-            }
-         ])
-      }
+    
+      this.props.navigation.navigate('AsistenteAdministrativo', {
+         especialidad: this.state,
+        
+         body: body
+      })
 
 
 

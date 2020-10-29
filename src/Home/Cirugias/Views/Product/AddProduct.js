@@ -37,7 +37,7 @@ class AddProducto extends Component {
 
          } else {
 
-            this.addProduct(item)
+            this.addProduct()
 
          }
       }

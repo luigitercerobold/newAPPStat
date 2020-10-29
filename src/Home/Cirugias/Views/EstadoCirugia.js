@@ -41,12 +41,12 @@ class Cirugias extends Component {
 
     getNext = async () => {
         this.setState({
-            loading:true
+            loading: true
         })
         const req = await Http.instance.get(urlStat.getNextSurgery, Http.instance.getToken())
         this.setState({
             item: req.data,
-            loading:false
+            loading: false
         })
     }
 
@@ -68,9 +68,17 @@ class Cirugias extends Component {
     goToVerCirugia = () => {
         this.props.navigation.navigate('VerCelendar');
     }
+    avisoCirugia = (item) => {
+        if (item?.name === undefined) {
+
+            return "No tiene cirugías agendadas"
+        }
+        return "Operación de " + item?.name
+    }
+
 
     render() {
-        const { item,loading } = this.state
+        const { item, loading } = this.state
         return (
             <View style={styles.container}>
                 <Title title="Próxima cirugía" />
@@ -79,15 +87,15 @@ class Cirugias extends Component {
                         key={item?.invitationData?.id}
                         img={require("newAPPStat/assets/Icon/1x/menu-cirugas.png")}
                         goToPage={() => this.goTo(item)}
-                        text1={"Operación de " + item?.name}
+                        text1={this.avisoCirugia(item)}
                         text2={item?.hospital?.name}
                         text3={item?.date}
                         action="Agendar cirugía"
-                        delate = {false}
-                        edit = {false}
+                        delate={false}
+                        edit={false}
 
                     ></Navigate>
-                    :null}
+                    : null}
 
 
                 <Container>

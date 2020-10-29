@@ -4,7 +4,7 @@ import Colors from 'newAPPStat/src/Lib/Colors'
 import StatFont from '../../../Lib/Component/StatFont'
 
 
-const NavigateCirugias =({ text1, text2, text3, img, goToPage, action, delate = true, edit = true }) =>{
+const NavigateCirugias = ({ text1, text2, text3, img, goToPage, action, delate = true, edit = true, deleting, view }) => {
 
    return (
 
@@ -13,7 +13,9 @@ const NavigateCirugias =({ text1, text2, text3, img, goToPage, action, delate = 
             <View style={styles.container}>
                <View style={styles.containerSelector}>
                   <Image style={styles.img} source={img} resizeMode="contain"></Image>
-                  <View style={styles.containerCenter}>
+                  <Pressable
+                     onPress={view}
+                     style={styles.containerCenter}>
                      <StatFont style={styles.texPrincipal}>
                         {text1}
                      </StatFont>
@@ -30,10 +32,10 @@ const NavigateCirugias =({ text1, text2, text3, img, goToPage, action, delate = 
                         </StatFont>
                         : null}
 
-                  </View>
+                  </Pressable>
                   <View>
                      {delate
-                        ? <Pressable onPress={goToPage} style={[styles.myButton, styles.red]}>
+                        ? <Pressable onPress={deleting} style={[styles.myButton, styles.red]}>
                            <Image style={styles.pencil} source={require("newAPPStat/assets/Icon/1x/cancerlar_informacion.png")} ></Image>
                         </Pressable>
                         : null

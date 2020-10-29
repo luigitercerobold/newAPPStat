@@ -22,8 +22,8 @@ class Index extends AddAsistencia {
 
 
    componentDidMount() {
-
-      if (this.props.route.params.schedule !== 1) {
+      console.log(this.props.route.params.schedule)
+      if (this.props.route.params.schedule !== undefined ) {
 
          this.getData()
 

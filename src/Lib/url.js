@@ -55,8 +55,11 @@ const urlStat = {
    },
    editPhoto: server + '/api/user/photo',
    sendEmail:server + '/api/user/send-invitation',
-   changeEmail:server+"/api/user/change-email"
-
+   changeEmail:server+"/api/user/change-email",
+   deleteSchedule: (id) => {
+      return `${server}/api/schedule/remove/${id}`
+   },
+   
    
 };
 

@@ -4,54 +4,88 @@ import Title from '../../../Lib/Title'
 import Navigate from '../Component/NavigateCirugia'
 import { getActiveChildNavigationOptions } from 'react-navigation'
 import http from '../../../Lib/http'
-import url from 'newAPPStat/src/Lib/url'
+import url from '../../../Lib/url'
 import init from 'newAPPStat/src/Lib/init'
 import ListButton from '../Component/ListButton'
 import { ScrollView } from 'react-native-gesture-handler'
 import Header from '../../../Home/src/Component/Header'
 import Status from '../../../Lib/Component/Status'
-import { date } from '../../../Lib/Component/GetDate'
-
-class VerInvitacion extends Component {
+class AgendarCirugia extends Component {
    state = {
       loading: false,
-      message: 'Confirmado',
+      message: 'Bad',
       isOk: true,
       loading2: false,
-      screen: "Invitation"
+      screen: "EstadoCirugia"
 
    }
 
    componentDidMount() {
       if (this.props.route.params !== undefined) {
-         if(this.props.route.params.cirugia !=undefined){
-            this.cargarCirugia(this.props.route.params.cirugia.scheduleData)
+         if (this.props.route.params.cirugia != undefined) {
+            this.cargarCirugia(this.props.route.params.cirugia)
          }
-         
+
       }
    }
 
-   cargarCirugia(cirugia) {
-
+   cargarCirugia = async (cirugia) => {
       console.log(cirugia)
+      // this.setState({ loading2: true })
 
-      this.setState({ screen: "VerCirugia" })
+      const ciru = await http.instance.get(url.getDetails(cirugia.scheduleData.id), http.instance.getToken())
+      console.log(ciru)
+      const details = ciru.data
+      console.log("dotails", cirugia.scheduleData.id)
 
-      this.props.route.params.date = cirugia.date
-      this.props.route.params.timer = cirugia.end
+      this.llenarDoctores(details.doctorsInvited, cirugia.scheduleData.id)
+      this.llenarProducto(details.scheduleProducts, cirugia.scheduleData.id)
+      this.props.route.params.date = details.date
+      this.props.route.params.timer = details.end
+      this.props.route.params.bodyPart = details.name
+      this.props.route.params.procedimiento = details.description
+      this.props.route.params.hospital = details.hospital
+      this.props.route.params.schedule = cirugia.scheduleData.id
+      this.setState({ loading2: false })
+   }
 
-      this.props.route.params.fullStart= cirugia.date
-      this.props.route.params.fullTime = cirugia.end
-      this.props.route.params.bodyPart = cirugia.name
-      this.props.route.params.procedimiento = cirugia.description
-      this.props.route.params.hospital = {}
-      this.props.route.params.hospital.name = "mandar info Hospital"
-      this.props.route.params.hospital.id = cirugia.hospital_id
+   llenarProducto = async (productos, schedule) => {
+      let product = []
+      product = productos.map((element) => {
+         element.product.schedule = schedule
+         return element.product
+      })
+
+      this.props.route.params.producto = product
+
+   }
+
+   llenarDoctores = async (doctoresInvitados, schedule) => {
+
+      let allDoctor = []
+      let doctors = []
+      let anestesista = []
+
+      allDoctor = doctoresInvitados.map((element) => {
+         element.user.role = element.role
+         element.user.schedule = schedule
+         element.user.invitation = element.id
+         return element.user
+      })
+
+      doctors = allDoctor.filter((element) => element.role === 1)
+
+      anestesista = allDoctor.filter((element) => element.role === 2)
+
+
+      this.props.route.params.allDoctor = allDoctor
+      this.props.route.params.anestesia = anestesista
+      this.props.route.params.doctor = doctors
 
    }
 
    goToDate() {
-      this.props.navigation.navigate('FechaYHora')
+      this.props.navigation.navigate('Calendar')
    }
    goToCuerpo() {
       this.props.navigation.navigate('Cuerpo')
@@ -65,12 +99,17 @@ class VerInvitacion extends Component {
          {
             allDoctor: this.props.route.params?.allDoctor,
             anestesia: this.props.route.params?.anestesia,
-            doctor: this.props.route.params?.doctor
+            doctor: this.props.route.params?.doctor,
+            schedule: this.props.route.params?.schedule
          }
       )
    }
    goToProducto() {
-      this.props.navigation.navigate('AgendarProducto', { products: this.props.route.params?.producto })
+      this.props.navigation.navigate('AgendarProducto',
+         {
+            products: this.props.route.params?.producto, schedule: this.props.route.params?.schedule
+         }
+      )
    }
    isHospital() {
       if (!this.props.route.params?.hospital) {
@@ -100,6 +139,7 @@ class VerInvitacion extends Component {
    }
 
    createBody() {
+      console.log("all doctors", this.props.route.params?.allDoctor)
       const body = JSON.stringify({
          name: this.props.route.params?.bodyPart,
          date: this.props.route.params?.fullStart,
@@ -118,13 +158,7 @@ class VerInvitacion extends Component {
    }
 
    confirmar = () => {
-      this.setState({ loading: true, loading2: true })
-      this.setState({ loading2: false })
-      // if (this.state.screen === "EstadoCirugia") {
-      //    this.crearCirugia()
-      // } else {
-      //    this.editarCirugia()
-      // }
+      this.props.navigation.navigate("Menu")
    }
 
    editarCirugia = async () => {
@@ -133,9 +167,6 @@ class VerInvitacion extends Component {
    }
 
    crearCirugia = async () => {
-
-
-      
       const body = this.createBody()
 
       this.setState({ loading: true, loading2: true })
@@ -163,21 +194,21 @@ class VerInvitacion extends Component {
    }
 
    handlePress = () => {
-      this.gotoEstado()
-      // if (this.state.message === 'Se ha creado la cita correctamente.') {
+      if (this.state.message === 'Se ha creado la cita correctamente.') {
 
-      //    this.setState({ isOk: true })
-      //    this.gotoEstado()
-      // } else {
-      //    this.setState({ isOk: false })
-      //    this.goToBack()
-      // }
+         this.setState({ isOk: true })
+         this.gotoEstado()
+      } else {
+         this.setState({ isOk: false })
+         this.goToBack()
+      }
 
    }
    gotoEstado = () => {
-      this.props.navigation.navigate("Invitation")
-     
+      this.props.navigation.navigate(this.state.screen)
+      this.setState({ isOk: true })
    }
+
    goToBack = () => {
       this.setState({ loading: false })
    }
@@ -193,26 +224,24 @@ class VerInvitacion extends Component {
                   onPress={this.handlePress}
                   isOk={this.state.isOk}
                   loading={this.state.loading2}
-                  eventStart= {this.props.route.params.fullStart}
-                  eventFinish= {this.props.route.params.fullTime}
+                  eventStart={this.props.route.params.fullStart}
+                  eventFinish={this.props.route.params.fullTime}
                   titleCalendar={this.props.route.params?.procedimiento}
-                  hospitalName ={this.isHospital()}
+                  hospitalName={this.isHospital()}
 
                />
                : <ScrollView>
-                  <Title title="Agendar Cirugía" />
+                  <Title title="Aceptar Cirugía" />
 
                   <Navigate
                      img={require("newAPPStat/assets/Icon/1x/menu-cirugas.png")}
                      goToPage={() => this.goToDate()}
-                     text1 = {"Fecha"}
-                     text2={"Inicia:   " + date(this.props.route.params.date)}
-                     text3={"Finaliza: " + date(this.props.route.params.timer)}
-                     
+                     text1={this.props.route.params?.date}
+                     text2={this.props.route.params?.timer}
                      // text3={}
                      action="Agendar cirugía"
                      delate={false}
-                     edit = {false}
+                     edit={false}
                   ></Navigate>
                   <Navigate
                      img={require("newAPPStat/assets/Icon/1x/cirugia_agendada.png")}
@@ -221,7 +250,7 @@ class VerInvitacion extends Component {
                      text2={this.props.route.params?.procedimiento}
                      action="Añadir cirugía"
                      delate={false}
-                     edit = {false}
+                     edit={false}
                   ></Navigate>
                   <Navigate
                      img={require("newAPPStat/assets/Icon/1x/hospital-agregado.png")}
@@ -230,7 +259,7 @@ class VerInvitacion extends Component {
 
                      action="Añadir Hopital"
                      delate={false}
-                     edit = {false}
+                     edit={false}
                   ></Navigate>
                   <Navigate
                      img={require("newAPPStat/assets/Icon/1x/asistencia-agregada.png")}
@@ -238,7 +267,7 @@ class VerInvitacion extends Component {
                      text1={this.isAsist()}
                      action="Añadir Asistencia"
                      delate={false}
-                     edit = {false}
+                     edit={false}
                   ></Navigate>
                   <Navigate
                      img={require("newAPPStat/assets/Icon/1x/menu-productos.png")}
@@ -247,7 +276,7 @@ class VerInvitacion extends Component {
                      text2="..."
                      action="Añadir Productos"
                      delate={false}
-                     edit = {false}
+                     edit={false}
                   ></Navigate>
                   <ListButton title="Aceptar" onPress={this.confirmar} />
                   <ListButton title="Rechazar" onPress={this.confirmar} />
@@ -257,5 +286,7 @@ class VerInvitacion extends Component {
       )
    }
 }
-export default VerInvitacion;
+export default AgendarCirugia;
+
+
 
