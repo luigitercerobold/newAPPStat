@@ -37,33 +37,7 @@ class DatosNuevoUsuario extends Component {
 
    }
 
-   goToToken = async () => {
-
-      const body = JSON.stringify(
-         {
-            //email: this.state.eMail,
-            //password: this.state.passWord,
-            name: this.state.name + " " + this.state.lastName,
-            phone: this.state.phone,
-            role: 2
-         }
-      )
-      const user = await Http.instance.post(Url.creteUser, body)
-      console.log(user.message)
-      if (user.message === "Se ha registrado exitosamente.") {
-         this.props.navigation.navigate('PerfilNuevoUsuario', { user: user, body: body })
-      } else {
-         Alert.alert('Error', user.message, [
-            {
-               text: "Aceptar",
-               onPress: () => { },
-               style: "cancel"
-            }
-         ])
-      }
-
-   }
-
+ 
    goToPerfil = async () => {
 
       const body =JSON.stringify(
@@ -76,15 +50,15 @@ class DatosNuevoUsuario extends Component {
       }
       )
       const req = await Http.instance.post(urlStat.editNameAndPhone, body, Http.instance.getToken())
+     console.log(req)
       if(req.data.message="Se guardó la información exitosamente"){
          User.instance.user.name = this.state.name
          User.instance.user.phone = this.state.phone
+         this.props.navigation.navigate('Menu', { name: this.state.name })
       }else(
          Alert.alert(req.data.message)
 
       )
-
-   
 
    }
 

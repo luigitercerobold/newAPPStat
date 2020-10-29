@@ -126,27 +126,54 @@ export default class MICamara extends Component {
       //    .catch((e) => console.log(e))
       //    .done()
 
-      const formData = new FormData();
-      formData.append('files[]', {
-         uri: this.state.file.uri  //URI for video,audio, image or any type file
-      });
-      //text data in key value pair form
-      const serviceResponse = fetch(
-         urlStat.editPhoto,
-         {
-            method: 'POST',
-            headers: {
-               'Accept': 'application/json',
-               'Content-Type': 'multipart/form-data',
-               'Authorization': Http.instance.getToken()
-            },
-            body: formData,
-         })
-         .then((serviceResponse) => { return serviceResponse.json() })
-         .catch((error) => console.warn("fetch error:", error))
-         .then((serviceResponse) => {
-            console.log(JSON.stringify(serviceResponse));
+      // const formData = new FormData();
+      // formData.append('files[]', {
+      //    uri: this.state.file.uri  //URI for video,audio, image or any type file
+      // });
+      // //text data in key value pair form
+      // const serviceResponse = fetch(
+      //    urlStat.editPhoto,
+      //    {
+      //       method: 'POST',
+      //       headers: {
+      //          'Accept': 'application/json',
+      //          'Content-Type': 'multipart/form-data',
+      //          'Authorization': Http.instance.getToken()
+      //       },
+      //       body: formData,
+      //    })
+      //    .then((serviceResponse) => { return serviceResponse.json() })
+      //    .catch((error) => console.warn("fetch error:", error))
+      //    .then((serviceResponse) => {
+      //       console.log(JSON.stringify(serviceResponse));
+      //    });
+
+      let body = new FormData();
+      body.append('descripcion', 'dsadsadsa');
+      body.append('fechas[]', '2018-05-05');
+      body.append('fechas[]', '2015-05-05');
+
+      
+      body.append('imagenes[]', { uri: this.state.file.uri, name: 'photo1.jpg', type: 'image/jpg' });
+
+
+
+      fetch(urlStat.editPhoto, {
+         method: 'post',
+         headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'multipart/form-data',
+            'Authorization': Http.instance.getToken()
+         },
+         body: body
+      })
+         .then(res => res.text())
+         .then(res => {
+            console.log(res)
+         }).catch((err) => {
+            console.log('err', err)
          });
+
    }
 
 
@@ -200,8 +227,6 @@ export default class MICamara extends Component {
                      />
                   }
 
-
-
                </Pressable>
 
                <View style={{ flex: .5, justifyContent: 'flex-end', alignItems: 'center' }}>
@@ -212,6 +237,7 @@ export default class MICamara extends Component {
                   />
 
                </View>
+
             </Container>
          </>
       )
