@@ -83,6 +83,8 @@ class Cirugias extends Component {
                         text2={item?.hospital?.name}
                         text3={item?.date}
                         action="Agendar cirugía"
+                        delate = {false}
+                        edit = {false}
 
                     ></Navigate>
                     :null}

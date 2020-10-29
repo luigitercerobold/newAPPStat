@@ -4,6 +4,7 @@ import { Text, View, ActivityIndicator, FlatList } from 'react-native'
 import Http from '../Lib/http'
 import TextBox from '../Login/Component/TextBox'
 import StatFont from '../Lib/Component/StatFont'
+import EmptyData from '../Lib/Component/EmptyData'
 const TryConnection = () => {
    const [isLoading, setLoading] = useState(true);
    const [data, setData] = useState([]);
@@ -67,10 +68,12 @@ const TryConnection = () => {
          {isLoading ? <ActivityIndicator /> : (
             <FlatList
                data={data}
+               ListEmptyComponent={() => <EmptyData />}
                keyExtractor={({ id }, index) => id}
                renderItem={({ item }) => (
                   <StatFont>{item.title}, {item.releaseYear}</StatFont>
                )}
+               
             />
 
 

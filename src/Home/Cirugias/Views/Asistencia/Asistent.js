@@ -12,6 +12,7 @@ import urlStat from 'newAPPStat/src/Lib/url'
 import color from 'newAPPStat/src/Lib/Colors'
 import HospitalItem from '../../Component/Listitem'
 import Header from '../../../src/Component/Header'
+import EmptyData from '../../../../Lib/Component/EmptyData'
 class Asitente extends Component {
    state = {
       fontLoaded: false,
@@ -48,6 +49,7 @@ class Asitente extends Component {
                data={hospital}
                renderItem={({ item }) => <HospitalItem activate={activate} onPress={()=>this.handlePress(item)} item={item.name} />}
                numColumns={2}
+               ListEmptyComponent={() => <EmptyData/>}
             />
 
          </View>

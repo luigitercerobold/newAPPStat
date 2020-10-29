@@ -3,6 +3,7 @@ import { Text, FlatList, StyleSheet } from 'react-native'
 import Doctors from './Doctors'
 import Color from '../../../Lib/Colors'
 import ActivityIndicatorStat from '../../../Lib/Component/ActivitiIndicator'
+import EmptyData from '../../../Lib/Component/EmptyData'
 const ListOfDoctors = ({ item, loading, onPress,cancel,isDelete }) => {
 
    const itemFilter = (item) => {
@@ -22,6 +23,7 @@ const ListOfDoctors = ({ item, loading, onPress,cancel,isDelete }) => {
             data={item}
             renderItem={({ item }) => <Doctors isDelete = {isDelete}cancel={()=>cancel(item)}onPress={onPress} item={itemFilter(item)} />}
             numColumns={2}
+            ListEmptyComponent={() => <EmptyData/>}
             style={styles.container}
          />
          }
@@ -36,6 +38,7 @@ export default ListOfDoctors
 const styles = StyleSheet.create({
    container: {
       flex: 1,
+      
    }
 
 })

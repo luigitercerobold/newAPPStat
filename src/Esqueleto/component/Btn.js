@@ -64,13 +64,17 @@ const Btn = ({ text, top, right, onPress, line, imgWidthBruto, imgWidthNeto }) =
       <View
          style={[styles.container, rightCorner(), { top: top, flexDirection: rowType() }]}>
          { btn()}
-         <LineSelect
+         {line?<LineSelect
             line={originLine(line)}
             imaginaryLine={imaginaryLine()}
             btnHeigh={messure.btnHeigh}
             radioPunto={messure.punto}
             revese={right}
          />
+         :null
+         
+         }
+         
       </View>
    )
 }
@@ -131,7 +135,7 @@ const styles = StyleSheet.create({
       paddingVertical: 6,
       borderRadius: 50,
 
-      width: messure.btnWidth,
+      minWidth: messure.btnWidth,
       height: messure.btnHeigh,
       zIndex: 2
 
@@ -140,7 +144,8 @@ const styles = StyleSheet.create({
    text: {
       color: Colors.white,
       textAlign: 'center',
-      fontSize: 12
+      fontSize: 12,
+      margin:3
 
    },
 

@@ -40,6 +40,7 @@ export default BtnSimple;
 const styles = StyleSheet.create(
    {
       Btn:{
+         minWidth:150,
          maxWidth:200,
          padding:10,
          paddingHorizontal:30

@@ -16,7 +16,7 @@ import Drawer from '../../../Drawer/DrawerMenu'
 import SimpleButton from '../../../Lib/Component/BotonSiemple'
 
 import ProviderSearch from '../Component/ProviderSearch'
-
+import EmptyData from '../../../Lib/Component/EmptyData'
 class Productos extends Component {
    constructor(props) {
       super(props)
@@ -124,7 +124,7 @@ console.log("----",this.props.route.params.proveedor)
             ref={drawer => this.refDrawer = drawer}
             onPress={this.categoriesFilter}
          >
-            <View>
+            <View style = {{ flex:1}}>
 
                <View style={styles.categories}>
                   <Title title={proveedor.name} />
@@ -136,16 +136,17 @@ console.log("----",this.props.route.params.proveedor)
                <ProviderSearch style={styles.search} onChange={this.handleSearch} />
                {loading
                   ? <ActivityIndicatorStat color={color.blue} size="large" />
-                  : null
-               }
-
-
-               <FlatList
+                  :  <FlatList
                   data={producto}
                   renderItem={this.listas}
                   numColumns={2}
                   style={styles.scroll}
+                  ListEmptyComponent={() => <EmptyData />}
                />
+               }
+
+
+              
 
                <AddBottom />
             </View>

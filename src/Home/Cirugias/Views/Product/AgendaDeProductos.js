@@ -11,6 +11,7 @@ import NavigateCirugia from '../../Component/NavigateProducto'
 import { ScrollView } from 'react-native-gesture-handler';
 import Http from '../../../../Lib/http'
 import urlStat from '../../../../Lib/url'
+import EmptyData from '../../../../Lib/Component/EmptyData'
 class AgendaProducto extends Component {
 
    state = {
@@ -56,7 +57,7 @@ class AgendaProducto extends Component {
          element.product.role = element.role
          element.product.schedule = schedule
          element.product.invitation = element.id
-         element.product.id =element.id
+         element.product.id = element.id
          return element.product
       })
 
@@ -75,9 +76,9 @@ class AgendaProducto extends Component {
    }
 
    onPress = () => {
-      this.props.navigation.navigate('ElegirBody', { 
+      this.props.navigation.navigate('ElegirBody', {
          products: this.state.products,
-         schedule:this.props.route.params.schedule
+         schedule: this.props.route.params.schedule
       })
    }
 
@@ -119,6 +120,7 @@ class AgendaProducto extends Component {
 
 
             <FlatList
+               ListEmptyComponent={() => <EmptyData />}
                data={products}
                styles={styles.flatLis}
                renderItem={({ item }) =>

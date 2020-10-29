@@ -44,6 +44,9 @@ class Esqueleto extends Component {
          { id: 4, line: 1, name: 'Mano', possition: 3.8, rigth: false, fun: this.onPress.bind(this) },
          { id: 117, line: 3.5, name: '+', possition: 4.2, rigth: true, fun: this.gotoPiernas.bind(this) },
          { id: 118, line: 3.8, name: '+', possition: 7, rigth: true, fun: this.gotoPies.bind(this) },
+         { id: 20, line: 0, name: 'Chips y Pastas', possition: 7, rigth: false, fun: this.onPress.bind(this) },
+         { id: 21, line: 0, name: 'PRP', possition: 6, rigth: false, fun: this.onPress.bind(this) },
+         { id: 22, line: 0, name: 'Células Madre', possition: 5, rigth: false, fun: this.onPress.bind(this) }
       ]
 
    }

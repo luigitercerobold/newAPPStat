@@ -5,6 +5,7 @@ import urlStat from '../../../Lib/url'
 import Navigate from '../Component/NavigateCirugia'
 import { date } from '../../../Lib/Component/GetDate'
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable'
+import EmptyData from '../../../Lib/Component/EmptyData'
 
 class Invitation extends Component {
    state = {
@@ -35,6 +36,7 @@ class Invitation extends Component {
       return (
          <>
             <FlatList
+            ListEmptyComponent={() => <EmptyData/>}
                data={this.state.data}
                renderItem={({ item }) =>
                   <Pressable

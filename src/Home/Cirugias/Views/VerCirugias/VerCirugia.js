@@ -9,6 +9,7 @@ import urlStat from 'newAPPStat/src/Lib/url'
 import Navigate from '../../Component/NavigateCirugia'
 import color from '../../../../Lib/Colors'
 import ActivityIndicatorStat from '../../../../Lib/Component/ActivitiIndicator'
+import EmptyData  from '../../../../Lib/Component/EmptyData'
 class VerCirugia extends Component {
    state = {
       cirugia: [{ name: "" }],
@@ -59,6 +60,7 @@ class VerCirugia extends Component {
                :
 
                <FlatList
+               ListEmptyComponent={() => <EmptyData />}
                   data={cirugia}
                   renderItem={({ item }) =>
                      <Navigate

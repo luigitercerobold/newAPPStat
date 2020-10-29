@@ -15,7 +15,7 @@ import Http from '../../../Lib/http'
 import urlStat from '../../../Lib/url';
 
 
-class DatosNuevoUsuario extends Component {
+class ChangeEmail extends Component {
    state = {
       name: "",
       lastName: "",
@@ -29,7 +29,7 @@ class DatosNuevoUsuario extends Component {
       console.log(User.instance.user)
       this.setState(
          {
-            name: User.instance.user.name,
+            name: User.instance.user.email,
             eMail: User.instance.user.email,
             phone: User.instance.user.phone
          }
@@ -37,29 +37,42 @@ class DatosNuevoUsuario extends Component {
 
    }
 
- 
+
    goToPerfil = async () => {
 
-      const body =JSON.stringify(
-      {
-         // email: this.state.eMail,
-         // password: this.state.passWord,
-         name: this.state.name,
-         phone: this.state.phone,
-         //role: 2
-      }
+      const body = JSON.stringify(
+         {
+            // email: this.state.eMail,
+            // password: this.state.passWord,
+            newEmail: this.state.eMail,
+            password: this.state.passWord,
+            //role: 2
+         }
       )
-      const req = await Http.instance.post(urlStat.editNameAndPhone, body, Http.instance.getToken())
-     console.log(req)
-      if(req.data.message=="Se guardó la información exitosamente"){
+
+      const req = await Http.instance.post(urlStat.changeEmail, body, Http.instance.getToken())
+      console.log(req.message)
+      if (req.message == "Se guardó la información exitosamente") {
          User.instance.user.name = this.state.name
          User.instance.user.phone = this.state.phone
          this.props.navigation.navigate('Menu', { name: this.state.name })
-      }else(
-         Alert.alert(req.data.message)
+      } else (
+         Alert.alert(
+            "Usuario",
+            "Mensaje de Stat: " + req.message,
+            [
+               {
+                  text: "Cancel",
+                  onPress: () => console.log("Cancel Pressed"),
+                  style: "cancel"
+               },
+               { text: "OK", onPress: () => this.setState({ newPassword: "", passWord: "", }) }
+            ],
+            { cancelable: false }
 
+
+         )
       )
-
    }
 
    setName = (name) => {
@@ -82,45 +95,33 @@ class DatosNuevoUsuario extends Component {
    editaPassword = () => {
       this.props.navigation.navigate("EditPassword")
    }
+   setPassWord = (passWord) => {
+      this.setState({ passWord })
 
-   editEmail = () => {
-      this.props.navigation.navigate("ChangeEmail")
-      
    }
 
    render() {
       return (
          <>
 
-            <Title title="Editar Usuario" />
+            <Title title="Editar Email" />
             <Container>
                <TextBox
-                  placeholder={User.instance.user.name}
-                  onChangeText={this.setName}
+                  placeholder={User.instance.user.email}
+                  onChangeText={this.setEmail}
                />
 
                <PaddingVertical vertical={0.1} />
-               <TextBox
-                  placeholder={User.instance.user.phone}
-                  onChangeText={this.setPhone}
-                  keyword='number-pad'
+               <PassWord
+                  placeholder="Contraseña Actual"
+                  onChangeText={this.setPassWord}
+               //onEndEditing={() => this.logIn(activateAuth)}
                />
 
-               <PaddingVertical vertical={1}>
-                  <BtnSimple
-                     title="Contraseña"
-                     onPress={this.editaPassword}
-                  />
-               </PaddingVertical>
-               <PaddingVertical vertical={1}>
-                  <BtnSimple
-                     title="Email"
-                     onPress={this.editEmail}
-                  />
-               </PaddingVertical>
+
                <PaddingVertical vertical={5}>
                   <BtnSimple
-                     title="Aceptar"
+                     title="Cambiar"
                      onPress={this.goToPerfil}
                   />
                </PaddingVertical>
@@ -133,4 +134,4 @@ class DatosNuevoUsuario extends Component {
    }
 }
 
-export default DatosNuevoUsuario;
+export default ChangeEmail;

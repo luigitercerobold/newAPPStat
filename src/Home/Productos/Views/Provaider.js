@@ -10,6 +10,7 @@ import urlStat from 'newAPPStat/src/Lib/url'
 import color from 'newAPPStat/src/Lib/Colors'
 import ProviderSearch from '../Component/ProviderSearch'
 import ActivityIndicatorStat from '../../../Lib/Component/ActivitiIndicator'
+import EmptyData from '../../../Lib/Component/EmptyData'
 
 class Proveedor extends Component {
    state = {
@@ -32,7 +33,7 @@ class Proveedor extends Component {
       this.setState({ loading: true })
       const proveedor = await http.instance.get(urlStat.getProveedor, http.instance.getToken())
       this.setState({ proveedor: proveedor.data, loading: false, allProvider: proveedor.data })
-    
+
       return proveedor
    }
 
@@ -67,19 +68,20 @@ class Proveedor extends Component {
       const { products, proveedor, loading } = this.state
       return (
          <View style={styles.container}>
-            <View style = {styles.containerTittle}>
+            <View style={styles.containerTittle}>
                <Title title="Proveedor" />
                <ProviderSearch style={styles.search} onChange={this.handleSearch} />
             </View>
 
             {loading ?
-               <ActivityIndicatorStat color={color.blue} size="large" /> : null
+               <ActivityIndicatorStat color={color.blue} size="large" /> : <FlatList
+                  ListEmptyComponent={() => <EmptyData />}
+                  data={proveedor}
+                  style={styles.flatList}
+                  renderItem={({ item }) => <ListItem name={item.companyName} key={item.id} onPress={() => this.handlePress(item)} item={item} />}
+               />
             }
-            <FlatList
-               data={proveedor}
-               style={styles.flatList}
-               renderItem={({ item }) => <ListItem  name={item.companyName}key={item.id} onPress={() => this.handlePress(item)} item={item} />}
-            />
+
          </View>
       )
    }
@@ -89,19 +91,19 @@ export default Proveedor;
 
 const styles = StyleSheet.create({
    flatList: {
-      marginTop:45,
+      marginTop: 45,
       flexGrow: 0,
    },
    container: {
       flex: 1
    },
-   containerTittle:{
-      flexDirection:"row",
-      alignItems:'center',
-      alignContent:"center",
-      justifyContent:"space-evenly"
+   containerTittle: {
+      flexDirection: "row",
+      alignItems: 'center',
+      alignContent: "center",
+      justifyContent: "space-evenly"
    },
-   search:{
-      width:225
+   search: {
+      width: 225
    }
 })

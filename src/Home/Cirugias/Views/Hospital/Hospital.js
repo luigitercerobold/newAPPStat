@@ -7,7 +7,7 @@ import urlStat from 'newAPPStat/src/Lib/url'
 import color from 'newAPPStat/src/Lib/Colors'
 import HospitalItem from '../../Component/Listitem'
 import Header from '../../../src/Component/Header'
-
+import EmptyData from '../../../../Lib/Component/EmptyData'
 import ActivityIndicatorStat from '../../../../Lib/Component/ActivitiIndicator'
 class AgendarCirugia extends Component {
    state = {
@@ -35,16 +35,16 @@ class AgendarCirugia extends Component {
    render() {
       const { hospital, loading, activate } = this.state;
       return (
-         <View>
-            { loading ?
-               <ActivityIndicatorStat color={color.blue} size="large" /> : null
-            }
+         <View style={{flex:1}}>
             <Title title="¿En dónde vas a operar?" />
-            <FlatList
+            { loading ?
+               <ActivityIndicatorStat color={color.blue} size="large" /> : <FlatList
+               ListEmptyComponent={() => <EmptyData />}
                data={hospital}
                renderItem={({ item }) => <HospitalItem activate={activate} onPress={() => this.handlePress(item)} img={item.image} item={item.name} />}
             />
-
+            }
+            
          </View>
       )
 

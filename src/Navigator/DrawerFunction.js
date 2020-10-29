@@ -72,6 +72,8 @@ import EditPassword from '../Home/src/View/EditPassWord'
 import CropPhoto from '../Login/Container/CropPhoto';
 
 import ContextUser from '../Home/src/View/ContextUser'
+
+import ChangeEmail from '../Home/src/View/EditEmail'
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -143,6 +145,7 @@ function NavStack() {
       <Stack.Screen name = "CalendarBy" component = {CalendarBy}/>
       <Stack.Screen name = "EditPassword" component = {EditPassword}/>
       <Stack.Screen name = "CropPhoto" component = {CropPhoto}/>
+      <Stack.Screen name = "ChangeEmail" component = {ChangeEmail}/>
       
     </Stack.Navigator>
   );

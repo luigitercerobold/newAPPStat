@@ -72,7 +72,7 @@ class    DatosNuevoUsuario extends Component {
 
    render() {
       return (
-         <ScrollCenter>
+         <>
 
             <Title title="Editar Contraseña" />
             <Container>
@@ -101,7 +101,7 @@ class    DatosNuevoUsuario extends Component {
 
 
             </Container>
-         </ScrollCenter>
+         </>
       )
 
    }

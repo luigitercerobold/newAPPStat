@@ -54,7 +54,8 @@ const urlStat = {
       return `${server}/api/user/contact/${id}`
    },
    editPhoto: server + '/api/user/photo',
-   sendEmail:server + '/api/user/send-invitation'
+   sendEmail:server + '/api/user/send-invitation',
+   changeEmail:server+"/api/user/change-email"
 
    
 };

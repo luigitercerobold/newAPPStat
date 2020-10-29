@@ -12,7 +12,7 @@ import ListItem from '../../../Lib/Component/ListItem'
 import Header from '../../src/Component/Header'
 import ProviderSearch from '../Component/ProviderSearch'
 import ActivityIndicatorStat from '../../../Lib/Component/ActivitiIndicator'
-
+import EmptyData from '../../../Lib/Component/EmptyData'
 class FiltrarProveedor extends Component {
    constructor(props) {
       super(props)
@@ -68,19 +68,20 @@ class FiltrarProveedor extends Component {
       const { products, proveedor, loading } = this.state
       return (
          <View style={styles.container}>
-            <View style = {styles.containerTittle}>
+            <View style={styles.containerTittle}>
                <Title title="Proveedor" />
                <ProviderSearch style={styles.search} onChange={this.handleSearch} />
             </View>
 
             {loading ?
-               <ActivityIndicatorStat color={color.blue} size="large" /> : null
+               <ActivityIndicatorStat color={color.blue} size="large" /> : <FlatList
+                  ListEmptyComponent={() => <EmptyData />}
+                  data={proveedor}
+                  style={styles.flatList}
+                  renderItem={({ item }) => <ListItem name={item.companyName} key={item.id} onPress={() => this.handlePress(item)} item={item} />}
+               />
             }
-            <FlatList
-               data={proveedor}
-               style={styles.flatList}
-               renderItem={({ item }) => <ListItem  name={item.companyName} key={item.id} onPress={() => this.handlePress(item)} item={item} />}
-            />
+
          </View>
       )
    }

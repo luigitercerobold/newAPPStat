@@ -9,6 +9,9 @@ import ImgPerfil from '../../Home/src/Component/ImgPerfil'
 import User from '../../Lib/user';
 import urlStat from '../../Lib/url';
 import Http from '../../Lib/http';
+import RNFetchBlob from 'rn-fetch-blob'
+import { Buffer } from 'buffer'
+import atob from 'atob'
 
 const options = {
    title: 'Seleccione la imagen',
@@ -72,8 +75,8 @@ export default class MICamara extends Component {
    goToPerfil = () => {
 
       this.sendPhoto()
-      //User.instance.getUser().photo2 = this.state.avatarSource
-      //this.props.navigation.navigate('Menu', { img: this.state.data })
+      User.instance.getUser().photo2 = this.state.avatarSource
+      this.props.navigation.navigate('Menu', { img: this.state.data })
    }
 
    sendPhoto = async () => {
@@ -148,49 +151,109 @@ export default class MICamara extends Component {
       //       console.log(JSON.stringify(serviceResponse));
       //    });
 
-      let body = new FormData();
-      body.append('descripcion', 'dsadsadsa');
-      body.append('fechas[]', '2018-05-05');
-      body.append('fechas[]', '2015-05-05');
-
-      
-      body.append('imagenes[]', { uri: this.state.file.uri, name: 'photo1.jpg', type: 'image/jpg' });
+      // let body = new FormData();
+      // body.append('descripcion', 'dsadsadsa');
+      // body.append('fechas[]', '2018-05-05');
+      // body.append('fechas[]', '2015-05-05');
 
 
+      // body.append('imagenes[]', { uri: this.state.file.uri, name: 'photo1.jpg', type: 'image/jpg' });
 
-      fetch(urlStat.editPhoto, {
-         method: 'post',
-         headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'multipart/form-data',
-            'Authorization': Http.instance.getToken()
-         },
-         body: body
+
+
+      // fetch(urlStat.editPhoto, {
+      //    method: 'post',
+      //    headers: {
+      //       'Accept': 'application/json',
+      //       'Content-Type': 'multipart/form-data',
+      //       'Authorization': Http.instance.getToken()
+      //    },
+      //    body: body
+      // })
+      //    .then(res => res.text())
+      //    .then(res => {
+      //       console.log(res)
+      //    }).catch((err) => {
+      //       console.log('err', err)
+      //    });
+     // console.log("esto es la imagen",this.state.file.uri, Http.instance.getToken())
+
+      // let body = new FormData();
+      // body.append('file', { 
+      //                      uri: this.dataURItoBlob(this.state.data), 
+      //                      name:this.state.fileName, 
+      //                      filename: this.state.fileName, 
+      //                      type: this.state.type 
+      //                   });
+      // RNFetchBlob.fetch('POST', urlStat.editPhoto, {
+      //    'Content-Type': 'multipart/form-data',
+      //    'Authorization': Http.instance.getToken()
+      // }, [
+      //    {
+      //       name: 'file', filename: this.state.filename,
+      //       type: this.state.type,
+      //       data:dataURItoBlob(dataURI) 
+      //    }
+      // ]).then((resp) => {
+      //    console.log("server",resp);
+      // }).catch((err) => {
+      //    console.log("error:*",err);
+      // });
+
+      RNFetchBlob.fetch('POST', urlStat.editPhoto, {
+         'Authorization': Http.instance.getToken(),
+        otherHeader : "foo",
+        'Content-Type' : 'multipart/form-data',
+      }, [ 
+       { name : 'image', filename : 'image.jpg', type:'image/jpg', data: this.state.data},      
+         
+      ]).then((resp) => {
+        console.log(resp)
+      }).catch((err) => {
+        console.log(err)
       })
-         .then(res => res.text())
-         .then(res => {
-            console.log(res)
-         }).catch((err) => {
-            console.log('err', err)
-         });
+
 
    }
 
-
-   dataURLtoFile(dataurl, filename) {
-
-      var arr = dataurl.split(','),
-         mime = arr[0].match(/:(.*?);/)[1],
-         bstr = atob(arr[1]),
-         n = bstr.length,
-         u8arr = new Uint8Array(n);
-
-      while (n--) {
-         u8arr[n] = bstr.charCodeAt(n);
+  dataURItoBlob(dataURI) {
+      // convert base64/URLEncoded data component to raw binary data held in a string
+      var byteString;
+      if (dataURI.split(',')[0].indexOf('base64') >= 0)
+          byteString = atob(dataURI.split(',')[1]);
+      else
+          byteString = unescape(dataURI.split(',')[1]);
+    
+      // separate out the mime component
+      var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+    
+      // write the bytes of the string to a typed array
+      var ia = new Uint8Array(byteString.length);
+      for (var i = 0; i < byteString.length; i++) {
+          ia[i] = byteString.charCodeAt(i);
       }
-
-      return new File([u8arr], filename, { type: mime });
-   }
+    
+      return new Blob([ia], {type:mimeString});
+    }
+     dataURItoBlob(dataURI) {
+      // convert base64/URLEncoded data component to raw binary data held in a string
+      var byteString;
+      if (dataURI.split(',')[0].indexOf('base64') >= 0)
+          byteString = atob(dataURI.split(',')[1]);
+      else
+          byteString = unescape(dataURI.split(',')[1]);
+    
+      // separate out the mime component
+      var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+    
+      // write the bytes of the string to a typed array
+      var ia = new Uint8Array(byteString.length);
+      for (var i = 0; i < byteString.length; i++) {
+          ia[i] = byteString.charCodeAt(i);
+      }
+    
+      return new Blob([ia], {type:mimeString});
+    }
 
    render() {
 

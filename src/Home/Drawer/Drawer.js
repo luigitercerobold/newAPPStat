@@ -5,6 +5,7 @@ import Http from '../../Lib/http'
 import Url from '../../Lib/url'
 import User from '../../Lib/user'
 import TextMenu from '../../Drawer/Component/TextMenu'
+import EmptyData from '../../Lib/Component/EmptyData'
 const Drawer = ({ onPress, close }) => {
 
    const [categories, setCategories] = useState([])
@@ -30,6 +31,7 @@ const Drawer = ({ onPress, close }) => {
       <>
 
          <FlatList
+            ListEmptyComponent={() => <EmptyData />}
             data={categories}
             renderItem={({ item }) => <Button key={item.id} title={item.name} onPress={() => handlePress(item)} />}
          />

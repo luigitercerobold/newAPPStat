@@ -2,12 +2,13 @@ import React from 'react'
 import {View,FlatList,StyleSheet} from 'react-native'
 import Title from '../Lib/Title'
 import ListItem from '../Lib/Component/ListItem'
-
+import EmptyData from '../Lib/Component/EmptyData'
 const BodyParts = ({products,handlePress}) => {
    return(
       <View>
          <Title title="Elige la parte del cuerpo"/>
          <FlatList
+            ListEmptyComponent={() => <EmptyData />}
             data={products}
             style={styles.flatList}
             renderItem={({ item }) => <ListItem onPress={()=>handlePress(item)} item={item.name} />}
@@ -19,7 +20,7 @@ export default BodyParts;
 const styles = StyleSheet.create({
    flatList: {
       height: '80%',
-    
+     
       flexGrow: 0
     }
 }) 

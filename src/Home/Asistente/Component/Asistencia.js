@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, ActivityIndicator, FlatList, Text } from 'react-native'
+import { StyleSheet, View, ActivityIndicator, Text } from 'react-native'
 import Title from '../../../Lib/Title'
 import Color from '../../../Lib/Colors'
 import Http from '../../../Lib/http'

@@ -9,7 +9,7 @@ import http from 'newAPPStat/src/Lib/http'
 import urlStat from 'newAPPStat/src/Lib/url'
 import color from 'newAPPStat/src/Lib/Colors'
 import ActivityIndicatorStat from '../../../Lib/Component/ActivitiIndicator'
-
+import EmptyData from '../../../Lib/Component/EmptyData'
 class Productos extends Component {
 
    state = {
@@ -57,6 +57,7 @@ class Productos extends Component {
          }
             <Title title="Productos" />
             <FlatList
+               ListEmptyComponent={() => <EmptyData />}
                data={proveedor}
                style={styles.flatList}
                renderItem={({ item }) => <ListItem onPress={() => this.handlePress(item)} item={item.name} />}
