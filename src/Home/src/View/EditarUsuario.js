@@ -51,12 +51,12 @@ class DatosNuevoUsuario extends Component {
       )
       const req = await Http.instance.post(urlStat.editNameAndPhone, body, Http.instance.getToken())
      console.log(req)
-      if(req.data.message=="Se guardó la información exitosamente"){
+      if(req.message==="Se guardó la información exitosamente"){
          User.instance.user.name = this.state.name
          User.instance.user.phone = this.state.phone
          this.props.navigation.navigate('Menu', { name: this.state.name })
       }else(
-         Alert.alert(req.data.message)
+         Alert.alert(req.message)
 
       )
 
