@@ -12,7 +12,7 @@ export const Context = createContext()
 const Provider = ({ children }) => {
   
    const [loading, setLoading] = useState(false)
-   const [proximaCirugia, setProximaCirugia] = useState(Http.instance.get(urlStat.getNextSurgery, Http.instance.getToken()).data)
+   const [proximaCirugia, setProximaCirugia] = useState([])
    const [cirugiaAgendadas, setCirugiaAgendadas] = useState([])
    const [saludo, setSaludo] = useState("hola")
    const [date, setDate] = useState({
@@ -44,6 +44,9 @@ const Provider = ({ children }) => {
 
    }
 
+   const actulizarEstados =()=> {
+      console.log("actualizar")
+   }
    const value = {
       productos,
       date,
@@ -60,6 +63,7 @@ const Provider = ({ children }) => {
       saludo,
       setSaludo,
       getproximaCirugia,
+      actulizarEstados
      
    }
 

@@ -59,7 +59,9 @@ const urlStat = {
    deleteSchedule: (id) => {
       return `${server}/api/schedule/remove/${id}`
    },
-   aceptInvitation:(id)=>{ return `/server/api/schedule/${id}`}
+   editSchedule:server+"/api/schedule/edit",
+   aceptInvitation:(id)=>{ return `${server}/api/schedule/${id}`},
+  
    
    
 };

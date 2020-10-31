@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Pressable, StyleSheet, TextInput } from 'react-native';
+import { Text, View, Pressable, StyleSheet, TextInput, Alert } from 'react-native';
 import Http from 'newAPPStat/src/Lib/http'
 import Title from '../../../../Lib/Title'
 
@@ -8,6 +8,8 @@ import bodyPart from 'newAPPStat/src/Lib/bodyParts'
 import ListButton from '../../Component/ListButton'
 import url from 'newAPPStat/src/Lib/url'
 import TextBox from '../../../../Lib/Component/TexBox'
+import { Context } from '../../Context/CirugiaContext'
+import urlStat from '../../../../Lib/url';
 class Cuerpo extends Component {
 
    state = {
@@ -34,11 +36,47 @@ class Cuerpo extends Component {
       this.setState({ bodyPart: bodyPart.data })
    }
 
-   onPress = () => {
+   onPress = async () => {
+      
+      if (this.props.route.params.schedule) {
+         this.props.route.params.name = this.props.route.params?.body.name
+         this.props.route.params.description =this.state.procedimiento 
+         const body = JSON.stringify(this.props.route.params)
+      
+      const req = await Http.instance.post(urlStat.editSchedule, body, Http.instance.getToken())
+      console.log(req.message)
+      this.alert(req.message)
+      
+        this.props.navigation.navigate('AgendarCirugia', { bodyPart: this.props.route.params?.body.name, procedimiento: this.state.procedimiento })
+        this.context.actulizarEstados()
+         //this.addProduct()
 
-      this.props.navigation.navigate('AgendarCirugia', { bodyPart: this.props.route.params?.body.name, procedimiento: this.state.procedimiento })
+      } else {
+         this.props.navigation.navigate('AgendarCirugia', { bodyPart: this.props.route.params?.body.name, procedimiento: this.state.procedimiento })
+
+      }
+
+
+
    }
-   
+
+   alert = (message) => {
+
+      Alert.alert(
+         "Usuario",
+         "Mensaje de Stat: " + message,
+         [
+            {
+               text: "Cancel",
+               onPress: () => console.log("Cancel Pressed"),
+               style: "cancel"
+            },
+            { text: "OK", onPress: () => console.log("OK Pressed") }
+         ],
+         { cancelable: false }
+      )
+   }
+
    textInputChange = (value) => {
       this.setState({ procedimiento: value })
    }
@@ -47,55 +85,31 @@ class Cuerpo extends Component {
 
       return (
          <>
-         <Title title="Escribe el procedimiento" />
-         <View style={{ flex: 1}}>
-            
+            <Title title="Escribe el procedimiento" />
+            <View style={{ flex: 1 }}>
 
 
-            <View style= {{ flex:1,marginTop:40, alignItems:'center',alignContent:'center', justifyContent:'flex-start'}}>
-               <TextBox
-                  placeholder="Procedimiento"
-                  onChangeText={text => this.textInputChange(text)}
-               />
+
+               <View style={{ flex: 1, marginTop: 40, alignItems: 'center', alignContent: 'center', justifyContent: 'flex-start' }}>
+                  <TextBox
+                     placeholder="Procedimiento"
+                     onChangeText={text => this.textInputChange(text)}
+                  />
+
+
+               </View>
+               <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+                  <ListButton title="Confirmar" onPress={this.onPress} />
+               </View>
 
 
             </View>
-            <View style={{flex:1,justifyContent:'flex-end'}}>
-            <ListButton title="Confirmar" onPress={this.onPress} />
-            </View>
-
-
-         </View>
          </>
       )
    }
 }
 
+Cuerpo.contextType = Context;
+
+
 export default Cuerpo;
-
-const pickerSelectStyles = StyleSheet.create({
-
-   inputIOS: {
-      fontSize: 18,
-      fontFamily: 'Questrial-Regular',
-      paddingVertical: 12,
-      paddingHorizontal: 10,
-      //borderWidth: 1,
-      borderColor: 'gray',
-      borderRadius: 4,
-      color: 'black',
-      //paddingRight: 30, // to ensure the text is never behind the icon
-   },
-   inputAndroid: {
-      fontSize: 18,
-      fontFamily: 'Questrial-Regular',
-      paddingHorizontal: 10,
-      paddingVertical: 8,
-      //borderWidth: 0.5,
-      borderColor: 'black',
-      borderRadius: 8,
-      color: 'black',
-      backgroundColor: color.gray
-      //paddingRight: 30, // to ensure the text is never behind the icon
-   },
-});

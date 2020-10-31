@@ -6,20 +6,17 @@ import {
   Animated,
   Image,
   TextInput,
-  TouchableOpacity, Button, Pressable
+  TouchableOpacity, Button, Pressable,Alert
 } from 'react-native';
-import { Picker } from 'react-native';
-import { NavigationActions } from 'react-navigation';
 
-import RNPickerSelect, { defaultStyles } from 'react-native-picker-select';
-const DateTimePicker = require('@react-native-community/datetimepicker');
-import FechaHora from '../../Component/FehaHora';
 import Title from '../../../../Lib/Title'
 import SubTitle from '../../Component/SubTitle'
 import Time from '../../Component/Time';
 import ListButton from '../../Component/ListButton'
 import ContainerText from '../../Component/ContainerText'
-import Header from '../../../src/Component/Header'
+import Http from '../../../../Lib/http';
+import urlStat from '../../../../Lib/url';
+import { Context } from '../../Context/CirugiaContext'
 
 
 class FachaYHora extends React.Component {
@@ -30,8 +27,28 @@ class FachaYHora extends React.Component {
     fullTime: '',
     duration: ''
   };
-  onPress = () => {
-    console.log("enviando fullstart", this.state.fullStart)
+  onPress = async () => {
+
+    if (this.props.route.params.schedule) {
+      console.log(this.props.route.params)
+       this.props.route.params.date = this.state.fullStart,
+      this.props.route.params.end = this.state.fullTime
+      const body = JSON.stringify(this.props.route.params)
+
+      const req = await Http.instance.post(urlStat.editSchedule, body, Http.instance.getToken())
+      console.log(req.message)
+      this.alert(req.message)
+      this.props.navigation.navigate('AgendarCirugia', { bodyPart: this.props.route.params?.body.name, procedimiento: this.state.procedimiento })
+      this.context.actulizarEstados()
+      this.gotoStart()
+
+    } else {
+      this.gotoStart()
+    }
+
+  }
+
+  gotoStart=()=> {
     this.props.navigation.navigate('AgendarCirugia', {
       date: this.state.start,
       timer: this.state.time,
@@ -41,6 +58,23 @@ class FachaYHora extends React.Component {
       fullTime: this.state.fullTime
     })
   }
+
+  alert = (message) => {
+
+    Alert.alert(
+       "Usuario",
+       "Mensaje de Stat: " + message,
+       [
+          {
+             text: "Cancel",
+             onPress: () => console.log("Cancel Pressed"),
+             style: "cancel"
+          },
+          { text: "OK", onPress: () => console.log("OK Pressed") }
+       ],
+       { cancelable: false }
+    )
+ }
 
   handleStartCirugia = (start) => {
     let dates = new Date(this.props.route.params.date)
@@ -61,6 +95,10 @@ class FachaYHora extends React.Component {
     })
 
   }
+
+
+
+
   handleTimer = (time) => {
     let min = time.getMinutes();
     let fecha = new Date()
@@ -108,14 +146,15 @@ class FachaYHora extends React.Component {
             <ContainerText>{this.state.time} </ContainerText>
           </Time>
         </View>
-        <View style={{flex:1,justifyContent:'flex-end'}}>
+        <View style={{ flex: 1, justifyContent: 'flex-end' }}>
 
-        <ListButton title="Aceptar" onPress={this.onPress} />
+          <ListButton title="Aceptar" onPress={this.onPress} />
         </View>
       </View>
     );
   }
 }
+FachaYHora.contextType = Context
 export default FachaYHora;
 const styles = StyleSheet.create({
 

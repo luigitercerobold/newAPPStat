@@ -216,8 +216,9 @@ class AgendarCirugia extends Component {
 
       this.setState({ message: data.message })
       this.setState({ loading2: false })
-
+      this.context.actulizarEstados()
       this.goToFromMessage(this.state.message)
+   
 
    }
 
@@ -319,7 +320,11 @@ class AgendarCirugia extends Component {
                                  action="Añadir Productos"
                                  delate={false}
                               ></Navigate>
-                              <ListButton title="Aceptar" onPress={this.confirmar} />
+
+                              {this.props.route.params.schedule?
+                               null
+                              :<ListButton title="Aceptar" onPress={this.confirmar} />}
+                             
                            </ScrollView>
                         )
                      }

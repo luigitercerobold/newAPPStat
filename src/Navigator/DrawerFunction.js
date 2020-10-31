@@ -120,7 +120,7 @@ function NavStack() {
 
 
       <Stack.Screen name="EditarUsuario" component={EditarUsuario} />
-      <Stack.Screen name="Calendar" component={Calendar} />
+      
       <Stack.Screen name="Gallery" component={Gallery} />
 
      
@@ -172,10 +172,10 @@ function verCirugias() {
         <StackCirugias.Screen name="AgregarAsistente" component={AgregarAsistente} />
         <StackCirugias.Screen name="AgregarAsistenteDeStat" component={AgregarAsistenteDeStat} />
         <StackCirugias.Screen name="AgregarDeContacto" component={AgregarDeContacto} />
-        <Stack.Screen name="Invitation" component={Invitation} />
-        <Stack.Screen name="VerInvitacion" component={VerInvitacion} />
-        <Stack.Screen options={{ title: 'Menú' }} name="Menu" component={Menu} options={{ title: 'Menu', headerhown: false }} />
-
+        <StackCirugias.Screen name="Invitation" component={Invitation} />
+        <StackCirugias.Screen name="VerInvitacion" component={VerInvitacion} />
+        <StackCirugias.Screen options={{ title: 'Menú' }} name="Menu" component={Menu} options={{ title: 'Menu', headerhown: false }} />
+        <StackCirugias.Screen name="Calendar" component={Calendar} />
       </StackCirugias.Navigator>
     </CirugiaContext.Provider>
   )
