@@ -60,7 +60,7 @@ const urlStat = {
       return `${server}/api/schedule/remove/${id}`
    },
    editSchedule:server+"/api/schedule/edit",
-   aceptInvitation:(id)=>{ return `${server}/api/schedule/${id}`},
+   aceptInvitation:server +"/api/schedule/accept-invitation",
   
    
    

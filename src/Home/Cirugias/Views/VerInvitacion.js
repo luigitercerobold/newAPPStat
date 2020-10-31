@@ -10,6 +10,8 @@ import ListButton from '../Component/ListButton'
 import { ScrollView } from 'react-native-gesture-handler'
 import Header from '../../../Home/src/Component/Header'
 import Status from '../../../Lib/Component/Status'
+import Http from '../../../Lib/http'
+import urlStat from '../../../Lib/url'
 class AgendarCirugia extends Component {
    state = {
       loading: false,
@@ -30,13 +32,13 @@ class AgendarCirugia extends Component {
    }
 
    cargarCirugia = async (cirugia) => {
-      console.log(cirugia)
+      console.log("cirugia",cirugia.invitationData.id)
       // this.setState({ loading2: true })
 
       const ciru = await http.instance.get(url.getDetails(cirugia.scheduleData.id), http.instance.getToken())
-      console.log(ciru)
+      console.log("cirugia cargada", ciru.data.id, cirugia.scheduleData.id)
       const details = ciru.data
-      console.log("dotails", cirugia.scheduleData.id)
+
 
       this.llenarDoctores(details.doctorsInvited, cirugia.scheduleData.id)
       this.llenarProducto(details.scheduleProducts, cirugia.scheduleData.id)
@@ -45,7 +47,7 @@ class AgendarCirugia extends Component {
       this.props.route.params.bodyPart = details.name
       this.props.route.params.procedimiento = details.description
       this.props.route.params.hospital = details.hospital
-      this.props.route.params.schedule = cirugia.scheduleData.id
+      this.props.route.params.schedule = cirugia.invitationData.id
       this.setState({ loading2: false })
    }
 
@@ -98,7 +100,7 @@ class AgendarCirugia extends Component {
       if (this.props.route.params?.allDoctor.length > 0) {
 
          return this.props.route.params?.allDoctor.map(element => {
-            return element.name +"\n "
+            return element.name + "\n "
 
          })
       }
@@ -134,9 +136,16 @@ class AgendarCirugia extends Component {
       return body
    }
 
-   confirmar = () => {
+   confirmar = async (conf) => {
+      const body = JSON.stringify({
 
-      this.props.navigation.navigate("Menu")
+         invitationId :this.props.route.params.schedule,
+         status:conf
+      })
+      const req = await Http.instance.post(urlStat.aceptInvitation,body,Http.instance.getToken())
+      console.log(req)
+      
+
    }
 
    editarCirugia = async () => {
@@ -257,8 +266,8 @@ class AgendarCirugia extends Component {
                      delate={false}
                      edit={false}
                   ></Navigate>
-                  <ListButton title="Aceptar" onPress={this.confirmar} />
-                  <ListButton title="Rechazar" onPress={this.confirmar} />
+                  <ListButton title="Aceptar" onPress={()=>this.confirmar(1)} />
+                  <ListButton title="Rechazar" onPress={()=>this.confirmar(2)} />
                </ScrollView>
             }
          </View>
