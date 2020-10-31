@@ -3,9 +3,9 @@ import { Button, View, Text, Image, StyleSheet, Pressable } from 'react-native'
 import Colors from 'newAPPStat/src/Lib/Colors'
 import StatFont from '../../../Lib/Component/StatFont'
 
-
+import {useCirugia} from '../Context/CirugiaContext'
 const NavigateCirugias = ({ text1, text2, text3, img, goToPage, action, delate = true, edit = true, deleting, view }) => {
-
+   const {isAuth} = useCirugia()
    return (
 
       <View>

@@ -18,7 +18,8 @@ class Calendar2 extends Component {
       });
 
       setTimeout(() => { 
-         this.props.navigation.navigate("FechaYHora", { date: this.state.selectedStartDate }) 
+         this.props.route.params.date=this.state.selectedStartDate
+         this.props.navigation.navigate("FechaYHora", this.props.route.params) 
       }, 350);
 
    }

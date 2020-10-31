@@ -84,33 +84,6 @@ class AgendarCirugia extends Component {
 
    }
 
-   goToDate() {
-      this.props.navigation.navigate('Calendar')
-   }
-   goToCuerpo() {
-      this.props.navigation.navigate('Cuerpo')
-   }
-   goToHospital() {
-      this.props.navigation.navigate('Hospital',)
-   }
-   goToAsistent() {
-
-      this.props.navigation.navigate('AgregarAsistente',
-         {
-            allDoctor: this.props.route.params?.allDoctor,
-            anestesia: this.props.route.params?.anestesia,
-            doctor: this.props.route.params?.doctor,
-            schedule: this.props.route.params?.schedule
-         }
-      )
-   }
-   goToProducto() {
-      this.props.navigation.navigate('AgendarProducto',
-         {
-            products: this.props.route.params?.producto, schedule: this.props.route.params?.schedule
-         }
-      )
-   }
    isHospital() {
       if (!this.props.route.params?.hospital) {
          return ""
@@ -123,7 +96,11 @@ class AgendarCirugia extends Component {
          return ""
       }
       if (this.props.route.params?.allDoctor.length > 0) {
-         return this.props.route.params?.allDoctor[0].name
+
+         return this.props.route.params?.allDoctor.map(element => {
+            return element.name +"\n "
+
+         })
       }
       return "sin datos"
 
@@ -158,6 +135,7 @@ class AgendarCirugia extends Component {
    }
 
    confirmar = () => {
+
       this.props.navigation.navigate("Menu")
    }
 
@@ -264,7 +242,8 @@ class AgendarCirugia extends Component {
                   <Navigate
                      img={require("newAPPStat/assets/Icon/1x/asistencia-agregada.png")}
                      goToPage={() => this.goToAsistent()}
-                     text1={this.isAsist()}
+                     text1={"Asistencia"}
+                     text2={this.isAsist()}
                      action="Añadir Asistencia"
                      delate={false}
                      edit={false}

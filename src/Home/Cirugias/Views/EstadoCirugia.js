@@ -18,10 +18,12 @@ import http from 'newAPPStat/src/Lib/http'
 import init from 'newAPPStat/src/Lib/init'
 import Container from '../../../Login/Component/LoginComponent/ContainerCenter'
 import PaddingVertical from '../../../Login/Component/PaddingVertical'
-import Pendiente from '../Component/Pendiente'
-import Http from '../../../Lib/http';
+
+
 import urlStat from '../../../Lib/url';
-import Navigate from '../Component/NavigateCirugia'
+import ProximaCirugia from '../Component/ProximaCirugia'
+
+
 class Cirugias extends Component {
     state = {
         item: {},
@@ -30,6 +32,7 @@ class Cirugias extends Component {
 
     constructor() {
         super();
+
     }
 
     componentDidMount() {
@@ -40,14 +43,7 @@ class Cirugias extends Component {
     }
 
     getNext = async () => {
-        this.setState({
-            loading: true
-        })
-        const req = await Http.instance.get(urlStat.getNextSurgery, Http.instance.getToken())
-        this.setState({
-            item: req.data,
-            loading: false
-        })
+     
     }
 
     getToken = async () => {
@@ -68,34 +64,19 @@ class Cirugias extends Component {
     goToVerCirugia = () => {
         this.props.navigation.navigate('VerCelendar');
     }
-    avisoCirugia = (item) => {
-        if (item?.name === undefined) {
-
-            return "No tiene cirugías agendadas"
-        }
-        return "Operación de " + item?.name
-    }
+   
 
 
     render() {
         const { item, loading } = this.state
+      
+       
         return (
+
             <View style={styles.container}>
                 <Title title="Próxima cirugía" />
-                {!loading ?
-                    <Navigate
-                        key={item?.invitationData?.id}
-                        img={require("newAPPStat/assets/Icon/1x/menu-cirugas.png")}
-                        goToPage={() => this.goTo(item)}
-                        text1={this.avisoCirugia(item)}
-                        text2={item?.hospital?.name}
-                        text3={item?.date}
-                        action="Agendar cirugía"
-                        delate={false}
-                        edit={false}
-
-                    ></Navigate>
-                    : null}
+            
+                <ProximaCirugia />
 
 
                 <Container>

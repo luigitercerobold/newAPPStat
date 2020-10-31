@@ -18,7 +18,8 @@ import Esqueleto from '../../../../Esqueleto/container/Esqueleto'
 class Body extends Esqueleto {
   
    onPress ( item,view) {
-      this.props.navigation.navigate('Procedimiento',{body:item})
+      this.props.route.params.body = item
+      this.props.navigation.navigate('Procedimiento',this.props.route.params)
    }
    
 }

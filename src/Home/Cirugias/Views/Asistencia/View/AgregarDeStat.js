@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import Tabs from '../../../../Asistente/Component/Tabs'
 import StatContact from '../../../../Asistente/View/Buscar'
+import {Context} from '../../../Context/CirugiaContext'
+import Http from '../../../../../Lib/http'
+import urlStat from '../../../../../Lib/url'
 class AgregarDeStat extends StatContact {
    handlePress(item) {
 
@@ -35,9 +38,10 @@ class AgregarDeStat extends StatContact {
          status: 0,
          description: "",
          response: "",
-         name: item.name
+         name: item.name,
+         invitation:item.invitation
       })
-
+      this.context.setAsistentes(this.props.route.params.allDoctor)
       this.props.navigation.navigate('AgregarAsistente', { update: true, contact: this.props.route.params.contact, allDoctor: this.props.route.params.allDoctor })
    }
 
@@ -52,15 +56,19 @@ class AgregarDeStat extends StatContact {
          userId
       })
       const req = await Http.instance.post(urlStat.addDoctorOnDemand, body, Http.instance.getToken())
-      console.log(req)
-      
-      this.addContact(item)
+  
+      item.id =req.data.id
+      item.invitation=req.data.id
       this.setState({
-         loading:true
+         loading:false
       })
+      this.addContact(item)
+      
    }
 
-
+ 
 }
-
+AgregarDeStat.contextType = Context
 export default AgregarDeStat
+
+

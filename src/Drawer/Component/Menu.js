@@ -6,8 +6,8 @@ const Menu = ({ navigation }) => {
    return (
       <View style={styles.container}>
 
-         <TextMenu onPress={() => navigation.navigate('EstadoCirugia')} title="Cirugía" />
-         <TextMenu onPress={() => navigation.navigate('IndexProduct')} title="Asistencia" />
+         <TextMenu onPress={() => navigation.navigate('Cirugia')} title="Cirugía" />
+         <TextMenu onPress={() => navigation.navigate('Asistencia')} title="Asistencia" />
          <TextMenu onPress={() => navigation.navigate('IndexProduct')} title="Productos" />
 
       </View>

@@ -4,12 +4,13 @@ import Http from '../../../../../Lib/http'
 import urlStat from '../../../../../Lib/url'
 import Tabs from '../../../../Asistente/Component/Tabs'
 import Asistencia from '../../../../Asistente/View/Asistencia'
+import { Context } from '../../../Context/CirugiaContext'
 class AgregarDeContacto extends Asistencia {
    handlePress(item) {
 
       if (this.props.route.params.schedule) {
 
-         this.OnDemandChange(this.props.route.params.schedule, this.props.route.params.role, item.id,item)
+         this.OnDemandChange(this.props.route.params.schedule, this.props.route.params.role, item.id, item)
       } else {
 
 
@@ -41,15 +42,17 @@ class AgregarDeContacto extends Asistencia {
          name: item.name
       })
 
-      this.props.navigation.navigate('AgregarAsistente', { 
+      this.props.navigation.navigate('AgregarAsistente', {
          update: true, contact: this.props.route.params.contact,
-          allDoctor: this.props.route.params.allDoctor ,
-          schedule: this.props.route.params.schedule
-         })
+         allDoctor: this.props.route.params.allDoctor,
+         schedule: this.props.route.params.schedule
+      })
+      this.context.setAsistentes(this.props.route.params.allDoctor)
+
    }
-   OnDemandChange = async (scheduleId, role, userId,item) => {
+   OnDemandChange = async (scheduleId, role, userId, item) => {
       this.setState({
-         loading:true
+         loading: true
       })
       const body = JSON.stringify({
          scheduleId,
@@ -57,16 +60,21 @@ class AgregarDeContacto extends Asistencia {
          userId
       })
       const req = await Http.instance.post(urlStat.addDoctorOnDemand, body, Http.instance.getToken())
-      console.log(req)
-      this.addContact(item)
+      console.log("agregado", req.data.id)
+      item.id = req.data.id
+
       this.setState({
-         loading:false
+         loading: false
       })
+      this.addContact(item)
+
    }
 
    goto(role, array) {
 
-      this.props.navigation.navigate('AgregarAsistenteDeStat', { role: this.props.route.params.role, contact: this.props.route.params.contact, allDoctor: this.props.route.params.allDoctor })
+      this.props.navigation.navigate('AgregarAsistenteDeStat', { role: this.props.route.params.role, contact: this.props.route.params.contact, allDoctor: this.props.route.params.allDoctor, 
+         schedule:  this.props.route.params.schedule
+      })
 
    }
    isDelete() {
@@ -74,4 +82,5 @@ class AgregarDeContacto extends Asistencia {
    }
 }
 
+AgregarDeContacto.contextType = Context
 export default AgregarDeContacto

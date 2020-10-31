@@ -18,34 +18,33 @@ class Calendar2 extends Component {
       loading: false,
       finish: false,
       newFormat: [],
-      minDate:""
+      minDate: ""
    }
 
    componentDidMount() {
-      this.getCirugias()
-
+      this.getCirugias(new Date())
    }
 
-   getCirugias = async () => {
-
-      const today = new Date()
-      
+   getCirugias = async (today) => {
       this.setState({ loading: true })
-
+      
       const body = JSON.stringify({
-         "minDate":`${today.getFullYear()}-${today.getMonth()+1}-1`,
-         "maxDate":`${today.getFullYear()}-${today.getMonth()+2}-1`
-
+         "minDate": `${today.getFullYear()}-${today.getMonth() + 1}-1`,
+         "maxDate": `${today.getFullYear()}-${today.getMonth() + 2}-1`
       })
 
-      const cirugia = await http.instance.post(urlStat.getInvitation,body ,http.instance.getToken())
+      const cirugia = await http.instance.post(urlStat.getInvitation, body, http.instance.getToken())
 
       this.customDatesStyles(cirugia.data)
-      this.setState({ cirugia: cirugia.data, loading: false,minDate:today })
+      this.setState({ cirugia: cirugia.data, loading: false, minDate: today })
 
       console.log(cirugia)
       return cirugia.data
    }
+   onMonthChange = async (date) => {
+      return this.getCirugias(new Date(date))
+   }
+
 
    customDatesStyles = async (dates) => {
 
@@ -74,57 +73,31 @@ class Calendar2 extends Component {
 
       const dates = new Date(date)
       console.log(dates.getDate())
-     this.props.navigation.navigate('VerCirugia', { date:new Date(date) })
+      this.props.navigation.navigate('VerCirugia', { date: new Date(date) })
 
    }
 
-   onMonthChange = async (date) => {
-      const today = new Date(date)
    
-      this.setState({ minDate:today, loading: true })
-
-      console.log(`${today.getFullYear()}-${today.getMonth+1}-1`)
-      const body = JSON.stringify({
-         "minDate":`${today.getFullYear()}-${today.getMonth()+1}-1`,
-         "maxDate":`${today.getFullYear()}-${today.getMonth()+2}-1`
-
-      })
-
-      const cirugia = await http.instance.post(urlStat.getInvitation,body ,http.instance.getToken())
-
-      this.customDatesStyles(cirugia.data)
-      this.setState({ cirugia: cirugia.data, loading: false })
-
-      console.log(cirugia)
-      return cirugia.data
-
-   }
-
- 
-
    render() {
-      const {minDate} = this.state
+      const { minDate } = this.state
       return (
          <>
             <Title
                title="Cirugías"
             />
+
+
             {this.state.loading ? <ActivityIndicatorStat />
-
                : <>
-
                   <Calendar
                      customDatesStyles={this.state.newFormat}
                      onDateChange={this.onDateChange}
-                     onMonthChange ={this.onMonthChange}
-                     
+                     onMonthChange={this.onMonthChange}
                      initialDate={minDate}
-                  
                   />
-
                </>
-
             }
+
 
          </>
       )

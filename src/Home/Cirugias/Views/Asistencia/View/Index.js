@@ -6,6 +6,7 @@ import AddAsistencia from '../../../../Asistente/View/Asistencia'
 import AsitenciaComponent from '../../../../Asistente/Component/Asistencia'
 import Http from '../../../../../Lib/http'
 import urlStat from '../../../../../Lib/url'
+import  {Context} from '../../../Context/CirugiaContext'
 class Index extends AddAsistencia {
 
    goto(role, array) {
@@ -54,6 +55,7 @@ class Index extends AddAsistencia {
          element.user.role = element.role
          element.user.schedule = schedule
          element.user.invitation = element.id
+         element.user.id =element.id
          return element.user
       })
 
@@ -71,7 +73,7 @@ class Index extends AddAsistencia {
          doctor: this.props.route.params?.doctor || [],
          edit: this.props.route.params.schedule || -1
       })
-
+    
 
    }
 
@@ -119,6 +121,8 @@ class Index extends AddAsistencia {
          doctor,
 
       })
+
+      this.context.setAsistentes(allDoctor)
    }
 
 
@@ -148,5 +152,5 @@ class Index extends AddAsistencia {
    }
 
 }
-
+Index.contextType = Context
 export default Index

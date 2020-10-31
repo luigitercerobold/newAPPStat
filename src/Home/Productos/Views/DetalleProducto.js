@@ -54,6 +54,7 @@ class FiltrarProveedor extends Component {
          }
 
       )
+      console.log("producto",this.props.route.params.product.country.iso)
    }
 
    handlePress = (item) => {
@@ -65,7 +66,7 @@ class FiltrarProveedor extends Component {
          <View>{loading ?
             <ActivityIndicatorStat color={color.blue} size="large" /> : null
          }
-            <Title title={"Proveedor - " + proveedor.name} />
+            <Title title={"Proveedor - " + (proveedor.companyName||"Sin datos")} />
             <RowIconContact information={proveedor} />
 
             <SingleProduct

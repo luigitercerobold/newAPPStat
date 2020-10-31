@@ -45,8 +45,8 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import Color from '../Lib/Colors'
 
-import {LogoTitle} from './LogoTitle'
-import {BackImageRow} from './BackImageRow'
+import { LogoTitle } from './LogoTitle'
+import { BackImageRow } from './BackImageRow'
 import Gallery from '../Home/Productos/Views/GaleryProduc'
 import Hamburgues from './Hamburgues'
 
@@ -62,7 +62,7 @@ import AgregarDeContacto from '../Home/Cirugias/Views/Asistencia/View/AgregarDeC
 import EditarUsuario from '../Home/src/View/EditarUsuario';
 
 
-import Calendar from  '../Home/Cirugias/Views/AgendarCirugia/Calendar'
+import Calendar from '../Home/Cirugias/Views/AgendarCirugia/Calendar'
 import Invitation from '../Home/Cirugias/Views/Invitation'
 import VerInvitacion from '../Home/Cirugias/Views/VerInvitacion'
 import CalendarBy from '../Lib/Component/CalendarBy'
@@ -74,14 +74,15 @@ import CropPhoto from '../Login/Container/CropPhoto';
 import ContextUser from '../Home/src/View/ContextUser'
 
 import ChangeEmail from '../Home/src/View/EditEmail'
+import CirugiaContext from '../Home/Cirugias/Context/CirugiaContext'
+const StackCirugias = createStackNavigator()
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 function NavStack() {
-
   return (
     <Stack.Navigator
-      initialRouteName="Menu"
+      initialRouteName="Cirugia"
       screenOptions={{
         headerShown: true,
         headerTintColor: '#fff',
@@ -90,8 +91,8 @@ function NavStack() {
         },
         headerTitle: props => <LogoTitle pro={props} {...props} />,
         headerBackImage: props => <BackImageRow {...props} />,
-        headerRight:props => <Hamburgues {...props}/>,
-        headerTitleAlign:"center"
+        headerRight: props => <Hamburgues {...props} />,
+        headerTitleAlign: "center"
       }}
     >
       <Stack.Screen options={{ title: 'Brazo' }} name="Brazo" component={Brazo} />
@@ -100,25 +101,10 @@ function NavStack() {
       <Stack.Screen options={{ title: 'Piernas' }} name="Piernas" component={Piernas} />
       <Stack.Screen options={{ title: 'Pies' }} name="Pies" component={Pies} />
       <Stack.Screen name="Try" component={TryConnection} options={{ title: 'try', headerShown: false }} />
-      
-      <Stack.Screen options={{ title: 'Menú' }} name="Menu" component={Menu} options={{ title: 'Menu', headerhown: false }} />
 
-      <Stack.Screen options={{ title: 'Procedimiento' }} name="Procedimiento" component={Procedimiento} options={{ title: 'Procedimiento' }} />
 
-      <Stack.Screen options={{ title: 'Agendar Cirugía' }} name="AgendarCirugia" component={AgendarCirugia} />
-      <Stack.Screen options={{ title: 'Fecha y Hora' }} name="FechaYHora" component={FechaYHora} />
-      <Stack.Screen options={{ title: 'Cuerpo' }} name="Cuerpo" component={Cuerpo} />
-      <Stack.Screen options={{ title: 'Hospital' }} name="Hospital" component={Hospital} />
-      <Stack.Screen options={{ title: 'Asistente' }} name="Asistente" component={Asistente} />
-      <Stack.Screen options={{ title: 'Agendar Producto' }} name="AgendarProducto" component={AgendarProducto} />
-      <Stack.Screen options={{ title: 'Parte del Cuerpo' }} name="ElegirBody" component={ElegirBody} />
-      <Stack.Screen options={{ title: 'Proveedor' }} name="Proveedor" component={Proveedor} />
-      <Stack.Screen options={{ title: 'Productos' }} name="Productos" component={Productos} />
-      <Stack.Screen options={{ title: 'Agregar Producto' }} name="AddProductos" component={AddProductos} />
-      <Stack.Screen name="AceptCirugia" component={AceptCirugia} />
-      <Stack.Screen options={{ title: 'Estado Cirugía' }} name="EstadoCirugia" component={EstadoCirugia} />
-      <Stack.Screen options={{ title: 'Ver Cirugía' }} name="VerCirugia" component={VerCirugia} />
-      <Stack.Screen options={{ title: 'Ver Cirugía' }} name="VerCelendar" component={VerCelendar} />
+      <Stack.Screen name="Cirugia" component={verCirugias}  options={{ title: 'try', headerShown: false }} />
+
       <Stack.Screen name="IndexProduct" component={IndexProduct} />
       <Stack.Screen name="BodyProducto" component={BodyProducto} />
       <Stack.Screen name="FiltrarProveedores" component={FiltrarProveedores} />
@@ -132,40 +118,81 @@ function NavStack() {
       <Stack.Screen name="SendInvitation" component={SendInvitation} />
       <Stack.Screen name="AsistenteAdministrativo" component={AsistenteAdministrativo} />
 
-      <Stack.Screen name="AgregarAsistente" component={AgregarAsistente} />
-      <Stack.Screen name="AgregarAsistenteDeStat" component={AgregarAsistenteDeStat} />
-      <Stack.Screen name="AgregarDeContacto" component={AgregarDeContacto} />
+
       <Stack.Screen name="EditarUsuario" component={EditarUsuario} />
-      <Stack.Screen name= "Calendar" component= {Calendar} />
-      <Stack.Screen name= "Gallery" component= {Gallery} />
+      <Stack.Screen name="Calendar" component={Calendar} />
+      <Stack.Screen name="Gallery" component={Gallery} />
+
      
-      <Stack.Screen name= "Invitation" component = {Invitation}/>
-      <Stack.Screen name= "VerInvitacion" component = {VerInvitacion}/>
       
-      <Stack.Screen name = "CalendarBy" component = {CalendarBy}/>
-      <Stack.Screen name = "EditPassword" component = {EditPassword}/>
-      <Stack.Screen name = "CropPhoto" component = {CropPhoto}/>
-      <Stack.Screen name = "ChangeEmail" component = {ChangeEmail}/>
-      
+      <Stack.Screen name="CalendarBy" component={CalendarBy} />
+      <Stack.Screen name="EditPassword" component={EditPassword} />
+      <Stack.Screen name="CropPhoto" component={CropPhoto} />
+      <Stack.Screen name="ChangeEmail" component={ChangeEmail} />
+      <Stack.Screen name="AceptCirugia" component={AceptCirugia} />
+
     </Stack.Navigator>
   );
 }
 
+function verCirugias() {
+  return (
 
+    <CirugiaContext.Provider>
+      <StackCirugias.Navigator
+        initialRouteName="Menu"
+        screenOptions={{
+          headerShown: true,
+          headerTintColor: '#fff',
+          headerStyle: {
+            backgroundColor: Color.blue,
+          },
+          headerTitle: props => <LogoTitle pro={props} {...props} />,
+          headerBackImage: props => <BackImageRow {...props} />,
+          headerRight: props => <Hamburgues {...props} />,
+          headerTitleAlign: "center"
+
+
+        }}
+      >
+        <StackCirugias.Screen options={{ title: 'Procedimiento' }} name="Procedimiento" component={Procedimiento} options={{ title: 'Procedimiento' }} />
+        <StackCirugias.Screen options={{ title: 'Agendar Cirugía' }} name="AgendarCirugia" component={AgendarCirugia} />
+        <StackCirugias.Screen options={{ title: 'Fecha y Hora' }} name="FechaYHora" component={FechaYHora} />
+        <StackCirugias.Screen options={{ title: 'Cuerpo' }} name="Cuerpo" component={Cuerpo} />
+        <StackCirugias.Screen options={{ title: 'Hospital' }} name="Hospital" component={Hospital} />
+        <StackCirugias.Screen options={{ title: 'Asistente' }} name="Asistente" component={Asistente} />
+        <StackCirugias.Screen options={{ title: 'Agendar Producto' }} name="AgendarProducto" component={AgendarProducto} />
+        <StackCirugias.Screen options={{ title: 'Parte del Cuerpo' }} name="ElegirBody" component={ElegirBody} />
+        <StackCirugias.Screen options={{ title: 'Proveedor' }} name="Proveedor" component={Proveedor} />
+        <StackCirugias.Screen options={{ title: 'Productos' }} name="Productos" component={Productos} />
+        <StackCirugias.Screen options={{ title: 'Agregar Producto' }} name="AddProductos" component={AddProductos} />
+        <StackCirugias.Screen options={{ title: 'Ver Cirugía' }} name="VerCirugia" component={VerCirugia} />
+        <StackCirugias.Screen options={{ title: 'Ver Cirugía' }} name="VerCelendar" component={VerCelendar} />
+        <StackCirugias.Screen options={{ title: 'Estado Cirugía' }} name="EstadoCirugia" component={EstadoCirugia} />
+        <StackCirugias.Screen name="AgregarAsistente" component={AgregarAsistente} />
+        <StackCirugias.Screen name="AgregarAsistenteDeStat" component={AgregarAsistenteDeStat} />
+        <StackCirugias.Screen name="AgregarDeContacto" component={AgregarDeContacto} />
+        <Stack.Screen name="Invitation" component={Invitation} />
+        <Stack.Screen name="VerInvitacion" component={VerInvitacion} />
+        <Stack.Screen options={{ title: 'Menú' }} name="Menu" component={Menu} options={{ title: 'Menu', headerhown: false }} />
+
+      </StackCirugias.Navigator>
+    </CirugiaContext.Provider>
+  )
+}
 
 
 export function DrawerFunction() {
   return (
-    <Drawer.Navigator initialRouteName="Inicio"
-      drawerContent={props => CustomDrawerContent(props)}
-      drawerPosition="right"
-    >
-      <Drawer.Screen name="Inicio" component={NavStack} />
-      <Drawer.Screen name="Cirugias" component={VerCirugia} />
-      <Drawer.Screen name="Productos" component={IndexProduct} />
-      <Drawer.Screen name="CerrarSesion" component={NavStack} />
-    </Drawer.Navigator>
+    <ContextUser.Provider>
+      <Drawer.Navigator initialRouteName="Inicio"
+        drawerContent={props => CustomDrawerContent(props)}
+        drawerPosition="right"
+      >
+        <Drawer.Screen name="Inicio" component={NavStack} />
+
+
+      </Drawer.Navigator>
+    </ContextUser.Provider>
   )
-
-
 }

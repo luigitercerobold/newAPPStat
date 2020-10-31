@@ -27,9 +27,7 @@ class MenuSc extends Component {
   constructor(props) {
     super(props);
   }
-  componentDidUpdate(){
-    
-  }
+a
   toggleDrawer = () => {
     this.props.navigation.dispatch(DrawerActions.toggleDrawer())
   }

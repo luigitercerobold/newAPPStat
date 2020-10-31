@@ -22,7 +22,7 @@ function NavigateCirugias({ item, goToPage, remove }) {
 
                </View>
                <View>
-                  <Pressable onPress={() => remove(item)} style={[styles.myButton, styles.red]}>
+                  <Pressable onPress={remove} style={[styles.myButton, styles.red]}>
                      <Image style={styles.pencil} source={require("newAPPStat/assets/Icon/1x/cancerlar_informacion.png")} ></Image>
                   </Pressable>
                   <Pressable onPress={goToPage} style={styles.myButton}>

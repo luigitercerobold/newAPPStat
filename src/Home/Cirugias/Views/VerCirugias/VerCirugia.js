@@ -120,7 +120,7 @@ class VerCirugia extends Component {
                         deleting ={ () =>this.deleting (item)}
                         edit = {this.canEdit(item)}
                         delate = {this.canEdit(item)}
-                        view={()=>view(item)}
+                       // view={()=>view(item)}
                      ></Navigate>}
                />
             }

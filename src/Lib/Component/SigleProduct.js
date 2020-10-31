@@ -8,12 +8,13 @@ import Description from './Description'
 import StatFont from '../../Lib/Component/StatFont'
 
 
-const SingleProduct = ({ product, proveedor,navigation,gallery}) => {
+const SingleProduct = ({ product, proveedor, navigation, gallery }) => {
 
-  
 
-  
+
+
    const categorias = (categorias) => {
+
       if (categorias) {
          return (categorias.map(categoria => <StatFont key={categoria.id} >{categoria.name}</StatFont>))
       }
@@ -22,19 +23,25 @@ const SingleProduct = ({ product, proveedor,navigation,gallery}) => {
    return (
       <View>
          <View style={styles.containerImg}>
-            <View style={styles.img}>
+            <View >
                <Pressable
-                  onPress= {()=>navigation.navigate('Gallery',{img:gallery
-               })}
+                  onPress={() => navigation.navigate('Gallery', {
+                     img: gallery
+                  })}
                >
-               <Image style={styles.img} source={{
-                  uri: url.img + product.image,
-               }}></Image>
+                  <Image style={styles.img} source={{
+                     uri: url.img + product.image,
+                  }}></Image>
+
+                  <StatFont style={{marginVertical:10,textAlign:'center',fontSize:12,color:Colors.blue}}>Ver Galería</StatFont>
                </Pressable>
-               
+
 
             </View>
-            <StatFont>Marca del producto</StatFont>
+            <View style={{ flexDirection: "row", alignContent: "space-between", alignItems: 'center', marginTop: 15 }}>
+               <StatFont>Marca del producto</StatFont>
+               <Image source={{ uri: `https://www.countryflags.io/${product?.country?.iso}/flat/64.png` }} style={{ width: 15, height: 15, marginHorizontal: 10 }}></Image>
+            </View>
             <Title title={product.name} />
 
             {categorias(product.categories)}
@@ -44,6 +51,7 @@ const SingleProduct = ({ product, proveedor,navigation,gallery}) => {
          </View>
          <View>
             <Description description={product.description}></Description>
+
          </View>
 
       </View>
@@ -57,7 +65,8 @@ const styles = StyleSheet.create(
       containerImg: {
          justifyContent: 'center',
          alignContent: 'center',
-         alignItems: 'center'
+         alignItems: 'center',
+         
       },
       img: {
          height: 150,

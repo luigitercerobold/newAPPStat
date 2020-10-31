@@ -127,7 +127,7 @@ console.log("----",this.props.route.params.proveedor)
             <View style = {{ flex:1}}>
 
                <View style={styles.categories}>
-                  <Title title={proveedor.name} />
+                  <Title title={proveedor.companyName} />
                   <SimpleButton
                      title='Categorías'
                      onPress={this.referenceDrawer}
@@ -144,10 +144,7 @@ console.log("----",this.props.route.params.proveedor)
                   ListEmptyComponent={() => <EmptyData />}
                />
                }
-
-
-              
-
+               
                <AddBottom />
             </View>
          </Drawer>

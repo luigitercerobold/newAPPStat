@@ -30,12 +30,13 @@ class AddProducto extends Component {
       this.setState({loading:true})
       if (this.state.comment === "") {
          Alert.alert('Producto', "Agregue un comentario para que el proveedor pueda identificar su pedido")
+         this.setState({loading:false})
       } else {
 
          if (this.props.route.params.schedule) {
 
             this.OnDemandChange()
-            setSaludo("hehe")
+          
             setProductos(this.props.route.params.products)
          } else {
 
