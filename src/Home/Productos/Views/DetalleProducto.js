@@ -67,7 +67,7 @@ class FiltrarProveedor extends Component {
             <ActivityIndicatorStat color={color.blue} size="large" /> : null
          }
             <Title title={"Proveedor - " + (proveedor.companyName||"Sin datos")} />
-            <RowIconContact information={proveedor} />
+            <RowIconContact information={proveedor} product={producto} message = {this.state.message}/>
 
             <SingleProduct
                product={producto}

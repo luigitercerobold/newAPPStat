@@ -280,7 +280,7 @@ export default class MICamara extends Component {
                      />
 
                      : <ImgPerfil
-                        source={{ uri: urlStat.img + User.instance.getUser().photo }}
+                        source={{ uri: urlStat.img + User.instance.getUser()?.photo }}
                         style={{
                            marginLeft: 0,
                            width: 200,

@@ -61,6 +61,10 @@ const urlStat = {
    },
    editSchedule:server+"/api/schedule/edit",
    aceptInvitation:server +"/api/schedule/accept-invitation",
+   productTrial:(id)=> {
+      return `${server}/api/product/trial-request/${id}`
+   },
+   assistant: server +"/api/user/assistant"
   
    
    

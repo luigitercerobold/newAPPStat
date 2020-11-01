@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, Pressable, ActivityIndicator } from 'react-native'
+import { Text, View, Pressable } from 'react-native'
 import Title from '../../../Lib/Title'
 import Navigate from '../Component/NavigateCirugia'
 import { getActiveChildNavigationOptions } from 'react-navigation'
@@ -10,6 +10,7 @@ import ListButton from '../Component/ListButton'
 import { ScrollView } from 'react-native-gesture-handler'
 import Header from '../../../Home/src/Component/Header'
 import Status from '../../../Lib/Component/Status'
+import ActivityIndicator from '../../../Lib/Component/ActivitiIndicator'
 import CirugiaContext, { Context } from '../Context/CirugiaContext'
 class AgendarCirugia extends Component {
    state = {
@@ -17,7 +18,8 @@ class AgendarCirugia extends Component {
       message: 'Bad',
       isOk: true,
       loading2: false,
-      screen: "EstadoCirugia"
+      screen: "EstadoCirugia",
+      loading20: false
    }
 
 
@@ -33,7 +35,7 @@ class AgendarCirugia extends Component {
 
    cargarCirugia = async (cirugia) => {
 
-      this.setState({ loading2: true })
+      this.setState({ loading2: true,loading20:true })
 
       const ciru = await http.instance.get(url.getDetails(cirugia.scheduleData.id), http.instance.getToken())
 
@@ -56,7 +58,7 @@ class AgendarCirugia extends Component {
       this.props.route.params.hospitalId = cirugia.scheduleData.hospital_id
       this.props.route.params.end = this.props.route.params.timer
 
-      this.setState({ loading2: false })
+      this.setState({ loading2: false,loading20:false })
 
 
    }
@@ -100,14 +102,14 @@ class AgendarCirugia extends Component {
    editCirugia = () => {
       return {
          schedule: this.props.route.params?.schedule,
-         schedule: this.props.route.params.schedule,
-         id: this.props.route.params.id,
-         name: this.props.route.params.name,
-         date: this.props.route.params.date,
-         address: this.props.route.params.address,
-         description: this.props.route.params.description,
-         hospitalId: this.props.route.params.hospitalId,
-         end: this.props.route.params.end
+         schedule: this.props.route.params?.schedule,
+         id: this.props.route.params?.id,
+         name: this.props.route.params?.name,
+         date: this.props.route.params?.date,
+         address: this.props.route.params?.address,
+         description: this.props.route.params?.description,
+         hospitalId: this.props.route.params?.hospitalId,
+         end: this.props.route.params?.end
       }
 
    }
@@ -218,7 +220,7 @@ class AgendarCirugia extends Component {
       this.setState({ loading2: false })
       this.context.actulizarEstados()
       this.goToFromMessage(this.state.message)
-   
+
 
    }
 
@@ -256,82 +258,90 @@ class AgendarCirugia extends Component {
    }
 
    render() {
-      const { loading } = this.state
+      const { loading, loading20 } = this.state
       return (
-         <View style={{ flex: 1 }}>
-            {loading
 
-               ? <Status
-                  title={this.state.message}
-                  onPress={this.handlePress}
-                  isOk={this.state.isOk}
-                  loading={this.state.loading2}
-                  eventStart={this.props.route.params.fullStart}
-                  eventFinish={this.props.route.params.fullTime}
-                  titleCalendar={this.props.route.params?.procedimiento}
-                  hospitalName={this.isHospital()}
+         <>
 
-               />
-               :
-               <CirugiaContext.Consumer>
-                  {
-                     ({ asistentes, productos, setAsistentes, saludo, getProductos }) => {
-                        return (
-                           <ScrollView>
-                              <Title title={"Agendar Cirugía"} />
+            <View style={{ flex: 1 }}>
+               {loading
 
-                              <Navigate
-                                 img={require("newAPPStat/assets/Icon/1x/menu-cirugas.png")}
-                                 goToPage={() => this.goToDate()}
-                                 text1={this.props.route.params?.date}
-                                 text2={this.props.route.params?.timer}
-                                 // text3={}
-                                 action="Agendar cirugía"
-                                 delate={false}
-                              ></Navigate>
-                              <Navigate
-                                 img={require("newAPPStat/assets/Icon/1x/cirugia_agendada.png")}
-                                 goToPage={() => this.goToCuerpo()}
-                                 text1={this.props.route.params?.bodyPart}
-                                 text2={this.props.route.params?.procedimiento}
-                                 action="Añadir cirugía"
-                                 delate={false}
-                              ></Navigate>
-                              <Navigate
-                                 img={require("newAPPStat/assets/Icon/1x/hospital-agregado.png")}
-                                 goToPage={() => this.goToHospital()}
-                                 text1={this.isHospital()}
+                  ? <Status
+                     title={this.state.message}
+                     onPress={this.handlePress}
+                     isOk={this.state.isOk}
+                     loading={this.state.loading2}
+                     eventStart={this.props.route.params.fullStart}
+                     eventFinish={this.props.route.params.fullTime}
+                     titleCalendar={this.props.route.params?.procedimiento}
+                     hospitalName={this.isHospital()}
 
-                                 action="Añadir Hopital"
-                                 delate={false}
-                              ></Navigate>
-                              <Navigate
-                                 img={require("newAPPStat/assets/Icon/1x/asistencia-agregada.png")}
-                                 goToPage={() => this.goToAsistent()}
-                                 text1={this.isAsist(asistentes)}
-                                 action="Añadir Asistencia"
-                                 delate={false}
-                              ></Navigate>
-                              <Navigate
-                                 img={require("newAPPStat/assets/Icon/1x/menu-productos.png")}
-                                 goToPage={() => this.goToProducto()}
-                                 text1={this.isProduct(productos)}
-                                 text2="..."
-                                 action="Añadir Productos"
-                                 delate={false}
-                              ></Navigate>
+                  />
+                  :
+                  <>
+                     {!loading20 ?
+                        <CirugiaContext.Consumer>
+                           {
+                              ({ asistentes, productos, setAsistentes, saludo, getProductos }) => {
+                                 return (
+                                    <ScrollView>
+                                       <Title title={"Agendar Cirugía"} />
 
-                              {this.props.route.params.schedule?
-                               null
-                              :<ListButton title="Aceptar" onPress={this.confirmar} />}
-                             
-                           </ScrollView>
-                        )
-                     }
-                  }
-               </CirugiaContext.Consumer>
-            }
-         </View>
+                                       <Navigate
+                                          img={require("newAPPStat/assets/Icon/1x/menu-cirugas.png")}
+                                          goToPage={() => this.goToDate()}
+                                          text1={this.props.route.params?.date}
+                                          text2={this.props.route.params?.timer}
+                                          // text3={}
+                                          action="Agendar cirugía"
+                                          delate={false}
+                                       ></Navigate>
+                                       <Navigate
+                                          img={require("newAPPStat/assets/Icon/1x/cirugia_agendada.png")}
+                                          goToPage={() => this.goToCuerpo()}
+                                          text1={this.props.route.params?.bodyPart}
+                                          text2={this.props.route.params?.procedimiento}
+                                          action="Añadir cirugía"
+                                          delate={false}
+                                       ></Navigate>
+                                       <Navigate
+                                          img={require("newAPPStat/assets/Icon/1x/hospital-agregado.png")}
+                                          goToPage={() => this.goToHospital()}
+                                          text1={this.isHospital()}
+
+                                          action="Añadir Hopital"
+                                          delate={false}
+                                       ></Navigate>
+                                       <Navigate
+                                          img={require("newAPPStat/assets/Icon/1x/asistencia-agregada.png")}
+                                          goToPage={() => this.goToAsistent()}
+                                          text1={this.isAsist(asistentes)}
+                                          action="Añadir Asistencia"
+                                          delate={false}
+                                       ></Navigate>
+                                       <Navigate
+                                          img={require("newAPPStat/assets/Icon/1x/menu-productos.png")}
+                                          goToPage={() => this.goToProducto()}
+                                          text1={this.isProduct(productos)}
+                                          text2="..."
+                                          action="Añadir Productos"
+                                          delate={false}
+                                       ></Navigate>
+
+                                       {this.props.route.params?.schedule ?
+                                          null
+                                          : <ListButton title="Aceptar" onPress={this.confirmar} />}
+
+                                    </ScrollView>
+                                 )
+                              }
+                           }
+                        </CirugiaContext.Consumer>
+                        : <ActivityIndicator/>}
+                  </>
+               }
+            </View>
+         </>
       )
    }
 }

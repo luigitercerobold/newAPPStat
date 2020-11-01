@@ -1,5 +1,7 @@
 
 import React, { Component } from 'react'
+import Http from '../../../Lib/http'
+import urlStat from '../../../Lib/url'
 import Permisos from '../../../Login/Component/PermisosAsistente'
 class AsistenteAdministrativo extends Component {
    state = {
@@ -8,9 +10,16 @@ class AsistenteAdministrativo extends Component {
    setEmail = (eMail) => {
       this.setState({ eMail })
    }
-   gotoToToken = (eMail) => {
-
-      this.props.navigation.navigate('SendInvitation')
+   gotoToToken = async (email,name) => {
+      const body = JSON.stringify(
+         {
+            email,
+            name
+         }
+      )
+      const req= await Http.instance.post(urlStat.assistant,body,Http.instance.getToken())
+      console.log(req)
+      //this.props.navigation.navigate('SendInvitation')
 
    }
    render() {
@@ -19,7 +28,8 @@ class AsistenteAdministrativo extends Component {
             <Permisos
                onPress={this.gotoToToken}
                title="Permisos"
-               subTitle="Ingrese el correo del asistente administrativo para otorgar accesos"
+               subTitle="Compartir"
+               
             >
             </Permisos>
          </>

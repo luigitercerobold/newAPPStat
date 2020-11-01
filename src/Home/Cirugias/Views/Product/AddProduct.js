@@ -10,6 +10,7 @@ import DetalleProducto from '../../../Productos/Views/DetalleProducto'
 import Http from '../../../../Lib/http';
 import urlStat from '../../../../Lib/url';
 import ContextAgendarCirugia from '../../Context//CirugiaContext'
+import ActivityIndicator from '../../../../Lib/Component/ActivitiIndicator';
 
 class AddProducto extends Component {
    state = {
@@ -27,7 +28,7 @@ class AddProducto extends Component {
    }
 
    onPress = (setSaludo,setProductos) => {
-      this.setState({loading:true})
+      
       if (this.state.comment === "") {
          Alert.alert('Producto', "Agregue un comentario para que el proveedor pueda identificar su pedido")
       } else {
@@ -56,7 +57,7 @@ class AddProducto extends Component {
       //    this.props.route.params.products.push(this.props.route.params.product)
       //    this.props.navigation.navigate("AgendarProducto", { product: this.state.chage })
       // }
-
+   
    }
    ///api/schedule/product {productId: 2, message: "test message", scheduleId: 1}
    addProduct() {
@@ -72,8 +73,9 @@ class AddProducto extends Component {
          message: this.state.comment + "",
          scheduleId: this.props.route.params.schedule
       })
+      this.setState({loading:true})
       const req = await Http.instance.post(urlStat.addProductOnDemand, body, Http.instance.getToken())
-      console.log(req.data.id)
+      this.setState({loading:false})
       this.props.route.params.product.id = req.data.id
       this.props.route.params.product.invitation = req.data.id
       this.addProduct()
@@ -86,14 +88,14 @@ class AddProducto extends Component {
       return (
          <>
          
-         {this.state.loading?null
+         {this.state.loading? <ActivityIndicator></ActivityIndicator>
             :<ContextAgendarCirugia.Consumer>{
                ({setSaludo,setProductos}) => {
                   
                   return (
    
                      <ScrollView>
-                        <DetalleProducto {...this.props} />
+                        <DetalleProducto {...this.props}  />
    
                         <UselessTextInput
                            placeholder="Comentario"
